@@ -381,6 +381,23 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
   #floatMenu{left:12px;bottom:86px;max-height:52vh}
   #resBtn{right:12px;bottom:16px;padding:14px 20px}
 }
+/* En pantallas estrechas la cabecera no cabía: logo (132 px) + nav (335 px)
+   suman más que el ancho disponible, así que la fila se desbordaba por la
+   derecha y la hamburguesa quedaba FUERA de pantalla — con ella, toda la
+   navegación móvil. Se recorta por donde sobra:
+
+   - El botón "Reservar Mesa" de la cabecera se retira. No se pierde nada: el
+     botón flotante de reservar está fijo abajo a la derecha y siempre visible
+     en móvil, y el propio menú de hamburguesa lleva su enlace de reserva.
+   - El hueco entre piezas baja de 30 a 16 px.
+
+   Quedan audio, idioma y hamburguesa: 142 px de nav, que caben incluso a
+   320 px de ancho. El umbral son 560 px porque por debajo de ~508 px la fila
+   completa ya no entra. */
+@media(max-width:560px){
+  nav.top{gap:16px}
+  nav.top a.btn-gold{display:none}
+}
 @media(prefers-reduced-motion:reduce){
   .marquee .rail{animation:none}
   #stage .grain{animation:none}
