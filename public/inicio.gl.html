@@ -343,6 +343,20 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
 #modal .send:hover{box-shadow:0 10px 34px rgba(212,175,55,.4);transform:translateY(-2px)}
 #modal .telAlt{margin-top:18px;text-align:center;font-size:12px;color:var(--cream-dim)}
 #modal .telAlt a{color:var(--gold)}
+/* Llamar: era una línea de 12 px al pie que no veía nadie. Ahora es un botón
+   con peso, pero secundario —contorno, no relleno— para no competir con el de
+   reservar, que es el camino que el cliente quiere que la gente tome.
+   <details> puro: sin JavaScript, igual que el selector de idioma. */
+#modal .llamar{margin-top:14px}
+#modal .llamar>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;padding:15px;border:1px solid var(--gold-soft);color:var(--gold);font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;transition:background .35s,border-color .35s}
+#modal .llamar>summary::-webkit-details-marker{display:none}
+#modal .llamar>summary::marker{content:""}
+#modal .llamar>summary:hover,#modal .llamar[open]>summary{background:rgba(212,175,55,.08);border-color:var(--gold)}
+#modal .llamar .op{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+#modal .llamar .op a{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:13px 16px;border:1px solid var(--glass-line);background:rgba(248,245,238,.03);transition:border-color .3s,background .3s}
+#modal .llamar .op a:hover{border-color:var(--gold-soft);background:rgba(212,175,55,.07)}
+#modal .llamar .op b{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--cream-dim);font-weight:600}
+#modal .llamar .op span{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--gold);white-space:nowrap}
 #okView{display:none;text-align:center;padding:30px 0 10px}
 #okView .ok{width:70px;height:70px;margin:0 auto 24px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:28px}
 #okView h4{font-family:var(--serif);font-size:30px;font-weight:700}
@@ -681,7 +695,13 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
         </label>
         <button class="send" type="submit">Reservar por WhatsApp</button>
       </form>
-      <p class="telAlt">Con présa? <a href="tel:+34881829728">Chámanos directamente</a></p>
+      <details class="llamar">
+        <summary>☎ &nbsp;Prefiro chamar</summary>
+        <div class="op">
+          <a href="tel:+34881829728"><b>Teléfono fixo</b><span>881 82 97 28</span></a>
+          <a href="tel:+34696434042"><b>Teléfono móbil</b><span>696 43 40 42</span></a>
+        </div>
+      </details>
       <p class="telAlt">Tamén por <a href="https://wa.me/34696434042" target="_blank" rel="noopener">WhatsApp</a> ou ao móbil <a href="tel:+34696434042">696 43 40 42</a></p>
     </div>
     <div id="okView">

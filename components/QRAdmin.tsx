@@ -161,13 +161,34 @@ export function QRAdmin({ siteBase }: { siteBase: string }) {
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-white">Imprimir</h2>
-        <a
-          className="inline-block rounded-md border border-carbon-600 bg-carbon-800 px-4 py-2 text-sm font-semibold text-white hover:border-brasa-700"
-          href={pdfHref}
-          download="don-pepe-qrs.pdf"
-        >
-          Descargar PDF A4 (6 por hoja)
-        </a>
+        <p className="text-sm text-carbon-300">
+          El cartel lleva un solo QR grande, el nombre del local y la invitación
+          a escanear. Va en negro sobre blanco para que salga legible en
+          cualquier impresora.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a
+            className="inline-block rounded-md border border-brasa-500 bg-brasa-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brasa-600"
+            href="/api/qr/cartel"
+            download="don-pepe-carta-qr-a5.pdf"
+          >
+            Cartel de mesa · A5
+          </a>
+          <a
+            className="inline-block rounded-md border border-carbon-600 bg-carbon-800 px-4 py-2 text-sm font-semibold text-white hover:border-brasa-700"
+            href="/api/qr/cartel?formato=a4"
+            download="don-pepe-carta-qr-a4.pdf"
+          >
+            Cartel de mesa · A4
+          </a>
+          <a
+            className="inline-block rounded-md border border-carbon-600 bg-carbon-800 px-4 py-2 text-sm font-semibold text-white hover:border-brasa-700"
+            href={pdfHref}
+            download="don-pepe-qrs.pdf"
+          >
+            Plancha de {count} QRs numerados (A4)
+          </a>
+        </div>
       </section>
     </main>
   );

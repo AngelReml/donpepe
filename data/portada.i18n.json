@@ -744,14 +744,6 @@
     "fr": "placeholder=\"Terrasse, chaise haute, allergies…\"",
     "it": "placeholder=\"Terrazza, seggiolone, allergie…\""
   },
-  "<p class=\"telAlt\">¿Con prisa? <a href=\"tel:+34881829728\">Llámanos directamente</a></p>": {
-    "gl": "<p class=\"telAlt\">Con présa? <a href=\"tel:+34881829728\">Chámanos directamente</a></p>",
-    "en": "<p class=\"telAlt\">In a hurry? <a href=\"tel:+34881829728\">Call us instead</a></p>",
-    "pt": "<p class=\"telAlt\">Com pressa? <a href=\"tel:+34881829728\">Liga-nos diretamente</a></p>",
-    "de": "<p class=\"telAlt\">Eilig? <a href=\"tel:+34881829728\">Rufen Sie uns direkt an</a></p>",
-    "fr": "<p class=\"telAlt\">Pressé ? <a href=\"tel:+34881829728\">Appelez-nous directement</a></p>",
-    "it": "<p class=\"telAlt\">Hai fretta? <a href=\"tel:+34881829728\">Chiamaci direttamente</a></p>"
-  },
   "<button id=\"resBtn\" data-open-res>Reservar mesa</button>": {
     "gl": "<button id=\"resBtn\" data-open-res>Reservar mesa</button>",
     "en": "<button id=\"resBtn\" data-open-res>Book a table</button>",
@@ -911,5 +903,29 @@
     "de": "<summary title=\"Sprache\"><span class=\"langActual\">DE</span></summary>",
     "fr": "<summary title=\"Langue\"><span class=\"langActual\">FR</span></summary>",
     "it": "<summary title=\"Lingua\"><span class=\"langActual\">IT</span></summary>"
+  },
+  ">☎ &nbsp;Prefiero llamar</summary>": {
+    "gl": ">☎ &nbsp;Prefiro chamar</summary>",
+    "en": ">☎ &nbsp;I'd rather call</summary>",
+    "pt": ">☎ &nbsp;Prefiro ligar</summary>",
+    "de": ">☎ &nbsp;Lieber anrufen</summary>",
+    "fr": ">☎ &nbsp;Je préfère appeler</summary>",
+    "it": ">☎ &nbsp;Preferisco chiamare</summary>"
+  },
+  "<b>Teléfono fijo</b>": {
+    "gl": "<b>Teléfono fixo</b>",
+    "en": "<b>Landline</b>",
+    "pt": "<b>Telefone fixo</b>",
+    "de": "<b>Festnetz</b>",
+    "fr": "<b>Ligne fixe</b>",
+    "it": "<b>Telefono fisso</b>"
+  },
+  "<b>Teléfono móvil</b>": {
+    "gl": "<b>Teléfono móbil</b>",
+    "en": "<b>Mobile</b>",
+    "pt": "<b>Telemóvel</b>",
+    "de": "<b>Mobiltelefon</b>",
+    "fr": "<b>Portable</b>",
+    "it": "<b>Cellulare</b>"
   }
 }
