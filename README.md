@@ -268,3 +268,10 @@ el siguiente reinicio del servidor.
   `ALLOWED_PROCESSED_PER_HOUR` en `app/api/reviews/poll/route.ts`.
 - **Tiempo de espera de confirmación**: `CONFIRM_TTL_MS` en
   `lib/pending.ts`.
+
+## Despliegue
+
+El proyecto está conectado a `AngelReml/donpepe`. Cada push a `main` dispara
+un despliegue de producción en Vercel; las demás ramas generan una vista
+previa. Ya no hace falta `vercel --prod` desde el disco local, y así no se
+puede desplegar nada que no esté versionado.
