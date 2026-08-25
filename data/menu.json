@@ -1,0 +1,311 @@
+{
+  "entrantes": [
+    {
+      "id": "navajas",
+      "nombre": "Navajas",
+      "precio": 12,
+      "descripcion": "A la plancha, con su jugo y perejil.",
+      "imagen": "/img/nav.jpg"
+    },
+    {
+      "id": "mejillones",
+      "nombre": "Mejillones al vapor",
+      "precio": 9,
+      "descripcion": "De las rías, al vapor con laurel.",
+      "imagen": "/img/mej.jpg"
+    },
+    {
+      "id": "ensalada-mixta",
+      "nombre": "Ensalada mixta",
+      "precio": 6,
+      "descripcion": "Fresca y de casa, con tomate y cebolla.",
+      "imagen": "/img/ensMix.jpg"
+    },
+    {
+      "id": "ensalada-atun",
+      "nombre": "Ensalada atún y huevo duro",
+      "precio": 8,
+      "descripcion": "Completa, como manda la tradición.",
+      "imagen": "/img/ensAtun.jpg"
+    },
+    {
+      "id": "chorizos-vino",
+      "nombre": "Chorizos al vino blanco",
+      "precio": 7.5,
+      "descripcion": "Guisados lentos, con su salsa.",
+      "imagen": "/img/chor.jpg"
+    },
+    {
+      "id": "croquetas",
+      "nombre": "Croquetas",
+      "precio": 9,
+      "descripcion": "Caseras, de bechamel cremosa.",
+      "imagen": "/img/croq.jpg"
+    },
+    {
+      "id": "camembert",
+      "nombre": "Camembert frito con arándanos",
+      "precio": 7.5,
+      "descripcion": "Crujiente fuera, fundido dentro.",
+      "imagen": "/img/camb.jpg"
+    },
+    {
+      "id": "patatas-bravas",
+      "nombre": "Patatas bravas",
+      "precio": 5.5,
+      "descripcion": "Con salsa brava de casa.",
+      "imagen": "/img/bravas.jpg"
+    },
+    {
+      "id": "gambones-ajillo",
+      "nombre": "Gambones al ajillo",
+      "precio": 15,
+      "descripcion": "En cazuela, con ajo y guindilla.",
+      "imagen": "/img/gambAj.jpg"
+    },
+    {
+      "id": "gambones-plancha",
+      "nombre": "Gambones a la plancha",
+      "precio": 15,
+      "descripcion": "Vuelta y vuelta, sal gruesa.",
+      "imagen": "/img/gambPl.jpg"
+    },
+    {
+      "id": "tortilla",
+      "nombre": "Tortilla de patatas",
+      "precio": 12,
+      "descripcion": "Jugosa, cuajada por dentro.",
+      "imagen": "/img/tort.jpg"
+    },
+    {
+      "id": "zamburinas",
+      "nombre": "Zamburiñas",
+      "precio": 18,
+      "descripcion": "A la plancha, ajo y perejil en su concha.",
+      "imagen": "/img/zamb.jpg"
+    },
+    {
+      "id": "caldo-gallego",
+      "nombre": "Caldo gallego",
+      "precio": 7,
+      "descripcion": "Grelos, fabas, patata y compango.",
+      "imagen": "/img/caldo.jpg"
+    },
+    {
+      "id": "pulpo",
+      "nombre": "Pulpo a la gallega",
+      "precio": 18,
+      "descripcion": "En tabla de roble, pimentón y AOVE.",
+      "imagen": "/img/pulpo.jpg"
+    }
+  ],
+  "arroces": [
+    {
+      "id": "arroz-negro",
+      "nombre": "Arroz negro",
+      "precio": 36,
+      "nota": "2 personas",
+      "descripcion": "Con tinta, alioli y socarrat.",
+      "imagen": "/img/arrNeg.jpg"
+    },
+    {
+      "id": "paella-marisco",
+      "nombre": "Paella de marisco",
+      "precio": 38,
+      "nota": "2 personas",
+      "descripcion": "Cigalas, mejillones, gambón y azafrán.",
+      "imagen": "/img/paella.jpg"
+    },
+    {
+      "id": "paella-mixta",
+      "nombre": "Paella mixta",
+      "precio": 38,
+      "nota": "2 personas",
+      "descripcion": "Mar y montaña en la misma paella.",
+      "imagen": "/img/paeMix.jpg"
+    },
+    {
+      "id": "paella-verduras",
+      "nombre": "Paella de verduras",
+      "precio": 30,
+      "nota": "2 personas",
+      "descripcion": "De la huerta, con fondo de verduras.",
+      "imagen": "/img/paeVer.jpg"
+    },
+    {
+      "id": "arroz-senoret",
+      "nombre": "Arroz del señoret",
+      "precio": 36,
+      "nota": "2 personas",
+      "descripcion": "Todo pelado, listo para comer.",
+      "imagen": "/img/senor.jpg"
+    },
+    {
+      "id": "arroz-caldoso",
+      "nombre": "Arroz caldoso de marisco",
+      "precio": 46,
+      "nota": "2 personas",
+      "descripcion": "El rey de la casa, hirviendo en la mesa.",
+      "imagen": "/img/caldoso.jpg"
+    }
+  ],
+  "pescados": [
+    {
+      "id": "merluza",
+      "nombre": "Merluza a la gallega",
+      "precio": 17,
+      "descripcion": "En cazuela, con patata y salsa de pimentón.",
+      "imagen": "/img/merl.jpg"
+    },
+    {
+      "id": "salmon",
+      "nombre": "Salmón a la plancha",
+      "precio": 18,
+      "descripcion": "Punto rosado, mantequilla noisette.",
+      "imagen": "/img/salm.jpg"
+    },
+    {
+      "id": "pescado-dia",
+      "nombre": "Pescado del día",
+      "precio_texto": "S/M",
+      "descripcion": "Pregunta la captura de hoy en lonja.",
+      "imagen": "/img/pescDia.jpg"
+    },
+    {
+      "id": "dorada-lubina",
+      "nombre": "Dorada / Lubina a la plancha",
+      "precio": 17,
+      "descripcion": "Abierta a la espalda, con refrito de ajos.",
+      "imagen": "/img/dorada.jpg"
+    }
+  ],
+  "carnes": [
+    {
+      "id": "zorza",
+      "nombre": "Zorza",
+      "precio": 12,
+      "descripcion": "Adobada de casa, con cachelos.",
+      "imagen": "/img/zorza.jpg"
+    },
+    {
+      "id": "raxo",
+      "nombre": "Raxo",
+      "precio": 12,
+      "descripcion": "Lomo adobado a la plancha, el clásico.",
+      "imagen": "/img/raxo.jpg"
+    },
+    {
+      "id": "secreto",
+      "nombre": "Secreto de cerdo",
+      "precio": 12,
+      "descripcion": "Jugoso, vuelta y vuelta.",
+      "imagen": "/img/secreto.jpg"
+    },
+    {
+      "id": "milanesa",
+      "nombre": "Milanesa de pollo",
+      "precio": 12,
+      "descripcion": "Empanada fina, dorada.",
+      "imagen": "/img/mila.jpg"
+    },
+    {
+      "id": "churrasco-cerdo",
+      "nombre": "Churrasco de cerdo",
+      "precio": 12,
+      "descripcion": "A la brasa, con su chimichurri suave.",
+      "imagen": "/img/churrCerdo.jpg"
+    },
+    {
+      "id": "churrasco-ternera",
+      "nombre": "Churrasco de ternera",
+      "precio": 16,
+      "descripcion": "Brasa fuerte, sal gruesa.",
+      "imagen": "/img/churrTernera.jpg"
+    },
+    {
+      "id": "jamon-asado",
+      "nombre": "Jamón asado",
+      "precio": 9,
+      "descripcion": "Asado lento, laminado.",
+      "imagen": "/img/jamonAs.jpg"
+    },
+    {
+      "id": "pollo-brasa",
+      "nombre": "Pollo a la brasa",
+      "precio": 12,
+      "descripcion": "Dorado al carbón.",
+      "imagen": "/img/polloBr.jpg"
+    },
+    {
+      "id": "criollo",
+      "nombre": "Criollo",
+      "precio": 3,
+      "descripcion": "La chistorra criolla de siempre.",
+      "imagen": "/img/criollo.jpg"
+    },
+    {
+      "id": "chuleton",
+      "nombre": "Chuletón",
+      "precio": 35,
+      "nota": "€/kg",
+      "descripcion": "Vaca gallega madurada, a la brasa.",
+      "imagen": "/img/chul.jpg"
+    }
+  ],
+  "menus": [
+    {
+      "id": "menu-1",
+      "nombre": "Menú 1",
+      "precio": 14,
+      "disponibilidad": "Lunes a viernes excepto festivos",
+      "primeros": [
+        "Arroz caldoso de marisco",
+        "Caldo gallego",
+        "Ensaladilla rusa",
+        "Verduras del día salteadas"
+      ],
+      "segundos": [
+        "Milanesa de pollo",
+        "Secreto de cerdo",
+        "Raxo",
+        "Merluza a la gallega"
+      ],
+      "incluye": "Pan, postre, agua, copa de vino de la casa"
+    },
+    {
+      "id": "menu-2",
+      "nombre": "Menú 2",
+      "precio": 18,
+      "disponibilidad": "Todos los días",
+      "primeros": [
+        "Arroz caldoso de marisco",
+        "Caldo gallego",
+        "Navajas",
+        "Gambón a la plancha"
+      ],
+      "segundos": [
+        "Milanesa de pollo",
+        "Secreto de cerdo",
+        "Dorada / Lubina a la espalda",
+        "Merluza a la gallega"
+      ],
+      "incluye": "Pan, postre, agua, copa de vino de la casa"
+    },
+    {
+      "id": "menu-churrasco",
+      "nombre": "Churrasco a Reventar",
+      "precio": 23,
+      "disponibilidad": "Todos los días",
+      "platos": [
+        "Ensalada",
+        "Patatas fritas",
+        "Churrasco de cerdo",
+        "Churrasco de ternera",
+        "Criollo",
+        "Secreto"
+      ],
+      "incluye": "Pan, café, chupito de orujo",
+      "no_incluye": "Bebida"
+    }
+  ]
+}

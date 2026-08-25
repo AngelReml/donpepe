@@ -1,0 +1,32 @@
+{
+  "reviews": [
+    {
+      "id": "sample-1",
+      "author": "Lucía M.",
+      "rating": 5,
+      "text": "Pulpo a la gallega espectacular, en su punto justo. Trato cercano y rápido. Volvemos seguro.",
+      "time": "2026-07-20T13:45:00Z"
+    },
+    {
+      "id": "sample-2",
+      "author": "Javier P.",
+      "rating": 4,
+      "text": "Buena comida y raciones generosas. Tardaron un poco en servir el arroz pero mereció la pena. Recomendable.",
+      "time": "2026-07-22T20:10:00Z"
+    },
+    {
+      "id": "sample-3",
+      "author": "María R.",
+      "rating": 2,
+      "text": "La tortilla estaba fría y tardaron mucho en atendernos. La carne bien, pero la experiencia regular.",
+      "time": "2026-07-25T14:30:00Z"
+    },
+    {
+      "id": "sample-4",
+      "author": "Andrés T.",
+      "rating": 5,
+      "text": "Churrasco a reventar: espectacular, cantidad de escándalo y el orujo de remate, perfecto.",
+      "time": "2026-07-27T21:05:00Z"
+    }
+  ]
+}

@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Don Pepe Original — Galician kitchen · Rúa Longa 21, Padrón</title>
+<meta name="description" content="Don Pepe Original, a traditional tavern in the old town of Padrón, Galicia. Octopus, rice dishes, chargrilled meat and wine. Kitchen open every day 13:00–16:00 and 19:00–23:00. Bookings: +34 881 82 97 28.">
+<meta name="theme-color" content="#0D0D0D">
+<link rel="canonical" href="https://donpepeoriginal.es/">
+<link rel="alternate" hreflang="es" href="https://donpepeoriginal.es/">
+<link rel="alternate" hreflang="gl" href="https://donpepeoriginal.es/?lang=gl">
+<link rel="alternate" hreflang="en" href="https://donpepeoriginal.es/?lang=en">
+<link rel="alternate" hreflang="pt" href="https://donpepeoriginal.es/?lang=pt">
+<link rel="alternate" hreflang="de" href="https://donpepeoriginal.es/?lang=de">
+<link rel="alternate" hreflang="fr" href="https://donpepeoriginal.es/?lang=fr">
+<link rel="alternate" hreflang="it" href="https://donpepeoriginal.es/?lang=it">
+<link rel="alternate" hreflang="x-default" href="https://donpepeoriginal.es/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/inter-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/cormorant-garamond-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/vendor/gsap.min.js"></script>
+<script src="/vendor/ScrollTrigger.min.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Don Pepe Original",
+  "servesCuisine": ["Gallega","Pulpería","Cocina tradicional"],
+  "priceRange": "€€",
+  "telephone": "+34881829728",
+  "contactPoint": [
+    {"@type":"ContactPoint","telephone":"+34881829728","contactType":"reservations","areaServed":"ES","availableLanguage":["es","gl","en"]},
+    {"@type":"ContactPoint","telephone":"+34696434042","contactType":"reservations","areaServed":"ES","availableLanguage":["es","gl","en"]}
+  ],
+  "address": {"@type":"PostalAddress","streetAddress":"Rúa Longa, 21","addressLocality":"Padrón","addressRegion":"A Coruña","postalCode":"15900","addressCountry":"ES"},
+  "geo": {"@type":"GeoCoordinates","latitude":42.7386883,"longitude":-8.6604218},
+  "acceptsReservations": "True",
+  "amenityFeature": [
+    {"@type":"LocationFeatureSpecification","name":"Terraza","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Wifi","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Aparcamiento próximo","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Tarjetas aceptadas","value":true}
+  ],
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"13:00","closes":"16:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"19:00","closes":"23:00"}
+  ]
+}
+</script>
+<style>
+/* Fuentes autoalojadas desde /fonts. Antes venían de jsDelivr, que llevaba
+   tiempo devolviendo 400: la web entera se estaba viendo con Georgia y la
+   fuente del sistema. Ahora no hay ninguna petición a dominios ajenos, lo que
+   además sostiene la conclusión de la auditoría de cookies.
+   Los pesos son los que se midieron sobre la página, no los que había
+   declarados: faltaba Inter 700 y sobraba una itálica de 500 que nadie usa.
+   Ambas familias son SIL OFL 1.1; la licencia va junto a los ficheros. */
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url('/fonts/cormorant-garamond-400-italic.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/cormorant-garamond-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:swap;src:url('/fonts/cormorant-garamond-600-normal.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/cormorant-garamond-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/inter-400-normal.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/inter-500-normal.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url('/fonts/inter-600-normal.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/inter-700-normal.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+
+:root{
+  --carbon:#0D0D0D; --wood:#1A1412; --gold:#D4AF37; --gold-soft:rgba(212,175,55,.35);
+  --borgoña:#6B1D2F; --cream:#F8F5EE; --cream-dim:rgba(248,245,238,.62);
+  --glass:rgba(15,15,15,.65); --glass-line:rgba(255,255,255,.1);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--carbon);color:var(--cream);font-family:var(--sans);font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:#141008}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:#0a0a0a}::-webkit-scrollbar-thumb{background:#2a2118;border-radius:6px;border:2px solid #0a0a0a}
+html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor input, html.has-cursor select, html.has-cursor textarea, html.has-cursor label{cursor:none}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit;background:none;border:none}
+h1,h2,h3,.serif{font-family:var(--serif)}
+
+/* ---------- CURSOR ---------- */
+#cursorDot,#cursorRing{position:fixed;top:0;left:0;pointer-events:none;z-index:400;border-radius:50%;opacity:0;transform:translate(-100px,-100px)}
+#cursorDot{width:6px;height:6px;background:var(--gold)}
+#cursorRing{width:36px;height:36px;border:1px solid var(--gold-soft);transition:width .25s,height .25s,border-color .25s}
+html.has-cursor #cursorDot,html.has-cursor #cursorRing{opacity:1}
+#cursorRing.big{width:64px;height:64px;border-color:var(--gold)}
+
+/* ---------- PRELOADER ---------- */
+#loader{position:fixed;inset:0;background:var(--carbon);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .9s ease,visibility .9s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .mono{font-family:var(--serif);font-weight:700;font-size:64px;color:var(--gold);letter-spacing:.06em;animation:breathe 2.2s ease-in-out infinite}
+#loader .word{font-family:var(--serif);font-size:20px;letter-spacing:.42em;text-transform:uppercase;color:var(--cream)}
+#loader .bar{width:180px;height:1px;background:rgba(248,245,238,.12);overflow:hidden}
+#loader .bar i{display:block;height:100%;width:40%;background:var(--gold);animation:load 1.4s ease-in-out infinite}
+#loader .sub{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-dim)}
+@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(450%)}}
+@keyframes breathe{0%,100%{opacity:.75}50%{opacity:1}}
+
+/* ---------- HEADER ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:120;display:flex;align-items:center;justify-content:space-between;padding:20px 4vw;transition:background .5s,backdrop-filter .5s,padding .5s,box-shadow .5s}
+header.solid{background:rgba(13,13,13,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:12px 4vw;box-shadow:0 1px 0 var(--glass-line)}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo b{font-family:var(--serif);font-weight:700;font-size:22px;letter-spacing:.14em;color:var(--cream)}
+.logo b em{color:var(--gold);font-style:normal}
+.logo span{font-size:9.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--cream-dim);margin-top:5px}
+nav.top{display:flex;align-items:center;gap:30px}
+nav.top a.nl{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-dim);position:relative;padding:6px 0;transition:color .3s}
+nav.top a.nl::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .35s}
+nav.top a.nl:hover{color:var(--cream)}nav.top a.nl:hover::after{width:100%}
+.btn-gold{display:inline-block;padding:11px 22px;border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:.26em;text-transform:uppercase;transition:background .35s,color .35s,box-shadow .35s;background:transparent}
+.btn-gold:hover{background:var(--gold);color:#141008;box-shadow:0 6px 26px rgba(212,175,55,.35)}
+/* Selector de idioma. Existía solo en /carta: quien cambiaba de idioma sin
+   querer se quedaba atrapado, porque desde la portada no había forma de volver.
+   Es <details> puro: sin JavaScript, igual que el de la carta. */
+.idiomas{position:relative}
+.idiomas>summary{list-style:none;cursor:pointer;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-dim);padding:6px 11px;border:1px solid var(--glass-line);border-radius:999px;transition:color .3s,border-color .3s}
+.idiomas>summary::-webkit-details-marker{display:none}
+.idiomas>summary::marker{content:""}
+.idiomas>summary:hover,.idiomas[open]>summary{color:var(--gold);border-color:var(--gold-soft)}
+.idiomas .menu{position:absolute;right:0;top:calc(100% + 12px);min-width:158px;display:flex;flex-direction:column;padding:6px;background:rgba(13,13,13,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--glass-line);border-radius:10px;box-shadow:0 22px 55px rgba(0,0,0,.6)}
+.idiomas .menu a{font-size:13px;letter-spacing:.02em;color:var(--cream-dim);padding:9px 13px;border-radius:6px;transition:background .25s,color .25s}
+.idiomas .menu a:hover{background:rgba(212,175,55,.1);color:var(--gold)}
+#audioBtn{width:38px;height:38px;border:1px solid var(--glass-line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--cream-dim);transition:color .3s,border-color .3s}
+#audioBtn:hover,#audioBtn.on{color:var(--gold);border-color:var(--gold)}
+#audioBtn svg{width:16px;height:16px}
+#burger{display:none;flex-direction:column;gap:5px;padding:8px}
+#burger i{display:block;width:24px;height:1.5px;background:var(--cream);transition:transform .4s,opacity .4s}
+#mnav{position:fixed;inset:0;background:rgba(13,13,13,.96);backdrop-filter:blur(10px);z-index:110;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s}
+#mnav.open{opacity:1;visibility:visible}
+#mnav a{font-family:var(--serif);font-size:34px;color:var(--cream)}
+#mnav a:hover{color:var(--gold)}
+
+/* ---------- STAGE / CANVAS ---------- */
+#stage{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--carbon)}
+#scene{position:absolute;inset:0;width:100%;height:100%}
+#stage .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.62) 100%);pointer-events:none}
+#stage .grain{position:absolute;inset:-40px;opacity:.07;pointer-events:none;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-14px,10px)}50%{transform:translate(10px,-12px)}75%{transform:translate(-8px,-8px)}100%{transform:translate(0,0)}}
+.cap{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 6vw;pointer-events:none;opacity:0}
+.cap .kicker{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.cap h1{font-size:clamp(52px,10vw,132px);font-weight:700;line-height:.95;text-shadow:0 4px 40px rgba(0,0,0,.7)}
+.cap h2{font-size:clamp(34px,6vw,76px);font-weight:600;line-height:1.05;text-shadow:0 4px 40px rgba(0,0,0,.7)}
+.cap p{max-width:560px;margin-top:22px;font-size:14px;line-height:1.8;color:var(--cream-dim)}
+.cap .rule{width:1px;height:56px;background:linear-gradient(var(--gold),transparent);margin:26px auto 0}
+#cap1{top:50%;transform:translateY(-50%)}
+#cap2{top:50%;transform:translateY(-50%)}
+#cap2 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,30px);color:var(--cream);max-width:700px}
+#cap3{top:50%;transform:translateY(-50%);pointer-events:auto}
+#cap3 .ctaRow{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center}
+#hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--cream-dim);font-size:10px;letter-spacing:.42em;text-transform:uppercase;pointer-events:none}
+#hint .line{width:1px;height:52px;overflow:hidden;position:relative}
+#hint .line::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;background:var(--gold);animation:drop 1.8s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes drop{0%{top:-100%}55%{top:0}100%{top:100%}}
+#hint{animation:breathe 2.4s ease-in-out infinite}
+
+/* ---------- TRACK / MAIN ---------- */
+#track{position:relative;height:560vh;z-index:1}
+main{position:relative;z-index:2;background:linear-gradient(rgba(13,13,13,0),var(--carbon) 140px)}
+section{padding:110px 6vw}
+.secHead{margin-bottom:56px}
+.secHead .kicker{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold)}
+.secHead h2{font-size:clamp(38px,5.4vw,72px);font-weight:700;line-height:1.02;margin-top:14px}
+.secHead .sub{margin-top:16px;color:var(--cream-dim);font-size:14px;max-width:640px;line-height:1.8}
+
+/* Historia */
+#historia .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+#histFig{overflow:hidden;border:1px solid var(--glass-line);position:relative}
+#histFig img{width:100%;height:100%;object-fit:cover;transform:scale(1.08)}
+#histFig::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
+#historia .txt p{color:var(--cream-dim);line-height:1.9;font-size:15px;margin-bottom:18px}
+#historia .txt p b{color:var(--cream);font-weight:500}
+.facts{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap}
+.facts div{border-left:1px solid var(--gold-soft);padding-left:16px}
+.facts b{display:block;font-family:var(--serif);font-size:30px;color:var(--gold);font-weight:700}
+.facts span{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--cream-dim)}
+/* marquee reseñas */
+.marquee{margin-top:70px;overflow:hidden;border-top:1px solid var(--glass-line);border-bottom:1px solid var(--glass-line);padding:26px 0;position:relative}
+.marquee .rail{display:flex;gap:70px;width:max-content;animation:mq 36s linear infinite}
+.marquee:hover .rail{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mqItem{display:flex;align-items:center;gap:18px;white-space:nowrap}
+.mqItem .q{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--cream)}
+.mqItem .a{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.mqItem .star{color:var(--gold)}
+
+/* Carta completa */
+#carta{background:linear-gradient(var(--carbon),#120d0a 30%,#120d0a 70%,var(--carbon))}
+.cartaGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:56px 70px}
+.catBlock h3{font-size:30px;font-weight:700;color:var(--gold);display:flex;align-items:baseline;gap:14px}
+.catBlock h3 small{font-family:var(--sans);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-dim)}
+.catBlock ul{list-style:none;margin-top:22px}
+.dish{padding:11px 10px;border-bottom:1px solid rgba(248,245,238,.06);transition:background .3s,box-shadow .3s;position:relative}
+.dish .row{display:flex;align-items:baseline;gap:10px}
+.dish .n{font-family:var(--serif);font-size:19px;font-weight:600;transition:color .3s,text-shadow .3s}
+.dish .dots{flex:1;border-bottom:1px dotted rgba(248,245,238,.22);transform:translateY(-4px)}
+.dish .p{font-size:13px;color:var(--gold);font-weight:500;white-space:nowrap}
+.dish .d{font-size:12px;color:var(--cream-dim);margin-top:4px;line-height:1.6;max-height:0;overflow:hidden;transition:max-height .4s,margin .4s}
+.dish:hover{background:rgba(212,175,55,.05)}
+.dish:hover .n{color:var(--gold);text-shadow:0 0 22px rgba(212,175,55,.45)}
+.dish.open .d{max-height:80px}
+/* Foto del plato en pantallas tactiles: alli no hay cursor, asi que la tarjeta
+   flotante de escritorio (#peek) nunca llega a aparecer y las 34 fotos no se
+   verian nunca. Se despliega al tocar, dentro de la propia ficha.
+   El interruptor es html.tactil, que pone el JS a partir del puntero real. La
+   media query se conserva como red de seguridad por si el JS no llega a correr.
+   El alto NO se fija a ojo: la foto ocupa el ancho de la ficha y conserva su
+   proporcion, asi que se ve igual a 375, 390 o 414 px. El colapso lo hace la
+   caja con max-height (tope holgado, no una altura calculada). */
+.dish .fotoWrap{display:none;overflow:hidden;max-height:0;opacity:0;transition:max-height .45s ease,opacity .35s,margin .45s}
+.dish .foto{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px;border:1px solid rgba(212,175,55,.18);background:rgba(248,245,238,.04)}
+@media(hover:none),(pointer:coarse){
+  .dish .fotoWrap{display:block}
+  .dish.open .fotoWrap{max-height:70vh;opacity:1;margin-top:10px}
+}
+html.tactil .dish .fotoWrap{display:block}
+html.tactil .dish.open .fotoWrap{max-height:70vh;opacity:1;margin-top:10px}
+.cartaNotes{margin-top:60px;display:flex;gap:14px;flex-wrap:wrap}
+.soloTactil{display:none}
+@media(hover:none),(pointer:coarse){.soloRaton{display:none}.soloTactil{display:inline}}
+html.tactil .soloRaton{display:none}html.tactil .soloTactil{display:inline}
+#cartaAviso{margin:0 0 34px;padding:16px 20px;border-left:2px solid var(--gold);background:rgba(212,175,55,.07);color:var(--cream);font-family:var(--sans);font-size:14px;letter-spacing:.02em}
+.cartaNotes span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim);border:1px solid var(--glass-line);padding:9px 16px;border-radius:999px}
+.cartaNotes span b{color:var(--gold);font-weight:600}
+
+/* Menús */
+.menusGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.menuCard{border:1px solid var(--glass-line);background:linear-gradient(160deg,rgba(26,20,18,.9),rgba(13,13,13,.9));padding:38px 32px;position:relative;overflow:hidden;transition:transform .5s,border-color .5s,box-shadow .5s}
+.menuCard:hover{transform:translateY(-8px);border-color:var(--gold-soft);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.menuCard .tag{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--cream-dim)}
+.menuCard h3{font-size:30px;font-weight:700;margin-top:10px}
+.menuCard .price{font-family:var(--serif);font-size:52px;font-weight:700;color:var(--gold);margin:14px 0 22px}
+.menuCard .price small{font-size:16px;color:var(--cream-dim);font-family:var(--sans);letter-spacing:.1em}
+.menuCard h4{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:18px 0 8px}
+.menuCard li{list-style:none;font-size:13.5px;color:var(--cream-dim);padding:5px 0 5px 18px;position:relative;line-height:1.5}
+.menuCard li::before{content:"·";position:absolute;left:2px;color:var(--gold)}
+.menuCard .inc{margin-top:18px;font-size:12px;color:var(--cream-dim);border-top:1px dashed var(--glass-line);padding-top:14px;line-height:1.7}
+.menuCard.hero{background:linear-gradient(160deg,rgba(107,29,47,.55),rgba(13,13,13,.95));border-color:rgba(212,175,55,.5)}
+.menuCard.hero::before{content:"The house favourite";position:absolute;top:22px;right:-38px;transform:rotate(38deg);background:var(--gold);color:#141008;font-size:9px;letter-spacing:.26em;text-transform:uppercase;padding:6px 44px;font-weight:600}
+.menuCard figure{margin:-8px -8px 22px;overflow:hidden}
+.menuCard figure img{width:100%;height:170px;object-fit:cover;filter:saturate(1.05)}
+
+/* Horarios */
+#horarios .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+.kitchenCard{border:1px solid var(--gold-soft);background:linear-gradient(160deg,rgba(212,175,55,.08),transparent);padding:44px 38px;position:sticky;top:110px}
+.kitchenCard .k{font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+.kitchenCard h3{font-size:34px;font-weight:700;margin:12px 0 20px}
+.kRow{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid rgba(248,245,238,.08);font-size:14px}
+.kRow b{font-weight:500;color:var(--cream)}
+.kRow span{color:var(--gold);font-weight:500;letter-spacing:.06em}
+.kitchenCard .note{margin-top:18px;font-size:12px;color:var(--cream-dim);line-height:1.7}
+table.sala{width:100%;border-collapse:collapse}
+table.sala th{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-dim);text-align:left;padding:0 0 14px}
+table.sala td{padding:13px 0;border-top:1px solid rgba(248,245,238,.07);font-size:14px;color:var(--cream-dim)}
+table.sala td:first-child{font-family:var(--serif);font-size:17px;color:var(--cream);font-weight:600}
+table.sala tr.today td{color:var(--gold)}
+table.sala tr.today td:first-child::after{content:"· today";font-family:var(--sans);font-size:9px;letter-spacing:.24em;text-transform:uppercase;margin-left:10px;color:var(--gold)}
+
+/* Contacto + QR */
+#contacto .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.addr{font-family:var(--serif);font-size:clamp(24px,2.6vw,34px);font-weight:600;line-height:1.35}
+.addr em{color:var(--gold);font-style:normal}
+.contactBtns{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn-solid{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;background:var(--borgoña);border:1px solid rgba(212,175,55,.6);color:var(--cream);font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:background .35s,box-shadow .35s}
+.btn-solid:hover{background:#82243a;box-shadow:0 10px 34px rgba(107,29,47,.5)}
+/* WhatsApp con la paleta de la casa (oro sobre carbon), no el verde de terceros */
+.btn-wa{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;background:var(--gold);border:1px solid var(--gold);color:#141008;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;transition:box-shadow .35s,transform .35s,background .35s}
+.btn-wa:hover{background:#e6c451;box-shadow:0 10px 34px rgba(212,175,55,.4);transform:translateY(-2px)}
+.btn-wa svg{width:17px;height:17px;fill:currentColor;flex:0 0 auto}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.chips span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);border:1px solid var(--glass-line);padding:8px 15px;border-radius:999px}
+.qrCard{border:1px solid var(--glass-line);background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:44px 38px;text-align:center}
+.qrCard h3{font-size:26px;font-weight:700}
+.qrCard p{font-size:12.5px;color:var(--cream-dim);margin:10px 0 26px;line-height:1.7}
+#qrBox{display:inline-block;padding:14px;background:var(--cream);border-radius:6px;box-shadow:0 0 0 1px var(--gold-soft),0 18px 50px rgba(0,0,0,.5)}
+#qrBox img,#qrBox canvas{display:block}
+.qrCard .tiny{margin-top:20px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+
+footer{border-top:1px solid var(--glass-line);padding:56px 6vw 46px;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start;position:relative;z-index:2;background:var(--carbon)}
+footer .fLogo{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:.1em}
+footer .fLogo em{color:var(--gold);font-style:normal}
+footer p{font-size:12px;color:var(--cream-dim);line-height:1.8;max-width:420px}
+footer .norma{color:var(--gold)}
+footer .legales{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap}
+footer .legales a{font-size:11.5px;color:var(--cream-dim);border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
+
+/* ---------- PANEL FLOTANTE CARTA ---------- */
+#floatMenu{position:fixed;left:22px;bottom:22px;z-index:130;width:min(390px,calc(100vw - 44px));max-height:min(62vh,560px);display:flex;flex-direction:column;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--glass-line);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(24px);opacity:0;visibility:hidden;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .7s,visibility .7s}
+#floatMenu.on{transform:translateY(0);opacity:1;visibility:visible}
+#floatMenu.collapsed .fmBody,#floatMenu.collapsed .fmTabs{display:none}
+.fmHead{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--glass-line)}
+.fmHead b{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:.08em}
+.fmHead b i{color:var(--gold);font-style:normal}
+#fmToggle{color:var(--cream-dim);font-size:10px;letter-spacing:.26em;text-transform:uppercase;padding:6px 4px;transition:color .3s}
+#fmToggle:hover{color:var(--gold)}
+.fmTabs{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--glass-line);overflow-x:auto;scrollbar-width:none}
+.fmTabs::-webkit-scrollbar{display:none}
+.fmTabs button{flex:0 0 auto;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim);padding:8px 13px;border:1px solid transparent;border-radius:999px;transition:all .3s}
+.fmTabs button.act{color:var(--gold);border-color:var(--gold-soft);background:rgba(212,175,55,.08)}
+.fmBody{overflow-y:auto;padding:8px 8px 14px}
+.fmBody .dish{border-radius:8px}
+.fmNote{padding:12px 14px 4px;font-size:10.5px;color:var(--cream-dim);letter-spacing:.1em}
+
+/* Peek flotante de plato */
+#peek{position:fixed;z-index:140;width:250px;pointer-events:none;opacity:0;transform:scale(.94);transition:opacity .25s,transform .25s;background:rgba(10,8,6,.92);border:1px solid var(--gold-soft);border-radius:10px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.7)}
+#peek.on{opacity:1;transform:scale(1)}
+#peek img{width:100%;height:150px;object-fit:cover}
+#peek .pb{padding:14px 16px 16px}
+#peek h4{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--gold)}
+#peek p{font-size:11.5px;color:var(--cream-dim);line-height:1.6;margin-top:6px}
+#peek .al{margin-top:8px;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+/* ---------- CTA RESERVAR ---------- */
+#resBtn{position:fixed;right:22px;bottom:22px;z-index:130;padding:16px 26px;background:var(--borgoña);border:1px solid var(--gold);color:var(--cream);font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;box-shadow:0 14px 44px rgba(0,0,0,.55);transition:background .35s,transform .35s}
+#resBtn::before{content:"";position:absolute;inset:-1px;border:1px solid var(--gold-soft);animation:pulse 2.6s ease-out infinite}
+#resBtn:hover{background:#82243a;transform:translateY(-3px)}
+@keyframes pulse{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.35)}}
+
+/* ---------- MODAL ---------- */
+#modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+#modal.open{opacity:1;visibility:visible}
+#modal .backdrop{position:absolute;inset:0;background:rgba(5,4,3,.8);backdrop-filter:blur(8px)}
+#modal .box{position:relative;width:min(520px,100%);max-height:88vh;overflow-y:auto;background:linear-gradient(170deg,#1c1512,#0f0c0a);border:1px solid var(--gold-soft);padding:44px 40px;transform:translateY(26px);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+#modal.open .box{transform:translateY(0)}
+#modal .x{position:absolute;top:16px;right:18px;font-size:22px;color:var(--cream-dim);transition:color .3s}
+#modal .x:hover{color:var(--gold)}
+#modal h3{font-size:34px;font-weight:700}
+#modal .msub{font-size:12px;color:var(--cream-dim);margin:8px 0 26px;line-height:1.7}
+#modal label{display:block;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--cream-dim);margin:16px 0 7px}
+#modal input,#modal select{width:100%;background:rgba(248,245,238,.05);border:1px solid var(--glass-line);color:var(--cream);padding:12px 14px;font-family:var(--sans);font-size:14px;border-radius:4px;outline:none;transition:border-color .3s}
+#modal input:focus,#modal select:focus{border-color:var(--gold)}
+#modal select option{background:#141008}
+#modal .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#modal .consent{display:flex;align-items:flex-start;gap:10px;margin-top:22px;font-size:12px;color:var(--cream-dim);line-height:1.6;cursor:pointer}
+#modal .consent input{width:auto;flex:0 0 auto;margin-top:2px;accent-color:var(--gold)}
+#modal .consent a{color:var(--gold);border-bottom:1px solid var(--gold-soft)}
+#modal .send{width:100%;margin-top:18px;padding:16px;background:var(--gold);color:#141008;font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;transition:box-shadow .3s,transform .3s}
+#modal .send:hover{box-shadow:0 10px 34px rgba(212,175,55,.4);transform:translateY(-2px)}
+#modal .telAlt{margin-top:18px;text-align:center;font-size:12px;color:var(--cream-dim)}
+#modal .telAlt a{color:var(--gold)}
+#okView{display:none;text-align:center;padding:30px 0 10px}
+#okView .ok{width:70px;height:70px;margin:0 auto 24px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:28px}
+#okView h4{font-family:var(--serif);font-size:30px;font-weight:700}
+#okView p{font-size:13px;color:var(--cream-dim);margin-top:12px;line-height:1.8}
+#okView .btn-wa{margin-top:24px}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:960px){
+  nav.top a.nl{display:none}
+  #burger{display:flex}
+  #historia .grid,#horarios .grid,#contacto .grid{grid-template-columns:1fr;gap:44px}
+  .kitchenCard{position:static}
+  .cartaGrid{grid-template-columns:1fr;gap:48px}
+  .menusGrid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+  section{padding:80px 6vw}
+  #floatMenu{left:12px;bottom:86px;max-height:52vh}
+  #resBtn{right:12px;bottom:16px;padding:14px 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .marquee .rail{animation:none}
+  #stage .grain{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="loader" role="status" aria-label="Loading Don Pepe Original">
+  <div class="mono">DP</div>
+  <div class="word">Don Pepe <em style="color:var(--gold);font-style:normal">Original</em></div>
+  <div class="bar"><i></i></div>
+  <div class="sub">Padrón · Galicia</div>
+</div>
+
+<!-- Cursor -->
+<div id="cursorDot" aria-hidden="true"></div>
+<div id="cursorRing" aria-hidden="true"></div>
+
+<!-- Header -->
+<header id="header">
+  <a class="logo" href="#top" aria-label="Don Pepe Original, home">
+    <b>DON PEPE <em>ORIGINAL</em></b>
+    <span>Rúa Longa · Padrón</span>
+  </a>
+  <nav class="top" aria-label="Main navigation">
+    <button id="audioBtn" aria-label="Turn on ambient sound" title="Ambient sound">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" d="M16 9a4 4 0 0 1 0 6"/><path class="w2" d="M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+    </button>
+    <a class="nl" href="#historia">Our Story</a>
+    <a class="nl" href="#carta">Menu</a>
+    <a class="nl" href="#contacto">Contact</a>
+    <details class="idiomas">
+      <summary title="Language"><span class="langActual">EN</span></summary>
+      <div class="menu">
+        <a href="/api/idioma?lang=es&amp;volver=/" hreflang="es" lang="es">Español</a>
+        <a href="/api/idioma?lang=gl&amp;volver=/" hreflang="gl" lang="gl">Galego</a>
+        <a href="/api/idioma?lang=en&amp;volver=/" hreflang="en" lang="en">English</a>
+        <a href="/api/idioma?lang=pt&amp;volver=/" hreflang="pt" lang="pt">Português</a>
+        <a href="/api/idioma?lang=de&amp;volver=/" hreflang="de" lang="de">Deutsch</a>
+        <a href="/api/idioma?lang=fr&amp;volver=/" hreflang="fr" lang="fr">Français</a>
+        <a href="/api/idioma?lang=it&amp;volver=/" hreflang="it" lang="it">Italiano</a>
+      </div>
+    </details>
+    <a class="btn-gold" href="#" data-open-res>Book a table</a>
+    <button id="burger" aria-label="Open menu"><i></i><i></i><i></i></button>
+  </nav>
+</header>
+
+<div id="mnav">
+  <a href="#historia">Our Story</a>
+  <a href="#carta">Menu</a>
+  <a href="#horarios">Opening hours</a>
+  <a href="#contacto">Contact</a>
+  <a href="#" data-open-res style="color:var(--gold)">Book a table</a>
+</div>
+
+<!-- Escenario fijo -->
+<div id="stage" aria-hidden="true">
+  <canvas id="scene"></canvas>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+
+  <div class="cap" id="cap1">
+    <div class="kicker">Rúa Longa 21 · Padrón · A Coruña</div>
+    <h1>Don Pepe<br>Original</h1>
+    <p>Traditional Galician cooking · octopus and wine · in the heart of the old town, a step from the Camino.</p>
+    <div class="rule"></div>
+  </div>
+
+  <div class="cap" id="cap2">
+    <div class="kicker">Bar · grill · terrace</div>
+    <h2>The house keeps<br>the warmth of the fire</h2>
+    <p class="quote" style="margin-top:26px">“A long bar, the same tables as always and the terrace out on the stone… sixty covers and one single secret: you are treated like family.”</p>
+  </div>
+
+  <div class="cap" id="cap3">
+    <div class="kicker">Your table is waiting</div>
+    <h2>Sit down.<br>Tonight you're not cooking.</h2>
+    <p>Grilled scallops, soupy rice, all the chargrilled meat you can eat and a cold glass waiting for you.</p>
+    <div class="ctaRow">
+      <a class="btn-gold" href="#carta">See the menu</a>
+      <a class="btn-solid" href="#" data-open-res>Book a table</a>
+    </div>
+  </div>
+
+  <div id="hint"><span>Scroll to come in</span><div class="line"></div></div>
+</div>
+
+<!-- Pista de scroll -->
+<div id="track"></div>
+
+<main id="top">
+
+  <!-- HISTORIA -->
+  <section id="historia">
+    <div class="secHead" data-reveal>
+      <div class="kicker">Our story</div>
+      <h2>An old-fashioned tavern,<br>a welcome you don't forget</h2>
+    </div>
+    <div class="grid">
+      <figure id="histFig" data-reveal>
+        <img id="histImg" src="/img/salon.jpg" alt="Inside Don Pepe Original: the long wooden bar and the dining room tables, on Rúa Longa in Padrón">
+      </figure>
+      <div class="txt" data-reveal>
+        <p>On <b>Rúa Longa</b>, where the old town of Padrón smells of wet stone and freshly landed shellfish, there are tables set out on the stone and a black sign in white script. That sign is <b>Don Pepe Original</b>: café, octopus house and dining room on the Camino de Santiago.</p>
+        <p>Nobody comes here in a hurry. You come for steaming <b>caldo gallego</b>, for local <b>raxo</b> and <b>zorza</b>, for <b>rice for two</b> that reaches the table still bubbling, and for a <b>churrasco</b> feast that ends, as tradition demands, with a shot of orujo.</p>
+        <p>The pilgrims put it better than we can: <b>“The best food of the entire Camino Santiago walk.”</b> And if it rains — in Galicia it rains — all the better: the covered terrace, the cold glass and the hum of the bar do the rest.</p>
+        <div class="facts">
+          <div><b>60</b><span>Covers</span></div>
+          <div><b>7</b><span>Days a week</span></div>
+          <div><b>2</b><span>Kitchen services</span></div>
+          <div><b>100%</b><span>Like family</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="rail" id="mqRail">
+        <div class="mqItem"><span class="star">★</span><span class="q">“The best food of entire Camino Santiago walk.”</span><span class="a">Ricardo · pilgrim</span></div>
+        <div class="mqItem"><span class="star">★</span><span class="q">“Trato incondicional, carisma destacable.”</span><span class="a">Google review</span></div>
+        <div class="mqItem"><span class="star">★</span><span class="q">“Menú del día abundante y a buen precio.”</span><span class="a">Google review</span></div>
+        <div class="mqItem"><span class="star">★</span><span class="q">“Cocina abierta todos los días, hasta tarde.”</span><span class="a">Google review</span></div>
+        <div class="mqItem"><span class="star">★</span><span class="q">“Raxo y productos de la región, como en casa.”</span><span class="a">Google review</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTA -->
+  <section id="carta">
+    <div class="secHead" data-reveal>
+      <div class="kicker">The menu</div>
+      <h2>From the sea and from the fire</h2>
+      <p class="sub">The board changes with the market: shellfish of the day, rice to share and meat over the coals. <span class="soloRaton">Hover over any dish to see it up close.</span><span class="soloTactil">Tap any dish to see its photo and description.</span></p>
+    </div>
+    <div class="cartaGrid" id="cartaGrid"></div>
+    <div class="cartaNotes" data-reveal>
+      <span><b>Kitchen:</b> 13:00–16:00 · 19:00–23:00</span>
+      <span><b>Rice dishes:</b> for 2 people</span>
+      <span><b>S/M:</b> market price</span>
+      <span>One bill per table 🙏</span>
+      <span><b>Allergens:</b> indicative — please ask our staff</span>
+    </div>
+  </section>
+
+  <!-- MENÚS -->
+  <section id="menus">
+    <div class="secHead" data-reveal>
+      <div class="kicker">Set menus</div>
+      <h2>Three ways to give in</h2>
+    </div>
+    <div class="menusGrid">
+      <article class="menuCard" data-reveal data-avail-seed="Lunes a viernes excepto festivos">
+        <figure><img src="/img/caldo.jpg" alt="Steaming Galician caldo in an iron pot, with turnip greens and potato"></figure>
+        <div class="tag">Monday to Friday · except holidays</div>
+        <h3>Menú 1</h3>
+        <div class="price">14€ <small>/ person</small></div>
+        <h4>First course (choose one)</h4>
+        <ul><li>Arroz caldoso de marisco</li><li>Caldo gallego</li><li>Ensaladilla rusa</li><li>Verduras del día salteadas</li></ul>
+        <h4>Second course (choose one)</h4>
+        <ul><li>Milanesa de pollo</li><li>Secreto de cerdo</li><li>Raxo</li><li>Merluza a la gallega</li></ul>
+        <div class="inc">Includes bread, dessert, water and a glass of house wine.</div>
+      </article>
+
+      <article class="menuCard" data-reveal data-avail-seed="Todos los días">
+        <figure><img src="/img/gambPl.jpg" alt="Griddled king prawns with coarse salt, straight off the plancha"></figure>
+        <div class="tag">Every day</div>
+        <h3>Menú 2</h3>
+        <div class="price">18€ <small>/ person</small></div>
+        <h4>First course (choose one)</h4>
+        <ul><li>Arroz caldoso de marisco</li><li>Caldo gallego</li><li>Navajas</li><li>Gambón a la plancha</li></ul>
+        <h4>Second course (choose one)</h4>
+        <ul><li>Milanesa de pollo</li><li>Secreto de cerdo</li><li>Dorada / lubina a la espalda</li><li>Merluza a la gallega</li></ul>
+        <div class="inc">Includes bread, dessert, water and a glass of house wine.</div>
+      </article>
+
+      <article class="menuCard hero" data-reveal data-avail-seed="Todos los días">
+        <figure><img src="/img/churrCerdo.jpg" alt="Chargrilled churrasco with coarse salt on an iron grill"></figure>
+        <div class="tag">Come hungry</div>
+        <h3>Churrasco a Reventar</h3>
+        <div class="price">23€ <small>/ person</small></div>
+        <h4>On the table</h4>
+        <ul><li>Ensalada y patatas fritas</li><li>Churrasco de cerdo</li><li>Churrasco de ternera</li><li>Criollo y secreto</li></ul>
+        <div class="inc">Includes bread, coffee and a shot of orujo. Drinks not included.</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- HORARIOS -->
+  <section id="horarios">
+    <div class="secHead" data-reveal>
+      <div class="kicker">Opening hours</div>
+      <h2>The fire is lit<br>every single day</h2>
+    </div>
+    <div class="grid">
+      <div class="kitchenCard" data-reveal>
+        <div class="k">Kitchen hours</div>
+        <h3>When we serve</h3>
+        <div class="kRow"><b>Lunch</b><span>13:00 – 16:00</span></div>
+        <div class="kRow"><b>Dinner</b><span>19:00 – 23:00</span></div>
+        <div class="kRow"><b>Days</b><span>Every day, all year</span></div>
+        <p class="note">We open earlier for coffee and wine — see the bar hours below. Pilgrims arriving in Padrón always find the kitchen awake.</p>
+      </div>
+      <div data-reveal>
+        <table class="sala" aria-label="Bar and dining room hours">
+          <thead><tr><th>Day</th><th>Morning / afternoon</th><th>Evening</th></tr></thead>
+          <tbody>
+            <tr data-day="1"><td>Monday</td><td>09:00 – 17:00</td><td>19:00 – 23:30</td></tr>
+            <tr data-day="2"><td>Tuesday</td><td>10:00 – 17:00</td><td>19:00 – 22:30</td></tr>
+            <tr data-day="3"><td>Wednesday</td><td>10:00 – 17:00</td><td>19:00 – 22:30</td></tr>
+            <tr data-day="4"><td>Thursday</td><td>10:00 – 17:00</td><td>19:00 – 22:30</td></tr>
+            <tr data-day="5"><td>Friday</td><td>09:00 – 17:00</td><td>19:00 – 23:00</td></tr>
+            <tr data-day="6"><td>Saturday</td><td>13:00 – 17:00</td><td>19:00 – 23:30</td></tr>
+            <tr data-day="0"><td>Sunday</td><td>10:00 – 22:30</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="secHead" data-reveal>
+      <div class="kicker">Contact</div>
+      <h2>We'll be waiting on Rúa Longa</h2>
+    </div>
+    <div class="grid">
+      <div data-reveal>
+        <p class="addr"><em>Don Pepe Original</em><br>Rúa Longa, 21 · 15900 Padrón<br>A Coruña · Galicia</p>
+        <div class="contactBtns">
+          <a class="btn-solid" href="tel:+34881829728">☎ &nbsp;Call · 881 82 97 28</a>
+          <a class="btn-solid" href="tel:+34696434042">☎ &nbsp;Mobile · 696 43 40 42</a>
+          <a class="btn-wa" href="https://wa.me/34696434042" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.09 3.2 5.07 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.87.98 6.64 2.76a9.34 9.34 0 0 1 2.75 6.65c0 5.18-4.22 9.41-9.39 9.41zm8-17.4A11.32 11.32 0 0 0 12.05.8C5.8.8.72 5.88.72 12.12c0 1.99.52 3.94 1.51 5.66L.63 23.7l6.06-1.59a11.3 11.3 0 0 0 5.36 1.37h.01c6.24 0 11.32-5.08 11.33-11.32 0-3.03-1.18-5.87-3.32-8.01z"/></svg>WhatsApp</a>
+          <a class="btn-gold" href="https://www.google.com/maps/place/?q=place_id:ChIJ5bsZXwAbLw0RXQuMcWz4AwM" target="_blank" rel="noopener">Find us</a>
+          <a class="btn-gold" href="#" data-open-res>Book a table</a>
+        </div>
+        <div class="chips">
+          <span>Bookings</span><span>Terrace</span><span>Wi-Fi</span><span>Cards accepted</span><span>Parking nearby</span>
+        </div>
+      </div>
+      <div class="qrCard" data-reveal>
+        <h3>The menu, at your table</h3>
+        <p>Scan the code with your phone and order without waiting.<br>It's the same QR printed on every table.</p>
+        <div id="qrBox" aria-label="QR code for the menu"></div>
+        <div class="tiny">Points to the menu · don pepe original</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>
+    <div class="fLogo">DON PEPE <em>ORIGINAL</em></div>
+    <p style="margin-top:10px">Café bar · octopus and wine · traditional Galician cooking.<br>Camino de Santiago · Padrón, A Coruña.</p>
+  </div>
+  <div>
+    <p><span class="norma">House rule: one bill per table.</span><br>Kitchen open every day 13:00–16:00 and 19:00–23:00.<br>© 2026 Don Pepe Original · Made unhurriedly in Padrón.</p>
+    <nav class="legales" aria-label="Legal information">
+      <a href="/aviso-legal">Legal notice</a>
+      <a href="/privacidad">Privacy policy</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Panel flotante de carta -->
+<aside id="floatMenu" class="collapsed" aria-label="Quick menu">
+  <div class="fmHead">
+    <b>The <i>Menu</i></b>
+    <button id="fmToggle">Open</button>
+  </div>
+  <div class="fmTabs" id="fmTabs"></div>
+  <div class="fmBody">
+    <div class="fmNote" id="fmNote"></div>
+    <ul id="fmList"></ul>
+  </div>
+</aside>
+
+<!-- Peek de plato -->
+<div id="peek" aria-hidden="true">
+  <img id="peekImg" alt="">
+  <div class="pb">
+    <h4 id="peekName"></h4>
+    <p id="peekDesc"></p>
+    <div class="al" id="peekAl"></div>
+  </div>
+</div>
+
+<!-- CTA reservar -->
+<button id="resBtn" data-open-res>Book a table</button>
+
+<!-- Modal -->
+<div id="modal" role="dialog" aria-modal="true" aria-label="Book a table">
+  <div class="backdrop" data-close-res></div>
+  <div class="box">
+    <button class="x" data-close-res aria-label="Close">×</button>
+    <div id="formView">
+      <h3>Book a table</h3>
+      <p class="msub">Tell us when and how many and we'll open WhatsApp with the message already written — you just hit send. If you'd rather call, the number is <b style="color:var(--gold)">881 82 97 28</b>.</p>
+      <form id="resForm">
+        <label for="fName">Name</label>
+        <input id="fName" required placeholder="Your name" autocomplete="name">
+        <div class="two">
+          <div><label for="fTel">Phone</label><input id="fTel" type="tel" required placeholder="600 000 000" autocomplete="tel"></div>
+          <div><label for="fPax">Guests</label><select id="fPax"></select></div>
+        </div>
+        <div class="two">
+          <div><label for="fDate">Date</label><input id="fDate" type="date" required></div>
+          <div><label for="fTime">Time (kitchen hours)</label><select id="fTime"></select></div>
+        </div>
+        <label for="fNote">Note (optional)</label>
+        <input id="fNote" placeholder="Terrace, high chair, allergies…">
+        <label class="consent" for="fConsent">
+          <input id="fConsent" type="checkbox" required>
+          <span>I have read and accept the <a href="/privacidad" target="_blank" rel="noopener">privacy policy</a>.</span>
+        </label>
+        <button class="send" type="submit">Book via WhatsApp</button>
+      </form>
+      <p class="telAlt">In a hurry? <a href="tel:+34881829728">Call us instead</a></p>
+      <p class="telAlt">Also on <a href="https://wa.me/34696434042" target="_blank" rel="noopener">WhatsApp</a> or mobile <a href="tel:+34696434042">696 43 40 42</a></p>
+    </div>
+    <div id="okView">
+      <div class="ok">✓</div>
+      <h4>Almost there</h4>
+      <p id="okTxt"></p>
+      <a id="okWa" class="btn-wa" href="https://wa.me/34696434042" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.09 3.2 5.07 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.87.98 6.64 2.76a9.34 9.34 0 0 1 2.75 6.65c0 5.18-4.22 9.41-9.39 9.41zm8-17.4A11.32 11.32 0 0 0 12.05.8C5.8.8.72 5.88.72 12.12c0 1.99.52 3.94 1.51 5.66L.63 23.7l6.06-1.59a11.3 11.3 0 0 0 5.36 1.37h.01c6.24 0 11.32-5.08 11.33-11.32 0-3.03-1.18-5.87-3.32-8.01z"/></svg>Open WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ============ DATOS ============ */
+var IMG = {
+  ext:"/img/ext.jpg",
+  int:"/img/int.jpg",
+  table:"/img/table.jpg",
+  pulpo:"/img/pulpo.jpg",
+  zamb:"/img/zamb.jpg",
+  nav:"/img/nav.jpg",
+  croq:"/img/croq.jpg",
+  paella:"/img/paella.jpg",
+  merl:"/img/merl.jpg",
+  chul:"/img/chul.jpg",
+  caldo:"/img/caldo.jpg",
+  churrCerdo:"/img/churrCerdo.jpg",
+  churrTernera:"/img/churrTernera.jpg"
+,
+  mej:"/img/mej.jpg",
+  ensMix:"/img/ensMix.jpg",
+  ensAtun:"/img/ensAtun.jpg",
+  chor:"/img/chor.jpg",
+  camb:"/img/camb.jpg",
+  bravas:"/img/bravas.jpg",
+  gambAj:"/img/gambAj.jpg",
+  gambPl:"/img/gambPl.jpg",
+  tort:"/img/tort.jpg",
+  arrNeg:"/img/arrNeg.jpg",
+  paeMix:"/img/paeMix.jpg",
+  paeVer:"/img/paeVer.jpg",
+  senor:"/img/senor.jpg",
+  caldoso:"/img/caldoso.jpg",
+  salm:"/img/salm.jpg",
+  pescDia:"/img/pescDia.jpg",
+  dorada:"/img/dorada.jpg",
+  zorza:"/img/zorza.jpg",
+  raxo:"/img/raxo.jpg",
+  secreto:"/img/secreto.jpg",
+  mila:"/img/mila.jpg",
+  jamonAs:"/img/jamonAs.jpg",
+  polloBr:"/img/polloBr.jpg",
+  criollo:"/img/criollo.jpg"
+};
+var TABS = [
+ {id:"compartir",label:"To Share",fallback:"croq",note:"Starters and sharing plates",items:[
+  {id:"navajas",n:"Navajas",p:"12,00 €",d:"Grilled, with their own juices and parsley.",a:"Molluscs",img:"nav"},
+  {id:"mejillones",n:"Mejillones al vapor",p:"9,00 €",d:"From the Galician rías, steamed with bay leaf.",a:"Molluscs",img:"mej"},
+  {id:"ensalada-mixta",n:"Ensalada mixta",p:"6,00 €",d:"Fresh and homemade, with tomato and onion.",a:"—",img:"ensMix"},
+  {id:"ensalada-atun",n:"Ensalada atún y huevo duro",p:"8,00 €",d:"The traditional version, and a meal in itself.",a:"Fish, egg",img:"ensAtun"},
+  {id:"chorizos-vino",n:"Chorizos al vino blanco",p:"7,50 €",d:"Slow-cooked, in their own sauce.",a:"Sulphites",img:"chor"},
+  {id:"croquetas",n:"Croquetas",p:"9,00 €",d:"Homemade, with a creamy béchamel filling.",a:"Gluten, egg, dairy",img:"croq"},
+  {id:"camembert",n:"Camembert frito con arándanos",p:"7,50 €",d:"Crisp outside, melting inside.",a:"Gluten, dairy",img:"camb"},
+  {id:"patatas-bravas",n:"Patatas bravas",p:"5,50 €",d:"With our own spicy brava sauce.",a:"—",img:"bravas"},
+  {id:"gambones-ajillo",n:"Gambones al ajillo",p:"15,00 €",d:"In a clay dish, with garlic and chilli.",a:"Crustaceans",img:"gambAj"},
+  {id:"gambones-plancha",n:"Gambones a la plancha",p:"15,00 €",d:"Seared quickly, with coarse sea salt.",a:"Crustaceans",img:"gambPl"},
+  {id:"tortilla",n:"Tortilla de patatas",p:"12,00 €",d:"Juicy, still soft in the middle.",a:"Egg",img:"tort"},
+  {id:"zamburinas",n:"Zamburiñas",p:"18,00 €",d:"Grilled in their shells, with garlic and parsley.",a:"Molluscs",img:"zamb"},
+  {id:"caldo-gallego",n:"Caldo gallego",p:"7,00 €",d:"Turnip greens, white beans, potato and cured pork.",a:"—",img:"caldo"},
+  {id:"pulpo",n:"Pulpo a la gallega",p:"18,00 €",d:"On an oak board, with paprika and extra virgin olive oil.",a:"Molluscs",img:"pulpo"}
+ ]},
+ {id:"arroces",label:"Rice",fallback:"paella",note:"All rice dishes serve 2",items:[
+  {id:"arroz-negro",n:"Arroz negro",p:"36,00 €",d:"With squid ink, garlic mayonnaise and the crisp toasted crust.",a:"Crustaceans, molluscs, egg",img:"arrNeg"},
+  {id:"paella-marisco",n:"Paella de marisco",p:"38,00 €",d:"Langoustines, mussels, king prawns and saffron.",a:"Crustaceans, molluscs",img:"paella"},
+  {id:"paella-mixta",n:"Paella mixta",p:"38,00 €",d:"Seafood and meat together in one pan.",a:"Crustaceans, molluscs",img:"paeMix"},
+  {id:"paella-verduras",n:"Paella de verduras",p:"30,00 €",d:"Garden vegetables, on a vegetable stock.",a:"—",img:"paeVer"},
+  {id:"arroz-senoret",n:"Arroz del señoret",p:"36,00 €",d:"Everything peeled — no shells, no work.",a:"Crustaceans, molluscs",img:"senor"},
+  {id:"arroz-caldoso",n:"Arroz caldoso de marisco",p:"46,00 €",d:"The house favourite, still bubbling at the table.",a:"Crustaceans, molluscs",img:"caldoso"}
+ ]},
+ {id:"mar",label:"From the Sea",fallback:"merl",note:"Fish straight from the market",items:[
+  {id:"merluza",n:"Merluza a la gallega",p:"17,00 €",d:"In a clay dish, with potato and paprika sauce.",a:"Fish, molluscs",img:"merl"},
+  {id:"salmon",n:"Salmón a la plancha",p:"18,00 €",d:"Cooked pink, with brown butter.",a:"Fish, dairy",img:"salm"},
+  {id:"pescado-dia",n:"Pescado del día",p:"S/M",d:"Ask us what came in at the fish market today.",a:"Fish",img:"pescDia"},
+  {id:"dorada-lubina",n:"Dorada / Lubina a la plancha",p:"17,00 €",d:"Butterflied on the grill, with sizzling garlic oil.",a:"Fish",img:"dorada"}
+ ]},
+ {id:"tierra",label:"From the Land",fallback:"chul",note:"Galician meat over the coals",items:[
+  {id:"zorza",n:"Zorza",p:"12,00 €",d:"Marinated in-house, with boiled potatoes.",a:"Sulphites",img:"zorza"},
+  {id:"raxo",n:"Raxo",p:"12,00 €",d:"Marinated pork loin, grilled. The classic.",a:"—",img:"raxo"},
+  {id:"secreto",n:"Secreto de cerdo",p:"12,00 €",d:"Juicy, seared quickly on both sides.",a:"—",img:"secreto"},
+  {id:"milanesa",n:"Milanesa de pollo",p:"12,00 €",d:"Thin breadcrumb coating, golden.",a:"Gluten, egg",img:"mila"},
+  {id:"churrasco-cerdo",n:"Churrasco de cerdo",p:"12,00 €",d:"Chargrilled, with a mild chimichurri.",a:"—",img:"churrCerdo"},
+  {id:"churrasco-ternera",n:"Churrasco de ternera",p:"16,00 €",d:"Over a hot fire, with coarse sea salt.",a:"—",img:"churrTernera"},
+  {id:"jamon-asado",n:"Jamón asado",p:"9,00 €",d:"Slow-roasted and thinly sliced.",a:"—",img:"jamonAs"},
+  {id:"pollo-brasa",n:"Pollo a la brasa",p:"12,00 €",d:"Golden over charcoal.",a:"—",img:"polloBr"},
+  {id:"criollo",n:"Criollo",p:"3,00 €",d:"The classic criollo sausage.",a:"Sulphites",img:"criollo"},
+  {id:"chuleton",n:"Chuletón",p:"35,00 €/kg",d:"Aged Galician beef, chargrilled.",a:"—",img:"chul"}
+ ]}
+];
+
+/* ============ UTILIDADES ============ */
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function sstep(a,b,x){x=clamp((x-a)/(b-a),0,1);return x*x*(3-2*x);}
+function easeOut(t){return 1-Math.pow(1-t,3);}
+var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var finePtr = window.matchMedia("(pointer: fine)").matches;
+/* La foto del plato se despliega en linea cuando NO hay cursor. Mirar solo la
+   media query al cargar dejaba fuera a los hibridos (movil con raton conectado,
+   portatil tactil): alli ni salia el #peek de escritorio ni la foto en linea.
+   Se arranca con lo que dice el navegador y se corrige en cuanto llega un toque
+   real, que siempre ocurre antes del "click". */
+var tactil = !finePtr;
+function marcarTactil(){
+  if(tactil)return;
+  tactil=true;
+  document.documentElement.classList.add("tactil");
+}
+if(tactil)document.documentElement.classList.add("tactil");
+window.addEventListener("pointerdown",function(e){
+  if(e.pointerType&&e.pointerType!=="mouse")marcarTactil();
+},{passive:true,capture:true});
+
+/* ============ PRELOADER ============ */
+var loader=document.getElementById("loader"), loaded=0, need=3, minT=Date.now()+900;
+function bump(){loaded++;if(loaded>=need)setTimeout(hide,Math.max(0,minT-Date.now()));}
+[IMG.ext,IMG.int,IMG.table].forEach(function(u){var i=new Image();i.onload=bump;i.onerror=bump;i.src=u;});
+setTimeout(hide,4200);
+var hidden=false;
+function hide(){if(hidden)return;hidden=true;loader.classList.add("done");document.body.classList.add("ready");}
+
+/* ============ CANVAS ============ */
+var cv=document.getElementById("scene"),ctx=cv.getContext("2d"),vw=0,vh=0,dpr=1;
+function sizeCv(){dpr=Math.min(window.devicePixelRatio||1,1.75);vw=window.innerWidth;vh=window.innerHeight;cv.width=vw*dpr;cv.height=vh*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+sizeCv();window.addEventListener("resize",sizeCv);
+var A=new Image(),B=new Image(),C=new Image();A.src=IMG.ext;B.src=IMG.int;C.src=IMG.table;
+var P=0, pmx=0,pmy=0, tmx=0,tmy=0;
+window.addEventListener("pointermove",function(e){tmx=(e.clientX/vw)*2-1;tmy=(e.clientY/vh)*2-1;},{passive:true});
+function drawCover(img,alpha,scale,ox,oy){
+  if(alpha<=0.002||!img.complete||!img.naturalWidth)return;
+  var ir=img.naturalWidth/img.naturalHeight,cr=vw/vh,dw,dh;
+  if(cr>ir){dw=vw*scale;dh=dw/ir;}else{dh=vh*scale;dw=dh*ir;}
+  ctx.globalAlpha=alpha;
+  ctx.drawImage(img,(vw-dw)/2+ox,(vh-dh)/2+oy,dw,dh);
+  ctx.globalAlpha=1;
+}
+/* partículas */
+var dust=[],steam=[];
+for(var i=0;i<70;i++){dust.push({x:Math.random(),y:Math.random(),s:.4+Math.random()*1.4,ph:Math.random()*6.28});}
+function spawnSteam(w){
+  if(steam.length<90&&Math.random()<w*.6){
+    steam.push({x:vw*.585+(Math.random()-.5)*vw*.10,y:vh*.60,r:6+Math.random()*10,vy:.5+Math.random()*.8,life:0,ph:Math.random()*6.28});
+  }
+}
+var lastT=0;
+function tick(t){
+  requestAnimationFrame(tick);
+  var dt=Math.min(50,t-lastT)||16;lastT=t;
+  pmx+=(tmx-pmx)*.06;pmy+=(tmy-pmy)*.06;
+  ctx.clearRect(0,0,vw,vh);
+  ctx.fillStyle="#0D0D0D";ctx.fillRect(0,0,vw,vh);
+  var w1=1-sstep(.24,.34,P),w2=sstep(.24,.34,P)*(1-sstep(.62,.72,P)),w3=sstep(.62,.72,P);
+  /* Etapa 1: exterior */
+  if(w1>0){var t1=easeOut(clamp(P/.28,0,1));
+    drawCover(A,w1,1.14-.10*t1,pmx*14,-24*t1+pmy*9);}
+  /* Etapa 2: interior, dolly hacia dentro */
+  if(w2>0){var t2=clamp((P-.24)/.48,0,1),e2=easeOut(t2);
+    drawCover(B,w2,1.06+.26*e2,Math.sin(t2*Math.PI)*10+pmx*18,-14+pmy*12);}
+  /* Etapa 3: la mesa */
+  if(w3>0){var t3=easeOut(clamp((P-.62)/.38,0,1));
+    drawCover(C,w3,1.18-.10*t3,pmx*10,26*(1-t3)+pmy*8);}
+  /* polvo dorado en el interior */
+  if(w2>.02&&!reduced){
+    ctx.save();ctx.globalCompositeOperation="lighter";
+    for(var d=0;d<dust.length;d++){var du=dust[d];
+      var yy=(du.y+t*.000012*du.s)%1,xx=du.x+Math.sin(t*.0004+du.ph)*.012;
+      var tw=.5+.5*Math.sin(t*.002+du.ph*3);
+      ctx.globalAlpha=w2*.28*tw;
+      ctx.fillStyle="rgba(212,175,55,.8)";
+      ctx.beginPath();ctx.arc(xx*vw,yy*vh,du.s,0,6.283);ctx.fill();}
+    ctx.restore();
+  }
+  /* vapor sobre el plato */
+  if(w3>.02&&!reduced){
+    spawnSteam(w3);
+    ctx.save();ctx.globalCompositeOperation="lighter";
+    for(var s=steam.length-1;s>=0;s--){var sp=steam[s];
+      sp.life+=dt*.00045;sp.y-=sp.vy*dt*.06;sp.x+=Math.sin(sp.life*7+sp.ph)*.4;sp.r+=dt*.02;
+      if(sp.life>=1){steam.splice(s,1);continue;}
+      var al=Math.sin(sp.life*Math.PI)*.10*w3;
+      var g=ctx.createRadialGradient(sp.x,sp.y,0,sp.x,sp.y,sp.r);
+      g.addColorStop(0,"rgba(255,244,225,"+al+")");g.addColorStop(1,"rgba(255,244,225,0)");
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(sp.x,sp.y,sp.r,0,6.283);ctx.fill();}
+    ctx.restore();
+  }
+  /* parpadeo cálido sutil (velas) */
+  var fl=(.05+.02*Math.sin(t*.011)+.012*Math.sin(t*.023))*Math.max(w1,w3);
+  var rg=ctx.createRadialGradient(vw*.5,vh*.62,0,vw*.5,vh*.62,Math.max(vw,vh)*.7);
+  rg.addColorStop(0,"rgba(212,150,55,"+fl+")");rg.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.fillStyle=rg;ctx.fillRect(0,0,vw,vh);
+  /* capas de texto */
+  var c1=document.getElementById("cap1"),c2=document.getElementById("cap2"),c3=document.getElementById("cap3"),hint=document.getElementById("hint");
+  var o1=1-sstep(.12,.20,P);
+  c1.style.opacity=o1;c1.style.transform="translateY(calc(-50% - "+(sstep(.12,.20,P)*60)+"px))";
+  var in2=sstep(.30,.38,P),out2=sstep(.52,.60,P);
+  c2.style.opacity=in2*(1-out2);c2.style.transform="translateY(calc(-50% + "+((1-in2)*50-out2*50)+"px))";
+  var o3=sstep(.76,.84,P);
+  c3.style.opacity=o3;c3.style.transform="translateY(calc(-50% + "+((1-o3)*40)+"px))";
+  hint.style.opacity=1-sstep(.015,.06,P);
+  /* panel flotante aparece al final de la etapa 3 */
+  if(P>.78)floatMenu.classList.add("on");
+  /* cursor */
+  if(finePtr){
+    cx+=(mx-cx)*.35;cy+=(my-cy)*.35;
+    rx+=(mx-rx)*.16;ry+=(my-ry)*.16;
+    dot.style.transform="translate("+(cx-3)+"px,"+(cy-3)+"px)";
+    ring.style.transform="translate("+(rx-ring.offsetWidth/2)+"px,"+(ry-ring.offsetHeight/2)+"px)";
+  }
+}
+requestAnimationFrame(tick);
+
+/* ScrollTrigger */
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.create({trigger:"#track",start:"top top",end:"bottom bottom",scrub:.55,onUpdate:function(s){P=s.progress;}});
+gsap.utils.toArray("[data-reveal]").forEach(function(el){
+  gsap.fromTo(el,{y:46,opacity:0},{y:0,opacity:1,duration:1,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 88%"}});
+});
+gsap.fromTo("#histImg",{yPercent:-7,scale:1.12},{yPercent:7,scale:1.12,ease:"none",scrollTrigger:{trigger:"#histFig",start:"top bottom",end:"bottom top",scrub:true}});
+
+/* header sólido */
+var header=document.getElementById("header");
+window.addEventListener("scroll",function(){header.classList.toggle("solid",window.scrollY>40);},{passive:true});
+
+/* ============ CURSOR ============ */
+var dot=document.getElementById("cursorDot"),ring=document.getElementById("cursorRing");
+var mx=0,my=0,cx=0,cy=0,rx=0,ry=0;
+if(finePtr){
+  document.documentElement.classList.add("has-cursor");
+  window.addEventListener("pointermove",function(e){mx=e.clientX;my=e.clientY;},{passive:true});
+  document.addEventListener("mouseover",function(e){
+    var hit=e.target.closest&&e.target.closest("a,button,.dish,input,select,[data-hover]");
+    ring.classList.toggle("big",!!hit);
+  });
+}
+
+/* ============ CARTA (panel + sección) ============ */
+var floatMenu=document.getElementById("floatMenu"),fmTabs=document.getElementById("fmTabs"),fmList=document.getElementById("fmList"),fmNote=document.getElementById("fmNote");
+var peek=document.getElementById("peek"),peekImg=document.getElementById("peekImg"),peekName=document.getElementById("peekName"),peekDesc=document.getElementById("peekDesc"),peekAl=document.getElementById("peekAl");
+var curTab=TABS[0].id;
+TABS.forEach(function(tb,idx){
+  var b=document.createElement("button");b.textContent=tb.label;b.dataset.tab=tb.id;
+  if(idx===0)b.classList.add("act");
+  b.addEventListener("click",function(){curTab=tb.id;fmTabs.querySelectorAll("button").forEach(function(x){x.classList.toggle("act",x===b);});renderPanel();});
+  fmTabs.appendChild(b);
+});
+function dishInner(it,claveFoto){
+  return '<div class="row"><span class="n">'+it.n+'</span><span class="dots"></span><span class="p">'+it.p+'</span></div>'+
+         '<div class="d">'+it.d+(it.a&&it.a!=="—"?' · Allergens: '+it.a:"")+'</div>'+
+         // src vacio a proposito: la foto se pide al tocar el plato, no al cargar.
+         // Con las 34 de golpe el movil se tragaria varios MB para nada.
+         // Sin loading="lazy": cuando se asigna el src la ficha aun esta plegada y
+         // la caja mide 0 px de alto, y ahi el navegador puede decidir que la
+         // imagen "no hace falta todavia" y no descargarla nunca.
+         (claveFoto?'<div class="fotoWrap"><img class="foto" alt="'+it.n+'" decoding="async" data-foto="'+claveFoto+'"></div>':'');
+}
+/* La descarga se dispara al abrir la ficha, no antes. */
+function pedirFoto(li){
+  var f=li.querySelector(".foto");
+  if(!f||f.getAttribute("src"))return;
+  var url=IMG[f.getAttribute("data-foto")];
+  if(url)f.src=url;
+}
+function renderPanel(){
+  var tb=TABS.filter(function(t){return t.id===curTab;})[0];
+  fmNote.textContent=tb.note;
+  fmList.innerHTML="";
+  tb.items.forEach(function(it){
+    var li=document.createElement("li");li.className="dish";
+    /* Faltaba la clave de la foto: el panel desplegable se quedaba sin <img>, y
+       como en tactil no hay hover tampoco salia el #peek. De ahi que las fotos
+       se vieran en escritorio y no en el movil. */
+    li.innerHTML=dishInner(it,it.img||tb.fallback);
+    li.addEventListener("mouseenter",function(){
+      peekImg.src=IMG[it.img||tb.fallback];peekImg.alt=it.n;
+      peekName.textContent=it.n;peekDesc.textContent=it.d;
+      peekAl.textContent=(it.a&&it.a!=="—")?"Allergens: "+it.a:"";
+      peek.classList.add("on");
+    });
+    li.addEventListener("mouseleave",function(){peek.classList.remove("on");});
+    li.addEventListener("click",function(){li.classList.toggle("open");pedirFoto(li);});
+    fmList.appendChild(li);
+  });
+}
+renderPanel();
+if(finePtr){
+  window.addEventListener("pointermove",function(e){
+    if(!peek.classList.contains("on"))return;
+    var x=e.clientX+26,y=e.clientY-170;
+    if(x+260>window.innerWidth)x=e.clientX-286;
+    y=clamp(y,12,window.innerHeight-320);
+    peek.style.left=x+"px";peek.style.top=y+"px";
+  },{passive:true});
+}
+var fmToggle=document.getElementById("fmToggle");
+fmToggle.addEventListener("click",function(){
+  floatMenu.classList.toggle("collapsed");
+  this.textContent=floatMenu.classList.contains("collapsed")?"Open":"Close";
+});
+/* El panel nace plegado (es una barra) y solo se despliega si el usuario lo pide.
+   Si lo deja abierto y sigue navegando, se repliega al salir de la carta: fuera de
+   esa sección solo tapaba la dirección, los menús y el mapa. */
+if(window.IntersectionObserver){
+  new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      if(!e.isIntersecting && !floatMenu.classList.contains("collapsed")){
+        floatMenu.classList.add("collapsed");
+        fmToggle.textContent="Open";
+      }
+    });
+  },{threshold:0}).observe(document.getElementById("carta"));
+}
+
+/* carta completa */
+var grid=document.getElementById("cartaGrid");
+function renderGrid(){
+  grid.innerHTML="";
+  TABS.forEach(function(tb){
+    var blk=document.createElement("div");blk.className="catBlock";blk.setAttribute("data-reveal","");
+    var html="<h3>"+tb.label+" <small>"+tb.note+"</small></h3><ul>";
+    tb.items.forEach(function(it){
+      html+='<li class="dish">'+dishInner(it,it.img||tb.fallback)+'</li>';
+    });
+    html+="</ul>";blk.innerHTML=html;grid.appendChild(blk);
+  });
+}
+renderGrid();
+grid.addEventListener("mouseover",function(e){
+  if(!finePtr)return;
+  var li=e.target.closest(".dish");if(!li)return;
+  var name=li.querySelector(".n").textContent;
+  var found=null,fb=null;
+  TABS.forEach(function(tb){tb.items.forEach(function(it){if(it.n===name){found=it;fb=tb.fallback;}});});
+  if(found){peekImg.src=IMG[found.img||fb];peekImg.alt=found.n;peekName.textContent=found.n;peekDesc.textContent=found.d;peekAl.textContent=(found.a&&found.a!=="—")?"Allergens: "+found.a:"";peek.classList.add("on");}
+});
+/* En tactil el gesto es un toque, y "click" es el unico evento que se dispara
+   siempre y en TODOS los toques. Con "mouseover" el segundo toque sobre el
+   mismo plato no lo cerraba: el puntero ya estaba encima y el evento no se
+   repetia, asi que la ficha se quedaba abierta. */
+grid.addEventListener("click",function(e){
+  if(!tactil)return;
+  var li=e.target.closest(".dish");if(!li)return;
+  li.classList.toggle("open");
+  pedirFoto(li);
+});
+grid.addEventListener("mouseout",function(e){if(e.target.closest(".dish"))peek.classList.remove("on");});
+
+/* ============ HORARIO HOY ============ */
+var today=new Date().getDay();
+var row=document.querySelector('table.sala tr[data-day="'+today+'"]');
+if(row)row.classList.add("today");
+
+/* ============ MARQUEE dup ============ */
+var rail=document.getElementById("mqRail");rail.innerHTML+=rail.innerHTML;
+
+/* ============ AUDIO ============ */
+var audioBtn=document.getElementById("audioBtn"),actx=null,master=null,audioOn=false;
+function buildAudio(){
+  actx=new (window.AudioContext||window.webkitAudioContext)();
+  master=actx.createGain();master.gain.value=0;master.connect(actx.destination);
+  var len=actx.sampleRate*2,buf=actx.createBuffer(1,len,actx.sampleRate),d=buf.getChannelData(0),last=0;
+  for(var i=0;i<len;i++){var w=Math.random()*2-1;last=(last+.02*w)/1.02;d[i]=last*3.2;}
+  var src=actx.createBufferSource();src.buffer=buf;src.loop=true;
+  var lp=actx.createBiquadFilter();lp.type="lowpass";lp.frequency.value=420;
+  var g=actx.createGain();g.gain.value=.55;
+  src.connect(lp);lp.connect(g);g.connect(master);src.start();
+  var src2=actx.createBufferSource();src2.buffer=buf;src2.loop=true;src2.playbackRate.value=1.7;
+  var bp=actx.createBiquadFilter();bp.type="bandpass";bp.frequency.value=1250;bp.Q.value=.9;
+  var g2=actx.createGain();g2.gain.value=.10;
+  src2.connect(bp);bp.connect(g2);g2.connect(master);src2.start();
+  clink();
+}
+function clink(){
+  if(!audioOn)return;
+  var t=actx.currentTime;
+  [1900+Math.random()*700,2600+Math.random()*600].forEach(function(f,i){
+    var o=actx.createOscillator();o.type="sine";o.frequency.value=f;
+    var og=actx.createGain();og.gain.setValueAtTime(.0001,t);
+    og.gain.exponentialRampToValueAtTime(.05/(i+1),t+.012);
+    og.gain.exponentialRampToValueAtTime(.0001,t+.5);
+    o.connect(og);og.connect(master);o.start(t);o.stop(t+.6);
+  });
+  setTimeout(clink,2500+Math.random()*6500);
+}
+audioBtn.addEventListener("click",function(){
+  if(!actx)buildAudio();
+  audioOn=!audioOn;
+  actx.resume();
+  var now=actx.currentTime;
+  master.gain.cancelScheduledValues(now);
+  master.gain.setValueAtTime(master.gain.value,now);
+  master.gain.linearRampToValueAtTime(audioOn?.16:0,now+1);
+  audioBtn.classList.toggle("on",audioOn);
+  audioBtn.setAttribute("aria-label",audioOn?"Mute ambient sound":"Turn on ambient sound");
+});
+
+/* ============ MODAL RESERVA ============ */
+var modal=document.getElementById("modal");
+/* Numero de reservas. Es el movil, que es el que atiende WhatsApp; el fijo del
+   local no tiene WhatsApp. */
+var WA_RESERVAS="34696434042";
+function openModal(){
+  /* Se vuelve siempre al formulario: sin esto, despues de una reserva el modal
+     se quedaba clavado en la pantalla de confirmacion y no habia forma de hacer
+     otra sin recargar la pagina. */
+  document.getElementById("formView").style.display="";
+  document.getElementById("okView").style.display="";
+  modal.classList.add("open");document.body.style.overflow="hidden";
+}
+function closeModal(){modal.classList.remove("open");document.body.style.overflow="";}
+document.querySelectorAll("[data-open-res]").forEach(function(b){b.addEventListener("click",function(e){e.preventDefault();openModal();});});
+document.querySelectorAll("[data-close-res]").forEach(function(b){b.addEventListener("click",closeModal);});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){closeModal();mnav.classList.remove("open");}});
+var fPax=document.getElementById("fPax");for(var p=1;p<=12;p++){var o=document.createElement("option");o.value=p;o.textContent=p+(p===1?" guest":" guests");fPax.appendChild(o);}
+var fTime=document.getElementById("fTime");
+["13:00","13:30","14:00","14:30","15:00","15:30","19:00","19:30","20:00","20:30","21:00","21:30","22:00","22:30"].forEach(function(h){var o=document.createElement("option");o.value=h;o.textContent=h;fTime.appendChild(o);});
+var fDate=document.getElementById("fDate");fDate.min=new Date().toISOString().split("T")[0];
+/* El mensaje va SIEMPRE en español y no se traduce con el resto de la portada:
+   lo lee el local, no el visitante. Asi una reserva desde la version alemana
+   llega igual de legible a la barra. */
+function textoReserva(){
+  var val=function(id){return (document.getElementById(id).value||"").trim();};
+  var dt=val("fDate").split("-");
+  var lineas=[
+    "Hola, quería reservar mesa en Don Pepe Original.",
+    "",
+    "Nombre: "+val("fName"),
+    "Personas: "+val("fPax"),
+    "Día: "+(dt.length===3?dt[2]+"/"+dt[1]+"/"+dt[0]:val("fDate")),
+    "Hora: "+val("fTime"),
+    "Teléfono: "+val("fTel")
+  ];
+  if(val("fNote"))lineas.push("Nota: "+val("fNote"));
+  return lineas.join("\n");
+}
+document.getElementById("resForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  var n=document.getElementById("fName").value,px=document.getElementById("fPax").value,dt=document.getElementById("fDate").value,tm=document.getElementById("fTime").value;
+  var url="https://wa.me/"+WA_RESERVAS+"?text="+encodeURIComponent(textoReserva());
+  /* El enlace de respaldo se rellena SIEMPRE, antes de abrir nada: si el
+     navegador bloquea la ventana emergente, al visitante le sigue quedando un
+     solo toque para enviar la reserva en vez de una pantalla que no hizo nada. */
+  document.getElementById("okWa").href=url;
+  window.open(url,"_blank","noopener");
+  document.getElementById("okTxt").innerHTML="Your message is ready in WhatsApp, <b style='color:var(--cream)'>"+n+"</b>. Table for "+px+" on "+new Date(dt+"T12:00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})+" at "+tm+". Just hit send and we'll confirm right away.";
+  document.getElementById("formView").style.display="none";
+  document.getElementById("okView").style.display="block";
+});
+
+/* ============ MENÚ MÓVIL ============ */
+var mnav=document.getElementById("mnav"),burger=document.getElementById("burger");
+burger.addEventListener("click",function(){mnav.classList.toggle("open");});
+mnav.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){mnav.classList.remove("open");});});
+
+/* ============ QR ============ */
+window.addEventListener("load",function(){
+  if(window.QRCode){
+    try{
+      new QRCode(document.getElementById("qrBox"),{text:location.href.split("#")[0]+"#carta",width:164,height:164,colorDark:"#0D0D0D",colorLight:"#F8F5EE"});
+    }catch(err){}
+  }
+});
+
+/* ============ CARTA EN VIVO (/api/menu) ============ */
+/* TABS es el respaldo: si la API no contesta, la página se queda como está.
+   Cuando contesta manda /api/menu, que es lo que el dueño cambia por WhatsApp.
+   Descripciones, alérgenos y fotos son del diseño: se conservan emparejando
+   por nombre normalizado. */
+var API_CAT={compartir:"entrantes",arroces:"arroces",mar:"pescados",tierra:"carnes"};
+
+function norm(x){
+  return (x||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g," ").trim();
+}
+function precioApi(p){
+  if(p.precio_texto)return p.precio_texto;
+  if(typeof p.precio!=="number")return "";
+  var num=p.precio.toFixed(2).replace(".",","),nota=(p.nota||"").trim();
+  if(/^€\s*\//.test(nota))return num+" "+nota;   /* "€/kg" -> "35,00 €/kg" */
+  if(/^\//.test(nota))return num+" €"+nota;
+  return num+" €";
+}
+function fusionarCarta(menu){
+  TABS.forEach(function(tb){
+    var lista=menu[API_CAT[tb.id]];
+    if(!Array.isArray(lista))return;
+    /* el id es estable aunque el dueño renombre el plato; el nombre es el respaldo
+       para platos que aún no lo tengan */
+    var porId={},porNombre={};
+    tb.items.forEach(function(it){
+      if(it.id)porId[it.id]=it;
+      porNombre[norm(it.n)]=it;
+    });
+    tb.items=lista.filter(function(p){return !p.disabled;}).map(function(p){
+      var base=porId[p.id]||porNombre[norm(p.nombre)]||{};
+      return {id:p.id,n:p.nombre,p:precioApi(p)||base.p||"",d:base.d||p.nota||"",a:base.a||"—",img:base.img};
+    });
+  });
+}
+function fusionarMenus(menu){
+  if(!Array.isArray(menu.menus))return;
+  var porNombre={};
+  menu.menus.forEach(function(m){porNombre[norm(m.nombre)]=m;});
+  Array.prototype.forEach.call(document.querySelectorAll("#menus .menuCard"),function(card){
+    var h3=card.querySelector("h3");if(!h3)return;
+    var m=porNombre[norm(h3.textContent)];
+    if(!m)return;                       /* tarjeta que la API no conoce: no se toca */
+    if(m.disabled){card.style.display="none";return;}
+    card.style.display="";
+    var pr=card.querySelector(".price");
+    if(pr&&typeof m.precio==="number"){
+      var n=m.precio%1===0?String(m.precio):m.precio.toFixed(2).replace(".",",");
+      pr.innerHTML=n+"€ <small>/ person</small>";
+    }
+    /* el rótulo solo se pisa si el dueño cambió la disponibilidad de origen:
+       así no perdemos el texto de diseño ("Para venir con hambre"). */
+    var tag=card.querySelector(".tag"),seed=card.getAttribute("data-avail-seed");
+    if(tag&&m.disponibilidad&&seed&&m.disponibilidad!==seed)tag.textContent=m.disponibilidad;
+  });
+}
+function pintarAviso(txt){
+  var host=document.getElementById("cartaAviso");
+  if(!host){
+    if(!txt)return;
+    host=document.createElement("div");host.id="cartaAviso";
+    grid.parentNode.insertBefore(host,grid);
+  }
+  host.textContent=txt||"";host.style.display=txt?"":"none";
+}
+fetch("/api/menu",{cache:"no-store"}).then(function(r){
+  if(!r.ok)throw new Error("HTTP "+r.status);
+  return r.json();
+}).then(function(menu){
+  if(!menu||typeof menu!=="object")return;
+  fusionarCarta(menu);
+  renderPanel();
+  renderGrid();
+  fusionarMenus(menu);
+  pintarAviso(menu.aviso);
+  /* los bloques recién creados no los conocía GSAP: se les vuelve a poner el reveal */
+  if(window.gsap)gsap.utils.toArray("#cartaGrid [data-reveal]").forEach(function(el){
+    gsap.fromTo(el,{y:46,opacity:0},{y:0,opacity:1,duration:1,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 88%"}});
+  });
+}).catch(function(){/* sin API se queda la carta estática */});
+})();
+</script>
+</body>
+</html>

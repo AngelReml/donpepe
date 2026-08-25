@@ -1,0 +1,8 @@
+# Nada de esto hace falta para `npm run build`, y sin este fichero la CLI subía
+# la carpeta entera a cada despliegue. .claude/settings.local.json llegaba a
+# guardar la contraseña de QR_ADMIN_PASS dentro de un comando permitido.
+.claude/
+.agents/
+backup-fotos-locales-*/
+*.tsbuildinfo
+skills-lock.json

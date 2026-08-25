@@ -1,0 +1,243 @@
+{
+  "_comentario": "Textos que viven dentro del <script> de la portada. Clave = fragmento exacto del JS español, con sus comillas. Los alérgenos están traducidos a mano a propósito: no pasan nunca por un modelo.",
+  "label:\"Para Compartir\"": {
+    "gl": "label:\"Para compartir\"",
+    "en": "label:\"To Share\"",
+    "pt": "label:\"Para partilhar\"",
+    "de": "label:\"Zum Teilen\"",
+    "fr": "label:\"À partager\"",
+    "it": "label:\"Da condividere\""
+  },
+  "label:\"Arroces\"": {
+    "gl": "label:\"Arroces\"",
+    "en": "label:\"Rice\"",
+    "pt": "label:\"Arrozes\"",
+    "de": "label:\"Reisgerichte\"",
+    "fr": "label:\"Riz\"",
+    "it": "label:\"Riso\""
+  },
+  "label:\"Del Mar\"": {
+    "gl": "label:\"Do Mar\"",
+    "en": "label:\"From the Sea\"",
+    "pt": "label:\"Do Mar\"",
+    "de": "label:\"Aus dem Meer\"",
+    "fr": "label:\"De la Mer\"",
+    "it": "label:\"Dal Mare\""
+  },
+  "label:\"De la Tierra\"": {
+    "gl": "label:\"Da Terra\"",
+    "en": "label:\"From the Land\"",
+    "pt": "label:\"Da Terra\"",
+    "de": "label:\"Vom Land\"",
+    "fr": "label:\"De la Terre\"",
+    "it": "label:\"Dalla Terra\""
+  },
+  "note:\"Entrantes y raciones de la pizarra\"": {
+    "gl": "note:\"Entrantes e racións da pizarra\"",
+    "en": "note:\"Starters and sharing plates\"",
+    "pt": "note:\"Entradas e petiscos da ardósia\"",
+    "de": "note:\"Vorspeisen und Portionen von der Tafel\"",
+    "fr": "note:\"Entrées et portions de l'ardoise\"",
+    "it": "note:\"Antipasti e porzioni della lavagna\""
+  },
+  "note:\"Todos los arroces, para 2 personas\"": {
+    "gl": "note:\"Todos os arroces, para 2 persoas\"",
+    "en": "note:\"All rice dishes serve 2\"",
+    "pt": "note:\"Todos os arrozes, para 2 pessoas\"",
+    "de": "note:\"Alle Reisgerichte für 2 Personen\"",
+    "fr": "note:\"Tous les riz, pour 2 personnes\"",
+    "it": "note:\"Tutti i risotti, per 2 persone\""
+  },
+  "note:\"Pescados de lonja\"": {
+    "gl": "note:\"Peixes da lonxa\"",
+    "en": "note:\"Fish straight from the market\"",
+    "pt": "note:\"Peixe da lota\"",
+    "de": "note:\"Fisch von der Auktionshalle\"",
+    "fr": "note:\"Poissons de la criée\"",
+    "it": "note:\"Pesce dal mercato\""
+  },
+  "note:\"Brasa y carnes de Galicia\"": {
+    "gl": "note:\"Brasa e carnes de Galicia\"",
+    "en": "note:\"Galician meat over the coals\"",
+    "pt": "note:\"Brasa e carnes da Galiza\"",
+    "de": "note:\"Galicisches Fleisch vom Grill\"",
+    "fr": "note:\"Braise et viandes de Galice\"",
+    "it": "note:\"Brace e carni della Galizia\""
+  },
+  "a:\"Moluscos\"": {
+    "gl": "a:\"Moluscos\"",
+    "en": "a:\"Molluscs\"",
+    "pt": "a:\"Moluscos\"",
+    "de": "a:\"Weichtiere\"",
+    "fr": "a:\"Mollusques\"",
+    "it": "a:\"Molluschi\""
+  },
+  "a:\"Pescado, huevo\"": {
+    "gl": "a:\"Peixe, ovo\"",
+    "en": "a:\"Fish, egg\"",
+    "pt": "a:\"Peixe, ovo\"",
+    "de": "a:\"Fisch, Ei\"",
+    "fr": "a:\"Poisson, œuf\"",
+    "it": "a:\"Pesce, uovo\""
+  },
+  "a:\"Sulfitos\"": {
+    "gl": "a:\"Sulfitos\"",
+    "en": "a:\"Sulphites\"",
+    "pt": "a:\"Sulfitos\"",
+    "de": "a:\"Sulfite\"",
+    "fr": "a:\"Sulfites\"",
+    "it": "a:\"Solfiti\""
+  },
+  "a:\"Gluten, huevo, lácteos\"": {
+    "gl": "a:\"Glute, ovo, lácteos\"",
+    "en": "a:\"Gluten, egg, dairy\"",
+    "pt": "a:\"Glúten, ovo, lacticínios\"",
+    "de": "a:\"Gluten, Ei, Milch\"",
+    "fr": "a:\"Gluten, œuf, produits laitiers\"",
+    "it": "a:\"Glutine, uovo, latticini\""
+  },
+  "a:\"Gluten, lácteos\"": {
+    "gl": "a:\"Glute, lácteos\"",
+    "en": "a:\"Gluten, dairy\"",
+    "pt": "a:\"Glúten, lacticínios\"",
+    "de": "a:\"Gluten, Milch\"",
+    "fr": "a:\"Gluten, produits laitiers\"",
+    "it": "a:\"Glutine, latticini\""
+  },
+  "a:\"Gluten, huevo\"": {
+    "gl": "a:\"Glute, ovo\"",
+    "en": "a:\"Gluten, egg\"",
+    "pt": "a:\"Glúten, ovo\"",
+    "de": "a:\"Gluten, Ei\"",
+    "fr": "a:\"Gluten, œuf\"",
+    "it": "a:\"Glutine, uovo\""
+  },
+  "a:\"Crustáceos, moluscos, huevo\"": {
+    "gl": "a:\"Crustáceos, moluscos, ovo\"",
+    "en": "a:\"Crustaceans, molluscs, egg\"",
+    "pt": "a:\"Crustáceos, moluscos, ovo\"",
+    "de": "a:\"Krebstiere, Weichtiere, Ei\"",
+    "fr": "a:\"Crustacés, mollusques, œuf\"",
+    "it": "a:\"Crostacei, molluschi, uovo\""
+  },
+  "a:\"Crustáceos, moluscos\"": {
+    "gl": "a:\"Crustáceos, moluscos\"",
+    "en": "a:\"Crustaceans, molluscs\"",
+    "pt": "a:\"Crustáceos, moluscos\"",
+    "de": "a:\"Krebstiere, Weichtiere\"",
+    "fr": "a:\"Crustacés, mollusques\"",
+    "it": "a:\"Crostacei, molluschi\""
+  },
+  "a:\"Crustáceos\"": {
+    "gl": "a:\"Crustáceos\"",
+    "en": "a:\"Crustaceans\"",
+    "pt": "a:\"Crustáceos\"",
+    "de": "a:\"Krebstiere\"",
+    "fr": "a:\"Crustacés\"",
+    "it": "a:\"Crostacei\""
+  },
+  "a:\"Huevo\"": {
+    "gl": "a:\"Ovo\"",
+    "en": "a:\"Egg\"",
+    "pt": "a:\"Ovo\"",
+    "de": "a:\"Ei\"",
+    "fr": "a:\"Œuf\"",
+    "it": "a:\"Uovo\""
+  },
+  "a:\"Pescado, moluscos\"": {
+    "gl": "a:\"Peixe, moluscos\"",
+    "en": "a:\"Fish, molluscs\"",
+    "pt": "a:\"Peixe, moluscos\"",
+    "de": "a:\"Fisch, Weichtiere\"",
+    "fr": "a:\"Poisson, mollusques\"",
+    "it": "a:\"Pesce, molluschi\""
+  },
+  "a:\"Pescado, lácteos\"": {
+    "gl": "a:\"Peixe, lácteos\"",
+    "en": "a:\"Fish, dairy\"",
+    "pt": "a:\"Peixe, lacticínios\"",
+    "de": "a:\"Fisch, Milch\"",
+    "fr": "a:\"Poisson, produits laitiers\"",
+    "it": "a:\"Pesce, latticini\""
+  },
+  "a:\"Pescado\"": {
+    "gl": "a:\"Peixe\"",
+    "en": "a:\"Fish\"",
+    "pt": "a:\"Peixe\"",
+    "de": "a:\"Fisch\"",
+    "fr": "a:\"Poisson\"",
+    "it": "a:\"Pesce\""
+  },
+  "' · Alérgenos: '": {
+    "gl": "' · Alérxenos: '",
+    "en": "' · Allergens: '",
+    "pt": "' · Alergénios: '",
+    "de": "' · Allergene: '",
+    "fr": "' · Allergènes : '",
+    "it": "' · Allergeni: '"
+  },
+  "\"Alérgenos: \"": {
+    "gl": "\"Alérxenos: \"",
+    "en": "\"Allergens: \"",
+    "pt": "\"Alergénios: \"",
+    "de": "\"Allergene: \"",
+    "fr": "\"Allergènes : \"",
+    "it": "\"Allergeni: \""
+  },
+  "?\"Desplegar\":\"Plegar\"": {
+    "gl": "?\"Despregar\":\"Pregar\"",
+    "en": "?\"Open\":\"Close\"",
+    "pt": "?\"Abrir\":\"Fechar\"",
+    "de": "?\"Öffnen\":\"Schließen\"",
+    "fr": "?\"Ouvrir\":\"Fermer\"",
+    "it": "?\"Apri\":\"Chiudi\""
+  },
+  "fmToggle.textContent=\"Desplegar\"": {
+    "gl": "fmToggle.textContent=\"Despregar\"",
+    "en": "fmToggle.textContent=\"Open\"",
+    "pt": "fmToggle.textContent=\"Abrir\"",
+    "de": "fmToggle.textContent=\"Öffnen\"",
+    "fr": "fmToggle.textContent=\"Ouvrir\"",
+    "it": "fmToggle.textContent=\"Apri\""
+  },
+  "audioOn?\"Silenciar sonido ambiente\":\"Activar sonido ambiente\"": {
+    "gl": "audioOn?\"Silenciar son ambiente\":\"Activar son ambiente\"",
+    "en": "audioOn?\"Mute ambient sound\":\"Turn on ambient sound\"",
+    "pt": "audioOn?\"Silenciar som ambiente\":\"Ativar som ambiente\"",
+    "de": "audioOn?\"Hintergrundgeräusch stummschalten\":\"Hintergrundgeräusch einschalten\"",
+    "fr": "audioOn?\"Couper l'ambiance sonore\":\"Activer l'ambiance sonore\"",
+    "it": "audioOn?\"Disattiva il suono ambiente\":\"Attiva il suono ambiente\""
+  },
+  "p+(p===1?\" persona\":\" personas\")": {
+    "gl": "p+(p===1?\" persoa\":\" persoas\")",
+    "en": "p+(p===1?\" guest\":\" guests\")",
+    "pt": "p+(p===1?\" pessoa\":\" pessoas\")",
+    "de": "p+(p===1?\" Person\":\" Personen\")",
+    "fr": "p+(p===1?\" personne\":\" personnes\")",
+    "it": "p+(p===1?\" persona\":\" persone\")"
+  },
+  "toLocaleDateString(\"es-ES\"": {
+    "gl": "toLocaleDateString(\"gl-ES\"",
+    "en": "toLocaleDateString(\"en-GB\"",
+    "pt": "toLocaleDateString(\"pt-PT\"",
+    "de": "toLocaleDateString(\"de-DE\"",
+    "fr": "toLocaleDateString(\"fr-FR\"",
+    "it": "toLocaleDateString(\"it-IT\""
+  },
+  "\"Ya tienes el mensaje escrito en WhatsApp, <b style='color:var(--cream)'>\"+n+\"</b>. Mesa para \"+px+\" el \"": {
+    "gl": "\"Xa tes a mensaxe escrita en WhatsApp, <b style='color:var(--cream)'>\"+n+\"</b>. Mesa para \"+px+\" o \"",
+    "en": "\"Your message is ready in WhatsApp, <b style='color:var(--cream)'>\"+n+\"</b>. Table for \"+px+\" on \"",
+    "pt": "\"Já tens a mensagem escrita no WhatsApp, <b style='color:var(--cream)'>\"+n+\"</b>. Mesa para \"+px+\" a \"",
+    "de": "\"Ihre Nachricht steht in WhatsApp bereit, <b style='color:var(--cream)'>\"+n+\"</b>. Tisch für \"+px+\" am \"",
+    "fr": "\"Votre message est prêt dans WhatsApp, <b style='color:var(--cream)'>\"+n+\"</b>. Table pour \"+px+\" le \"",
+    "it": "\"Il messaggio è già pronto su WhatsApp, <b style='color:var(--cream)'>\"+n+\"</b>. Tavolo per \"+px+\" il \""
+  },
+  "\" a las \"+tm+\". Solo falta que le des a enviar y te confirmamos enseguida.\"": {
+    "gl": "\" ás \"+tm+\". Só falta que lle deas a enviar e confirmámosche axiña.\"",
+    "en": "\" at \"+tm+\". Just hit send and we'll confirm right away.\"",
+    "pt": "\" às \"+tm+\". Só falta carregares em enviar e confirmamos já de seguida.\"",
+    "de": "\" um \"+tm+\". Nur noch auf Senden tippen – wir bestätigen sofort.\"",
+    "fr": "\" à \"+tm+\". Il ne reste qu'à l'envoyer, nous confirmons aussitôt.\"",
+    "it": "\" alle \"+tm+\". Basta premere invia e confermiamo subito.\""
+  }
+}

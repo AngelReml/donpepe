@@ -1,0 +1,315 @@
+{
+  "_comentario": "Traducciones revisadas a mano de las descripciones de plato. La clave es la frase EN ESPAÑOL: si alguien la cambia, deja de coincidir y el sistema traduce esa sola automáticamente. Idiomas: gl, en, pt, de, fr, it.",
+  "A la plancha, con su jugo y perejil.": {
+    "gl": "Á prancha, co seu xugo e perexil.",
+    "en": "Grilled, with their own juices and parsley.",
+    "pt": "Na chapa, com o seu suco e salsa.",
+    "de": "Von der Plancha, mit eigenem Saft und Petersilie.",
+    "fr": "À la plancha, avec leur jus et du persil.",
+    "it": "Alla piastra, con il loro sugo e prezzemolo."
+  },
+  "De las rías, al vapor con laurel.": {
+    "gl": "Das rías, ao vapor con loureiro.",
+    "en": "From the Galician rías, steamed with bay leaf.",
+    "pt": "Das rías galegas, ao vapor com louro.",
+    "de": "Aus den galicischen Rías, mit Lorbeer gedämpft.",
+    "fr": "Des rías galiciennes, à la vapeur au laurier.",
+    "it": "Dalle rías galiziane, al vapore con alloro."
+  },
+  "Fresca y de casa, con tomate y cebolla.": {
+    "gl": "Fresca e da casa, con tomate e cebola.",
+    "en": "Fresh and homemade, with tomato and onion.",
+    "pt": "Fresca e caseira, com tomate e cebola.",
+    "de": "Frisch und hausgemacht, mit Tomate und Zwiebel.",
+    "fr": "Fraîche et maison, tomate et oignon.",
+    "it": "Fresca e fatta in casa, con pomodoro e cipolla."
+  },
+  "Completa, como manda la tradición.": {
+    "gl": "Completa, como manda a tradición.",
+    "en": "The traditional version, and a meal in itself.",
+    "pt": "Completa, como manda a tradição.",
+    "de": "Reichhaltig, ganz nach alter Tradition.",
+    "fr": "Complète, comme le veut la tradition.",
+    "it": "Completa, come vuole la tradizione."
+  },
+  "Guisados lentos, con su salsa.": {
+    "gl": "Guisados a lume lento, coa súa salsa.",
+    "en": "Slow-cooked, in their own sauce.",
+    "pt": "Estufados devagar, com o seu molho.",
+    "de": "Langsam geschmort, in eigener Sauce.",
+    "fr": "Mijotés lentement, dans leur sauce.",
+    "it": "Stufati lentamente, nel loro sugo."
+  },
+  "Caseras, de bechamel cremosa.": {
+    "gl": "Caseiras, de bechamel cremosa.",
+    "en": "Homemade, with a creamy béchamel filling.",
+    "pt": "Caseiras, de bechamel cremoso.",
+    "de": "Hausgemacht, mit cremiger Béchamel.",
+    "fr": "Maison, à la béchamel crémeuse.",
+    "it": "Fatte in casa, con besciamella cremosa."
+  },
+  "Crujiente fuera, fundido dentro.": {
+    "gl": "Crocante por fóra, fundido por dentro.",
+    "en": "Crisp outside, melting inside.",
+    "pt": "Estaladiço por fora, derretido por dentro.",
+    "de": "Außen knusprig, innen geschmolzen.",
+    "fr": "Croustillant dehors, fondant dedans.",
+    "it": "Croccante fuori, fondente dentro."
+  },
+  "Con salsa brava de casa.": {
+    "gl": "Con salsa brava da casa.",
+    "en": "With our own spicy brava sauce.",
+    "pt": "Com molho brava da casa.",
+    "de": "Mit hausgemachter scharfer Brava-Sauce.",
+    "fr": "Avec notre sauce brava maison.",
+    "it": "Con salsa brava della casa."
+  },
+  "En cazuela, con ajo y guindilla.": {
+    "gl": "En cazola, con allo e guindilla.",
+    "en": "In a clay dish, with garlic and chilli.",
+    "pt": "Em caçarola de barro, com alho e malagueta.",
+    "de": "Im Tontopf, mit Knoblauch und Chili.",
+    "fr": "En cassolette, à l'ail et au piment.",
+    "it": "In casseruola di coccio, con aglio e peperoncino."
+  },
+  "Vuelta y vuelta, sal gruesa.": {
+    "gl": "Volta e volta, sal groso.",
+    "en": "Seared quickly, with coarse sea salt.",
+    "pt": "Salteados rapidamente, com sal grosso.",
+    "de": "Kurz angebraten, mit grobem Meersalz.",
+    "fr": "Juste saisis, au gros sel.",
+    "it": "Scottati al momento, con sale grosso."
+  },
+  "Jugosa, cuajada por dentro.": {
+    "gl": "Xugosa, callada por dentro.",
+    "en": "Juicy, still soft in the middle.",
+    "pt": "Suculenta, macia por dentro.",
+    "de": "Saftig, innen noch weich.",
+    "fr": "Moelleuse, encore baveuse au cœur.",
+    "it": "Succosa, morbida al centro."
+  },
+  "A la plancha, ajo y perejil en su concha.": {
+    "gl": "Á prancha, allo e perexil na súa cuncha.",
+    "en": "Grilled in their shells, with garlic and parsley.",
+    "pt": "Na chapa, com alho e salsa, na própria concha.",
+    "de": "Von der Plancha, mit Knoblauch und Petersilie in der Schale.",
+    "fr": "À la plancha, ail et persil, servies dans leur coquille.",
+    "it": "Alla piastra, aglio e prezzemolo nel loro guscio."
+  },
+  "Grelos, fabas, patata y compango.": {
+    "gl": "Grelos, fabas, pataca e compango.",
+    "en": "Turnip greens, white beans, potato and cured pork.",
+    "pt": "Grelos, feijão branco, batata e carnes de porco curadas.",
+    "de": "Stängelkohl, weiße Bohnen, Kartoffel und Pökelfleisch.",
+    "fr": "Pousses de navet, haricots blancs, pomme de terre et charcuterie.",
+    "it": "Cime di rapa, fagioli bianchi, patata e carni di maiale salate."
+  },
+  "En tabla de roble, pimentón y AOVE.": {
+    "gl": "En táboa de carballo, pementón e aceite de oliva virxe extra.",
+    "en": "On an oak board, with paprika and extra virgin olive oil.",
+    "pt": "Em tábua de carvalho, com colorau e azeite virgem extra.",
+    "de": "Auf Eichenholzbrett, mit Paprika und nativem Olivenöl extra.",
+    "fr": "Sur planche de chêne, paprika et huile d'olive vierge extra.",
+    "it": "Su tagliere di rovere, con paprica e olio extravergine d'oliva."
+  },
+  "Con tinta, alioli y socarrat.": {
+    "gl": "Con tinta, allioli e socarrat, a costra tostada do arroz.",
+    "en": "With squid ink, garlic mayonnaise and the crisp toasted crust.",
+    "pt": "Com tinta de choco, maionese de alho e a crosta tostada do arroz.",
+    "de": "Mit Tintenfischtinte, Knoblauchmayonnaise und knuspriger Reiskruste.",
+    "fr": "À l'encre de seiche, aïoli et croûte de riz grillée.",
+    "it": "Al nero di seppia, salsa all'aglio e crosticina di riso."
+  },
+  "Cigalas, mejillones, gambón y azafrán.": {
+    "gl": "Cigalas, mexillóns, langostino e azafrán.",
+    "en": "Langoustines, mussels, king prawns and saffron.",
+    "pt": "Lagostins, mexilhões, gambas e açafrão.",
+    "de": "Kaisergranat, Miesmuscheln, Riesengarnelen und Safran.",
+    "fr": "Langoustines, moules, gambas et safran.",
+    "it": "Scampi, cozze, gamberoni e zafferano."
+  },
+  "Mar y montaña en la misma paella.": {
+    "gl": "Mar e montaña na mesma paella.",
+    "en": "Seafood and meat together in one pan.",
+    "pt": "Mar e montanha na mesma paelha.",
+    "de": "Meer und Land in einer Pfanne.",
+    "fr": "Terre et mer dans la même paella.",
+    "it": "Mare e monti nella stessa paella."
+  },
+  "De la huerta, con fondo de verduras.": {
+    "gl": "Da horta, con fondo de verduras.",
+    "en": "Garden vegetables, on a vegetable stock.",
+    "pt": "Da horta, com caldo de legumes.",
+    "de": "Aus dem Garten, auf Gemüsefond.",
+    "fr": "Du potager, sur un fond de légumes.",
+    "it": "Dell'orto, su fondo di verdure."
+  },
+  "Todo pelado, listo para comer.": {
+    "gl": "Todo pelado, listo para comer.",
+    "en": "Everything peeled — no shells, no work.",
+    "pt": "Tudo descascado, pronto a comer.",
+    "de": "Alles bereits geschält, ohne Mühe zu essen.",
+    "fr": "Tout est décortiqué, prêt à déguster.",
+    "it": "Tutto sgusciato, pronto da mangiare."
+  },
+  "El rey de la casa, hirviendo en la mesa.": {
+    "gl": "O rei da casa, fervendo na mesa.",
+    "en": "The house favourite, still bubbling at the table.",
+    "pt": "O rei da casa, a ferver à mesa.",
+    "de": "Der Favorit des Hauses, kommt kochend an den Tisch.",
+    "fr": "Le roi de la maison, encore bouillant à table.",
+    "it": "Il re della casa, servito ancora bollente."
+  },
+  "En cazuela, con patata y salsa de pimentón.": {
+    "gl": "En cazola, con pataca e salsa de pementón.",
+    "en": "In a clay dish, with potato and paprika sauce.",
+    "pt": "Em caçarola, com batata e molho de colorau.",
+    "de": "Im Tontopf, mit Kartoffel und Paprikasauce.",
+    "fr": "En cassolette, pommes de terre et sauce au paprika.",
+    "it": "In casseruola, con patate e salsa alla paprica."
+  },
+  "Punto rosado, mantequilla noisette.": {
+    "gl": "Punto rosado, manteiga avelá.",
+    "en": "Cooked pink, with brown butter.",
+    "pt": "No ponto rosado, com manteiga tostada.",
+    "de": "Rosa gegart, mit brauner Butter.",
+    "fr": "Cuit rosé, beurre noisette.",
+    "it": "Al punto rosato, con burro nocciola."
+  },
+  "Pregunta la captura de hoy en lonja.": {
+    "gl": "Pregunta pola captura de hoxe na lonxa.",
+    "en": "Ask us what came in at the fish market today.",
+    "pt": "Pergunte qual foi a pesca do dia na lota.",
+    "de": "Fragen Sie nach dem heutigen Fang aus der Fischauktion.",
+    "fr": "Demandez-nous la pêche du jour arrivée de la criée.",
+    "it": "Chieda il pescato del giorno arrivato dal mercato."
+  },
+  "Adobada de casa, con cachelos.": {
+    "gl": "Adobada na casa, con cachelos.",
+    "en": "Marinated in-house, with boiled potatoes.",
+    "pt": "Marinada em casa, com batatas cozidas.",
+    "de": "Hausgemachte Marinade, mit gekochten Kartoffeln.",
+    "fr": "Marinée maison, avec pommes de terre à l'eau.",
+    "it": "Marinata in casa, con patate lesse."
+  },
+  "Lomo adobado a la plancha, el clásico.": {
+    "gl": "Lombo adobado á prancha, o clásico.",
+    "en": "Marinated pork loin, grilled. The classic.",
+    "pt": "Lombo marinado na chapa, o clássico.",
+    "de": "Mariniertes Schweinefilet von der Plancha — der Klassiker.",
+    "fr": "Échine de porc marinée à la plancha, le classique.",
+    "it": "Lombo di maiale marinato alla piastra, il classico."
+  },
+  "Jugoso, vuelta y vuelta.": {
+    "gl": "Xugoso, volta e volta.",
+    "en": "Juicy, seared quickly on both sides.",
+    "pt": "Suculento, salteado rapidamente.",
+    "de": "Saftig, nur kurz von beiden Seiten gebraten.",
+    "fr": "Juteux, juste saisi des deux côtés.",
+    "it": "Succoso, scottato da entrambi i lati."
+  },
+  "Empanada fina, dorada.": {
+    "gl": "Empanada fina, dourada.",
+    "en": "Thin breadcrumb coating, golden.",
+    "pt": "Panada fina e dourada.",
+    "de": "Dünn paniert und goldbraun.",
+    "fr": "Panure fine et dorée.",
+    "it": "Impanatura sottile e dorata."
+  },
+  "A la brasa, con su chimichurri suave.": {
+    "gl": "Á brasa, co seu chimichurri suave.",
+    "en": "Chargrilled, with a mild chimichurri.",
+    "pt": "Na brasa, com chimichurri suave.",
+    "de": "Vom Holzkohlegrill, mit mildem Chimichurri.",
+    "fr": "Grillé à la braise, chimichurri doux.",
+    "it": "Alla brace, con chimichurri delicato."
+  },
+  "Brasa fuerte, sal gruesa.": {
+    "gl": "Brasa forte, sal groso.",
+    "en": "Over a hot fire, with coarse sea salt.",
+    "pt": "Em brasa forte, com sal grosso.",
+    "de": "Über starker Glut, mit grobem Meersalz.",
+    "fr": "Sur braises vives, au gros sel.",
+    "it": "Su brace viva, con sale grosso."
+  },
+  "Asado lento, laminado.": {
+    "gl": "Asado lento, en lascas.",
+    "en": "Slow-roasted and thinly sliced.",
+    "pt": "Assado lentamente e fatiado fino.",
+    "de": "Langsam gegart, dünn aufgeschnitten.",
+    "fr": "Rôti lentement, tranché finement.",
+    "it": "Arrosto lento, tagliato sottile."
+  },
+  "Dorado al carbón.": {
+    "gl": "Dourado ao carbón.",
+    "en": "Golden over charcoal.",
+    "pt": "Dourado no carvão.",
+    "de": "Goldbraun über Holzkohle.",
+    "fr": "Doré au charbon de bois.",
+    "it": "Dorato alla brace di carbone."
+  },
+  "La chistorra criolla de siempre.": {
+    "gl": "A chistorra criolla de sempre.",
+    "en": "The classic criollo sausage.",
+    "pt": "O clássico chouriço criollo.",
+    "de": "Die klassische Criollo-Wurst.",
+    "fr": "La saucisse criollo de toujours.",
+    "it": "La classica salsiccia criolla."
+  },
+  "Vaca gallega madurada, a la brasa.": {
+    "gl": "Vaca galega madurada, á brasa.",
+    "en": "Aged Galician beef, chargrilled.",
+    "pt": "Vaca galega maturada, na brasa.",
+    "de": "Gereiftes galicisches Rind, vom Holzkohlegrill.",
+    "fr": "Bœuf galicien maturé, grillé à la braise.",
+    "it": "Manzo galiziano frollato, alla brace."
+  },
+  "Abierta a la espalda, con refrito de ajos.": {
+    "gl": "Aberta á espalda, con refrito de allos.",
+    "en": "Butterflied on the grill, with sizzling garlic oil.",
+    "pt": "Aberta ao meio, com refogado de alho.",
+    "de": "Aufgeklappt gegrillt, mit gebräuntem Knoblauchöl.",
+    "fr": "Ouverte en portefeuille, arrosée d'huile d'ail grésillante.",
+    "it": "Aperta a libro, con soffritto d'aglio."
+  },
+  "Lunes a viernes excepto festivos": {
+    "gl": "De luns a venres agás festivos",
+    "en": "Monday to Friday, except public holidays",
+    "pt": "De segunda a sexta, exceto feriados",
+    "de": "Montag bis Freitag, außer an Feiertagen",
+    "fr": "Du lundi au vendredi, sauf jours fériés",
+    "it": "Dal lunedì al venerdì, esclusi i festivi"
+  },
+  "Todos los días": {
+    "gl": "Todos os días",
+    "en": "Every day",
+    "pt": "Todos os dias",
+    "de": "Täglich",
+    "fr": "Tous les jours",
+    "it": "Tutti i giorni"
+  },
+  "Pan, postre, agua, copa de vino de la casa": {
+    "gl": "Pan, sobremesa, auga, copa de viño da casa",
+    "en": "Bread, dessert, water, a glass of house wine",
+    "pt": "Pão, sobremesa, água, copo de vinho da casa",
+    "de": "Brot, Dessert, Wasser, ein Glas Hauswein",
+    "fr": "Pain, dessert, eau, un verre de vin de la maison",
+    "it": "Pane, dolce, acqua, un bicchiere di vino della casa"
+  },
+  "Pan, café, chupito de orujo": {
+    "gl": "Pan, café, chupito de augardente",
+    "en": "Bread, coffee, a shot of orujo (Galician grape spirit)",
+    "pt": "Pão, café, um copo de orujo (aguardente galega de uva)",
+    "de": "Brot, Kaffee, ein Gläschen Orujo (galicischer Tresterbrand)",
+    "fr": "Pain, café, un petit verre d'orujo (eau-de-vie de marc galicienne)",
+    "it": "Pane, caffè, un bicchierino di orujo (grappa galiziana)"
+  },
+  "Bebida": {
+    "gl": "Bebida",
+    "en": "Drinks",
+    "pt": "Bebida",
+    "de": "Getränke",
+    "fr": "Boissons",
+    "it": "Bevande"
+  }
+}

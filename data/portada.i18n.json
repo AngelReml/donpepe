@@ -1,0 +1,915 @@
+{
+  "_comentario": "Textos de la portada (public/inicio.html). La clave es el fragmento EXACTO del HTML español; scripts/generar-portada.mjs lo sustituye y falla si no lo encuentra. NO se traducen: nombres de plato, la dirección, la marca ni las citas de reseñas reales.",
+  "<title>Don Pepe Original — Cocina Gallega · Rúa Longa 21, Padrón</title>": {
+    "gl": "<title>Don Pepe Original — Cociña galega · Rúa Longa 21, Padrón</title>",
+    "en": "<title>Don Pepe Original — Galician kitchen · Rúa Longa 21, Padrón</title>",
+    "pt": "<title>Don Pepe Original — Cozinha galega · Rúa Longa 21, Padrón</title>",
+    "de": "<title>Don Pepe Original — Galicische Küche · Rúa Longa 21, Padrón</title>",
+    "fr": "<title>Don Pepe Original — Cuisine galicienne · Rúa Longa 21, Padrón</title>",
+    "it": "<title>Don Pepe Original — Cucina galiziana · Rúa Longa 21, Padrón</title>"
+  },
+  "Don Pepe Original, tasca tradicional en el casco histórico de Padrón. Pulpería, arroces, churrasco y vinos. Cocina abierta todos los días 13:00–16:00 y 19:00–23:00. Reserva: +34 881 82 97 28.": {
+    "gl": "Don Pepe Original, taberna tradicional no casco histórico de Padrón. Pulpería, arroces, churrasco e viños. Cociña aberta todos os días 13:00–16:00 e 19:00–23:00. Reserva: +34 881 82 97 28.",
+    "en": "Don Pepe Original, a traditional tavern in the old town of Padrón, Galicia. Octopus, rice dishes, chargrilled meat and wine. Kitchen open every day 13:00–16:00 and 19:00–23:00. Bookings: +34 881 82 97 28.",
+    "pt": "Don Pepe Original, taberna tradicional no centro histórico de Padrón, na Galiza. Polvo, arrozes, churrasco e vinhos. Cozinha aberta todos os dias 13:00–16:00 e 19:00–23:00. Reservas: +34 881 82 97 28.",
+    "de": "Don Pepe Original, traditionelle Taverne in der Altstadt von Padrón, Galicien. Oktopus, Reisgerichte, Fleisch vom Grill und Wein. Küche täglich 13:00–16:00 und 19:00–23:00. Reservierung: +34 881 82 97 28.",
+    "fr": "Don Pepe Original, taverne traditionnelle dans le vieux Padrón, en Galice. Poulpe, riz, grillades et vins. Cuisine ouverte tous les jours 13h–16h et 19h–23h. Réservations : +34 881 82 97 28.",
+    "it": "Don Pepe Original, taverna tradizionale nel centro storico di Padrón, in Galizia. Polpo, risotti e paelle, carni alla brace e vini. Cucina aperta tutti i giorni 13:00–16:00 e 19:00–23:00. Prenotazioni: +34 881 82 97 28."
+  },
+  "aria-label=\"Cargando Don Pepe Original\"": {
+    "gl": "aria-label=\"Cargando Don Pepe Original\"",
+    "en": "aria-label=\"Loading Don Pepe Original\"",
+    "pt": "aria-label=\"A carregar Don Pepe Original\"",
+    "de": "aria-label=\"Don Pepe Original wird geladen\"",
+    "fr": "aria-label=\"Chargement de Don Pepe Original\"",
+    "it": "aria-label=\"Caricamento di Don Pepe Original\""
+  },
+  "aria-label=\"Don Pepe Original, inicio\"": {
+    "gl": "aria-label=\"Don Pepe Original, inicio\"",
+    "en": "aria-label=\"Don Pepe Original, home\"",
+    "pt": "aria-label=\"Don Pepe Original, início\"",
+    "de": "aria-label=\"Don Pepe Original, Startseite\"",
+    "fr": "aria-label=\"Don Pepe Original, accueil\"",
+    "it": "aria-label=\"Don Pepe Original, home\""
+  },
+  "aria-label=\"Navegación principal\"": {
+    "gl": "aria-label=\"Navegación principal\"",
+    "en": "aria-label=\"Main navigation\"",
+    "pt": "aria-label=\"Navegação principal\"",
+    "de": "aria-label=\"Hauptnavigation\"",
+    "fr": "aria-label=\"Navigation principale\"",
+    "it": "aria-label=\"Navigazione principale\""
+  },
+  "aria-label=\"Abrir menú\"": {
+    "gl": "aria-label=\"Abrir menú\"",
+    "en": "aria-label=\"Open menu\"",
+    "pt": "aria-label=\"Abrir menu\"",
+    "de": "aria-label=\"Menü öffnen\"",
+    "fr": "aria-label=\"Ouvrir le menu\"",
+    "it": "aria-label=\"Apri il menu\""
+  },
+  "aria-label=\"Activar sonido ambiente\" title=\"Sonido ambiente\"": {
+    "gl": "aria-label=\"Activar son ambiente\" title=\"Son ambiente\"",
+    "en": "aria-label=\"Turn on ambient sound\" title=\"Ambient sound\"",
+    "pt": "aria-label=\"Ativar som ambiente\" title=\"Som ambiente\"",
+    "de": "aria-label=\"Hintergrundgeräusch einschalten\" title=\"Hintergrundgeräusch\"",
+    "fr": "aria-label=\"Activer l'ambiance sonore\" title=\"Ambiance sonore\"",
+    "it": "aria-label=\"Attiva il suono ambiente\" title=\"Suono ambiente\""
+  },
+  ">Nuestra Historia</a>": {
+    "gl": ">A nosa historia</a>",
+    "en": ">Our Story</a>",
+    "pt": ">A nossa história</a>",
+    "de": ">Unsere Geschichte</a>",
+    "fr": ">Notre histoire</a>",
+    "it": ">La nostra storia</a>"
+  },
+  "href=\"#carta\">Carta</a>": {
+    "gl": "href=\"#carta\">Carta</a>",
+    "en": "href=\"#carta\">Menu</a>",
+    "pt": "href=\"#carta\">Ementa</a>",
+    "de": "href=\"#carta\">Speisekarte</a>",
+    "fr": "href=\"#carta\">Carte</a>",
+    "it": "href=\"#carta\">Menù</a>"
+  },
+  ">Contacto</a>": {
+    "gl": ">Contacto</a>",
+    "en": ">Contact</a>",
+    "pt": ">Contacto</a>",
+    "de": ">Kontakt</a>",
+    "fr": ">Contact</a>",
+    "it": ">Contatti</a>"
+  },
+  ">Horarios</a>": {
+    "gl": ">Horarios</a>",
+    "en": ">Opening hours</a>",
+    "pt": ">Horários</a>",
+    "de": ">Öffnungszeiten</a>",
+    "fr": ">Horaires</a>",
+    "it": ">Orari</a>"
+  },
+  "data-open-res>Reservar Mesa</a>": {
+    "gl": "data-open-res>Reservar mesa</a>",
+    "en": "data-open-res>Book a table</a>",
+    "pt": "data-open-res>Reservar mesa</a>",
+    "de": "data-open-res>Tisch reservieren</a>",
+    "fr": "data-open-res>Réserver</a>",
+    "it": "data-open-res>Prenota un tavolo</a>"
+  },
+  "style=\"color:var(--gold)\">Reservar Mesa</a>": {
+    "gl": "style=\"color:var(--gold)\">Reservar mesa</a>",
+    "en": "style=\"color:var(--gold)\">Book a table</a>",
+    "pt": "style=\"color:var(--gold)\">Reservar mesa</a>",
+    "de": "style=\"color:var(--gold)\">Tisch reservieren</a>",
+    "fr": "style=\"color:var(--gold)\">Réserver</a>",
+    "it": "style=\"color:var(--gold)\">Prenota un tavolo</a>"
+  },
+  "<p>Cocina tradicional gallega · pulpería y vinos · en el corazón del casco histórico, a un paso del Camino.</p>": {
+    "gl": "<p>Cociña tradicional galega · pulpería e viños · no corazón do casco histórico, a un paso do Camiño.</p>",
+    "en": "<p>Traditional Galician cooking · octopus and wine · in the heart of the old town, a step from the Camino.</p>",
+    "pt": "<p>Cozinha tradicional galega · polvo e vinhos · no coração do centro histórico, a um passo do Caminho.</p>",
+    "de": "<p>Traditionelle galicische Küche · Oktopus und Wein · im Herzen der Altstadt, direkt am Jakobsweg.</p>",
+    "fr": "<p>Cuisine galicienne traditionnelle · poulpe et vins · au cœur de la vieille ville, à deux pas du Chemin.</p>",
+    "it": "<p>Cucina tradizionale galiziana · polpo e vini · nel cuore del centro storico, a un passo dal Cammino.</p>"
+  },
+  "<h2>La casa guarda<br>el calor de la lumbre</h2>": {
+    "gl": "<h2>A casa garda<br>a calor do lume</h2>",
+    "en": "<h2>The house keeps<br>the warmth of the fire</h2>",
+    "pt": "<h2>A casa guarda<br>o calor do lume</h2>",
+    "de": "<h2>Das Haus bewahrt<br>die Wärme des Feuers</h2>",
+    "fr": "<h2>La maison garde<br>la chaleur du feu</h2>",
+    "it": "<h2>La casa conserva<br>il calore del fuoco</h2>"
+  },
+  "<div class=\"kicker\">Tu mesa te espera</div>": {
+    "gl": "<div class=\"kicker\">A túa mesa agárdate</div>",
+    "en": "<div class=\"kicker\">Your table is waiting</div>",
+    "pt": "<div class=\"kicker\">A tua mesa espera-te</div>",
+    "de": "<div class=\"kicker\">Ihr Tisch wartet</div>",
+    "fr": "<div class=\"kicker\">Votre table vous attend</div>",
+    "it": "<div class=\"kicker\">Il tuo tavolo ti aspetta</div>"
+  },
+  "<h2>Siéntate.<br>Hoy no cocinas tú.</h2>": {
+    "gl": "<h2>Senta.<br>Hoxe non cociñas ti.</h2>",
+    "en": "<h2>Sit down.<br>Tonight you're not cooking.</h2>",
+    "pt": "<h2>Senta-te.<br>Hoje não cozinhas tu.</h2>",
+    "de": "<h2>Setzen Sie sich.<br>Heute kochen Sie nicht.</h2>",
+    "fr": "<h2>Asseyez-vous.<br>Ce soir, vous ne cuisinez pas.</h2>",
+    "it": "<h2>Siediti.<br>Oggi non cucini tu.</h2>"
+  },
+  "<p>Zamburiñas a la plancha, arroz caldoso, churrasco a reventar y una copa helada esperándote.</p>": {
+    "gl": "<p>Zamburiñas á prancha, arroz caldoso, churrasco a rebentar e unha copa xeada agardándote.</p>",
+    "en": "<p>Grilled scallops, soupy rice, all the chargrilled meat you can eat and a cold glass waiting for you.</p>",
+    "pt": "<p>Vieiras na chapa, arroz caldoso, churrasco à vontade e um copo gelado à tua espera.</p>",
+    "de": "<p>Jakobsmuscheln von der Plancha, Reis in Brühe, Fleisch vom Grill satt und ein kühles Glas für Sie.</p>",
+    "fr": "<p>Pétoncles à la plancha, riz en bouillon, grillades à volonté et un verre bien frais qui vous attend.</p>",
+    "it": "<p>Canestrelli alla piastra, riso brodoso, carne alla brace a volontà e un bicchiere ghiacciato che ti aspetta.</p>"
+  },
+  ">Ver la carta</a>": {
+    "gl": ">Ver a carta</a>",
+    "en": ">See the menu</a>",
+    "pt": ">Ver a ementa</a>",
+    "de": ">Zur Speisekarte</a>",
+    "fr": ">Voir la carte</a>",
+    "it": ">Guarda il menù</a>"
+  },
+  "<span>Haz scroll para entrar</span>": {
+    "gl": "<span>Desprázate para entrar</span>",
+    "en": "<span>Scroll to come in</span>",
+    "pt": "<span>Desliza para entrar</span>",
+    "de": "<span>Scrollen zum Eintreten</span>",
+    "fr": "<span>Faites défiler pour entrer</span>",
+    "it": "<span>Scorri per entrare</span>"
+  },
+  "<div class=\"kicker\">Nuestra historia</div>": {
+    "gl": "<div class=\"kicker\">A nosa historia</div>",
+    "en": "<div class=\"kicker\">Our story</div>",
+    "pt": "<div class=\"kicker\">A nossa história</div>",
+    "de": "<div class=\"kicker\">Unsere Geschichte</div>",
+    "fr": "<div class=\"kicker\">Notre histoire</div>",
+    "it": "<div class=\"kicker\">La nostra storia</div>"
+  },
+  "<h2>Una tasca de siempre,<br>un trato que no se olvida</h2>": {
+    "gl": "<h2>Unha taberna de sempre,<br>un trato que non se esquece</h2>",
+    "en": "<h2>An old-fashioned tavern,<br>a welcome you don't forget</h2>",
+    "pt": "<h2>Uma taberna de sempre,<br>um acolhimento que não se esquece</h2>",
+    "de": "<h2>Eine Taverne wie früher,<br>ein Empfang, den man nicht vergisst</h2>",
+    "fr": "<h2>Une taverne d'autrefois,<br>un accueil qu'on n'oublie pas</h2>",
+    "it": "<h2>Una taverna di sempre,<br>un'accoglienza che non si dimentica</h2>"
+  },
+  "<p>Aquí no se viene con prisa: se viene a <b>caldo gallego</b> humeante, a <b>raxo</b> y <b>zorza</b> de la tierra, a <b>arroces para dos</b> que llegan hirviendo a la mesa y a un <b>churrasco a reventar</b> que termina, como manda la tradición, con su chupito de orujo.</p>": {
+    "gl": "<p>Aquí non se vén con présa: vénse a <b>caldo galego</b> fumegante, a <b>raxo</b> e <b>zorza</b> da terra, a <b>arroces para dous</b> que chegan fervendo á mesa e a un <b>churrasco a rebentar</b> que remata, como manda a tradición, co seu chupito de augardente.</p>",
+    "en": "<p>Nobody comes here in a hurry. You come for steaming <b>caldo gallego</b>, for local <b>raxo</b> and <b>zorza</b>, for <b>rice for two</b> that reaches the table still bubbling, and for a <b>churrasco</b> feast that ends, as tradition demands, with a shot of orujo.</p>",
+    "pt": "<p>Aqui não se vem com pressa: vem-se pelo <b>caldo galego</b> a fumegar, pelo <b>raxo</b> e pela <b>zorza</b> da terra, pelos <b>arrozes para dois</b> que chegam a ferver à mesa e por um <b>churrasco à vontade</b> que acaba, como manda a tradição, com o seu cálice de aguardente.</p>",
+    "de": "<p>Hierher kommt man ohne Eile: wegen des dampfenden <b>Caldo gallego</b>, wegen <b>Raxo</b> und <b>Zorza</b> aus der Gegend, wegen der <b>Reisgerichte für zwei</b>, die kochend auf den Tisch kommen, und wegen eines <b>Churrasco</b>-Gelages, das, wie es sich gehört, mit einem Gläschen Orujo endet.</p>",
+    "fr": "<p>Ici, on ne vient pas pressé : on vient pour le <b>caldo gallego</b> fumant, pour le <b>raxo</b> et la <b>zorza</b> du pays, pour les <b>riz pour deux</b> qui arrivent bouillants à table, et pour un <b>churrasco</b> à volonté qui se termine, comme le veut la tradition, par un petit verre d'orujo.</p>",
+    "it": "<p>Qui non si viene di fretta: si viene per il <b>caldo gallego</b> fumante, per il <b>raxo</b> e la <b>zorza</b> della terra, per i <b>risotti per due</b> che arrivano bollenti in tavola e per un <b>churrasco</b> a volontà che finisce, come vuole la tradizione, con il suo bicchierino di orujo.</p>"
+  },
+  "<p>Los peregrinos lo dicen mejor que nosotros: <b>“The best food of the entire Camino Santiago walk.”</b> Y si llueve — en Galicia llueve —, mejor: la terraza cubierta, la copa helada y el murmullo del bar hacen el resto.</p>": {
+    "gl": "<p>Os peregrinos dinno mellor ca nós: <b>“The best food of the entire Camino Santiago walk.”</b> E se chove — en Galicia chove —, mellor: a terraza cuberta, a copa xeada e o murmurio do bar fan o resto.</p>",
+    "en": "<p>The pilgrims put it better than we can: <b>“The best food of the entire Camino Santiago walk.”</b> And if it rains — in Galicia it rains — all the better: the covered terrace, the cold glass and the hum of the bar do the rest.</p>",
+    "pt": "<p>Os peregrinos dizem-no melhor do que nós: <b>“The best food of the entire Camino Santiago walk.”</b> E se chover — na Galiza chove —, melhor ainda: a esplanada coberta, o copo gelado e o burburinho do bar fazem o resto.</p>",
+    "de": "<p>Die Pilger sagen es besser als wir: <b>“The best food of the entire Camino Santiago walk.”</b> Und wenn es regnet — in Galicien regnet es —, umso besser: die überdachte Terrasse, das kühle Glas und das Murmeln der Bar tun den Rest.</p>",
+    "fr": "<p>Les pèlerins le disent mieux que nous : <b>“The best food of the entire Camino Santiago walk.”</b> Et s'il pleut — en Galice, il pleut —, tant mieux : la terrasse couverte, le verre bien frais et le brouhaha du bar font le reste.</p>",
+    "it": "<p>I pellegrini lo dicono meglio di noi: <b>“The best food of the entire Camino Santiago walk.”</b> E se piove — in Galizia piove —, tanto meglio: la terrazza coperta, il bicchiere ghiacciato e il brusio del bar fanno il resto.</p>"
+  },
+  "<span>Comensales</span>": {
+    "gl": "<span>Comensais</span>",
+    "en": "<span>Covers</span>",
+    "pt": "<span>Lugares</span>",
+    "de": "<span>Plätze</span>",
+    "fr": "<span>Couverts</span>",
+    "it": "<span>Coperti</span>"
+  },
+  "<span>Días abierto</span>": {
+    "gl": "<span>Días abertos</span>",
+    "en": "<span>Days a week</span>",
+    "pt": "<span>Dias por semana</span>",
+    "de": "<span>Tage die Woche</span>",
+    "fr": "<span>Jours sur sept</span>",
+    "it": "<span>Giorni su sette</span>"
+  },
+  "<span>Servicios de cocina</span>": {
+    "gl": "<span>Servizos de cociña</span>",
+    "en": "<span>Kitchen services</span>",
+    "pt": "<span>Serviços de cozinha</span>",
+    "de": "<span>Küchenzeiten</span>",
+    "fr": "<span>Services en cuisine</span>",
+    "it": "<span>Servizi di cucina</span>"
+  },
+  "<span>Trato de casa</span>": {
+    "gl": "<span>Trato de casa</span>",
+    "en": "<span>Like family</span>",
+    "pt": "<span>Como em casa</span>",
+    "de": "<span>Wie zu Hause</span>",
+    "fr": "<span>Comme à la maison</span>",
+    "it": "<span>Come a casa</span>"
+  },
+  "<span class=\"a\">Ricardo · peregrino</span>": {
+    "gl": "<span class=\"a\">Ricardo · peregrino</span>",
+    "en": "<span class=\"a\">Ricardo · pilgrim</span>",
+    "pt": "<span class=\"a\">Ricardo · peregrino</span>",
+    "de": "<span class=\"a\">Ricardo · Pilger</span>",
+    "fr": "<span class=\"a\">Ricardo · pèlerin</span>",
+    "it": "<span class=\"a\">Ricardo · pellegrino</span>"
+  },
+  "<span class=\"a\">Reseña · Google</span>": {
+    "gl": "<span class=\"a\">Reseña · Google</span>",
+    "en": "<span class=\"a\">Google review</span>",
+    "pt": "<span class=\"a\">Avaliação · Google</span>",
+    "de": "<span class=\"a\">Google-Bewertung</span>",
+    "fr": "<span class=\"a\">Avis · Google</span>",
+    "it": "<span class=\"a\">Recensione · Google</span>"
+  },
+  "<div class=\"kicker\">La carta</div>": {
+    "gl": "<div class=\"kicker\">A carta</div>",
+    "en": "<div class=\"kicker\">The menu</div>",
+    "pt": "<div class=\"kicker\">A ementa</div>",
+    "de": "<div class=\"kicker\">Die Speisekarte</div>",
+    "fr": "<div class=\"kicker\">La carte</div>",
+    "it": "<div class=\"kicker\">Il menù</div>"
+  },
+  "<h2>De la ría y de la brasa</h2>": {
+    "gl": "<h2>Da ría e da brasa</h2>",
+    "en": "<h2>From the sea and from the fire</h2>",
+    "pt": "<h2>Da ria e da brasa</h2>",
+    "de": "<h2>Aus dem Meer und vom Feuer</h2>",
+    "fr": "<h2>De la mer et de la braise</h2>",
+    "it": "<h2>Dal mare e dalla brace</h2>"
+  },
+  "<span><b>Cocina:</b> 13:00–16:00 · 19:00–23:00</span>": {
+    "gl": "<span><b>Cociña:</b> 13:00–16:00 · 19:00–23:00</span>",
+    "en": "<span><b>Kitchen:</b> 13:00–16:00 · 19:00–23:00</span>",
+    "pt": "<span><b>Cozinha:</b> 13:00–16:00 · 19:00–23:00</span>",
+    "de": "<span><b>Küche:</b> 13:00–16:00 · 19:00–23:00</span>",
+    "fr": "<span><b>Cuisine :</b> 13h–16h · 19h–23h</span>",
+    "it": "<span><b>Cucina:</b> 13:00–16:00 · 19:00–23:00</span>"
+  },
+  "<span><b>Arroces:</b> para 2 personas</span>": {
+    "gl": "<span><b>Arroces:</b> para 2 persoas</span>",
+    "en": "<span><b>Rice dishes:</b> for 2 people</span>",
+    "pt": "<span><b>Arrozes:</b> para 2 pessoas</span>",
+    "de": "<span><b>Reisgerichte:</b> für 2 Personen</span>",
+    "fr": "<span><b>Riz :</b> pour 2 personnes</span>",
+    "it": "<span><b>Risotti e paelle:</b> per 2 persone</span>"
+  },
+  "<span><b>S/M:</b> según mercado</span>": {
+    "gl": "<span><b>S/M:</b> segundo mercado</span>",
+    "en": "<span><b>S/M:</b> market price</span>",
+    "pt": "<span><b>S/M:</b> preço de mercado</span>",
+    "de": "<span><b>S/M:</b> Tagespreis</span>",
+    "fr": "<span><b>S/M :</b> prix du marché</span>",
+    "it": "<span><b>S/M:</b> prezzo di mercato</span>"
+  },
+  "<span>1 cuenta por mesa 🙏</span>": {
+    "gl": "<span>1 conta por mesa 🙏</span>",
+    "en": "<span>One bill per table 🙏</span>",
+    "pt": "<span>1 conta por mesa 🙏</span>",
+    "de": "<span>Eine Rechnung pro Tisch 🙏</span>",
+    "fr": "<span>Une seule addition par table 🙏</span>",
+    "it": "<span>Un conto per tavolo 🙏</span>"
+  },
+  "<span><b>Alérgenos:</b> orientativos, consulta en sala</span>": {
+    "gl": "<span><b>Alérxenos:</b> orientativos, consulta na sala</span>",
+    "en": "<span><b>Allergens:</b> indicative — please ask our staff</span>",
+    "pt": "<span><b>Alergénios:</b> indicativos, pergunte ao pessoal</span>",
+    "de": "<span><b>Allergene:</b> Richtwerte — fragen Sie unser Personal</span>",
+    "fr": "<span><b>Allergènes :</b> à titre indicatif, demandez au personnel</span>",
+    "it": "<span><b>Allergeni:</b> indicativi, chieda al personale</span>"
+  },
+  "<div class=\"kicker\">Menús</div>": {
+    "gl": "<div class=\"kicker\">Menús</div>",
+    "en": "<div class=\"kicker\">Set menus</div>",
+    "pt": "<div class=\"kicker\">Menus</div>",
+    "de": "<div class=\"kicker\">Menüs</div>",
+    "fr": "<div class=\"kicker\">Menus</div>",
+    "it": "<div class=\"kicker\">Menù fissi</div>"
+  },
+  "<h2>Tres formas de rendirse</h2>": {
+    "gl": "<h2>Tres formas de renderse</h2>",
+    "en": "<h2>Three ways to give in</h2>",
+    "pt": "<h2>Três formas de se render</h2>",
+    "de": "<h2>Drei Arten, schwach zu werden</h2>",
+    "fr": "<h2>Trois façons de céder</h2>",
+    "it": "<h2>Tre modi per arrendersi</h2>"
+  },
+  "<div class=\"tag\">Lunes a viernes · excepto festivos</div>": {
+    "gl": "<div class=\"tag\">Luns a venres · agás festivos</div>",
+    "en": "<div class=\"tag\">Monday to Friday · except holidays</div>",
+    "pt": "<div class=\"tag\">Segunda a sexta · exceto feriados</div>",
+    "de": "<div class=\"tag\">Montag bis Freitag · außer feiertags</div>",
+    "fr": "<div class=\"tag\">Du lundi au vendredi · sauf jours fériés</div>",
+    "it": "<div class=\"tag\">Da lunedì a venerdì · esclusi i festivi</div>"
+  },
+  "<div class=\"tag\">Todos los días</div>": {
+    "gl": "<div class=\"tag\">Todos os días</div>",
+    "en": "<div class=\"tag\">Every day</div>",
+    "pt": "<div class=\"tag\">Todos os dias</div>",
+    "de": "<div class=\"tag\">Täglich</div>",
+    "fr": "<div class=\"tag\">Tous les jours</div>",
+    "it": "<div class=\"tag\">Tutti i giorni</div>"
+  },
+  "<div class=\"tag\">Para venir con hambre</div>": {
+    "gl": "<div class=\"tag\">Para vir con fame</div>",
+    "en": "<div class=\"tag\">Come hungry</div>",
+    "pt": "<div class=\"tag\">Venha com fome</div>",
+    "de": "<div class=\"tag\">Kommen Sie hungrig</div>",
+    "fr": "<div class=\"tag\">Venez avec l'appétit</div>",
+    "it": "<div class=\"tag\">Vieni con appetito</div>"
+  },
+  "<h4>Primeros (a elegir)</h4>": {
+    "gl": "<h4>Primeiros (a escoller)</h4>",
+    "en": "<h4>First course (choose one)</h4>",
+    "pt": "<h4>Primeiro prato (à escolha)</h4>",
+    "de": "<h4>Vorspeise (zur Auswahl)</h4>",
+    "fr": "<h4>Entrée (au choix)</h4>",
+    "it": "<h4>Primo (a scelta)</h4>"
+  },
+  "<h4>Segundos (a elegir)</h4>": {
+    "gl": "<h4>Segundos (a escoller)</h4>",
+    "en": "<h4>Second course (choose one)</h4>",
+    "pt": "<h4>Segundo prato (à escolha)</h4>",
+    "de": "<h4>Hauptgang (zur Auswahl)</h4>",
+    "fr": "<h4>Plat (au choix)</h4>",
+    "it": "<h4>Secondo (a scelta)</h4>"
+  },
+  "<h4>En la mesa</h4>": {
+    "gl": "<h4>Na mesa</h4>",
+    "en": "<h4>On the table</h4>",
+    "pt": "<h4>Na mesa</h4>",
+    "de": "<h4>Auf dem Tisch</h4>",
+    "fr": "<h4>Sur la table</h4>",
+    "it": "<h4>In tavola</h4>"
+  },
+  "<div class=\"inc\">Incluye pan, postre, agua y copa de vino de la casa.</div>": {
+    "gl": "<div class=\"inc\">Inclúe pan, sobremesa, auga e copa de viño da casa.</div>",
+    "en": "<div class=\"inc\">Includes bread, dessert, water and a glass of house wine.</div>",
+    "pt": "<div class=\"inc\">Inclui pão, sobremesa, água e um copo de vinho da casa.</div>",
+    "de": "<div class=\"inc\">Inklusive Brot, Dessert, Wasser und einem Glas Hauswein.</div>",
+    "fr": "<div class=\"inc\">Pain, dessert, eau et un verre de vin de la maison compris.</div>",
+    "it": "<div class=\"inc\">Include pane, dolce, acqua e un bicchiere di vino della casa.</div>"
+  },
+  "<div class=\"inc\">Incluye pan, café y chupito de orujo. Bebida no incluida.</div>": {
+    "gl": "<div class=\"inc\">Inclúe pan, café e chupito de augardente. Bebida non incluída.</div>",
+    "en": "<div class=\"inc\">Includes bread, coffee and a shot of orujo. Drinks not included.</div>",
+    "pt": "<div class=\"inc\">Inclui pão, café e um cálice de aguardente. Bebidas não incluídas.</div>",
+    "de": "<div class=\"inc\">Inklusive Brot, Kaffee und einem Gläschen Orujo. Getränke nicht inbegriffen.</div>",
+    "fr": "<div class=\"inc\">Pain, café et petit verre d'orujo compris. Boissons non comprises.</div>",
+    "it": "<div class=\"inc\">Include pane, caffè e bicchierino di orujo. Bevande escluse.</div>"
+  },
+  "<small>/ persona</small>": {
+    "gl": "<small>/ persoa</small>",
+    "en": "<small>/ person</small>",
+    "pt": "<small>/ pessoa</small>",
+    "de": "<small>/ Person</small>",
+    "fr": "<small>/ personne</small>",
+    "it": "<small>/ persona</small>"
+  },
+  "content:\"El favorito de la casa\"": {
+    "gl": "content:\"O favorito da casa\"",
+    "en": "content:\"The house favourite\"",
+    "pt": "content:\"O favorito da casa\"",
+    "de": "content:\"Der Favorit des Hauses\"",
+    "fr": "content:\"Le préféré de la maison\"",
+    "it": "content:\"Il preferito della casa\""
+  },
+  "alt=\"Churrasco a la brasa con sal gruesa sobre parrilla de hierro\"": {
+    "gl": "alt=\"Churrasco á brasa con sal groso sobre grella de ferro\"",
+    "en": "alt=\"Chargrilled churrasco with coarse salt on an iron grill\"",
+    "pt": "alt=\"Churrasco na brasa com sal grosso sobre grelha de ferro\"",
+    "de": "alt=\"Churrasco vom Grill mit grobem Salz auf einem Eisenrost\"",
+    "fr": "alt=\"Churrasco grillé au gros sel sur une grille en fonte\"",
+    "it": "alt=\"Churrasco alla brace con sale grosso su griglia di ferro\""
+  },
+  "<div class=\"kicker\">Horarios</div>": {
+    "gl": "<div class=\"kicker\">Horarios</div>",
+    "en": "<div class=\"kicker\">Opening hours</div>",
+    "pt": "<div class=\"kicker\">Horários</div>",
+    "de": "<div class=\"kicker\">Öffnungszeiten</div>",
+    "fr": "<div class=\"kicker\">Horaires</div>",
+    "it": "<div class=\"kicker\">Orari</div>"
+  },
+  "<h2>La lumbre, encendida<br>todos los días</h2>": {
+    "gl": "<h2>O lume, aceso<br>todos os días</h2>",
+    "en": "<h2>The fire is lit<br>every single day</h2>",
+    "pt": "<h2>O lume, aceso<br>todos os dias</h2>",
+    "de": "<h2>Das Feuer brennt<br>an jedem Tag</h2>",
+    "fr": "<h2>Le feu est allumé<br>tous les jours</h2>",
+    "it": "<h2>Il fuoco è acceso<br>tutti i giorni</h2>"
+  },
+  "<div class=\"k\">Horario de cocina</div>": {
+    "gl": "<div class=\"k\">Horario de cociña</div>",
+    "en": "<div class=\"k\">Kitchen hours</div>",
+    "pt": "<div class=\"k\">Horário de cozinha</div>",
+    "de": "<div class=\"k\">Küchenzeiten</div>",
+    "fr": "<div class=\"k\">Horaires de la cuisine</div>",
+    "it": "<div class=\"k\">Orari della cucina</div>"
+  },
+  "<h3>Cuándo se come</h3>": {
+    "gl": "<h3>Cando se come</h3>",
+    "en": "<h3>When we serve</h3>",
+    "pt": "<h3>Quando se come</h3>",
+    "de": "<h3>Wann gegessen wird</h3>",
+    "fr": "<h3>Quand on mange</h3>",
+    "it": "<h3>Quando si mangia</h3>"
+  },
+  "<b>Mediodía</b>": {
+    "gl": "<b>Mediodía</b>",
+    "en": "<b>Lunch</b>",
+    "pt": "<b>Almoço</b>",
+    "de": "<b>Mittags</b>",
+    "fr": "<b>Midi</b>",
+    "it": "<b>Pranzo</b>"
+  },
+  "<b>Noche</b>": {
+    "gl": "<b>Noite</b>",
+    "en": "<b>Dinner</b>",
+    "pt": "<b>Jantar</b>",
+    "de": "<b>Abends</b>",
+    "fr": "<b>Soir</b>",
+    "it": "<b>Cena</b>"
+  },
+  "<b>Días</b><span>Todos, todo el año</span>": {
+    "gl": "<b>Días</b><span>Todos, todo o ano</span>",
+    "en": "<b>Days</b><span>Every day, all year</span>",
+    "pt": "<b>Dias</b><span>Todos, o ano inteiro</span>",
+    "de": "<b>Tage</b><span>Täglich, das ganze Jahr</span>",
+    "fr": "<b>Jours</b><span>Tous, toute l'année</span>",
+    "it": "<b>Giorni</b><span>Tutti, tutto l'anno</span>"
+  },
+  "<p class=\"note\">El local abre antes para cafés y vinos: consulta abajo el horario de sala. Los peregrinos que llegan a Padrón siempre encuentran cocina despierta.</p>": {
+    "gl": "<p class=\"note\">O local abre antes para cafés e viños: consulta abaixo o horario de sala. Os peregrinos que chegan a Padrón sempre atopan cociña esperta.</p>",
+    "en": "<p class=\"note\">We open earlier for coffee and wine — see the bar hours below. Pilgrims arriving in Padrón always find the kitchen awake.</p>",
+    "pt": "<p class=\"note\">Abrimos mais cedo para cafés e vinhos: veja em baixo o horário de sala. Os peregrinos que chegam a Padrón encontram sempre a cozinha desperta.</p>",
+    "de": "<p class=\"note\">Wir öffnen früher für Kaffee und Wein — die Barzeiten stehen unten. Pilger, die in Padrón ankommen, finden die Küche immer wach.</p>",
+    "fr": "<p class=\"note\">Nous ouvrons plus tôt pour le café et le vin : voir les horaires de salle ci-dessous. Les pèlerins qui arrivent à Padrón trouvent toujours la cuisine éveillée.</p>",
+    "it": "<p class=\"note\">Apriamo prima per caffè e vino: gli orari della sala sono qui sotto. I pellegrini che arrivano a Padrón trovano sempre la cucina sveglia.</p>"
+  },
+  "aria-label=\"Horario de sala\"": {
+    "gl": "aria-label=\"Horario de sala\"",
+    "en": "aria-label=\"Bar and dining room hours\"",
+    "pt": "aria-label=\"Horário de sala\"",
+    "de": "aria-label=\"Öffnungszeiten von Bar und Speisesaal\"",
+    "fr": "aria-label=\"Horaires de la salle\"",
+    "it": "aria-label=\"Orari della sala\""
+  },
+  "<th>Día</th><th>Mañana / tarde</th><th>Noche</th>": {
+    "gl": "<th>Día</th><th>Mañá / tarde</th><th>Noite</th>",
+    "en": "<th>Day</th><th>Morning / afternoon</th><th>Evening</th>",
+    "pt": "<th>Dia</th><th>Manhã / tarde</th><th>Noite</th>",
+    "de": "<th>Tag</th><th>Vormittag / Nachmittag</th><th>Abend</th>",
+    "fr": "<th>Jour</th><th>Matin / après-midi</th><th>Soir</th>",
+    "it": "<th>Giorno</th><th>Mattina / pomeriggio</th><th>Sera</th>"
+  },
+  "<td>Lunes</td>": {
+    "gl": "<td>Luns</td>",
+    "en": "<td>Monday</td>",
+    "pt": "<td>Segunda</td>",
+    "de": "<td>Montag</td>",
+    "fr": "<td>Lundi</td>",
+    "it": "<td>Lunedì</td>"
+  },
+  "<td>Martes</td>": {
+    "gl": "<td>Martes</td>",
+    "en": "<td>Tuesday</td>",
+    "pt": "<td>Terça</td>",
+    "de": "<td>Dienstag</td>",
+    "fr": "<td>Mardi</td>",
+    "it": "<td>Martedì</td>"
+  },
+  "<td>Miércoles</td>": {
+    "gl": "<td>Mércores</td>",
+    "en": "<td>Wednesday</td>",
+    "pt": "<td>Quarta</td>",
+    "de": "<td>Mittwoch</td>",
+    "fr": "<td>Mercredi</td>",
+    "it": "<td>Mercoledì</td>"
+  },
+  "<td>Jueves</td>": {
+    "gl": "<td>Xoves</td>",
+    "en": "<td>Thursday</td>",
+    "pt": "<td>Quinta</td>",
+    "de": "<td>Donnerstag</td>",
+    "fr": "<td>Jeudi</td>",
+    "it": "<td>Giovedì</td>"
+  },
+  "<td>Viernes</td>": {
+    "gl": "<td>Venres</td>",
+    "en": "<td>Friday</td>",
+    "pt": "<td>Sexta</td>",
+    "de": "<td>Freitag</td>",
+    "fr": "<td>Vendredi</td>",
+    "it": "<td>Venerdì</td>"
+  },
+  "<td>Sábado</td>": {
+    "gl": "<td>Sábado</td>",
+    "en": "<td>Saturday</td>",
+    "pt": "<td>Sábado</td>",
+    "de": "<td>Samstag</td>",
+    "fr": "<td>Samedi</td>",
+    "it": "<td>Sabato</td>"
+  },
+  "<td>Domingo</td>": {
+    "gl": "<td>Domingo</td>",
+    "en": "<td>Sunday</td>",
+    "pt": "<td>Domingo</td>",
+    "de": "<td>Sonntag</td>",
+    "fr": "<td>Dimanche</td>",
+    "it": "<td>Domenica</td>"
+  },
+  "content:\"· hoy\"": {
+    "gl": "content:\"· hoxe\"",
+    "en": "content:\"· today\"",
+    "pt": "content:\"· hoje\"",
+    "de": "content:\"· heute\"",
+    "fr": "content:\"· aujourd'hui\"",
+    "it": "content:\"· oggi\""
+  },
+  "<div class=\"kicker\">Contacto</div>": {
+    "gl": "<div class=\"kicker\">Contacto</div>",
+    "en": "<div class=\"kicker\">Contact</div>",
+    "pt": "<div class=\"kicker\">Contacto</div>",
+    "de": "<div class=\"kicker\">Kontakt</div>",
+    "fr": "<div class=\"kicker\">Contact</div>",
+    "it": "<div class=\"kicker\">Contatti</div>"
+  },
+  "<h2>Te esperamos en la Rúa Longa</h2>": {
+    "gl": "<h2>Agardámoste na Rúa Longa</h2>",
+    "en": "<h2>We'll be waiting on Rúa Longa</h2>",
+    "pt": "<h2>Esperamos por ti na Rúa Longa</h2>",
+    "de": "<h2>Wir erwarten Sie in der Rúa Longa</h2>",
+    "fr": "<h2>Nous vous attendons Rúa Longa</h2>",
+    "it": "<h2>Ti aspettiamo in Rúa Longa</h2>"
+  },
+  ">Cómo llegar</a>": {
+    "gl": ">Como chegar</a>",
+    "en": ">Find us</a>",
+    "pt": ">Como chegar</a>",
+    "de": ">Anfahrt</a>",
+    "fr": ">Nous trouver</a>",
+    "it": ">Come arrivare</a>"
+  },
+  "data-open-res>Reservar mesa</a>": {
+    "gl": "data-open-res>Reservar mesa</a>",
+    "en": "data-open-res>Book a table</a>",
+    "pt": "data-open-res>Reservar mesa</a>",
+    "de": "data-open-res>Tisch reservieren</a>",
+    "fr": "data-open-res>Réserver</a>",
+    "it": "data-open-res>Prenota un tavolo</a>"
+  },
+  "<span>Reservas</span><span>Terraza</span><span>Wifi</span><span>Tarjetas aceptadas</span><span>Aparcamiento próximo</span>": {
+    "gl": "<span>Reservas</span><span>Terraza</span><span>Wifi</span><span>Tarxetas aceptadas</span><span>Aparcamento preto</span>",
+    "en": "<span>Bookings</span><span>Terrace</span><span>Wi-Fi</span><span>Cards accepted</span><span>Parking nearby</span>",
+    "pt": "<span>Reservas</span><span>Esplanada</span><span>Wi-Fi</span><span>Cartões aceites</span><span>Estacionamento perto</span>",
+    "de": "<span>Reservierung</span><span>Terrasse</span><span>WLAN</span><span>Kartenzahlung</span><span>Parken in der Nähe</span>",
+    "fr": "<span>Réservations</span><span>Terrasse</span><span>Wi-Fi</span><span>Cartes acceptées</span><span>Parking à proximité</span>",
+    "it": "<span>Prenotazioni</span><span>Terrazza</span><span>Wi-Fi</span><span>Carte accettate</span><span>Parcheggio vicino</span>"
+  },
+  "<h3>La carta, en tu mesa</h3>": {
+    "gl": "<h3>A carta, na túa mesa</h3>",
+    "en": "<h3>The menu, at your table</h3>",
+    "pt": "<h3>A ementa, na tua mesa</h3>",
+    "de": "<h3>Die Karte, an Ihrem Tisch</h3>",
+    "fr": "<h3>La carte, à votre table</h3>",
+    "it": "<h3>Il menù, al tuo tavolo</h3>"
+  },
+  "<p>Escanea el código con tu móvil y elige sin esperar.<br>El mismo QR que encontrarás impreso en cada mesa del local.</p>": {
+    "gl": "<p>Escanea o código co teu móbil e escolle sen agardar.<br>O mesmo QR que atoparás impreso en cada mesa do local.</p>",
+    "en": "<p>Scan the code with your phone and order without waiting.<br>It's the same QR printed on every table.</p>",
+    "pt": "<p>Digitaliza o código com o telemóvel e escolhe sem esperar.<br>É o mesmo QR impresso em cada mesa.</p>",
+    "de": "<p>Scannen Sie den Code mit dem Handy und wählen Sie ohne Wartezeit.<br>Es ist derselbe QR-Code, der auf jedem Tisch steht.</p>",
+    "fr": "<p>Scannez le code avec votre téléphone et choisissez sans attendre.<br>C'est le même QR imprimé sur chaque table.</p>",
+    "it": "<p>Inquadra il codice con il telefono e scegli senza aspettare.<br>È lo stesso QR stampato su ogni tavolo.</p>"
+  },
+  "<div class=\"tiny\">Apunta a la carta · don pepe original</div>": {
+    "gl": "<div class=\"tiny\">Apunta á carta · don pepe original</div>",
+    "en": "<div class=\"tiny\">Points to the menu · don pepe original</div>",
+    "pt": "<div class=\"tiny\">Aponta para a ementa · don pepe original</div>",
+    "de": "<div class=\"tiny\">Führt zur Speisekarte · don pepe original</div>",
+    "fr": "<div class=\"tiny\">Mène à la carte · don pepe original</div>",
+    "it": "<div class=\"tiny\">Porta al menù · don pepe original</div>"
+  },
+  "aria-label=\"Código QR con la carta\"": {
+    "gl": "aria-label=\"Código QR coa carta\"",
+    "en": "aria-label=\"QR code for the menu\"",
+    "pt": "aria-label=\"Código QR com a ementa\"",
+    "de": "aria-label=\"QR-Code zur Speisekarte\"",
+    "fr": "aria-label=\"QR code de la carte\"",
+    "it": "aria-label=\"Codice QR del menù\""
+  },
+  "<p style=\"margin-top:10px\">Café bar · pulpería y vinos · cocina tradicional gallega.<br>Camino de Santiago · Padrón, A Coruña.</p>": {
+    "gl": "<p style=\"margin-top:10px\">Café bar · pulpería e viños · cociña tradicional galega.<br>Camiño de Santiago · Padrón, A Coruña.</p>",
+    "en": "<p style=\"margin-top:10px\">Café bar · octopus and wine · traditional Galician cooking.<br>Camino de Santiago · Padrón, A Coruña.</p>",
+    "pt": "<p style=\"margin-top:10px\">Café bar · polvo e vinhos · cozinha tradicional galega.<br>Caminho de Santiago · Padrón, A Coruña.</p>",
+    "de": "<p style=\"margin-top:10px\">Café-Bar · Oktopus und Wein · traditionelle galicische Küche.<br>Jakobsweg · Padrón, A Coruña.</p>",
+    "fr": "<p style=\"margin-top:10px\">Café bar · poulpe et vins · cuisine galicienne traditionnelle.<br>Chemin de Saint-Jacques · Padrón, A Coruña.</p>",
+    "it": "<p style=\"margin-top:10px\">Caffè bar · polpo e vini · cucina tradizionale galiziana.<br>Cammino di Santiago · Padrón, A Coruña.</p>"
+  },
+  "<p><span class=\"norma\">Norma de la casa: 1 cuenta por mesa.</span><br>Cocina todos los días 13:00–16:00 y 19:00–23:00.<br>© 2026 Don Pepe Original · Hecho con calma en Padrón.</p>": {
+    "gl": "<p><span class=\"norma\">Norma da casa: 1 conta por mesa.</span><br>Cociña todos os días 13:00–16:00 e 19:00–23:00.<br>© 2026 Don Pepe Original · Feito con calma en Padrón.</p>",
+    "en": "<p><span class=\"norma\">House rule: one bill per table.</span><br>Kitchen open every day 13:00–16:00 and 19:00–23:00.<br>© 2026 Don Pepe Original · Made unhurriedly in Padrón.</p>",
+    "pt": "<p><span class=\"norma\">Regra da casa: 1 conta por mesa.</span><br>Cozinha todos os dias 13:00–16:00 e 19:00–23:00.<br>© 2026 Don Pepe Original · Feito com calma em Padrón.</p>",
+    "de": "<p><span class=\"norma\">Hausregel: eine Rechnung pro Tisch.</span><br>Küche täglich 13:00–16:00 und 19:00–23:00.<br>© 2026 Don Pepe Original · In Ruhe gemacht in Padrón.</p>",
+    "fr": "<p><span class=\"norma\">Règle de la maison : une seule addition par table.</span><br>Cuisine ouverte tous les jours 13h–16h et 19h–23h.<br>© 2026 Don Pepe Original · Fait sans se presser à Padrón.</p>",
+    "it": "<p><span class=\"norma\">Regola della casa: un conto per tavolo.</span><br>Cucina aperta tutti i giorni 13:00–16:00 e 19:00–23:00.<br>© 2026 Don Pepe Original · Fatto con calma a Padrón.</p>"
+  },
+  "aria-label=\"Carta rápida\"": {
+    "gl": "aria-label=\"Carta rápida\"",
+    "en": "aria-label=\"Quick menu\"",
+    "pt": "aria-label=\"Ementa rápida\"",
+    "de": "aria-label=\"Schnellkarte\"",
+    "fr": "aria-label=\"Carte rapide\"",
+    "it": "aria-label=\"Menù rapido\""
+  },
+  "<b>La <i>Carta</i></b>": {
+    "gl": "<b>A <i>Carta</i></b>",
+    "en": "<b>The <i>Menu</i></b>",
+    "pt": "<b>A <i>Ementa</i></b>",
+    "de": "<b>Die <i>Karte</i></b>",
+    "fr": "<b>La <i>Carte</i></b>",
+    "it": "<b>Il <i>Menù</i></b>"
+  },
+  "<button id=\"fmToggle\">Desplegar</button>": {
+    "gl": "<button id=\"fmToggle\">Despregar</button>",
+    "en": "<button id=\"fmToggle\">Open</button>",
+    "pt": "<button id=\"fmToggle\">Abrir</button>",
+    "de": "<button id=\"fmToggle\">Öffnen</button>",
+    "fr": "<button id=\"fmToggle\">Ouvrir</button>",
+    "it": "<button id=\"fmToggle\">Apri</button>"
+  },
+  "aria-label=\"Reservar mesa\">": {
+    "gl": "aria-label=\"Reservar mesa\">",
+    "en": "aria-label=\"Book a table\">",
+    "pt": "aria-label=\"Reservar mesa\">",
+    "de": "aria-label=\"Tisch reservieren\">",
+    "fr": "aria-label=\"Réserver une table\">",
+    "it": "aria-label=\"Prenota un tavolo\">"
+  },
+  "aria-label=\"Cerrar\"": {
+    "gl": "aria-label=\"Pechar\"",
+    "en": "aria-label=\"Close\"",
+    "pt": "aria-label=\"Fechar\"",
+    "de": "aria-label=\"Schließen\"",
+    "fr": "aria-label=\"Fermer\"",
+    "it": "aria-label=\"Chiudi\""
+  },
+  "<h3>Reservar mesa</h3>": {
+    "gl": "<h3>Reservar mesa</h3>",
+    "en": "<h3>Book a table</h3>",
+    "pt": "<h3>Reservar mesa</h3>",
+    "de": "<h3>Tisch reservieren</h3>",
+    "fr": "<h3>Réserver une table</h3>",
+    "it": "<h3>Prenota un tavolo</h3>"
+  },
+  "<label for=\"fName\">Nombre</label>": {
+    "gl": "<label for=\"fName\">Nome</label>",
+    "en": "<label for=\"fName\">Name</label>",
+    "pt": "<label for=\"fName\">Nome</label>",
+    "de": "<label for=\"fName\">Name</label>",
+    "fr": "<label for=\"fName\">Nom</label>",
+    "it": "<label for=\"fName\">Nome</label>"
+  },
+  "placeholder=\"Tu nombre\"": {
+    "gl": "placeholder=\"O teu nome\"",
+    "en": "placeholder=\"Your name\"",
+    "pt": "placeholder=\"O teu nome\"",
+    "de": "placeholder=\"Ihr Name\"",
+    "fr": "placeholder=\"Votre nom\"",
+    "it": "placeholder=\"Il tuo nome\""
+  },
+  "<label for=\"fTel\">Teléfono</label>": {
+    "gl": "<label for=\"fTel\">Teléfono</label>",
+    "en": "<label for=\"fTel\">Phone</label>",
+    "pt": "<label for=\"fTel\">Telefone</label>",
+    "de": "<label for=\"fTel\">Telefon</label>",
+    "fr": "<label for=\"fTel\">Téléphone</label>",
+    "it": "<label for=\"fTel\">Telefono</label>"
+  },
+  "<label for=\"fPax\">Comensales</label>": {
+    "gl": "<label for=\"fPax\">Comensais</label>",
+    "en": "<label for=\"fPax\">Guests</label>",
+    "pt": "<label for=\"fPax\">Pessoas</label>",
+    "de": "<label for=\"fPax\">Personen</label>",
+    "fr": "<label for=\"fPax\">Couverts</label>",
+    "it": "<label for=\"fPax\">Persone</label>"
+  },
+  "<label for=\"fDate\">Fecha</label>": {
+    "gl": "<label for=\"fDate\">Data</label>",
+    "en": "<label for=\"fDate\">Date</label>",
+    "pt": "<label for=\"fDate\">Data</label>",
+    "de": "<label for=\"fDate\">Datum</label>",
+    "fr": "<label for=\"fDate\">Date</label>",
+    "it": "<label for=\"fDate\">Data</label>"
+  },
+  "<label for=\"fTime\">Hora (cocina)</label>": {
+    "gl": "<label for=\"fTime\">Hora (cociña)</label>",
+    "en": "<label for=\"fTime\">Time (kitchen hours)</label>",
+    "pt": "<label for=\"fTime\">Hora (cozinha)</label>",
+    "de": "<label for=\"fTime\">Uhrzeit (Küchenzeiten)</label>",
+    "fr": "<label for=\"fTime\">Heure (service)</label>",
+    "it": "<label for=\"fTime\">Ora (cucina)</label>"
+  },
+  "<label for=\"fNote\">Nota (opcional)</label>": {
+    "gl": "<label for=\"fNote\">Nota (opcional)</label>",
+    "en": "<label for=\"fNote\">Note (optional)</label>",
+    "pt": "<label for=\"fNote\">Nota (opcional)</label>",
+    "de": "<label for=\"fNote\">Hinweis (optional)</label>",
+    "fr": "<label for=\"fNote\">Remarque (facultatif)</label>",
+    "it": "<label for=\"fNote\">Nota (facoltativa)</label>"
+  },
+  "placeholder=\"Terraza, trona, alérgenos…\"": {
+    "gl": "placeholder=\"Terraza, cadeira de bebé, alérxenos…\"",
+    "en": "placeholder=\"Terrace, high chair, allergies…\"",
+    "pt": "placeholder=\"Esplanada, cadeira de bebé, alergias…\"",
+    "de": "placeholder=\"Terrasse, Hochstuhl, Allergien…\"",
+    "fr": "placeholder=\"Terrasse, chaise haute, allergies…\"",
+    "it": "placeholder=\"Terrazza, seggiolone, allergie…\""
+  },
+  "<p class=\"telAlt\">¿Con prisa? <a href=\"tel:+34881829728\">Llámanos directamente</a></p>": {
+    "gl": "<p class=\"telAlt\">Con présa? <a href=\"tel:+34881829728\">Chámanos directamente</a></p>",
+    "en": "<p class=\"telAlt\">In a hurry? <a href=\"tel:+34881829728\">Call us instead</a></p>",
+    "pt": "<p class=\"telAlt\">Com pressa? <a href=\"tel:+34881829728\">Liga-nos diretamente</a></p>",
+    "de": "<p class=\"telAlt\">Eilig? <a href=\"tel:+34881829728\">Rufen Sie uns direkt an</a></p>",
+    "fr": "<p class=\"telAlt\">Pressé ? <a href=\"tel:+34881829728\">Appelez-nous directement</a></p>",
+    "it": "<p class=\"telAlt\">Hai fretta? <a href=\"tel:+34881829728\">Chiamaci direttamente</a></p>"
+  },
+  "<button id=\"resBtn\" data-open-res>Reservar mesa</button>": {
+    "gl": "<button id=\"resBtn\" data-open-res>Reservar mesa</button>",
+    "en": "<button id=\"resBtn\" data-open-res>Book a table</button>",
+    "pt": "<button id=\"resBtn\" data-open-res>Reservar mesa</button>",
+    "de": "<button id=\"resBtn\" data-open-res>Tisch reservieren</button>",
+    "fr": "<button id=\"resBtn\" data-open-res>Réserver</button>",
+    "it": "<button id=\"resBtn\" data-open-res>Prenota</button>"
+  },
+  "<p class=\"sub\">Pizarra viva del local: marisco del día, arroces para compartir y carnes a la brasa. <span class=\"soloRaton\">Pasa el cursor por cada plato para verlo de cerca.</span><span class=\"soloTactil\">Toca cada plato para ver su foto y su descripción.</span></p>": {
+    "gl": "<p class=\"sub\">Pizarra viva do local: marisco do día, arroces para compartir e carnes á brasa. <span class=\"soloRaton\">Pasa o cursor por cada prato para velo de preto.</span><span class=\"soloTactil\">Toca cada prato para ver a súa foto e a súa descrición.</span></p>",
+    "en": "<p class=\"sub\">The board changes with the market: shellfish of the day, rice to share and meat over the coals. <span class=\"soloRaton\">Hover over any dish to see it up close.</span><span class=\"soloTactil\">Tap any dish to see its photo and description.</span></p>",
+    "pt": "<p class=\"sub\">A ardósia muda com o mercado: marisco do dia, arrozes para partilhar e carnes na brasa. <span class=\"soloRaton\">Passa o cursor sobre cada prato para o ver de perto.</span><span class=\"soloTactil\">Toque em cada prato para ver a foto e a descrição.</span></p>",
+    "de": "<p class=\"sub\">Die Tafel wechselt mit dem Markt: Meeresfrüchte des Tages, Reisgerichte zum Teilen und Fleisch über der Glut. <span class=\"soloRaton\">Fahren Sie über ein Gericht, um es näher zu sehen.</span><span class=\"soloTactil\">Tippen Sie ein Gericht an, um Foto und Beschreibung zu sehen.</span></p>",
+    "fr": "<p class=\"sub\">L'ardoise change avec le marché : fruits de mer du jour, riz à partager et viandes sur la braise. <span class=\"soloRaton\">Survolez un plat pour le voir de près.</span><span class=\"soloTactil\">Touchez un plat pour voir sa photo et sa description.</span></p>",
+    "it": "<p class=\"sub\">La lavagna cambia con il mercato: frutti di mare del giorno, risotti da condividere e carni alla brace. <span class=\"soloRaton\">Passa il cursore su un piatto per vederlo da vicino.</span><span class=\"soloTactil\">Tocca ogni piatto per vederne foto e descrizione.</span></p>"
+  },
+  "<div class=\"kicker\">Barra · brasa · terraza</div>": {
+    "gl": "<div class=\"kicker\">Barra · brasa · terraza</div>",
+    "en": "<div class=\"kicker\">Bar · grill · terrace</div>",
+    "pt": "<div class=\"kicker\">Balcão · brasa · esplanada</div>",
+    "de": "<div class=\"kicker\">Theke · Grill · Terrasse</div>",
+    "fr": "<div class=\"kicker\">Comptoir · braise · terrasse</div>",
+    "it": "<div class=\"kicker\">Bancone · brace · terrazza</div>"
+  },
+  "“Barra larga, mesas de siempre y la terraza sobre la piedra… sesenta comensales y un solo secreto: trato de casa.”": {
+    "gl": "“Barra longa, mesas de sempre e a terraza sobre a pedra… sesenta comensais e un só segredo: trato de casa.”",
+    "en": "“A long bar, the same tables as always and the terrace out on the stone… sixty covers and one single secret: you are treated like family.”",
+    "pt": "“Balcão comprido, mesas de sempre e a esplanada sobre a pedra… sessenta lugares e um só segredo: trata-se como em casa.”",
+    "de": "“Eine lange Theke, die immer gleichen Tische und die Terrasse auf dem Pflaster… sechzig Plätze und ein einziges Geheimnis: Sie sind hier zu Hause.”",
+    "fr": "“Un long comptoir, les tables de toujours et la terrasse sur les pavés… soixante couverts et un seul secret : on vous traite comme chez vous.”",
+    "it": "“Un bancone lungo, i tavoli di sempre e la terrazza sulla pietra… sessanta coperti e un solo segreto: si sta come a casa.”"
+  },
+  "alt=\"Interior de Don Pepe Original: la barra larga de madera y las mesas del comedor, en la Rúa Longa de Padrón\"": {
+    "gl": "alt=\"Interior de Don Pepe Original: a barra longa de madeira e as mesas do comedor, na Rúa Longa de Padrón\"",
+    "en": "alt=\"Inside Don Pepe Original: the long wooden bar and the dining room tables, on Rúa Longa in Padrón\"",
+    "pt": "alt=\"Interior do Don Pepe Original: o balcão comprido de madeira e as mesas da sala, na Rúa Longa de Padrón\"",
+    "de": "alt=\"Innenraum des Don Pepe Original: die lange Holztheke und die Tische im Speiseraum, in der Rúa Longa in Padrón\"",
+    "fr": "alt=\"Intérieur de Don Pepe Original : le long comptoir en bois et les tables de la salle, Rúa Longa à Padrón\"",
+    "it": "alt=\"Interno di Don Pepe Original: il lungo bancone di legno e i tavoli della sala, in Rúa Longa a Padrón\""
+  },
+  "<p>En la <b>Rúa Longa</b>, donde el casco histórico de Padrón huele a piedra mojada y a marisco recién llegado, hay unas mesas puestas sobre la piedra y un rótulo negro de letra blanca. Ese rótulo es <b>Don Pepe Original</b>: café bar, pulpería y casa de comidas del Camino de Santiago.</p>": {
+    "gl": "<p>Na <b>Rúa Longa</b>, onde o casco histórico de Padrón cheira a pedra mollada e a marisco recén chegado, hai unhas mesas postas sobre a pedra e un cartel negro de letra branca. Ese cartel é <b>Don Pepe Original</b>: café bar, pulpería e casa de comidas do Camiño de Santiago.</p>",
+    "en": "<p>On <b>Rúa Longa</b>, where the old town of Padrón smells of wet stone and freshly landed shellfish, there are tables set out on the stone and a black sign in white script. That sign is <b>Don Pepe Original</b>: café, octopus house and dining room on the Camino de Santiago.</p>",
+    "pt": "<p>Na <b>Rúa Longa</b>, onde o centro histórico de Padrón cheira a pedra molhada e a marisco acabado de chegar, há umas mesas postas sobre a pedra e um letreiro preto de letra branca. Esse letreiro é o <b>Don Pepe Original</b>: café, pulpería e casa de comidas do Caminho de Santiago.</p>",
+    "de": "<p>In der <b>Rúa Longa</b>, wo die Altstadt von Padrón nach nassem Stein und frisch angelandeten Meeresfrüchten riecht, stehen Tische auf dem Pflaster und hängt ein schwarzes Schild mit weißer Schrift. Hinter diesem Schild liegt das <b>Don Pepe Original</b>: Café, Pulpería und Speisehaus am Jakobsweg.</p>",
+    "fr": "<p>Rue <b>Rúa Longa</b>, où la vieille ville de Padrón sent la pierre mouillée et les fruits de mer à peine débarqués, des tables sont dressées sur les pavés et une enseigne noire aux lettres blanches. Cette enseigne, c'est <b>Don Pepe Original</b> : café, pulpería et maison de bouche sur le Chemin de Saint-Jacques.</p>",
+    "it": "<p>In <b>Rúa Longa</b>, dove il centro storico di Padrón sa di pietra bagnata e di pesce appena sbarcato, ci sono tavoli apparecchiati sulla pietra e un'insegna nera con lettere bianche. Quell'insegna è <b>Don Pepe Original</b>: caffè, pulpería e casa di ristoro sul Cammino di Santiago.</p>"
+  },
+  "alt=\"Gambones a la plancha con sal gruesa, recién salidos de la parrilla\"": {
+    "gl": "alt=\"Gambóns á prancha con sal groso, recén saídos da grella\"",
+    "en": "alt=\"Griddled king prawns with coarse salt, straight off the plancha\"",
+    "pt": "alt=\"Gambas grandes na chapa com sal grosso, acabadas de sair da grelha\"",
+    "de": "alt=\"Gegrillte Riesengarnelen mit grobem Salz, frisch von der Platte\"",
+    "fr": "alt=\"Gambas à la plancha au gros sel, tout juste sorties du gril\"",
+    "it": "alt=\"Gamberoni alla piastra con sale grosso, appena tolti dalla griglia\""
+  },
+  "alt=\"Caldo gallego humeante en pota de hierro, con grelos y patata\"": {
+    "gl": "alt=\"Caldo galego fumegante en pota de ferro, con grelos e pataca\"",
+    "en": "alt=\"Steaming Galician caldo in an iron pot, with turnip greens and potato\"",
+    "pt": "alt=\"Caldo galego a fumegar em panela de ferro, com grelos e batata\"",
+    "de": "alt=\"Dampfender galicischer Caldo im Eisentopf, mit Stängelkohl und Kartoffel\"",
+    "fr": "alt=\"Caldo galicien fumant en marmite de fonte, avec grelos et pomme de terre\"",
+    "it": "alt=\"Caldo galiziano fumante in pentola di ferro, con cime di rapa e patata\""
+  },
+  ">☎ &nbsp;Llamar · 881 82 97 28</a>": {
+    "gl": ">☎ &nbsp;Chamar · 881 82 97 28</a>",
+    "en": ">☎ &nbsp;Call · 881 82 97 28</a>",
+    "pt": ">☎ &nbsp;Ligar · 881 82 97 28</a>",
+    "de": ">☎ &nbsp;Anrufen · 881 82 97 28</a>",
+    "fr": ">☎ &nbsp;Appeler · 881 82 97 28</a>",
+    "it": ">☎ &nbsp;Chiamare · 881 82 97 28</a>"
+  },
+  ">☎ &nbsp;Móvil · 696 43 40 42</a>": {
+    "gl": ">☎ &nbsp;Móbil · 696 43 40 42</a>",
+    "en": ">☎ &nbsp;Mobile · 696 43 40 42</a>",
+    "pt": ">☎ &nbsp;Telemóvel · 696 43 40 42</a>",
+    "de": ">☎ &nbsp;Mobil · 696 43 40 42</a>",
+    "fr": ">☎ &nbsp;Portable · 696 43 40 42</a>",
+    "it": ">☎ &nbsp;Cellulare · 696 43 40 42</a>"
+  },
+  "<p class=\"telAlt\">También por <a href=\"https://wa.me/34696434042\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> o al móvil <a href=\"tel:+34696434042\">696 43 40 42</a></p>": {
+    "gl": "<p class=\"telAlt\">Tamén por <a href=\"https://wa.me/34696434042\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> ou ao móbil <a href=\"tel:+34696434042\">696 43 40 42</a></p>",
+    "en": "<p class=\"telAlt\">Also on <a href=\"https://wa.me/34696434042\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> or mobile <a href=\"tel:+34696434042\">696 43 40 42</a></p>",
+    "pt": "<p class=\"telAlt\">Também por <a href=\"https://wa.me/34696434042\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> ou telemóvel <a href=\"tel:+34696434042\">696 43 40 42</a></p>",
+    "de": "<p class=\"telAlt\">Auch per <a href=\"https://wa.me/34696434042\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> oder mobil <a href=\"tel:+34696434042\">696 43 40 42</a></p>",
+    "fr": "<p class=\"telAlt\">Aussi par <a href=\"https://wa.me/34696434042\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> ou au portable <a href=\"tel:+34696434042\">696 43 40 42</a></p>",
+    "it": "<p class=\"telAlt\">Anche su <a href=\"https://wa.me/34696434042\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> o al cellulare <a href=\"tel:+34696434042\">696 43 40 42</a></p>"
+  },
+  "<p class=\"msub\">Dinos cuándo y cuántos y te abrimos WhatsApp con el mensaje ya escrito: solo tienes que darle a enviar. Si lo prefieres, llámanos al <b style=\"color:var(--gold)\">881 82 97 28</b>.</p>": {
+    "gl": "<p class=\"msub\">Dinos cando e cantos e abrímosche WhatsApp coa mensaxe xa escrita: só tes que darlle a enviar. Se o prefires, chámanos ao <b style=\"color:var(--gold)\">881 82 97 28</b>.</p>",
+    "en": "<p class=\"msub\">Tell us when and how many and we'll open WhatsApp with the message already written — you just hit send. If you'd rather call, the number is <b style=\"color:var(--gold)\">881 82 97 28</b>.</p>",
+    "pt": "<p class=\"msub\">Diz-nos quando e quantos e abrimos o WhatsApp com a mensagem já escrita: só tens de carregar em enviar. Se preferires, liga-nos para <b style=\"color:var(--gold)\">881 82 97 28</b>.</p>",
+    "de": "<p class=\"msub\">Sagen Sie uns wann und für wie viele, und wir öffnen WhatsApp mit der fertigen Nachricht – Sie müssen nur noch auf Senden tippen. Wenn Sie lieber anrufen: <b style=\"color:var(--gold)\">881 82 97 28</b>.</p>",
+    "fr": "<p class=\"msub\">Dites-nous quand et combien, et nous ouvrons WhatsApp avec le message déjà rédigé : il ne vous reste qu'à l'envoyer. Si vous préférez appeler : <b style=\"color:var(--gold)\">881 82 97 28</b>.</p>",
+    "it": "<p class=\"msub\">Dicci quando e in quanti e ti apriamo WhatsApp con il messaggio già scritto: devi solo premere invia. Se preferisci chiamare: <b style=\"color:var(--gold)\">881 82 97 28</b>.</p>"
+  },
+  "<button class=\"send\" type=\"submit\">Reservar por WhatsApp</button>": {
+    "gl": "<button class=\"send\" type=\"submit\">Reservar por WhatsApp</button>",
+    "en": "<button class=\"send\" type=\"submit\">Book via WhatsApp</button>",
+    "pt": "<button class=\"send\" type=\"submit\">Reservar por WhatsApp</button>",
+    "de": "<button class=\"send\" type=\"submit\">Per WhatsApp reservieren</button>",
+    "fr": "<button class=\"send\" type=\"submit\">Réserver par WhatsApp</button>",
+    "it": "<button class=\"send\" type=\"submit\">Prenota su WhatsApp</button>"
+  },
+  "<h4>Ya casi está</h4>": {
+    "gl": "<h4>Xa case está</h4>",
+    "en": "<h4>Almost there</h4>",
+    "pt": "<h4>Falta pouco</h4>",
+    "de": "<h4>Fast geschafft</h4>",
+    "fr": "<h4>Presque terminé</h4>",
+    "it": "<h4>Ci siamo quasi</h4>"
+  },
+  "</svg>Abrir WhatsApp</a>": {
+    "gl": "</svg>Abrir WhatsApp</a>",
+    "en": "</svg>Open WhatsApp</a>",
+    "pt": "</svg>Abrir o WhatsApp</a>",
+    "de": "</svg>WhatsApp öffnen</a>",
+    "fr": "</svg>Ouvrir WhatsApp</a>",
+    "it": "</svg>Apri WhatsApp</a>"
+  },
+  "<a href=\"/aviso-legal\">Aviso legal</a>": {
+    "gl": "<a href=\"/aviso-legal\">Aviso legal</a>",
+    "en": "<a href=\"/aviso-legal\">Legal notice</a>",
+    "pt": "<a href=\"/aviso-legal\">Aviso legal</a>",
+    "de": "<a href=\"/aviso-legal\">Impressum</a>",
+    "fr": "<a href=\"/aviso-legal\">Mentions légales</a>",
+    "it": "<a href=\"/aviso-legal\">Note legali</a>"
+  },
+  "<a href=\"/privacidad\">Política de privacidad</a>": {
+    "gl": "<a href=\"/privacidad\">Política de privacidade</a>",
+    "en": "<a href=\"/privacidad\">Privacy policy</a>",
+    "pt": "<a href=\"/privacidad\">Política de privacidade</a>",
+    "de": "<a href=\"/privacidad\">Datenschutzerklärung</a>",
+    "fr": "<a href=\"/privacidad\">Politique de confidentialité</a>",
+    "it": "<a href=\"/privacidad\">Informativa sulla privacy</a>"
+  },
+  "aria-label=\"Información legal\"": {
+    "gl": "aria-label=\"Información legal\"",
+    "en": "aria-label=\"Legal information\"",
+    "pt": "aria-label=\"Informação legal\"",
+    "de": "aria-label=\"Rechtliche Hinweise\"",
+    "fr": "aria-label=\"Informations légales\"",
+    "it": "aria-label=\"Informazioni legali\""
+  },
+  "<span>He leído y acepto la <a href=\"/privacidad\" target=\"_blank\" rel=\"noopener\">política de privacidad</a>.</span>": {
+    "gl": "<span>Lin e acepto a <a href=\"/privacidad\" target=\"_blank\" rel=\"noopener\">política de privacidade</a>.</span>",
+    "en": "<span>I have read and accept the <a href=\"/privacidad\" target=\"_blank\" rel=\"noopener\">privacy policy</a>.</span>",
+    "pt": "<span>Li e aceito a <a href=\"/privacidad\" target=\"_blank\" rel=\"noopener\">política de privacidade</a>.</span>",
+    "de": "<span>Ich habe die <a href=\"/privacidad\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a> gelesen und akzeptiere sie.</span>",
+    "fr": "<span>J'ai lu et j'accepte la <a href=\"/privacidad\" target=\"_blank\" rel=\"noopener\">politique de confidentialité</a>.</span>",
+    "it": "<span>Ho letto e accetto l'<a href=\"/privacidad\" target=\"_blank\" rel=\"noopener\">informativa sulla privacy</a>.</span>"
+  },
+  "<summary title=\"Idioma\"><span class=\"langActual\">ES</span></summary>": {
+    "gl": "<summary title=\"Idioma\"><span class=\"langActual\">GL</span></summary>",
+    "en": "<summary title=\"Language\"><span class=\"langActual\">EN</span></summary>",
+    "pt": "<summary title=\"Idioma\"><span class=\"langActual\">PT</span></summary>",
+    "de": "<summary title=\"Sprache\"><span class=\"langActual\">DE</span></summary>",
+    "fr": "<summary title=\"Langue\"><span class=\"langActual\">FR</span></summary>",
+    "it": "<summary title=\"Lingua\"><span class=\"langActual\">IT</span></summary>"
+  }
+}

@@ -1,0 +1,45 @@
+# ─── dependencias y build ───────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+.next/
+out/
+build/
+coverage/
+
+# ─── entorno ────────────────────────────────────────────────
+# .env.local lleva las credenciales de la base de datos (KV/Upstash).
+# .env.example sí se versiona: documenta qué variables hacen falta,
+# solo con marcadores.
+.env
+.env.*
+!.env.example
+
+# ─── vercel ─────────────────────────────────────────────────
+.vercel
+
+# ─── typescript ─────────────────────────────────────────────
+*.tsbuildinfo
+next-env.d.ts
+
+# ─── herramientas locales del agente ────────────────────────
+# .claude/settings.local.json guarda comandos permitidos que han llegado a
+# incluir credenciales en texto plano. Fuera del repositorio, siempre.
+.claude/
+.agents/
+skills-lock.json
+
+# ─── copias y volcados locales, no son fuente ───────────────
+backup-fotos-locales-*/
+data/menu.kv-antes.json
+
+# ─── sistema y registros ────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.pem
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
