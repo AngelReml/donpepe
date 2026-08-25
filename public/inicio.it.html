@@ -159,7 +159,13 @@ nav.top a.nl:hover{color:var(--cream)}nav.top a.nl:hover::after{width:100%}
 #hint{animation:breathe 2.4s ease-in-out infinite}
 
 /* ---------- TRACK / MAIN ---------- */
-#track{position:relative;height:560vh;z-index:1}
+/* Pista de scroll: un div vacío de 560vh que solo existe para que el
+   ScrollTrigger tenga algo que medir. Iba sin pointer-events y, al estar en
+   z-index 1 por encima de #stage (z-index 0), se comía todos los clics de la
+   escena: los botones "Ver la carta" y "Reservar mesa" del tercer plano —el de
+   la copa— eran inalcanzables, aunque se vieran perfectamente y tuvieran su
+   pointer-events:auto. No captura nada, así que deja pasar el puntero. */
+#track{position:relative;height:560vh;z-index:1;pointer-events:none}
 main{position:relative;z-index:2;background:linear-gradient(rgba(13,13,13,0),var(--carbon) 140px)}
 section{padding:110px 6vw}
 .secHead{margin-bottom:56px}
