@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Menu, CategoriaMenu } from "@/lib/types";
 import type { Textos } from "@/lib/i18n";
 import { formatPrice, formatPlatoPrecio } from "@/lib/format";
+import { FotoPlato } from "./FotoPlato";
 
 const TABS: CategoriaMenu[] = ["entrantes", "arroces", "pescados", "carnes"];
 
@@ -21,25 +22,7 @@ export function MenuView({
   nombresSecundarios?: Record<string, string>;
 }) {
   const [tab, setTab] = useState<CategoriaMenu>("entrantes");
-  const [abiertos, setAbiertos] = useState<ReadonlySet<string>>(new Set());
-  /**
-   * Platos cuya foto ya se ha pedido alguna vez. La carta se lee de pie en la
-   * mesa con datos móviles: montar los 34 <img> al cargar serían varios MB que
-   * casi nadie llega a mirar. El <img> aparece al abrir la ficha y se queda
-   * montado, para que cerrarla y volver a abrirla no vuelva a descargar.
-   */
-  const [pedidas, setPedidas] = useState<ReadonlySet<string>>(new Set());
   const list = (menu[tab] ?? []).filter((p) => !p.disabled);
-
-  function alternarFoto(id: string) {
-    setPedidas((prev) => (prev.has(id) ? prev : new Set(prev).add(id)));
-    setAbiertos((prev) => {
-      const s = new Set(prev);
-      if (s.has(id)) s.delete(id);
-      else s.add(id);
-      return s;
-    });
-  }
 
   return (
     <section aria-label={t.etiquetaCarta} className="space-y-6">
@@ -87,68 +70,33 @@ export function MenuView({
           <li className="px-4 py-6 text-sm text-carbon-300">{t.sinPlatos}</li>
         ) : (
           list.map((p) => {
-            const abierto = abiertos.has(p.id);
             const secundario = nombresSecundarios[p.id];
-            const fila = (
-              <>
-                <span className="flex-1">
-                  <span className="block text-base text-carbon-50">{p.nombre}</span>
-                  {secundario ? (
-                    <span className="block text-xs text-carbon-400">{secundario}</span>
-                  ) : null}
-                </span>
-                {p.nota ? (
-                  <span className="hidden text-xs uppercase tracking-wide text-carbon-400 sm:inline">
-                    {p.nota}
-                  </span>
-                ) : null}
-                <span className="shrink-0 font-mono text-base tabular-nums text-brasa-300">
-                  {formatPlatoPrecio(p)}
-                </span>
-              </>
-            );
             return (
-              <li key={p.id} className="px-4 py-3">
-                {p.imagen ? (
-                  <button
-                    type="button"
-                    onClick={() => alternarFoto(p.id)}
-                    aria-expanded={abierto}
-                    aria-controls={`foto-${p.id}`}
-                    className="flex w-full items-baseline gap-3 rounded text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brasa-500"
-                  >
-                    {fila}
-                  </button>
-                ) : (
-                  <div className="flex items-baseline gap-3">{fila}</div>
-                )}
-                {descripciones[p.id] ? (
-                  <p className="mt-1 pr-16 text-sm leading-snug text-carbon-400">
-                    {descripciones[p.id]}
-                  </p>
-                ) : null}
-                {p.imagen ? (
-                  <div
-                    id={`foto-${p.id}`}
-                    className={
-                      "overflow-hidden transition-all duration-300 motion-reduce:transition-none " +
-                      (abierto ? "mt-2 max-h-[70vh] opacity-100" : "max-h-0 opacity-0")
-                    }
-                  >
-                    {pedidas.has(p.id) ? (
-                      // Sin loading="lazy" a propósito: al montarse, la caja aún
-                      // mide 0 px de alto y ahí el navegador puede decidir que la
-                      // imagen "no hace falta todavía" y no descargarla nunca.
-                      // El alto no se fija: sale del ancho y de la proporción.
-                      <img
-                        src={p.imagen}
-                        alt={p.nombre}
-                        decoding="async"
-                        className="aspect-[16/10] w-full rounded-lg border border-carbon-800 object-cover"
-                      />
+              <li key={p.id} className="flex items-start gap-3 px-4 py-3">
+                {p.imagen ? <FotoPlato src={p.imagen} alt={p.nombre} /> : null}
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-baseline gap-3">
+                    <span className="flex-1">
+                      <span className="block text-base text-carbon-50">{p.nombre}</span>
+                      {secundario ? (
+                        <span className="block text-xs text-carbon-400">{secundario}</span>
+                      ) : null}
+                    </span>
+                    {p.nota ? (
+                      <span className="hidden text-xs uppercase tracking-wide text-carbon-400 sm:inline">
+                        {p.nota}
+                      </span>
                     ) : null}
+                    <span className="shrink-0 font-mono text-base tabular-nums text-brasa-300">
+                      {formatPlatoPrecio(p)}
+                    </span>
                   </div>
-                ) : null}
+                  {descripciones[p.id] ? (
+                    <p className="mt-1 text-sm leading-snug text-carbon-400">
+                      {descripciones[p.id]}
+                    </p>
+                  ) : null}
+                </div>
               </li>
             );
           })
