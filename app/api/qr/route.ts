@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import QRCode from "qrcode";
+import { sinFragmento } from "@/lib/qr";
 
 export const runtime = "nodejs";
 
@@ -38,6 +39,13 @@ export async function GET(req: NextRequest) {
   // Validamos que sea http(s)
   if (!/^https?:\/\//.test(data)) {
     return new NextResponse("Only http(s) URLs allowed", { status: 400 });
+  }
+  // Un QR con "#" apunta a algo que el servidor nunca llega a ver: es como
+  // se rompieron los carteles ya impresos. Ver lib/qr.ts.
+  try {
+    sinFragmento(data);
+  } catch (e) {
+    return new NextResponse((e as Error).message, { status: 400 });
   }
 
   if (format === "svg") {

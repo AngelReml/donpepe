@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import QRCode from "qrcode";
 import { SITE_URL } from "@/lib/sitio";
+import { sinFragmento } from "@/lib/qr";
 
 export const runtime = "nodejs";
 
@@ -63,6 +64,13 @@ export async function GET(req: NextRequest) {
   const mesaCruda = url.searchParams.get("mesa");
   const mesa = mesaCruda ? mesaCruda.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 24) : "";
   const destino = mesa ? `${base}/carta?mesa=${encodeURIComponent(mesa)}` : `${base}/carta`;
+  // Un QR con "#" apunta a algo que el servidor nunca ve: es exactamente
+  // como se rompieron los carteles ya impresos. Ver lib/qr.ts.
+  try {
+    sinFragmento(destino);
+  } catch (e) {
+    return new NextResponse((e as Error).message, { status: 400 });
+  }
 
   const pdf = await PDFDocument.create();
   const page = pdf.addPage([pageW, pageH]);

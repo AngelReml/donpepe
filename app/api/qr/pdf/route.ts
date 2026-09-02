@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import QRCode from "qrcode";
 import { SITE_URL } from "@/lib/sitio";
+import { sinFragmento } from "@/lib/qr";
 
 export const runtime = "nodejs";
 
@@ -24,8 +25,10 @@ function authOk(req: NextRequest): boolean {
 
 function buildUrl(site: string, mesa?: number) {
   const base = site.replace(/\/+$/, "");
-  if (!mesa) return `${base}/carta`;
-  return `${base}/carta?mesa=${encodeURIComponent(String(mesa))}`;
+  const url = mesa ? `${base}/carta?mesa=${encodeURIComponent(String(mesa))}` : `${base}/carta`;
+  // Un QR con "#" apunta a algo que el servidor nunca ve: es como se
+  // rompieron los carteles ya impresos. Ver lib/qr.ts.
+  return sinFragmento(url);
 }
 
 export async function GET(req: NextRequest) {
@@ -38,6 +41,12 @@ export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const site = url.searchParams.get("site") ?? SITE_URL;
   const count = Math.max(1, Math.min(60, Number(url.searchParams.get("count") ?? 12)));
+
+  try {
+    sinFragmento(site);
+  } catch (e) {
+    return new NextResponse((e as Error).message, { status: 400 });
+  }
 
   const pdf = await PDFDocument.create();
   const font = await pdf.embedFont(StandardFonts.HelveticaBold);

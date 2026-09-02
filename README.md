@@ -92,7 +92,7 @@ despliegue o cold start**.
 
 `app/page.tsx` es la one-page:
 
-- Hero con `tel:` y CTA a `#carta`.
+- Hero con `tel:` y CTA a `/carta`.
 - Carta en pestañas (Entrantes / Arroces / Pescados / Carnes), precios a la
   derecha con tipografía monoespaciada.
 - Tres tarjetas de menús.
@@ -136,6 +136,13 @@ Visita `/qr` (te pedirá la `QR_ADMIN_PASS` que hayas definido).
 Nivel de corrección de errores `H` (soporta manchas y arañazos), quiet zone
 de 4 módulos, sin logo encima. Si quieres branding, imprímelo en la hoja
 debajo del QR, no encima.
+
+**QR viejos en circulación.** Hay carteles ya plastificados en las mesas
+cuyo código apunta a `https://donpepeoriginal.es/#carta`, un ancla de la
+versión anterior de la web (cuando la carta era una sección de la home, no
+una ruta propia). El fragmento nunca llega al servidor, así que se resuelve
+en el cliente: ver `lib/anclas-heredadas.ts`, cargado desde `app/layout.tsx`.
+No borres ni vacíes ese mapa mientras esos carteles sigan en las mesas.
 
 ## 4. Agente de WhatsApp
 

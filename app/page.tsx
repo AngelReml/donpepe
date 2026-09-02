@@ -112,7 +112,7 @@ export default async function HomePage() {
         tagline="Cocina gallega, brasa y arroces en Padrón"
         phone={phone}
         phoneDisplay={phoneDisplay}
-        ctaHref="#carta"
+        ctaHref="/carta"
       />
       <div className="mx-auto max-w-5xl space-y-16 px-4 py-12 sm:px-6 sm:py-16">
         <section id="carta" aria-labelledby="carta-title" className="space-y-6">

@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { cookies, headers } from "next/headers";
+import Script from "next/script";
 import "./globals.css";
 import { COOKIE_IDIOMA, ETIQUETA_HTML, elegirIdioma } from "@/lib/i18n";
 import { SITE_URL } from "@/lib/sitio";
+import { ANCLAS_HEREDADAS } from "@/lib/anclas-heredadas";
 
 export const metadata: Metadata = {
   // Sin esto, Next.js no sabe contra qué dominio resolver los canonical y los
@@ -70,6 +72,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={ETIQUETA_HTML[idioma]}>
       <body className="min-h-screen bg-carbon-900 text-carbon-50 antialiased">
+        {/*
+          Carteles con QR ya plastificados en las mesas codifican
+          "https://donpepeoriginal.es/#carta": un ancla de una versión
+          anterior de la web, de cuando la carta era una sección de la home
+          en vez de una ruta propia. El fragmento nunca llega al servidor
+          -el navegador se lo queda para sí-, así que ningún middleware ni
+          redirect del lado del servidor puede verlo. Se resuelve aquí, con
+          "beforeInteractive": Next.js lo ejecuta antes de hidratar React, y
+          al quedar primero dentro de <body> -antes que cualquier otro
+          contenido- el navegador lo corre en cuanto lo parsea, sin haber
+          pintado nada del escaparate todavía. Verificado con Chrome real, no
+          solo con curl (el fragmento no llega al servidor: curl no lo ve).
+          El mapa de anclas vive en lib/anclas-heredadas.ts -no lo dupliques,
+          amplíalo ahí-.
+        */}
+        <Script id="anclas-heredadas" strategy="beforeInteractive">
+          {`(function () {
+            var ANCLAS = ${JSON.stringify(ANCLAS_HEREDADAS)};
+            function resolver() {
+              var crudo = window.location.hash.slice(1);
+              if (!crudo) return;
+              var clave = decodeURIComponent(crudo).trim().toLowerCase();
+              var destino = ANCLAS[clave];
+              if (!destino) return;
+              var partes = destino.split("#");
+              var final = partes[0] + window.location.search + (partes[1] ? "#" + partes[1] : "");
+              window.location.replace(final);
+            }
+            resolver();
+            window.addEventListener("hashchange", resolver);
+          })();`}
+        </Script>
         {children}
       </body>
     </html>
