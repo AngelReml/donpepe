@@ -5,11 +5,12 @@
   "description": "Don Pepe Original — web pública, QR, agente WhatsApp y auto-respuesta de reseñas de Google.",
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/generar-portada.mjs && next build",
+    "build": "npm run test:alergenos && node scripts/generar-portada.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "portada": "node scripts/generar-portada.mjs"
+    "portada": "node scripts/generar-portada.mjs",
+    "test:alergenos": "tsx scripts/test-proteccion-alergenos.ts"
   },
   "dependencies": {
     "@vercel/kv": "^1.0.1",
@@ -30,6 +31,7 @@
     "eslint-config-next": "14.2.5",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.6",
+    "tsx": "^4.23.13",
     "typescript": "^5.5.3",
     "vercel": "^58.9.1"
   },

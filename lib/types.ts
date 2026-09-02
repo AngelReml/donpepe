@@ -17,6 +17,14 @@ export interface PlatoBase {
   imagen?: string;
   /** cuando el dueño lo desactiva "hasta nueva orden" */
   disabled?: boolean;
+  // ⚠️ ALÉRGENOS: si añades aquí un campo de alérgenos (alergenos, allergens,
+  // alérgenos...), para o revisa antes scripts/test-proteccion-alergenos.ts
+  // y la lista PROHIBIDOS que lee de ahí. Ese test comprueba, contra el
+  // ActionSchema y el applyAction reales (sin tocarlos), que ninguna acción
+  // del bot -ni WhatsApp ni Telegram- puede escribir en un campo de
+  // alérgenos. Un campo nuevo sin pasar por esa revisión es exactamente el
+  // hueco por el que un bot podría acabar "traduciendo" o inventando un
+  // alérgeno: un riesgo sanitario real, no cosmético.
 }
 
 export interface MenuDelDia {

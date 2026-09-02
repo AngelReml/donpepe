@@ -200,6 +200,37 @@ responde automáticamente:
 
 (El dueño puede cambiar ese texto en `app/api/whatsapp/webhook/route.ts`.)
 
+### 4.5 Telegram (canal adicional, mismo agente)
+
+Mismo cerebro que WhatsApp (`lib/orchestrator.ts`, sin tocar), transporte
+aparte en `lib/telegram.ts` + `app/api/telegram/webhook/route.ts`. El dueño
+toca botones en vez de escribir: `/plato` abre categoría → plato → acción
+(agotar / reactivar / eliminar / cambiar precio) → confirmar. También acepta
+texto libre igual que WhatsApp ("sube el pulpo a 20"), y en ese caso también
+aparecen los botones de Confirmar/Cancelar antes de aplicar nada — nunca se
+aplica un cambio sin que el dueño lo toque a propósito.
+
+Variables de entorno: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET`,
+`TELEGRAM_ALLOWED_CHAT_IDS` (ver `.env.example`). Vacía = nadie autorizado.
+
+Para registrar el webhook una vez desplegado (URL pública en `https`),
+en PowerShell:
+
+```powershell
+$token = "<TELEGRAM_BOT_TOKEN>"
+$secret = "<TELEGRAM_WEBHOOK_SECRET>"
+$url = "https://donpepeoriginal.es/api/telegram/webhook"
+Invoke-RestMethod -Method Post `
+  -Uri "https://api.telegram.org/bot$token/setWebhook" `
+  -Body (@{ url = $url; secret_token = $secret } | ConvertTo-Json) `
+  -ContentType "application/json"
+```
+
+Los alérgenos no se pueden tocar desde ningún canal: ver el comentario junto
+a `PlatoBase` en `lib/types.ts` y `scripts/test-proteccion-alergenos.ts`
+(forma parte de `npm run build`: si algún día una acción pudiera tocarlos,
+el despliegue se para ahí).
+
 ## 5. Auto-respuesta de reseñas de Google
 
 ### 5.1 Estado actual: simulación
