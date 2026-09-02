@@ -22,6 +22,15 @@ export const config = {
 /** Rutas reales de la app, servidas tal cual (con el idioma ya resuelto). */
 const RUTAS_CONOCIDAS = new Set(["/carta", "/aviso-legal", "/privacidad"]);
 
+/**
+ * La carta ya tiene 18 idiomas (lib/i18n.ts), pero el escaparate estático de
+ * /local (scripts/generar-portada.mjs) todavía solo genera estos 6 -ampliarlo
+ * a los 18 es trabajo aparte, pendiente-. Sin esta lista, pedir /local en un
+ * idioma nuevo (ej. coreano) intentaría servir public/inicio.ko.html, que no
+ * existe: 404 en vez de escaparate. Con ella, cae a español, que sí existe.
+ */
+const IDIOMAS_CON_PORTADA_ESTATICA = new Set(["gl", "en", "pt", "de", "fr", "it"]);
+
 export function middleware(req: NextRequest) {
   const { pathname, search } = req.nextUrl;
 
@@ -55,7 +64,8 @@ export function middleware(req: NextRequest) {
   // "/local" → el escaparate de siempre, la portada de diseño estática.
   // Mismo mecanismo que tenía "/" antes de este cambio.
   if (pathname === "/local") {
-    const fichero = idioma === IDIOMA_POR_DEFECTO ? "/inicio.html" : `/inicio.${idioma}.html`;
+    const idiomaConPortada = IDIOMAS_CON_PORTADA_ESTATICA.has(idioma) ? idioma : IDIOMA_POR_DEFECTO;
+    const fichero = idiomaConPortada === IDIOMA_POR_DEFECTO ? "/inicio.html" : `/inicio.${idiomaConPortada}.html`;
     const res = NextResponse.rewrite(new URL(fichero, req.url));
     res.headers.set("Vary", "Accept-Language, Cookie");
     res.headers.set("Cache-Control", "private, max-age=0, must-revalidate");

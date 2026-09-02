@@ -1,0 +1,201 @@
+{
+  "_comentario": "Traducción del NOMBRE de cada plato, por id de data/menu.json. El nombre real (el que ya está en menu.json) es SIEMPRE el principal, en todos los idiomas: esto solo añade una línea secundaria, más pequeña, para que el cliente entienda qué es sin dejar de poder señalar y pedir por el nombre real. Si un idioma no aparece para un plato, es a propósito: no hay traducción buena (raxo, zorza...) y se deja sin segunda línea -la descripción, ya traducida por lib/traducir.ts, es la que explica qué es-.",
+  "navajas": {
+    "en": "Razor clams", "pt": "Longueirões", "fr": "Couteaux de mer", "de": "Schwertmuscheln",
+    "it": "Cannolicchi", "ca": "Navalles", "eu": "Nabaja-muskuiluak", "nl": "Scheermesjes",
+    "pl": "Skorupiaki nożenki", "cs": "Břitváči", "hu": "Kardhalkagyló", "ko": "맛조개",
+    "ja": "マテ貝", "zh": "竹蛏", "ru": "Морские черенки", "ro": "Scoici-briceag"
+  },
+  "mejillones": {
+    "en": "Steamed mussels", "pt": "Mexilhões ao vapor", "fr": "Moules à la vapeur", "de": "Gedämpfte Muscheln",
+    "it": "Cozze al vapore", "ca": "Musclos al vapor", "eu": "Muskuilu lurrunetan", "nl": "Gestoomde mosselen",
+    "pl": "Małże gotowane na parze", "cs": "Mušle vařené v páře", "hu": "Gőzölt kagyló", "ko": "홍합찜",
+    "ja": "ムール貝の酒蒸し", "zh": "清蒸青口", "ru": "Мидии на пару", "ro": "Midii la abur"
+  },
+  "ensalada-mixta": {
+    "en": "Mixed salad", "pt": "Salada mista", "fr": "Salade mixte", "de": "Gemischter Salat",
+    "it": "Insalata mista", "ca": "Amanida mixta", "eu": "Entsalada mistoa", "nl": "Gemengde salade",
+    "pl": "Sałatka mieszana", "cs": "Míchaný salát", "hu": "Vegyes saláta", "ko": "모둠 샐러드",
+    "ja": "ミックスサラダ", "zh": "什锦沙拉", "ru": "Смешанный салат", "ro": "Salată mixtă"
+  },
+  "ensalada-atun": {
+    "en": "Tuna and egg salad", "pt": "Salada de atum com ovo", "fr": "Salade de thon et œuf dur", "de": "Thunfischsalat mit Ei",
+    "it": "Insalata di tonno e uovo", "ca": "Amanida de tonyina i ou dur", "eu": "Atun eta arrautza entsalada", "nl": "Tonijnsalade met ei",
+    "pl": "Sałatka z tuńczykiem i jajkiem", "cs": "Salát s tuňákem a vejcem", "hu": "Tonhalsaláta tojással", "ko": "참치 계란 샐러드",
+    "ja": "ツナと卵のサラダ", "zh": "金枪鱼鸡蛋沙拉", "ru": "Салат с тунцом и яйцом", "ro": "Salată cu ton și ou"
+  },
+  "chorizos-vino": {
+    "en": "Chorizo in white wine", "pt": "Chouriço ao vinho branco", "fr": "Chorizo au vin blanc", "de": "Chorizo in Weißwein",
+    "it": "Chorizo al vino bianco", "ca": "Xoriço al vi blanc", "eu": "Txorizoa ardo zurian", "nl": "Chorizo in witte wijn",
+    "pl": "Chorizo w białym winie", "cs": "Chorizo na bílém víně", "hu": "Chorizo fehérborban", "ko": "화이트와인 초리조",
+    "ja": "白ワイン煮チョリソー", "zh": "白葡萄酒香肠", "ru": "Чоризо в белом вине", "ro": "Chorizo în vin alb"
+  },
+  "croquetas": {
+    "en": "Croquettes", "pt": "Croquetes", "fr": "Croquettes", "de": "Kroketten",
+    "it": "Crocchette", "ca": "Croquetes", "eu": "Kroketak", "nl": "Kroketten",
+    "pl": "Krokiety", "cs": "Krokety", "hu": "Krokett", "ko": "고로케",
+    "ja": "コロッケ", "zh": "炸肉丸", "ru": "Крокеты", "ro": "Crochete"
+  },
+  "camembert": {
+    "en": "Fried camembert with cranberries", "pt": "Camembert frito com arandos", "fr": "Camembert frit aux airelles", "de": "Gebackener Camembert mit Preiselbeeren",
+    "it": "Camembert fritto con mirtilli rossi", "ca": "Camembert fregit amb nabius", "eu": "Camembert frijitua arandanoekin", "nl": "Gefrituurde camembert met cranberry's",
+    "pl": "Smażony camembert z żurawiną", "cs": "Smažený camembert s brusinkami", "hu": "Sült camembert vörösáfonyával", "ko": "튀긴 카망베르와 크랜베리",
+    "ja": "カマンベールフライ クランベリー添え", "zh": "炸卡门贝尔奶酪配蔓越莓", "ru": "Жареный камамбер с клюквой", "ro": "Camembert prăjit cu merișoare"
+  },
+  "patatas-bravas": {
+    "en": "Spicy potatoes", "pt": "Batatas bravas", "fr": "Pommes de terre pimentées", "de": "Scharfe Kartoffeln",
+    "it": "Patate piccanti", "ca": "Patates braves", "eu": "Patata bravak", "nl": "Pittige aardappelen",
+    "pl": "Pikantne ziemniaki", "cs": "Pikantní brambory", "hu": "Fűszeres burgonya", "ko": "매운 감자 브라바스",
+    "ja": "スパイシーポテト", "zh": "香辣土豆", "ru": "Острый картофель по-испански", "ro": "Cartofi picanți"
+  },
+  "gambones-ajillo": {
+    "en": "Prawns in garlic", "pt": "Camarões ao alho", "fr": "Gambas à l'ail", "de": "Garnelen in Knoblauchöl",
+    "it": "Gamberoni all'aglio", "ca": "Gambes a l'all", "eu": "Otarrainxkak berakatzetan", "nl": "Garnalen in knoflookolie",
+    "pl": "Krewetki w czosnku", "cs": "Krevety na česneku", "hu": "Fokhagymás rákok", "ko": "마늘 새우",
+    "ja": "海老のガーリック炒め", "zh": "蒜香大虾", "ru": "Креветки в чесноке", "ro": "Creveți cu usturoi"
+  },
+  "gambones-plancha": {
+    "en": "Grilled prawns", "pt": "Camarões grelhados", "fr": "Gambas grillées", "de": "Gegrillte Garnelen",
+    "it": "Gamberoni alla griglia", "ca": "Gambes a la planxa", "eu": "Otarrainxkak plantxan", "nl": "Gegrilde garnalen",
+    "pl": "Krewetki z grilla", "cs": "Grilované krevety", "hu": "Grillezett rák", "ko": "그릴 새우",
+    "ja": "海老の鉄板焼き", "zh": "铁板大虾", "ru": "Креветки на гриле", "ro": "Creveți la grătar"
+  },
+  "tortilla": {
+    "en": "Spanish potato omelette", "pt": "Tortilha de batata", "fr": "Omelette espagnole", "de": "Spanisches Kartoffelomelett",
+    "it": "Frittata di patate", "ca": "Truita de patates", "eu": "Patata tortilla", "nl": "Spaanse aardappelomelet",
+    "pl": "Hiszpański omlet ziemniaczany", "cs": "Španělská bramborová omeleta", "hu": "Spanyol krumplis omlett", "ko": "스페인식 감자 오믈렛",
+    "ja": "スペイン風ポテトオムレツ", "zh": "西班牙土豆蛋饼", "ru": "Испанский омлет с картофелем", "ro": "Omletă spaniolă cu cartofi"
+  },
+  "zamburinas": {
+    "en": "Zamburiñas (small Galician scallops)", "pt": "Zamburiñas (vieiras pequenas)", "fr": "Zamburiñas (petites coquilles Saint-Jacques)", "de": "Zamburiñas (kleine Jakobsmuscheln)",
+    "it": "Zamburiñas (piccole capesante)", "ca": "Zamburiñas (petxines petites)", "ko": "잠부리냐스 (작은 가리비)",
+    "ja": "サンブリーニャス（小さなホタテ）", "zh": "小扇贝（加利西亚特色）", "ru": "Замбуриньяс (мелкие галисийские гребешки)"
+  },
+  "caldo-gallego": {
+    "en": "Galician broth", "pt": "Caldo galego", "fr": "Bouillon galicien", "de": "Galicische Brühe",
+    "it": "Brodo galiziano", "ca": "Caldo gallec", "ko": "갈리시아 수프",
+    "ja": "ガリシア風スープ", "zh": "加利西亚浓汤", "ru": "Галисийский суп"
+  },
+  "pulpo": {
+    "en": "Galician-style octopus", "pt": "Polvo à galega", "fr": "Poulpe à la galicienne", "de": "Oktopus auf galicische Art",
+    "it": "Polpo alla galiziana", "ca": "Pop a la gallega", "eu": "Olagarroa gaztela erara", "nl": "Octopus op Galicische wijze",
+    "pl": "Ośmiornica po galicyjsku", "cs": "Chobotnice po galicijsku", "hu": "Polip galíciai módra", "ko": "갈리시아식 문어 요리",
+    "ja": "ガリシア風タコ料理", "zh": "加利西亚风味章鱼", "ru": "Осьминог по-галисийски", "ro": "Caracatiță galiciană"
+  },
+  "arroz-negro": {
+    "en": "Black rice (squid ink)", "pt": "Arroz negro (tinta de choco)", "fr": "Riz noir (encre de seiche)", "de": "Schwarzer Reis (Tintenfisch)",
+    "it": "Riso nero (nero di seppia)", "ca": "Arròs negre", "eu": "Arroz beltza", "nl": "Zwarte rijst (inktvisinkt)",
+    "pl": "Czarny ryż (atrament z kałamarnicy)", "cs": "Černá rýže (sépiový inkoust)", "hu": "Fekete rizs (tintahal tintával)", "ko": "먹물 리조또(검은 쌀)",
+    "ja": "イカ墨の黒いお米", "zh": "墨鱼汁黑米饭", "ru": "Чёрный рис с чернилами каракатицы", "ro": "Orez negru cu cerneală de sepie"
+  },
+  "paella-marisco": {
+    "en": "Seafood paella", "pt": "Paelha de marisco", "fr": "Paella aux fruits de mer", "de": "Meeresfrüchte-Paella",
+    "it": "Paella di mare", "ca": "Paella de marisc", "eu": "Itsaskien paella", "nl": "Paella met zeevruchten",
+    "pl": "Paella z owocami morza", "cs": "Paella s mořskými plody", "hu": "Tenger gyümölcsei paella", "ko": "해산물 빠에야",
+    "ja": "シーフードパエリア", "zh": "海鲜饭", "ru": "Паэлья с морепродуктами", "ro": "Paella cu fructe de mare"
+  },
+  "paella-mixta": {
+    "en": "Mixed paella", "pt": "Paelha mista", "fr": "Paella mixte", "de": "Gemischte Paella",
+    "it": "Paella mista", "ca": "Paella mixta", "eu": "Paella mistoa", "nl": "Gemengde paella",
+    "pl": "Paella mieszana", "cs": "Míchaná paella", "hu": "Vegyes paella", "ko": "믹스 빠에야",
+    "ja": "ミックスパエリア", "zh": "什锦饭", "ru": "Смешанная паэлья", "ro": "Paella mixtă"
+  },
+  "paella-verduras": {
+    "en": "Vegetable paella", "pt": "Paelha de legumes", "fr": "Paella aux légumes", "de": "Gemüse-Paella",
+    "it": "Paella di verdure", "ca": "Paella de verdures", "eu": "Barazki paella", "nl": "Groentepaella",
+    "pl": "Paella warzywna", "cs": "Zeleninová paella", "hu": "Zöldséges paella", "ko": "채소 빠에야",
+    "ja": "野菜パエリア", "zh": "蔬菜饭", "ru": "Овощная паэлья", "ro": "Paella cu legume"
+  },
+  "arroz-senoret": {
+    "en": "\"Señoret\" rice (peeled seafood)", "pt": "Arroz do senhorito (marisco descascado)", "fr": "Riz du \"señoret\" (fruits de mer décortiqués)", "de": "\"Señoret\"-Reis (geschälte Meeresfrüchte)",
+    "it": "Riso \"señoret\" (frutti di mare sgusciati)", "ca": "Arròs del senyoret", "ko": "세뇨레트 라이스(껍질 벗긴 해산물)",
+    "ja": "セニョレット風お米（殻なしシーフード）", "zh": "去壳海鲜饭"
+  },
+  "arroz-caldoso": {
+    "en": "Brothy seafood rice", "pt": "Arroz caldoso de marisco", "fr": "Riz en bouillon aux fruits de mer", "de": "Suppiger Meeresfrüchte-Reis",
+    "it": "Riso brodoso ai frutti di mare", "ca": "Arròs caldós de marisc", "eu": "Itsaski arroz zopatsua", "nl": "Rijst met bouillon en zeevruchten",
+    "pl": "Zupa ryżowa z owocami morza", "cs": "Rýže na vývaru s mořskými plody", "hu": "Leveses tenger gyümölcsei rizs", "ko": "해산물 죽 스타일 라이스",
+    "ja": "シーフード出汁の汁物ライス", "zh": "海鲜汤饭", "ru": "Рис с морепродуктами в бульоне", "ro": "Orez zemos cu fructe de mare"
+  },
+  "merluza": {
+    "en": "Hake, Galician style", "pt": "Pescada à galega", "fr": "Merlu à la galicienne", "de": "Seehecht auf galicische Art",
+    "it": "Nasello alla galiziana", "ca": "Lluç a la gallega", "eu": "Legatza gaztela erara", "nl": "Heek op Galicische wijze",
+    "pl": "Morszczuk po galicyjsku", "cs": "Štikozubec po galicijsku", "hu": "Tőkehal galíciai módra", "ko": "갈리시아식 대구 요리",
+    "ja": "ガリシア風メルルーサ", "zh": "加利西亚风味鳕鱼", "ru": "Хек по-галисийски", "ro": "Merluciu galician"
+  },
+  "salmon": {
+    "en": "Grilled salmon", "pt": "Salmão grelhado", "fr": "Saumon grillé", "de": "Gegrillter Lachs",
+    "it": "Salmone alla griglia", "ca": "Salmó a la planxa", "eu": "Izokina plantxan", "nl": "Gegrilde zalm",
+    "pl": "Grillowany łosoś", "cs": "Grilovaný losos", "hu": "Grillezett lazac", "ko": "그릴 연어",
+    "ja": "サーモンのグリル", "zh": "铁板三文鱼", "ru": "Лосось на гриле", "ro": "Somon la grătar"
+  },
+  "pescado-dia": {
+    "en": "Catch of the day", "pt": "Peixe do dia", "fr": "Poisson du jour", "de": "Fischgericht des Tages",
+    "it": "Pesce del giorno", "ca": "Peix del dia", "eu": "Eguneko arraina", "nl": "Vis van de dag",
+    "pl": "Ryba dnia", "cs": "Ryba dne", "hu": "A nap hala", "ko": "오늘의 생선",
+    "ja": "本日の魚料理", "zh": "今日鲜鱼", "ru": "Рыба дня", "ro": "Peștele zilei"
+  },
+  "dorada-lubina": {
+    "en": "Sea bream / sea bass, grilled", "pt": "Dourada / robalo grelhado", "fr": "Daurade / bar grillé", "de": "Dorade / Wolfsbarsch, gegrillt",
+    "it": "Orata / branzino alla griglia", "ca": "Orada / llobarro a la planxa", "eu": "Urrekoloa / lupia plantxan", "nl": "Zeebrasem / zeebaars gegrild",
+    "pl": "Dorada / labraks z grilla", "cs": "Mořan / mořčák z grilu", "hu": "Aranydurbincs / farkassügér grillen", "ko": "도미 / 농어 구이",
+    "ja": "真鯛またはスズキのグリル", "zh": "烤鲷鱼 / 烤鲈鱼", "ru": "Дорадо / морской окунь на гриле", "ro": "Doradă / lup de mare la grătar"
+  },
+  "zorza": {
+    "en": "Zorza (Galician marinated pork)", "pt": "Zorza (porco marinado galego)", "fr": "Zorza (porc mariné galicien)", "de": "Zorza (mariniertes Schweinefleisch)",
+    "it": "Zorza (maiale marinato galiziano)", "ca": "Zorza (porc marinat gallec)", "ko": "소르사 (갈리시아식 양념 돼지고기)",
+    "ja": "ソルサ（ガリシア風味付け豚肉）", "zh": "腌猪肉（加利西亚特色）", "ru": "Сорса (маринованная свинина по-галисийски)"
+  },
+  "raxo": {
+    "en": "Raxo (marinated pork loin)", "pt": "Raxo (lombo de porco marinado)", "fr": "Raxo (échine de porc marinée)", "de": "Raxo (mariniertes Schweinefilet)",
+    "it": "Raxo (lonza di maiale marinata)", "ca": "Raxo (llom de porc marinat)", "ko": "라쇼 (양념 돼지 등심)",
+    "ja": "ラショ（味付け豚ロース）", "zh": "腌猪里脊（加利西亚特色）", "ru": "Рашо (маринованная свиная корейка)"
+  },
+  "secreto": {
+    "en": "Pork \"secreto\" cut", "pt": "Secreto de porco", "fr": "Secreto de porc", "de": "Secreto vom Schwein",
+    "it": "Secreto di maiale", "ca": "Secret de porc", "eu": "Txerri sekretua", "nl": "Varkenssecreto",
+    "pl": "Sekret wieprzowy", "cs": "Vepřové \"secreto\"", "hu": "Sertés \"secreto\"", "ko": "포크 세크레토",
+    "ja": "豚肩ロース希少部位", "zh": "西班牙猪颈肉", "ru": "Свиной секрето", "ro": "Secreto de porc"
+  },
+  "milanesa": {
+    "en": "Chicken milanese", "pt": "Milanesa de frango", "fr": "Escalope milanaise de poulet", "de": "Hühner-Schnitzel Mailänder Art",
+    "it": "Milanese di pollo", "ca": "Milanesa de pollastre", "eu": "Oilasko milanesa", "nl": "Kipschnitzel milanese",
+    "pl": "Kotlet z kurczaka po mediolańsku", "cs": "Kuřecí milánský řízek", "hu": "Milánói csirkeszelet", "ko": "치킨 밀라네사",
+    "ja": "チキンミラネーゼ", "zh": "米兰式炸鸡排", "ru": "Куриное филе по-милански", "ro": "Milaneza de pui"
+  },
+  "churrasco-cerdo": {
+    "en": "Grilled pork churrasco", "pt": "Churrasco de porco", "fr": "Churrasco de porc grillé", "de": "Schweine-Churrasco vom Grill",
+    "it": "Churrasco di maiale", "ca": "Xurrasco de porc", "eu": "Txerri churrasco", "nl": "Varkenschurrasco",
+    "pl": "Churrasco wieprzowe z grilla", "cs": "Vepřové churrasco z grilu", "hu": "Grillezett sertés churrasco", "ko": "포크 추라스코",
+    "ja": "豚肉のチュラスコ", "zh": "烤猪肉串（巴西烤肉）", "ru": "Свиное чураско на гриле", "ro": "Churrasco de porc la grătar"
+  },
+  "churrasco-ternera": {
+    "en": "Grilled beef churrasco", "pt": "Churrasco de vitela", "fr": "Churrasco de bœuf grillé", "de": "Rinder-Churrasco vom Grill",
+    "it": "Churrasco di manzo", "ca": "Xurrasco de vedella", "eu": "Behi churrasco", "nl": "Runderchurrasco",
+    "pl": "Churrasco wołowe z grilla", "cs": "Hovězí churrasco z grilu", "hu": "Grillezett marha churrasco", "ko": "비프 추라스코",
+    "ja": "牛肉のチュラスコ", "zh": "烤牛肉串（巴西烤肉）", "ru": "Говяжье чураско на гриле", "ro": "Churrasco de vită la grătar"
+  },
+  "jamon-asado": {
+    "en": "Roast ham", "pt": "Presunto assado", "fr": "Jambon rôti", "de": "Gebratener Schinken",
+    "it": "Prosciutto arrosto", "ca": "Pernil rostit", "eu": "Urdaiazpiko errea", "nl": "Gebraden ham",
+    "pl": "Pieczona szynka", "cs": "Pečená šunka", "hu": "Sült sonka", "ko": "구운 햄",
+    "ja": "ローストハム", "zh": "烤火腿", "ru": "Жареная ветчина", "ro": "Șuncă la cuptor"
+  },
+  "pollo-brasa": {
+    "en": "Chargrilled chicken", "pt": "Frango na brasa", "fr": "Poulet grillé au feu de bois", "de": "Holzkohle-Grillhähnchen",
+    "it": "Pollo alla brace", "ca": "Pollastre a la brasa", "eu": "Oilasko brasan", "nl": "Kip van de houtskoolgrill",
+    "pl": "Kurczak z rusztu", "cs": "Kuře z grilu", "hu": "Faszenes grillcsirke", "ko": "숯불 치킨",
+    "ja": "炭火焼きチキン", "zh": "炭烤鸡肉", "ru": "Курица на углях", "ro": "Pui la grătar pe cărbuni"
+  },
+  "criollo": {
+    "en": "\"Criollo\" (grilled sausage & pork)", "pt": "Criollo (embutidos e porco grelhados)", "fr": "Criollo (saucisses et porc grillés)", "de": "Criollo (gegrillte Wurst und Schwein)",
+    "it": "Criollo (salsiccia e maiale alla griglia)", "ca": "Criollo (embotit i porc a la brasa)", "ko": "크리오요 (구운 소시지와 돼지고기)",
+    "ja": "クリオージョ（焼きソーセージと豚肉）", "zh": "烤香肠拼猪肉", "ru": "Криольо (жареная колбаса и свинина)"
+  },
+  "chuleton": {
+    "en": "T-bone steak", "pt": "Chuletão (bife com osso)", "fr": "Côte de bœuf", "de": "Rinder-T-Bone-Steak",
+    "it": "Fiorentina (bistecca con osso)", "ca": "Xuletó", "eu": "Txuleton", "nl": "T-bonesteak",
+    "pl": "Kotlet na kości (T-bone)", "cs": "Kotleta na kosti (T-bone)", "hu": "Bordás szelet (T-bone)", "ko": "티본 스테이크",
+    "ja": "Tボーンステーキ", "zh": "T骨牛排", "ru": "Стейк на кости (тибон)", "ro": "Antricot cu os (T-bone)"
+  }
+}

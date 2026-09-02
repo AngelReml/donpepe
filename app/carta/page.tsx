@@ -8,6 +8,7 @@ import { kvListAppend } from "@/lib/kv";
 import { menuConReactivacionAutomatica } from "@/lib/agotados";
 import type { Menu, PlatoBase } from "@/lib/types";
 import { traducirDescripciones } from "@/lib/traducir";
+import { nombreSecundario } from "@/lib/nombres-platos";
 import {
   COOKIE_IDIOMA,
   ETIQUETA_HTML,
@@ -102,6 +103,14 @@ export default async function CartaPage({
   const frases: Record<string, string> = {};
   for (const f of frasesMenu) frases[f] = traducidas.get(f) ?? f;
 
+  // Nombre real siempre como principal; esto es solo la línea secundaria,
+  // y solo cuando existe una traducción buena (data/nombres-platos.i18n.json).
+  const nombresSecundarios: Record<string, string> = {};
+  for (const p of platos) {
+    const n = nombreSecundario(p.id, idioma);
+    if (n) nombresSecundarios[p.id] = n;
+  }
+
   const mesa = searchParams?.mesa
     ? String(searchParams.mesa).replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 24)
     : "";
@@ -129,7 +138,7 @@ export default async function CartaPage({
         <SelectorIdioma actual={idioma} volver={volver} etiqueta={t.selectorIdioma} />
       </header>
 
-      <MenuView menu={menu} t={t} descripciones={descripciones} />
+      <MenuView menu={menu} t={t} descripciones={descripciones} nombresSecundarios={nombresSecundarios} />
 
       <section className="space-y-6">
         <h2 className="font-display text-2xl text-white sm:text-3xl">{t.seccionMenus}</h2>

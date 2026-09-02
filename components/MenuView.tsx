@@ -11,11 +11,14 @@ export function MenuView({
   menu,
   t,
   descripciones = {},
+  nombresSecundarios = {},
 }: {
   menu: Menu;
   t: Textos;
   /** id de plato -> descripción ya en el idioma del visitante */
   descripciones?: Record<string, string>;
+  /** id de plato -> traducción del NOMBRE (solo si existe una buena); el nombre real sigue siendo el principal */
+  nombresSecundarios?: Record<string, string>;
 }) {
   const [tab, setTab] = useState<CategoriaMenu>("entrantes");
   const [abiertos, setAbiertos] = useState<ReadonlySet<string>>(new Set());
@@ -85,9 +88,15 @@ export function MenuView({
         ) : (
           list.map((p) => {
             const abierto = abiertos.has(p.id);
+            const secundario = nombresSecundarios[p.id];
             const fila = (
               <>
-                <span className="flex-1 text-base text-carbon-50">{p.nombre}</span>
+                <span className="flex-1">
+                  <span className="block text-base text-carbon-50">{p.nombre}</span>
+                  {secundario ? (
+                    <span className="block text-xs text-carbon-400">{secundario}</span>
+                  ) : null}
+                </span>
                 {p.nota ? (
                   <span className="hidden text-xs uppercase tracking-wide text-carbon-400 sm:inline">
                     {p.nota}

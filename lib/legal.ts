@@ -14,6 +14,25 @@ import type { Idioma } from "./i18n";
 export const FALTA_DATO = "[FALTA DATO]";
 
 /**
+ * Ampliación de 7 a 18 idiomas (ver lib/i18n.ts): estos 11 NO tienen
+ * traducción legal propia todavía. Un texto legal mal traducido es peor que
+ * uno ausente, así que de momento heredan el inglés -ya redactado con
+ * cuidado, entendible en toda la UE- en vez de una traducción sin revisar
+ * por un hablante nativo. Documentado también en el README ("Idiomas —
+ * estado de las páginas legales"). Sustituir aquí en cuanto haya traducción
+ * revisada.
+ */
+const SIN_TRADUCCION_LEGAL_PROPIA = ["ca", "eu", "nl", "pl", "cs", "hu", "ko", "ja", "zh", "ru", "ro"] as const;
+
+function conFallbackIngles<T>(
+  base: Record<"es" | "gl" | "en" | "pt" | "fr" | "de" | "it", T>,
+): Record<Idioma, T> {
+  const completo = { ...base } as Record<Idioma, T>;
+  for (const idioma of SIN_TRADUCCION_LEGAL_PROPIA) completo[idioma] = base.en;
+  return completo;
+}
+
+/**
  * Datos del titular. Es un empresario individual, no una sociedad: por eso la
  * ficha identifica a la persona física y su nombre comercial, y no hay
  * "denominación social" ni número de Registro Mercantil, que no proceden.
@@ -32,7 +51,7 @@ export const TITULAR = {
 export type ClaveTitular = keyof typeof TITULAR;
 
 /** El régimen es una descripción, así que se traduce. */
-export const REGIMEN: Record<Idioma, string> = {
+export const REGIMEN: Record<Idioma, string> = conFallbackIngles({
   es: "Autónomo (empresario individual)",
   gl: "Autónomo (empresario individual)",
   en: "Self-employed sole trader",
@@ -40,9 +59,9 @@ export const REGIMEN: Record<Idioma, string> = {
   de: "Selbstständiger Einzelunternehmer",
   fr: "Travailleur indépendant (entrepreneur individuel)",
   it: "Lavoratore autonomo (imprenditore individuale)",
-};
+});
 
-export const ETIQUETAS_TITULAR: Record<Idioma, Record<ClaveTitular | "regimen", string>> = {
+export const ETIQUETAS_TITULAR: Record<Idioma, Record<ClaveTitular | "regimen", string>> = conFallbackIngles({
   es: { titular: "Titular", nombreComercial: "Nombre comercial", nif: "NIF", regimen: "Régimen", domicilio: "Domicilio", telefonos: "Teléfonos", email: "Correo electrónico" },
   gl: { titular: "Titular", nombreComercial: "Nome comercial", nif: "NIF", regimen: "Réxime", domicilio: "Domicilio", telefonos: "Teléfonos", email: "Correo electrónico" },
   en: { titular: "Owner", nombreComercial: "Trading name", nif: "Tax ID (NIF)", regimen: "Legal status", domicilio: "Address", telefonos: "Telephone", email: "Email" },
@@ -50,7 +69,7 @@ export const ETIQUETAS_TITULAR: Record<Idioma, Record<ClaveTitular | "regimen", 
   de: { titular: "Inhaber", nombreComercial: "Geschäftsbezeichnung", nif: "Steuernummer (NIF)", regimen: "Rechtsform", domicilio: "Anschrift", telefonos: "Telefon", email: "E-Mail" },
   fr: { titular: "Titulaire", nombreComercial: "Nom commercial", nif: "Numéro fiscal (NIF)", regimen: "Statut", domicilio: "Adresse", telefonos: "Téléphones", email: "Courriel" },
   it: { titular: "Titolare", nombreComercial: "Nome commerciale", nif: "Codice fiscale (NIF)", regimen: "Regime", domicilio: "Indirizzo", telefonos: "Telefoni", email: "Email" },
-};
+});
 
 export interface BloqueLegal {
   h: string;
@@ -68,7 +87,7 @@ export interface PaginaLegal {
 }
 
 /** Etiquetas de navegación y del pie, por idioma. */
-export const ENLACES_LEGALES: Record<Idioma, { aviso: string; privacidad: string; volver: string; actualizado: string }> = {
+export const ENLACES_LEGALES: Record<Idioma, { aviso: string; privacidad: string; volver: string; actualizado: string }> = conFallbackIngles({
   es: { aviso: "Aviso legal", privacidad: "Política de privacidad", volver: "Volver a la carta", actualizado: "Última actualización" },
   gl: { aviso: "Aviso legal", privacidad: "Política de privacidade", volver: "Volver á carta", actualizado: "Última actualización" },
   en: { aviso: "Legal notice", privacidad: "Privacy policy", volver: "Back to the menu", actualizado: "Last updated" },
@@ -76,9 +95,9 @@ export const ENLACES_LEGALES: Record<Idioma, { aviso: string; privacidad: string
   de: { aviso: "Impressum", privacidad: "Datenschutzerklärung", volver: "Zurück zur Speisekarte", actualizado: "Zuletzt aktualisiert" },
   fr: { aviso: "Mentions légales", privacidad: "Politique de confidentialité", volver: "Retour à la carte", actualizado: "Dernière mise à jour" },
   it: { aviso: "Note legali", privacidad: "Informativa sulla privacy", volver: "Torna al menù", actualizado: "Ultimo aggiornamento" },
-};
+});
 
-const FECHA: Record<Idioma, string> = {
+const FECHA: Record<Idioma, string> = conFallbackIngles({
   es: "25 de agosto de 2026",
   gl: "25 de agosto de 2026",
   en: "25 August 2026",
@@ -86,11 +105,11 @@ const FECHA: Record<Idioma, string> = {
   de: "25. August 2026",
   fr: "25 août 2026",
   it: "25 agosto 2026",
-};
+});
 
 /* ══════════════════════════ AVISO LEGAL ══════════════════════════ */
 
-export const AVISO_LEGAL: Record<Idioma, PaginaLegal> = {
+export const AVISO_LEGAL: Record<Idioma, PaginaLegal> = conFallbackIngles({
   es: {
     titulo: "Aviso legal",
     entradilla: "Datos identificativos del titular de este sitio web, conforme al artículo 10 de la Ley 34/2002 de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE).",
@@ -189,11 +208,11 @@ export const AVISO_LEGAL: Record<Idioma, PaginaLegal> = {
       { h: "Legge applicabile", p: ["Questo sito è regolato dalla legge spagnola. Per qualsiasi controversia saranno competenti i tribunali individuati secondo le norme applicabili."] },
     ],
   },
-};
+});
 
 /* ═══════════════════════ POLÍTICA DE PRIVACIDAD ═══════════════════════ */
 
-export const PRIVACIDAD: Record<Idioma, PaginaLegal> = {
+export const PRIVACIDAD: Record<Idioma, PaginaLegal> = conFallbackIngles({
   es: {
     titulo: "Política de privacidad",
     entradilla: "Cómo se tratan los datos que facilita al pedir una reserva, conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018 (LOPDGDD).",
@@ -299,4 +318,4 @@ export const PRIVACIDAD: Record<Idioma, PaginaLegal> = {
       { h: "Archiviazione nel browser e risorse esterne", p: ["Questo sito non usa cookie di analisi, pubblicità o tracciamento, né l'archiviazione locale del browser.", "L'unico cookie che può essere salvato è «dp_idioma», e solo se sceglie a mano una lingua nel selettore del menù: conserva il codice della lingua per 30 giorni per non chiederglielo di nuovo. È un cookie tecnico di preferenza dell'utente, esente dal consenso preventivo previsto dall'articolo 22.2 della LSSI-CE. Per questo il sito non mostra alcun banner sui cookie. Può cancellarlo dalle impostazioni del browser.", "Il sito non carica nulla da domini di terzi: i caratteri tipografici e le librerie di animazione sono serviti da questo stesso sito. Navigandolo, il suo indirizzo IP non viene comunicato ad alcuna azienda esterna."] },
     ],
   },
-};
+});
