@@ -312,6 +312,52 @@ respuesta de `accounts.locations.list`.
 6. Si dice `NO`, se marca como vista sin responder.
 7. Rate limit: 20 reseñas/hora para no spamear al dueño.
 
+### 5.4 Plan de trabajo posterior — no implementado, solo anotado
+
+Dos ideas evaluadas a partir de material de referencia de otro proyecto
+(sin copiar ni un dato suyo, solo patrones generales). Ninguna de las dos
+está construida todavía; quedan aquí como encargo futuro.
+
+**Protocolo PAS para responder reseñas negativas** (Pedir perdón, Asumir,
+Solucionar): reconocer el fallo sin excusas, asumirlo como propio y decir
+qué se va a hacer al respecto. `lib/prompts.ts:REVIEW_REPLY_SYSTEM` ya pide
+algo parecido para 1-2 estrellas ("disculparse con elegancia... nombrar un
+compromiso concreto"); formalizar el protocolo es una extensión de lo que
+ya casi se hace, no un sistema nuevo.
+
+**Regla dura, sin excepción, para cuando esto se implemente:**
+**una respuesta a una reseña negativa solo puede afirmar una acción
+correctiva que el dueño haya confirmado que es cierta.** Nada de "hemos
+cambiado de proveedor" ni "hemos reforzado la formación" si eso no ha
+pasado de verdad. Publicar una promesa falsa en nombre del dueño en su
+propia ficha de Google no es gestionar la reputación, es mentir en público
+en su nombre — y si alguien lo descubre, el daño es mayor que el de la
+reseña original. Cualquier implementación futura del protocolo PAS debe
+o bien limitarse a acciones que el sistema pueda verificar (p. ej. las que
+ya haya aplicado el propio dueño por Telegram/WhatsApp), o bien
+preguntarle primero y esperar su confirmación antes de publicar nada que
+prometa algo concreto.
+
+**Publicar novedades y fotos semanales** en la ficha de Google (Google
+Posts + fotos nuevas), para mantener la ficha activa entre reseña y
+reseña. Hoy es una tarea manual del dueño; solo tendría sentido
+automatizarla si algún día se activa de verdad la API de reseñas de
+Google (hoy en modo simulación, ver 5.1).
+
+### 5.5 Decisión de diseño para un futuro panel del dueño — no implementada
+
+Si algún día se construye un panel para que Antonio vea sus propias
+métricas (nota media, reseñas pendientes, etc.), la gramática visual a
+reutilizar -evaluada contra un dashboard de referencia de otro proyecto,
+sin copiar su paleta- es: tarjetas planas (sombra casi inexistente, tipo
+`0 1px 2px rgba(0,0,0,.04)`), borde teñido del color de marca a opacidad
+baja (10-20%) en vez de gris neutro, esquinas muy redondeadas o en
+píldora, y números grandes con interlineado mínimo (`leading-none`) y
+tracking apretado para las cifras clave. Con la paleta YA existente de Don
+Pepe (brasa/carbon/gold), no una nueva: el objetivo es que lo que vea
+Antonio en su panel se sienta de la misma familia que lo que ve el cliente
+en la carta.
+
 ## 6. Comprobaciones locales
 
 ```bash

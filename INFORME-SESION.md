@@ -26,6 +26,55 @@ https://don-pepe-original-71qg5o8g0-ivan-carbonells-projects.vercel.app
 5. Cuando tengas la carta de postres real, hay un hueco preparado
    (`Menu.postres` en `lib/types.ts`) — dime y lo conecto.
 
+---
+
+## Ronda posterior (con Telegram real ya probado)
+
+- **Bug encontrado y corregido**: un toque duplicado de botón (doble-toque,
+  o Telegram reenviando el toque) podía chocar con el cambio de estado del
+  asistente y mostrar "Esto ya no está activo" a mitad de un alta de plato.
+  No corrompía nada -la confirmación previa se sigue exigiendo siempre,
+  verificado que "Listo, hecho" solo puede aparecer tras un toque real en
+  Confirmar-, pero confundía. Corregido con deduplicación por
+  `callback_query.id` en `app/api/telegram/webhook/route.ts`.
+- Plato de prueba ("arroz con caldo marinero", creado durante la prueba
+  real) **borrado** de la carta real tras confirmarlo contigo.
+- Bloque de reseñas: "¿Qué tal ha ido?" mantiene, subtítulo cambiado a
+  "Dos líneas nos ayudan mucho." (y su adaptación natural en los 18
+  idiomas, no traducción literal) — en `/carta`, en `/local` y en el
+  cartelito imprimible.
+- README: protocolo PAS anotado como plan futuro, con la regla en negrita
+  de que ninguna respuesta puede afirmar una acción correctiva que el
+  dueño no haya confirmado que es real; y la gramática visual del futuro
+  panel de Antonio, también solo anotada, sin implementar.
+- Pendiente, no implementado ahora (se propone aparte): que el dueño pueda
+  adjuntar una foto por Telegram al dar de alta un plato. La categoría del
+  plato **ya se pregunta con botones** desde el primer toque de "Añadir
+  plato nuevo" -lo que no se ve en una conversación copiada como texto es
+  que los toques de botón no salen como mensajes, así que parece que falta
+  el paso y en realidad ya está-.
+
+### Qué revisar tú, desde el móvil, antes de fusionar a `main`
+
+1. **`/carta`**: arroces arriba del todo y destacados; en inglés (u otro
+   idioma), que los nombres de plato lleven la segunda línea pequeña
+   traducida; el aviso de horario y "comida casera gallega"; el bloque de
+   reseñas al final (las 5 estrellas hoy no llevan a ningún sitio real
+   todavía, falta la URL).
+2. **Selector de idioma**: que aparezcan los 18, y que coreano/japonés/chino
+   se vean legibles en tu móvil.
+3. **`/local`**: los Mandamientos (pizarra), la historia, el marquee de
+   reseñas de siempre, y el nuevo bloque de reseñas con el subtítulo nuevo.
+4. **Telegram**: `/plato` (alta de plato, cambio de precio, borrar) y
+   `/agotado` (activar/desactivar de un toque, con Deshacer y los botones
+   de "Vuelve mañana"/"Vuelve en 2 horas"). Prueba también un doble-toque a
+   propósito en algún botón, para confirmar que ya no da el mensaje raro.
+5. Confirma que "arroz con caldo marinero" ya no aparece en ningún sitio.
+6. Los dos datos que aún faltan de tu parte: **año de fundación** (para el
+   "Desde [FALTA DATO...]" de la carta) y **URL de reseñas de Google**
+   (para que las estrellas funcionen de verdad). Sin ellos no rompe nada,
+   pero tampoco están completos.
+
 
 Rama: `carta-home`. Ningún push a `main`, ningún despliegue a producción.
 Ficheros protegidos (`lib/orchestrator.ts`, `lib/pending.ts`, `lib/actions.ts`,

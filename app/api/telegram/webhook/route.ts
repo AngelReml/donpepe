@@ -16,6 +16,7 @@ import {
 } from "@/lib/telegram-wizard";
 import { handleOwnerMessage } from "@/lib/orchestrator";
 import { getPending } from "@/lib/pending";
+import { kvGet, kvSet } from "@/lib/kv";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -66,6 +67,20 @@ async function procesarCallback(cq: NonNullable<Awaited<ReturnType<typeof parseU
     await answerCallbackQuery(cq.id, "No autorizado.").catch(() => {});
     return;
   }
+
+  // Telegram puede reenviar el mismo toque de botón si el primer intento no
+  // le confirma rápido (o el dueño, con mala cobertura, toca dos veces). Sin
+  // esto, un doble toque hacía que el segundo viera el estado del asistente
+  // ya cambiado por el primero y respondiera "esto ya no está activo" -no
+  // corrompía nada, pero confundía-. callback_query.id es único por toque:
+  // si ya se procesó, se contesta el botón y no se hace nada más.
+  const claveToqueVisto = `telegram:cb-visto:${cq.id}`;
+  if (await kvGet<boolean>(claveToqueVisto)) {
+    await answerCallbackQuery(cq.id).catch(() => {});
+    return;
+  }
+  await kvSet(claveToqueVisto, true);
+
   // Solo quita el "reloj de carga" del botón: es cosmético. Si esta llamada
   // falla (Telegram raro, red, lo que sea) NO puede tirar abajo el resto del
   // procesamiento -confirmar o cancelar una acción real no puede depender de

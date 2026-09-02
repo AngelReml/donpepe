@@ -87,6 +87,16 @@ export async function GET(req: NextRequest) {
     color: negro,
   });
 
+  const subtitulo = "Dos líneas nos ayudan mucho.";
+  const tamSubtitulo = Math.round(pageW * 0.032);
+  page.drawText(subtitulo, {
+    x: centrar(subtitulo, sans, tamSubtitulo),
+    y: pageH - pageH * 0.14 - tamTitulo - 10,
+    size: tamSubtitulo,
+    font: sans,
+    color: gris,
+  });
+
   const qrLado = Math.round(pageW * 0.6);
   const png = await QRCode.toBuffer(destino, {
     type: "png",
