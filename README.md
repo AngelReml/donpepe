@@ -144,6 +144,24 @@ una ruta propia). El fragmento nunca llega al servidor, así que se resuelve
 en el cliente: ver `lib/anclas-heredadas.ts`, cargado desde `app/layout.tsx`.
 No borres ni vacíes ese mapa mientras esos carteles sigan en las mesas.
 
+### 3.1 URL de reseñas de Google — FALTA DATO
+
+El bloque de reseñas de `/carta` y `/local`, y el cartelito de
+`/api/qr/resenas`, usan **una única constante**: `GOOGLE_REVIEWS_URL` en
+`lib/resenas.ts`. Hoy vale el literal `[FALTA DATO: URL corta de reseñas de
+Google]` a propósito -no se construye a partir del place_id ni de ningún
+otro dato, porque eso podría no ser el enlace corto real de "escribir una
+reseña"-. Consíguela en el propio perfil de Google Business del local
+("Pedir reseñas" → copiar enlace) y sustitúyela ahí; se usa en todos los
+sitios a la vez. Hasta entonces, `/api/qr/resenas` responde 400 con un
+mensaje claro en vez de generar un cartel con un QR roto.
+
+Las cinco estrellas del bloque de reseñas son un único enlace (no cinco
+distintos) al mismo destino siempre: no hay -ni puede haber sin tocar el
+componente- ninguna lógica que mande a un sitio distinto según la
+puntuación. Es a propósito: Google prohíbe expresamente filtrar reseñas
+según si el cliente está contento o no ("review gating").
+
 ## 4. Agente de WhatsApp
 
 ### 4.1 Meta Cloud API (recomendado)
@@ -230,6 +248,24 @@ Los alérgenos no se pueden tocar desde ningún canal: ver el comentario junto
 a `PlatoBase` en `lib/types.ts` y `scripts/test-proteccion-alergenos.ts`
 (forma parte de `npm run build`: si algún día una acción pudiera tocarlos,
 el despliegue se para ahí).
+
+**Importante sobre esta protección: es de tiempo de COMPILACIÓN, no de
+tiempo de EJECUCIÓN.** `npm run build` la comprueba antes de cada despliegue
+-así que un cambio peligroso nunca llega a producción-, pero no hay ningún
+guardia que se ejecute en caliente, petición a petición, mientras el bot
+está atendiendo mensajes reales. No fue posible añadirlo sin tocar
+`lib/actions.ts`/`lib/orchestrator.ts`, que quedan fuera de alcance (ver
+condiciones de esta sesión). Si algún día se permite editar esos ficheros,
+vale la pena añadir ahí también una comprobación en caliente, como cinturón
+y tirantes.
+
+**Secreto de bypass de protección de Vercel — rotarlo antes de producción.**
+El valor de `x-vercel-protection-bypass` usado para probar el canal de
+Telegram contra el despliegue Preview se compartió en esta conversación, que
+no es un canal seguro para secretos. Rótalo en el dashboard de Vercel
+(Project Settings → Deployment Protection → Protection Bypass for
+Automation → generar uno nuevo) antes de dar esto por definitivo, y
+actualiza `VERCEL_AUTOMATION_BYPASS_SECRET` donde corresponda.
 
 ## 5. Auto-respuesta de reseñas de Google
 

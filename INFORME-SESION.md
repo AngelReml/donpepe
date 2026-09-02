@@ -107,3 +107,45 @@ atiende" según el dueño) para las 39 frases existentes. Sigue siendo
 Pendiente para una sesión futura, si se decide priorizarlo: descripciones de
 plato para los 8 idiomas restantes, traducción legal nativa de esos 11, y
 ampliar /local a 18.
+
+---
+
+## TAREA 3 — Reseñas (corrige la versión anterior)
+
+**Hecho.** Sin chupito: no había código de esa idea en el repo (la única
+coincidencia de "chupito" es un plato real del menú, "Pan, café, chupito de
+orujo", que no se toca).
+
+- `lib/resenas.ts`: única constante `GOOGLE_REVIEWS_URL`, literal
+  `[FALTA DATO: URL corta de reseñas de Google]`, documentada en el README
+  (sección 3.1) con dónde conseguirla y por qué no se construye a partir del
+  place_id.
+- `components/BloqueResenas.tsx`: título + 5 estrellas + subtítulo. Las 5
+  estrellas son **un único `<a>`** (no cinco), verificado en el HTML real:
+  imposible que apunten a sitios distintos sin cambiar el componente. Nada
+  de ventanas emergentes.
+- Añadido al final de `/carta` (verificado: aparece, con la URL de marcador
+  en el `href`) y como sección propia en `/local`, junto al marquee de
+  reseñas que ya existía ahí, con su propia clase CSS sobria
+  (`.resenasBloque`) — traducido a los 6 idiomas de `/local` vía
+  `data/portada.i18n.json` y regenerado con `generar-portada.mjs` (0
+  fragmentos que falten).
+- Textos "¿Qué tal ha ido?" / "Tu opinión ayuda mucho a un negocio pequeño."
+  añadidos a los 18 idiomas de `TEXTOS` (para `/carta`).
+- `app/api/qr/resenas/route.ts`: cartelito A5/A6, reutiliza `sinFragmento`
+  de `lib/qr.ts` sin tocarlo. Probado: con el `GOOGLE_REVIEWS_URL` todavía
+  sin rellenar, responde 400 con mensaje claro en vez de generar un QR
+  roto -exactamente lo que se pedía-.
+
+---
+
+## TAREA 6 — Documentación pendiente
+
+**Hecho**, ambas notas en el README (sección "3.1" y junto a la nota de
+alérgenos existente):
+- La protección de alérgenos es de tiempo de **compilación**
+  (`npm run build`), no de tiempo de ejecución -no fue posible sin tocar
+  `lib/actions.ts`/`lib/orchestrator.ts`-.
+- El secreto de bypass de protección de Vercel se compartió en esta
+  conversación (canal no seguro): anotado que hay que rotarlo antes de
+  producción, con los pasos exactos.

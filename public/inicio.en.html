@@ -403,6 +403,13 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
   #stage .grain{animation:none}
   html{scroll-behavior:auto}
 }
+/* Bloque de reseñas: sobrio, no es un banner. Las 5 estrellas son UN solo
+   enlace -nunca cinco enlaces distintos- al mismo sitio siempre. */
+.resenasBloque{max-width:420px;margin:56px auto 0;padding:28px 20px;text-align:center;border-top:1px solid var(--glass-line)}
+.resenasTitulo{font-family:var(--serif);font-size:20px;color:var(--cream);margin:0 0 10px}
+.resenasEstrellas{display:inline-block;font-size:26px;letter-spacing:4px;color:var(--gold);text-decoration:none;line-height:1}
+.resenasEstrellas:hover{opacity:.85}
+.resenasSub{margin:10px 0 0;font-family:var(--sans);font-size:12px;color:var(--cream-dim)}
 </style>
 </head>
 <body>
@@ -526,6 +533,12 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
         <div class="mqItem"><span class="star">★</span><span class="q">“Raxo y productos de la región, como en casa.”</span><span class="a">Google review</span></div>
       </div>
     </div>
+
+    <section class="resenasBloque" aria-label="How was it?">
+      <p class="resenasTitulo">How was it?</p>
+      <a class="resenasEstrellas" href="[FALTA DATO: URL corta de reseñas de Google]" target="_blank" rel="noopener" aria-label="How was it?">★★★★★</a>
+      <p class="resenasSub">Your opinion helps a small business a lot.</p>
+    </section>
   </section>
 
   <!-- CARTA -->

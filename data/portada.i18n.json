@@ -927,5 +927,21 @@
     "de": "<b>Mobiltelefon</b>",
     "fr": "<b>Portable</b>",
     "it": "<b>Cellulare</b>"
+  },
+  "¿Qué tal ha ido?": {
+    "gl": "Que tal foi?",
+    "en": "How was it?",
+    "pt": "Como correu?",
+    "de": "Wie war's?",
+    "fr": "Comment était-ce ?",
+    "it": "Com'è andata?"
+  },
+  "Tu opinión ayuda mucho a un negocio pequeño.": {
+    "gl": "A túa opinión axuda moito a un negocio pequeno.",
+    "en": "Your opinion helps a small business a lot.",
+    "pt": "A sua opinião ajuda muito um negócio pequeno.",
+    "de": "Ihre Meinung hilft einem kleinen Betrieb sehr.",
+    "fr": "Votre avis aide beaucoup un petit commerce.",
+    "it": "La tua opinione aiuta molto una piccola attività."
   }
 }

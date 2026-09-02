@@ -3,6 +3,7 @@ import { cookies, headers } from "next/headers";
 import { MenuView, MenusView } from "@/components/MenuView";
 import { SelectorIdioma } from "@/components/SelectorIdioma";
 import { BarraAcciones } from "@/components/BarraAcciones";
+import { BloqueResenas } from "@/components/BloqueResenas";
 import { ENLACES_LEGALES } from "@/lib/legal";
 import { kvListAppend } from "@/lib/kv";
 import { menuConReactivacionAutomatica } from "@/lib/agotados";
@@ -144,6 +145,8 @@ export default async function CartaPage({
         <h2 className="font-display text-2xl text-white sm:text-3xl">{t.seccionMenus}</h2>
         <MenusView menus={menu.menus} t={t} frases={frases} />
       </section>
+
+      <BloqueResenas titulo={t.resenasTitulo} subtitulo={t.resenasSubtitulo} />
 
       <footer className="space-y-3 border-t border-carbon-800 pt-6 text-xs text-carbon-500">
         <p>{t.pieCartaViva}</p>

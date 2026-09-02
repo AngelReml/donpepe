@@ -81,6 +81,9 @@ export interface Textos {
   whatsappMensaje: string;
   /** Enlace secundario, al pie de la carta, hacia el escaparate del local (/local). */
   descubreLocal: string;
+  /** Bloque de reseñas: título ("¿Qué tal ha ido?"), sobrio, sin condicionar nada. */
+  resenasTitulo: string;
+  resenasSubtitulo: string;
 }
 
 export const TEXTOS: Record<Idioma, Textos> = {
@@ -106,6 +109,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Reservar",
     whatsappMensaje: "Hola, querría reservar mesa.",
     descubreLocal: "Descubre el local",
+    resenasTitulo: "¿Qué tal ha ido?",
+    resenasSubtitulo: "Tu opinión ayuda mucho a un negocio pequeño.",
   },
   gl: {
     marca: "Don Pepe Original · Padrón",
@@ -129,6 +134,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Reservar",
     whatsappMensaje: "Ola, querería reservar mesa.",
     descubreLocal: "Descobre o local",
+    resenasTitulo: "Que tal foi?",
+    resenasSubtitulo: "A túa opinión axuda moito a un negocio pequeno.",
   },
   en: {
     marca: "Don Pepe Original · Padrón",
@@ -152,6 +159,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Book a table",
     whatsappMensaje: "Hi, I'd like to book a table.",
     descubreLocal: "Discover the place",
+    resenasTitulo: "How was it?",
+    resenasSubtitulo: "Your opinion helps a small business a lot.",
   },
   pt: {
     marca: "Don Pepe Original · Padrón",
@@ -175,6 +184,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Reservar",
     whatsappMensaje: "Olá, gostaria de reservar mesa.",
     descubreLocal: "Descubra o local",
+    resenasTitulo: "Como correu?",
+    resenasSubtitulo: "A sua opinião ajuda muito um negócio pequeno.",
   },
   de: {
     marca: "Don Pepe Original · Padrón",
@@ -198,6 +209,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Reservieren",
     whatsappMensaje: "Hallo, ich möchte gern einen Tisch reservieren.",
     descubreLocal: "Lokal entdecken",
+    resenasTitulo: "Wie war's?",
+    resenasSubtitulo: "Ihre Meinung hilft einem kleinen Betrieb sehr.",
   },
   fr: {
     marca: "Don Pepe Original · Padrón",
@@ -221,6 +234,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Réserver",
     whatsappMensaje: "Bonjour, je voudrais réserver une table.",
     descubreLocal: "Découvrez le lieu",
+    resenasTitulo: "Comment était-ce ?",
+    resenasSubtitulo: "Votre avis aide beaucoup un petit commerce.",
   },
   it: {
     marca: "Don Pepe Original · Padrón",
@@ -244,6 +259,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Prenota",
     whatsappMensaje: "Ciao, vorrei prenotare un tavolo.",
     descubreLocal: "Scopri il locale",
+    resenasTitulo: "Com'è andata?",
+    resenasSubtitulo: "La tua opinione aiuta molto una piccola attività.",
   },
   ca: {
     marca: "Don Pepe Original · Padrón",
@@ -267,6 +284,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Reservar",
     whatsappMensaje: "Hola, voldria reservar taula.",
     descubreLocal: "Descobreix el local",
+    resenasTitulo: "Què tal ha anat?",
+    resenasSubtitulo: "La teva opinió ajuda molt un negoci petit.",
   },
   eu: {
     marca: "Don Pepe Original · Padrón",
@@ -290,6 +309,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Erreserbatu",
     whatsappMensaje: "Kaixo, mahaia erreserbatu nahi nuke.",
     descubreLocal: "Ezagutu lokala",
+    resenasTitulo: "Zer moduz joan da?",
+    resenasSubtitulo: "Zure iritziak asko laguntzen dio negozio txiki bati.",
   },
   nl: {
     marca: "Don Pepe Original · Padrón",
@@ -313,6 +334,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Reserveren",
     whatsappMensaje: "Hallo, ik zou graag een tafel reserveren.",
     descubreLocal: "Ontdek de zaak",
+    resenasTitulo: "Hoe was het?",
+    resenasSubtitulo: "Uw mening helpt een kleine onderneming enorm.",
   },
   pl: {
     marca: "Don Pepe Original · Padrón",
@@ -336,6 +359,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Zarezerwuj",
     whatsappMensaje: "Cześć, chciałbym zarezerwować stolik.",
     descubreLocal: "Poznaj lokal",
+    resenasTitulo: "Jak było?",
+    resenasSubtitulo: "Twoja opinia bardzo pomaga małej firmie.",
   },
   cs: {
     marca: "Don Pepe Original · Padrón",
@@ -359,6 +384,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Rezervovat",
     whatsappMensaje: "Dobrý den, chtěl bych si rezervovat stůl.",
     descubreLocal: "Poznejte podnik",
+    resenasTitulo: "Jak to bylo?",
+    resenasSubtitulo: "Váš názor hodně pomůže malému podniku.",
   },
   hu: {
     marca: "Don Pepe Original · Padrón",
@@ -382,6 +409,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Asztalfoglalás",
     whatsappMensaje: "Üdvözlöm, szeretnék asztalt foglalni.",
     descubreLocal: "Ismerje meg az éttermet",
+    resenasTitulo: "Hogy sikerült?",
+    resenasSubtitulo: "A véleménye sokat segít egy kisvállalkozásnak.",
   },
   ko: {
     marca: "Don Pepe Original · Padrón",
@@ -405,6 +434,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "예약하기",
     whatsappMensaje: "안녕하세요, 테이블을 예약하고 싶습니다.",
     descubreLocal: "레스토랑 둘러보기",
+    resenasTitulo: "어떠셨나요?",
+    resenasSubtitulo: "고객님의 의견은 작은 가게에 큰 힘이 됩니다.",
   },
   ja: {
     marca: "Don Pepe Original · Padrón",
@@ -428,6 +459,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "予約する",
     whatsappMensaje: "こんにちは、テーブルを予約したいのですが。",
     descubreLocal: "お店を見る",
+    resenasTitulo: "いかがでしたか？",
+    resenasSubtitulo: "お客様のご意見は小さなお店の大きな力になります。",
   },
   zh: {
     marca: "Don Pepe Original · Padrón",
@@ -451,6 +484,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "预订",
     whatsappMensaje: "您好，我想预订一张桌子。",
     descubreLocal: "了解餐厅",
+    resenasTitulo: "感觉如何？",
+    resenasSubtitulo: "您的意见对小商家帮助很大。",
   },
   ru: {
     marca: "Don Pepe Original · Padrón",
@@ -474,6 +509,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Забронировать",
     whatsappMensaje: "Здравствуйте, хотел бы забронировать столик.",
     descubreLocal: "Узнать о заведении",
+    resenasTitulo: "Как вам у нас?",
+    resenasSubtitulo: "Ваше мнение очень помогает небольшому бизнесу.",
   },
   ro: {
     marca: "Don Pepe Original · Padrón",
@@ -497,6 +534,8 @@ export const TEXTOS: Record<Idioma, Textos> = {
     reservar: "Rezervă",
     whatsappMensaje: "Bună ziua, aș dori să rezerv o masă.",
     descubreLocal: "Descoperă localul",
+    resenasTitulo: "Cum a fost?",
+    resenasSubtitulo: "Părerea dumneavoastră ajută mult o afacere mică.",
   },
 };
 
