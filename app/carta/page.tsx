@@ -162,7 +162,7 @@ export default async function CartaPage({
         <MenusView menus={menu.menus} t={t} frases={frases} />
       </section>
 
-      <BloqueResenas titulo={t.resenasTitulo} subtitulo={t.resenasSubtitulo} />
+      <BloqueResenas titulo={t.resenasTitulo} subtitulo={t.resenasSubtitulo} etiquetaGoogle={t.resenasGoogle} />
 
       <footer className="space-y-3 border-t border-carbon-800 pt-6 text-xs text-carbon-500">
         <p>{t.pieCartaViva}</p>
