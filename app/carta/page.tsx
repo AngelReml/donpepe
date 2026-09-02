@@ -4,6 +4,7 @@ import { MenuView, MenusView } from "@/components/MenuView";
 import { SelectorIdioma } from "@/components/SelectorIdioma";
 import { BarraAcciones } from "@/components/BarraAcciones";
 import { BloqueResenas } from "@/components/BloqueResenas";
+import { SeccionArroces } from "@/components/SeccionArroces";
 import { ENLACES_LEGALES } from "@/lib/legal";
 import { kvListAppend } from "@/lib/kv";
 import { menuConReactivacionAutomatica } from "@/lib/agotados";
@@ -135,9 +136,24 @@ export default async function CartaPage({
           {mesa ? (
             <p className="text-sm text-carbon-300">{conMesa(t.mesaBienvenida, mesa)}</p>
           ) : null}
+          <p className="text-sm text-carbon-300">
+            {t.comidaCaseraGallega}
+            {/* NO INVENTAR el año: se deja el literal tal cual hasta tener el dato real. */}
+            {" · Desde [FALTA DATO: año exacto de fundación]"}
+          </p>
+          <p className="inline-block rounded-full border border-brasa-700/60 bg-brasa-900/30 px-3 py-1 text-xs font-medium text-brasa-200">
+            {t.horarioAviso}
+          </p>
         </div>
         <SelectorIdioma actual={idioma} volver={volver} etiqueta={t.selectorIdioma} />
       </header>
+
+      <SeccionArroces
+        arroces={menu.arroces}
+        t={t}
+        descripciones={descripciones}
+        nombresSecundarios={nombresSecundarios}
+      />
 
       <MenuView menu={menu} t={t} descripciones={descripciones} nombresSecundarios={nombresSecundarios} />
 

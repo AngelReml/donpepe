@@ -149,3 +149,48 @@ alérgenos existente):
 - El secreto de bypass de protección de Vercel se compartió en esta
   conversación (canal no seguro): anotado que hay que rotarlo antes de
   producción, con los pasos exactos.
+
+---
+
+## TAREA 4 — Arroces y horario
+
+**Hecho.**
+- `components/SeccionArroces.tsx`: los arroces en su propia sección
+  destacada (borde y etiqueta "Especialidad de la casa"), arriba del todo en
+  `/carta`, antes de las pestañas normales -verificado por posición real en
+  el HTML (byte 12096 vs. 14787 de las pestañas)-. Siguen apareciendo
+  también dentro de su pestaña normal, esto es un adelanto, no un reemplazo.
+- "Cocina abierta desde las 19:00, todos los días.": traducido a los 18
+  idiomas (`TEXTOS.horarioAviso`) y verificado en `/carta`; y en `/local`,
+  traducido a los 6 idiomas estáticos vía `portada.i18n.json`, verificado en
+  el HTML generado.
+- "Comida casera gallega": mismo patrón, en `/carta` y `/local`.
+- "Desde [FALTA DATO: año exacto de fundación]": literal EXACTO, sin
+  inventar nada, verificado que aparece tal cual en el HTML servido.
+- Postres: `lib/types.ts` -no está en la lista de ficheros prohibidos- gana
+  un campo `postres?: PlatoBase[]` **opcional**, a propósito NO añadido a
+  `CategoriaMenu`/`CATEGORIAS` (eso arrastraría cambios a `ActionSchema` y al
+  asistente de Telegram). Sin contenido, no aparece ninguna pestaña ni botón
+  en ningún sitio: el hueco existe en el tipo, invisible hasta que haya
+  datos reales.
+
+---
+
+## TAREA 5 — Los Mandamientos del Don Pepe
+
+**Hecho**, en `/local`, estética de tiza sobre pizarra (CSS puro, sin foto
+de fondo: gradiente + sombra de texto, tal como se pedía si no se usa una
+foto real). Verificado con una captura de pantalla real (Chrome, vía
+Playwright) tras corregir un solape con el logotipo del preloader -no era un
+bug del bloque nuevo, solo que la captura se hizo antes de que el preloader
+terminara de ocultarse-.
+
+**Excluidos del sistema de 18 idiomas de la única forma que tenía sentido
+sin construir un mecanismo nuevo**: el bloque no tiene ninguna clave en
+`data/portada.i18n.json`, así que `generar-portada.mjs` -que solo traduce lo
+que tiene clave- lo copia tal cual, en castellano, a las seis versiones
+generadas. Verificado explícitamente: `public/inicio.en.html` contiene
+"Pecar, se puede." en español, con `lang="es"` en la propia sección para que
+un lector de pantalla no lo pronuncie como si fuera inglés. No lo he tocado
+en ningún idioma; la adaptación a mano a EN/PT/FR/DE/IT queda pendiente,
+como se pidió.

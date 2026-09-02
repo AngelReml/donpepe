@@ -410,6 +410,24 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
 .resenasEstrellas{display:inline-block;font-size:26px;letter-spacing:4px;color:var(--gold);text-decoration:none;line-height:1}
 .resenasEstrellas:hover{opacity:.85}
 .resenasSub{margin:10px 0 0;font-family:var(--sans);font-size:12px;color:var(--cream-dim)}
+/* Mandamientos: tiza sobre pizarra. SOLO CSS -sin foto de fondo-, para no
+   depender de un recurso que no tenemos: el efecto de textura viene del
+   degradado y del ligero desenfoque del texto, no de una imagen. Este
+   bloque queda EXCLUIDO a propósito del sistema de 18 idiomas: no tiene
+   clave en data/portada.i18n.json, así que generar-portada.mjs lo copia tal
+   cual, en castellano, a las seis versiones generadas. No traducirlo aquí. */
+.mandamientos{margin:64px auto 0;max-width:640px;padding:40px 28px 34px;border-radius:6px;
+  background:radial-gradient(120% 140% at 50% 0%,#26302b 0%,#1b2420 55%,#141a17 100%);
+  box-shadow:inset 0 0 40px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.35);border:10px solid #2a1f16}
+.mandamientos h2{margin:0 0 22px;text-align:center;font-family:var(--serif);font-weight:600;
+  font-size:26px;color:#f4f1e8;text-shadow:0 0 2px rgba(244,241,232,.55),0 0 10px rgba(244,241,232,.12);
+  letter-spacing:.02em}
+.mandamientos ol{margin:0;padding:0 0 0 22px;list-style:decimal;color:#eceae2;
+  font-family:'Segoe Print','Bradley Hand',var(--serif),cursive;font-size:16px;line-height:1.95;
+  text-shadow:0 0 1px rgba(236,234,226,.5),0 0 6px rgba(236,234,226,.08)}
+.mandamientos ol li{margin:0 0 2px}
+.mandamientos .cierre{margin:20px 0 0;text-align:center;font-family:'Segoe Print','Bradley Hand',var(--serif),cursive;
+  font-size:17px;color:var(--gold);text-shadow:0 0 6px rgba(212,175,55,.25)}
 </style>
 </head>
 <body>
@@ -491,6 +509,7 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
       <a class="btn-gold" href="#carta">See the menu</a>
       <a class="btn-solid" href="#" data-open-res>Book a table</a>
     </div>
+    <p style="margin-top:14px;font-family:var(--sans);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)">Home-style Galician cooking · Kitchen open from 7:00 pm, every day</p>
   </div>
 
   <div id="hint"><span>Scroll to come in</span><div class="line"></div></div>
@@ -533,12 +552,34 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
         <div class="mqItem"><span class="star">★</span><span class="q">“Raxo y productos de la región, como en casa.”</span><span class="a">Google review</span></div>
       </div>
     </div>
+  </section>
 
-    <section class="resenasBloque" aria-label="How was it?">
-      <p class="resenasTitulo">How was it?</p>
-      <a class="resenasEstrellas" href="[FALTA DATO: URL corta de reseñas de Google]" target="_blank" rel="noopener" aria-label="How was it?">★★★★★</a>
-      <p class="resenasSub">Your opinion helps a small business a lot.</p>
-    </section>
+  <!-- Fuera de #historia a propósito: ahí dentro el logotipo "DP" de fondo es
+       absoluto y ocupa toda la sección, y se solapaba con este contenido. -->
+  <section class="resenasBloque" aria-label="How was it?">
+    <p class="resenasTitulo">How was it?</p>
+    <a class="resenasEstrellas" href="[FALTA DATO: URL corta de reseñas de Google]" target="_blank" rel="noopener" aria-label="How was it?">★★★★★</a>
+    <p class="resenasSub">Your opinion helps a small business a lot.</p>
+  </section>
+
+  <!-- Mandamientos del Don Pepe: SIEMPRE en castellano, excluidos a propósito
+       del sistema de 18 idiomas (ver nota junto al CSS .mandamientos). Se
+       adaptarán a mano, más adelante, solo a EN/PT/FR/DE/IT. -->
+  <section class="mandamientos" lang="es" aria-label="Mandamientos del Don Pepe">
+    <h2>Mandamientos del Don Pepe</h2>
+    <ol>
+      <li>Pecar, se puede.</li>
+      <li>Comerás, sobre todas las cosas.</li>
+      <li>No beberás, en vano.</li>
+      <li>Santificarás las fiestas.</li>
+      <li>Honrarás tus antojos.</li>
+      <li>No te arrepentirás.</li>
+      <li>No imitarás.</li>
+      <li>Dirás la verdad.</li>
+      <li>Te relajarás y devorarás.</li>
+      <li>Pagarás y volverás…</li>
+    </ol>
+    <p class="cierre">Con pan y vino es mejor el Camino.</p>
   </section>
 
   <!-- CARTA -->

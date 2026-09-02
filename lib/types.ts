@@ -50,6 +50,15 @@ export interface Menu {
   horario?: Record<number, string[]>;
   /** aviso corto que se muestra encima de la carta */
   aviso?: string;
+  /**
+   * Hueco preparado para la carta de postres que llega en ~2 semanas.
+   * A propósito NO es una CategoriaMenu más: mientras no tenga contenido no
+   * debe aparecer ninguna pestaña ni botón para ella en ningún sitio -ni en
+   * /carta ni en el asistente de Telegram-. Cuando llegue el contenido real,
+   * decide entonces si conviene promoverla a categoría de verdad (tocaría
+   * CategoriaMenu/CATEGORIAS, y por tanto también el esquema de acciones).
+   */
+  postres?: PlatoBase[];
 }
 
 export const CATEGORIAS: CategoriaMenu[] = ["entrantes", "arroces", "pescados", "carnes"];

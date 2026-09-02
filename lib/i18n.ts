@@ -84,6 +84,11 @@ export interface Textos {
   /** Bloque de reseñas: título ("¿Qué tal ha ido?"), sobrio, sin condicionar nada. */
   resenasTitulo: string;
   resenasSubtitulo: string;
+  /** Etiqueta destacada sobre la sección de arroces, arriba del todo en la carta. */
+  especialidadArroces: string;
+  /** "Cocina abierta desde las 19:00, todos los días." — ventaja real frente al resto de Padrón. */
+  horarioAviso: string;
+  comidaCaseraGallega: string;
 }
 
 export const TEXTOS: Record<Idioma, Textos> = {
@@ -111,6 +116,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Descubre el local",
     resenasTitulo: "¿Qué tal ha ido?",
     resenasSubtitulo: "Tu opinión ayuda mucho a un negocio pequeño.",
+    especialidadArroces: "Especialidad de la casa",
+    horarioAviso: "Cocina abierta desde las 19:00, todos los días.",
+    comidaCaseraGallega: "Comida casera gallega",
   },
   gl: {
     marca: "Don Pepe Original · Padrón",
@@ -136,6 +144,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Descobre o local",
     resenasTitulo: "Que tal foi?",
     resenasSubtitulo: "A túa opinión axuda moito a un negocio pequeno.",
+    especialidadArroces: "Especialidade da casa",
+    horarioAviso: "Cociña aberta desde as 19:00, todos os días.",
+    comidaCaseraGallega: "Comida caseira galega",
   },
   en: {
     marca: "Don Pepe Original · Padrón",
@@ -161,6 +172,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Discover the place",
     resenasTitulo: "How was it?",
     resenasSubtitulo: "Your opinion helps a small business a lot.",
+    especialidadArroces: "House speciality",
+    horarioAviso: "Kitchen open from 7:00 pm, every day.",
+    comidaCaseraGallega: "Home-style Galician cooking",
   },
   pt: {
     marca: "Don Pepe Original · Padrón",
@@ -186,6 +200,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Descubra o local",
     resenasTitulo: "Como correu?",
     resenasSubtitulo: "A sua opinião ajuda muito um negócio pequeno.",
+    especialidadArroces: "Especialidade da casa",
+    horarioAviso: "Cozinha aberta a partir das 19h00, todos os dias.",
+    comidaCaseraGallega: "Comida caseira galega",
   },
   de: {
     marca: "Don Pepe Original · Padrón",
@@ -211,6 +228,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Lokal entdecken",
     resenasTitulo: "Wie war's?",
     resenasSubtitulo: "Ihre Meinung hilft einem kleinen Betrieb sehr.",
+    especialidadArroces: "Spezialität des Hauses",
+    horarioAviso: "Küche ab 19:00 Uhr geöffnet, jeden Tag.",
+    comidaCaseraGallega: "Hausgemachte galicische Küche",
   },
   fr: {
     marca: "Don Pepe Original · Padrón",
@@ -236,6 +256,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Découvrez le lieu",
     resenasTitulo: "Comment était-ce ?",
     resenasSubtitulo: "Votre avis aide beaucoup un petit commerce.",
+    especialidadArroces: "Spécialité de la maison",
+    horarioAviso: "Cuisine ouverte dès 19h00, tous les jours.",
+    comidaCaseraGallega: "Cuisine galicienne maison",
   },
   it: {
     marca: "Don Pepe Original · Padrón",
@@ -261,6 +284,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Scopri il locale",
     resenasTitulo: "Com'è andata?",
     resenasSubtitulo: "La tua opinione aiuta molto una piccola attività.",
+    especialidadArroces: "Specialità della casa",
+    horarioAviso: "Cucina aperta dalle 19:00, tutti i giorni.",
+    comidaCaseraGallega: "Cucina casalinga galiziana",
   },
   ca: {
     marca: "Don Pepe Original · Padrón",
@@ -286,6 +312,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Descobreix el local",
     resenasTitulo: "Què tal ha anat?",
     resenasSubtitulo: "La teva opinió ajuda molt un negoci petit.",
+    especialidadArroces: "Especialitat de la casa",
+    horarioAviso: "Cuina oberta des de les 19:00, tots els dies.",
+    comidaCaseraGallega: "Cuina casolana gallega",
   },
   eu: {
     marca: "Don Pepe Original · Padrón",
@@ -311,6 +340,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Ezagutu lokala",
     resenasTitulo: "Zer moduz joan da?",
     resenasSubtitulo: "Zure iritziak asko laguntzen dio negozio txiki bati.",
+    especialidadArroces: "Etxeko espezialitatea",
+    horarioAviso: "Sukaldea 19:00etatik irekita, egunero.",
+    comidaCaseraGallega: "Galiziako etxeko sukaldaritza",
   },
   nl: {
     marca: "Don Pepe Original · Padrón",
@@ -336,6 +368,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Ontdek de zaak",
     resenasTitulo: "Hoe was het?",
     resenasSubtitulo: "Uw mening helpt een kleine onderneming enorm.",
+    especialidadArroces: "Specialiteit van het huis",
+    horarioAviso: "Keuken open vanaf 19:00 uur, elke dag.",
+    comidaCaseraGallega: "Galicische huisgemaakte keuken",
   },
   pl: {
     marca: "Don Pepe Original · Padrón",
@@ -361,6 +396,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Poznaj lokal",
     resenasTitulo: "Jak było?",
     resenasSubtitulo: "Twoja opinia bardzo pomaga małej firmie.",
+    especialidadArroces: "Specjalność zakładu",
+    horarioAviso: "Kuchnia otwarta od 19:00, codziennie.",
+    comidaCaseraGallega: "Domowa kuchnia galicyjska",
   },
   cs: {
     marca: "Don Pepe Original · Padrón",
@@ -386,6 +424,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Poznejte podnik",
     resenasTitulo: "Jak to bylo?",
     resenasSubtitulo: "Váš názor hodně pomůže malému podniku.",
+    especialidadArroces: "Specialita podniku",
+    horarioAviso: "Kuchyně otevřená od 19:00, každý den.",
+    comidaCaseraGallega: "Domácí galicijská kuchyně",
   },
   hu: {
     marca: "Don Pepe Original · Padrón",
@@ -411,6 +452,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Ismerje meg az éttermet",
     resenasTitulo: "Hogy sikerült?",
     resenasSubtitulo: "A véleménye sokat segít egy kisvállalkozásnak.",
+    especialidadArroces: "A ház specialitása",
+    horarioAviso: "A konyha 19:00-tól nyitva, minden nap.",
+    comidaCaseraGallega: "Házias galíciai konyha",
   },
   ko: {
     marca: "Don Pepe Original · Padrón",
@@ -436,6 +480,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "레스토랑 둘러보기",
     resenasTitulo: "어떠셨나요?",
     resenasSubtitulo: "고객님의 의견은 작은 가게에 큰 힘이 됩니다.",
+    especialidadArroces: "이 집의 특선 요리",
+    horarioAviso: "매일 저녁 7시부터 주방 운영.",
+    comidaCaseraGallega: "갈리시아 가정식 요리",
   },
   ja: {
     marca: "Don Pepe Original · Padrón",
@@ -461,6 +508,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "お店を見る",
     resenasTitulo: "いかがでしたか？",
     resenasSubtitulo: "お客様のご意見は小さなお店の大きな力になります。",
+    especialidadArroces: "当店の名物料理",
+    horarioAviso: "毎日19時から営業しています。",
+    comidaCaseraGallega: "ガリシアの家庭料理",
   },
   zh: {
     marca: "Don Pepe Original · Padrón",
@@ -486,6 +536,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "了解餐厅",
     resenasTitulo: "感觉如何？",
     resenasSubtitulo: "您的意见对小商家帮助很大。",
+    especialidadArroces: "本店特色菜",
+    horarioAviso: "每天19:00起厨房营业。",
+    comidaCaseraGallega: "加利西亚家常菜",
   },
   ru: {
     marca: "Don Pepe Original · Padrón",
@@ -511,6 +564,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Узнать о заведении",
     resenasTitulo: "Как вам у нас?",
     resenasSubtitulo: "Ваше мнение очень помогает небольшому бизнесу.",
+    especialidadArroces: "Фирменное блюдо",
+    horarioAviso: "Кухня открыта с 19:00, ежедневно.",
+    comidaCaseraGallega: "Домашняя галисийская кухня",
   },
   ro: {
     marca: "Don Pepe Original · Padrón",
@@ -536,6 +592,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     descubreLocal: "Descoperă localul",
     resenasTitulo: "Cum a fost?",
     resenasSubtitulo: "Părerea dumneavoastră ajută mult o afacere mică.",
+    especialidadArroces: "Specialitatea casei",
+    horarioAviso: "Bucătăria deschisă de la ora 19:00, în fiecare zi.",
+    comidaCaseraGallega: "Bucătărie galiciană de casă",
   },
 };
 
