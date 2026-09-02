@@ -52,6 +52,12 @@ export interface Textos {
   selectorIdioma: string;
   metaTitulo: string;
   metaDescripcion: string;
+  /** Botón fijo de la carta: llamada directa para reservar. */
+  reservar: string;
+  /** Mensaje que va precargado en el enlace wa.me del botón WhatsApp. */
+  whatsappMensaje: string;
+  /** Enlace secundario, al pie de la carta, hacia el escaparate del local (/local). */
+  descubreLocal: string;
 }
 
 export const TEXTOS: Record<Idioma, Textos> = {
@@ -74,6 +80,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     selectorIdioma: "Idioma",
     metaTitulo: "Carta",
     metaDescripcion: "Carta completa de Don Pepe Original: entrantes, arroces, pescados, carnes y menús.",
+    reservar: "Reservar",
+    whatsappMensaje: "Hola, querría reservar mesa.",
+    descubreLocal: "Descubre el local",
   },
   gl: {
     marca: "Don Pepe Original · Padrón",
@@ -94,6 +103,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     selectorIdioma: "Idioma",
     metaTitulo: "Carta",
     metaDescripcion: "Carta completa do Don Pepe Original: entrantes, arroces, peixes, carnes e menús.",
+    reservar: "Reservar",
+    whatsappMensaje: "Ola, querería reservar mesa.",
+    descubreLocal: "Descobre o local",
   },
   en: {
     marca: "Don Pepe Original · Padrón",
@@ -114,6 +126,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     selectorIdioma: "Language",
     metaTitulo: "Menu",
     metaDescripcion: "The full menu at Don Pepe Original: starters, rice dishes, fish, meat and set menus.",
+    reservar: "Book a table",
+    whatsappMensaje: "Hi, I'd like to book a table.",
+    descubreLocal: "Discover the place",
   },
   pt: {
     marca: "Don Pepe Original · Padrón",
@@ -134,6 +149,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     selectorIdioma: "Idioma",
     metaTitulo: "Ementa",
     metaDescripcion: "A ementa completa do Don Pepe Original: entradas, arrozes, peixe, carne e menus.",
+    reservar: "Reservar",
+    whatsappMensaje: "Olá, gostaria de reservar mesa.",
+    descubreLocal: "Descubra o local",
   },
   de: {
     marca: "Don Pepe Original · Padrón",
@@ -154,6 +172,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     selectorIdioma: "Sprache",
     metaTitulo: "Speisekarte",
     metaDescripcion: "Die vollständige Speisekarte des Don Pepe Original: Vorspeisen, Reisgerichte, Fisch, Fleisch und Menüs.",
+    reservar: "Reservieren",
+    whatsappMensaje: "Hallo, ich möchte gern einen Tisch reservieren.",
+    descubreLocal: "Lokal entdecken",
   },
   fr: {
     marca: "Don Pepe Original · Padrón",
@@ -174,6 +195,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     selectorIdioma: "Langue",
     metaTitulo: "Carte",
     metaDescripcion: "La carte complète du Don Pepe Original : entrées, riz, poissons, viandes et menus.",
+    reservar: "Réserver",
+    whatsappMensaje: "Bonjour, je voudrais réserver une table.",
+    descubreLocal: "Découvrez le lieu",
   },
   it: {
     marca: "Don Pepe Original · Padrón",
@@ -194,6 +218,9 @@ export const TEXTOS: Record<Idioma, Textos> = {
     selectorIdioma: "Lingua",
     metaTitulo: "Menù",
     metaDescripcion: "Il menù completo del Don Pepe Original: antipasti, riso, pesce, carne e menù fissi.",
+    reservar: "Prenota",
+    whatsappMensaje: "Ciao, vorrei prenotare un tavolo.",
+    descubreLocal: "Scopri il locale",
   },
 };
 

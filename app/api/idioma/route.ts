@@ -16,7 +16,7 @@ export function GET(req: NextRequest) {
   // ("//evil.com" pasaba el filtro y acababa fuera del sitio), así que de lo
   // que llega solo se conservan dos cosas, ambas saneadas: a cuál de las dos
   // páginas con selector se vuelve, y el número de mesa.
-  const RUTAS_CON_SELECTOR = new Set(["/", "/carta"]);
+  const RUTAS_CON_SELECTOR = new Set(["/carta", "/local"]);
   let destino = new URL("/carta", url.origin);
   try {
     const pedido = new URL(url.searchParams.get("volver") ?? "/carta", url.origin);

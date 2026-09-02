@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies, headers } from "next/headers";
 import { MenuView, MenusView } from "@/components/MenuView";
 import { SelectorIdioma } from "@/components/SelectorIdioma";
+import { BarraAcciones } from "@/components/BarraAcciones";
 import { ENLACES_LEGALES } from "@/lib/legal";
 import { getMenu, kvListAppend } from "@/lib/kv";
 import type { Menu, PlatoBase } from "@/lib/types";
@@ -64,6 +65,11 @@ export default async function CartaPage({
   const idioma = idiomaDePeticion(searchParams);
   const t = textos(idioma);
 
+  // Mismos teléfonos que usa el resto del sitio (Horario, JSON-LD): el fijo
+  // llama, el móvil recibe el WhatsApp con el mensaje ya escrito.
+  const telefonoReserva = process.env.NEXT_PUBLIC_PHONE ?? "34881829728";
+  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP ?? process.env.NEXT_PUBLIC_PHONE_MOBILE ?? "34696434042";
+
   // Solo lecturas de caché: la carta no llama nunca al traductor. Lo que no
   // esté traducido sale en español, y /api/traducciones lo rellena aparte.
   const platos: PlatoBase[] = [
@@ -105,7 +111,7 @@ export default async function CartaPage({
   const volver = mesa ? `/carta?mesa=${encodeURIComponent(mesa)}` : "/carta";
 
   return (
-    <main className="mx-auto max-w-3xl space-y-12 px-4 py-10 sm:px-6 sm:py-14">
+    <main className="mx-auto max-w-3xl space-y-12 px-4 pb-28 pt-10 sm:px-6 sm:pb-32 sm:pt-14">
       <header className="space-y-4">
         <div className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brasa-300">
@@ -129,6 +135,9 @@ export default async function CartaPage({
       <footer className="space-y-3 border-t border-carbon-800 pt-6 text-xs text-carbon-500">
         <p>{t.pieCartaViva}</p>
         <p className="flex flex-wrap gap-x-4 gap-y-1">
+          <a href="/local" className="text-brasa-300 underline-offset-4 hover:underline">
+            {t.descubreLocal}
+          </a>
           <a href="/aviso-legal" className="text-brasa-300 underline-offset-4 hover:underline">
             {ENLACES_LEGALES[idioma].aviso}
           </a>
@@ -137,6 +146,13 @@ export default async function CartaPage({
           </a>
         </p>
       </footer>
+
+      <BarraAcciones
+        telefonoReserva={telefonoReserva}
+        whatsapp={whatsapp}
+        mensajeWhatsapp={t.whatsappMensaje}
+        etiquetaReservar={t.reservar}
+      />
     </main>
   );
 }
