@@ -1,5 +1,5 @@
 {
-  "_comentario": "Traducciones revisadas a mano de las descripciones de plato. La clave es la frase EN ESPAÑOL: si alguien la cambia, deja de coincidir y el sistema traduce esa sola automáticamente. Idiomas con traducción de descripción propia: gl, en, pt, de, fr, it, ko, ja, zh (coreano/japonés/chino son prioritarios). Los otros 8 de los 18 (ca, eu, nl, pl, cs, hu, ru, ro) NO tienen descripción traducida todavía: caen a español en la carta -nunca roto, nunca una llamada en vivo-, pendiente de traducir aquí.",
+  "_comentario": "Traducciones revisadas a mano de las descripciones de plato. La clave es la frase EN ESPAÑOL: si alguien la cambia, deja de coincidir y el sistema traduce esa sola automáticamente. Idiomas con traducción de descripción propia: gl, en, pt, de, fr, it, ko, ja, zh, ca (coreano/japonés/chino/catalán son prioritarios). Los otros 7 de los 18 (eu, nl, pl, cs, hu, ru, ro) NO tienen descripción traducida todavía: caen a español en la carta -nunca roto, nunca una llamada en vivo-, pendiente de traducir aquí.",
   "A la plancha, con su jugo y perejil.": {
     "gl": "Á prancha, co seu xugo e perexil.",
     "en": "Grilled, with their own juices and parsley.",
@@ -9,7 +9,8 @@
     "it": "Alla piastra, con il loro sugo e prezzemolo.",
     "ko": "그릴에 구워 육즙과 파슬리를 곁들였습니다.",
     "ja": "鉄板焼き、肉汁とパセリを添えて。",
-    "zh": "铁板煎制，配肉汁和欧芹。"
+    "zh": "铁板煎制，配肉汁和欧芹。",
+    "ca": "A la planxa, amb el seu suc i julivert."
   },
   "De las rías, al vapor con laurel.": {
     "gl": "Das rías, ao vapor con loureiro.",
@@ -20,7 +21,8 @@
     "it": "Dalle rías galiziane, al vapore con alloro.",
     "ko": "리아스 지역산, 월계수 잎과 함께 쪄냈습니다.",
     "ja": "リアスの入り江産、月桂樹の葉で蒸しました。",
-    "zh": "产自加利西亚海湾，用月桂叶清蒸。"
+    "zh": "产自加利西亚海湾，用月桂叶清蒸。",
+    "ca": "De les ries gallegues, al vapor amb llorer."
   },
   "Fresca y de casa, con tomate y cebolla.": {
     "gl": "Fresca e da casa, con tomate e cebola.",
@@ -31,7 +33,8 @@
     "it": "Fresca e fatta in casa, con pomodoro e cipolla.",
     "ko": "신선한 홈메이드, 토마토와 양파를 곁들였습니다.",
     "ja": "自家製の新鮮なサラダ、トマトと玉ねぎ添え。",
-    "zh": "新鲜自制，配番茄和洋葱。"
+    "zh": "新鲜自制，配番茄和洋葱。",
+    "ca": "Fresca i casolana, amb tomàquet i ceba."
   },
   "Completa, como manda la tradición.": {
     "gl": "Completa, como manda a tradición.",
@@ -42,7 +45,8 @@
     "it": "Completa, come vuole la tradizione.",
     "ko": "전통 방식 그대로, 든든한 한 끼입니다.",
     "ja": "伝統的な作り方で、これだけで一食に。",
-    "zh": "传统做法，丰盛的一道菜。"
+    "zh": "传统做法，丰盛的一道菜。",
+    "ca": "Completa, tal com mana la tradició."
   },
   "Guisados lentos, con su salsa.": {
     "gl": "Guisados a lume lento, coa súa salsa.",
@@ -53,7 +57,8 @@
     "it": "Stufati lentamente, nel loro sugo.",
     "ko": "오래 뭉근히 끓여 소스와 함께 냅니다.",
     "ja": "じっくり煮込み、ソースと共に。",
-    "zh": "慢炖入味，配自家酱汁。"
+    "zh": "慢炖入味，配自家酱汁。",
+    "ca": "Cuinats a foc lent, amb la seva salsa."
   },
   "Caseras, de bechamel cremosa.": {
     "gl": "Caseiras, de bechamel cremosa.",
@@ -64,7 +69,8 @@
     "it": "Fatte in casa, con besciamella cremosa.",
     "ko": "크리미한 베샤멜 소스를 채운 홈메이드입니다.",
     "ja": "自家製、クリーミーなベシャメルソース入り。",
-    "zh": "自制，内馅奶油白酱。"
+    "zh": "自制，内馅奶油白酱。",
+    "ca": "Casolanes, de beixamel cremosa."
   },
   "Crujiente fuera, fundido dentro.": {
     "gl": "Crocante por fóra, fundido por dentro.",
@@ -75,7 +81,8 @@
     "it": "Croccante fuori, fondente dentro.",
     "ko": "겉은 바삭, 속은 부드럽게 녹습니다.",
     "ja": "外はカリカリ、中はとろり。",
-    "zh": "外酥内融。"
+    "zh": "外酥内融。",
+    "ca": "Cruixents per fora, fonents per dins."
   },
   "Con salsa brava de casa.": {
     "gl": "Con salsa brava da casa.",
@@ -86,7 +93,8 @@
     "it": "Con salsa brava della casa.",
     "ko": "자체 제조한 매콤한 브라바 소스를 곁들였습니다.",
     "ja": "自家製ピリ辛ブラバソース添え。",
-    "zh": "配自制辣味布拉瓦酱。"
+    "zh": "配自制辣味布拉瓦酱。",
+    "ca": "Amb salsa brava de la casa."
   },
   "En cazuela, con ajo y guindilla.": {
     "gl": "En cazola, con allo e guindilla.",
@@ -97,7 +105,8 @@
     "it": "In casseruola di coccio, con aglio e peperoncino.",
     "ko": "질그릇에 마늘과 고추를 넣어 조리했습니다.",
     "ja": "素焼きの鍋で、にんにくと唐辛子と共に。",
-    "zh": "砂锅烹制，配大蒜和辣椒。"
+    "zh": "砂锅烹制，配大蒜和辣椒。",
+    "ca": "En cassola, amb all i bitxo."
   },
   "Vuelta y vuelta, sal gruesa.": {
     "gl": "Volta e volta, sal groso.",
@@ -108,7 +117,8 @@
     "it": "Scottati al momento, con sale grosso.",
     "ko": "빠르게 앞뒤로 구워 굵은소금을 뿌렸습니다.",
     "ja": "さっと両面焼き、粗塩をふって。",
-    "zh": "快速两面煎，粗盐调味。"
+    "zh": "快速两面煎，粗盐调味。",
+    "ca": "Marcades ràpidament, amb sal grossa."
   },
   "Jugosa, cuajada por dentro.": {
     "gl": "Xugosa, callada por dentro.",
@@ -119,7 +129,8 @@
     "it": "Succosa, morbida al centro.",
     "ko": "육즙이 많고 속은 촉촉합니다.",
     "ja": "ジューシーで中はしっとり。",
-    "zh": "多汁，内里嫩滑。"
+    "zh": "多汁，内里嫩滑。",
+    "ca": "Sucosa, cuita just per dins."
   },
   "A la plancha, ajo y perejil en su concha.": {
     "gl": "Á prancha, allo e perexil na súa cuncha.",
@@ -130,7 +141,8 @@
     "it": "Alla piastra, aglio e prezzemolo nel loro guscio.",
     "ko": "껍질째 그릴에 구워 마늘과 파슬리를 곁들였습니다.",
     "ja": "殻ごと鉄板焼き、にんにくとパセリ添え。",
-    "zh": "带壳铁板煎制，配大蒜和欧芹。"
+    "zh": "带壳铁板煎制，配大蒜和欧芹。",
+    "ca": "A la planxa, amb all i julivert, dins la seva closca."
   },
   "Grelos, fabas, patata y compango.": {
     "gl": "Grelos, fabas, pataca e compango.",
@@ -141,7 +153,8 @@
     "it": "Cime di rapa, fagioli bianchi, patata e carni di maiale salate.",
     "ko": "순무잎, 흰콩, 감자와 훈제 돼지고기 모듬입니다.",
     "ja": "カブの葉、白インゲン豆、じゃがいもと燻製豚肉の盛り合わせ。",
-    "zh": "芜菁叶、白豆、土豆配熏猪肉。"
+    "zh": "芜菁叶、白豆、土豆配熏猪肉。",
+    "ca": "Grells de nap, mongetes blanques, patata i compango (carn curada de porc)."
   },
   "En tabla de roble, pimentón y AOVE.": {
     "gl": "En táboa de carballo, pementón e aceite de oliva virxe extra.",
@@ -152,7 +165,8 @@
     "it": "Su tagliere di rovere, con paprica e olio extravergine d'oliva.",
     "ko": "참나무 도마에, 파프리카 가루와 엑스트라 버진 올리브유를 곁들였습니다.",
     "ja": "オーク材のまな板に、パプリカパウダーとエキストラバージンオリーブオイルを添えて。",
-    "zh": "橡木板呈上，配红椒粉和特级初榨橄榄油。"
+    "zh": "橡木板呈上，配红椒粉和特级初榨橄榄油。",
+    "ca": "En taula de roure, amb pimentó i oli d'oliva verge extra."
   },
   "Con tinta, alioli y socarrat.": {
     "gl": "Con tinta, allioli e socarrat, a costra tostada do arroz.",
@@ -163,7 +177,8 @@
     "it": "Al nero di seppia, salsa all'aglio e crosticina di riso.",
     "ko": "오징어 먹물, 마늘 마요네즈와 바삭한 누룽지를 곁들였습니다.",
     "ja": "イカ墨、アイオリソース、香ばしいおこげ付き。",
-    "zh": "墨鱼汁配蒜香蛋黄酱和香脆锅巴。"
+    "zh": "墨鱼汁配蒜香蛋黄酱和香脆锅巴。",
+    "ca": "Amb tinta de sípia, allioli i socarrat (la crosta enganxada al fons)."
   },
   "Cigalas, mejillones, gambón y azafrán.": {
     "gl": "Cigalas, mexillóns, langostino e azafrán.",
@@ -174,7 +189,8 @@
     "it": "Scampi, cozze, gamberoni e zafferano.",
     "ko": "닭새우, 홍합, 왕새우와 사프란이 들어갑니다.",
     "ja": "手長エビ、ムール貝、大エビとサフラン入り。",
-    "zh": "海螯虾、青口、大虾配藏红花。"
+    "zh": "海螯虾、青口、大虾配藏红花。",
+    "ca": "Escamarlans, musclos, gamba grossa i safrà."
   },
   "Mar y montaña en la misma paella.": {
     "gl": "Mar e montaña na mesma paella.",
@@ -185,7 +201,8 @@
     "it": "Mare e monti nella stessa paella.",
     "ko": "한 팬에 바다와 산의 재료를 함께 담았습니다.",
     "ja": "海の幸と山の幸が一つの鍋に。",
-    "zh": "海鲜与肉类同锅烹制。"
+    "zh": "海鲜与肉类同锅烹制。",
+    "ca": "Mar i muntanya en la mateixa paella."
   },
   "De la huerta, con fondo de verduras.": {
     "gl": "Da horta, con fondo de verduras.",
@@ -196,7 +213,8 @@
     "it": "Dell'orto, su fondo di verdure.",
     "ko": "텃밭에서 온 채소로 만든 육수를 사용했습니다.",
     "ja": "菜園野菜、野菜だしで仕上げました。",
-    "zh": "菜园蔬菜，蔬菜高汤为底。"
+    "zh": "菜园蔬菜，蔬菜高汤为底。",
+    "ca": "De l'horta, amb un fons de verdures."
   },
   "Todo pelado, listo para comer.": {
     "gl": "Todo pelado, listo para comer.",
@@ -207,7 +225,8 @@
     "it": "Tutto sgusciato, pronto da mangiare.",
     "ko": "모두 껍질을 벗겨 바로 드실 수 있습니다.",
     "ja": "すべて殻をむいてあり、そのまま召し上がれます。",
-    "zh": "全部去壳，即食方便。"
+    "zh": "全部去壳，即食方便。",
+    "ca": "Tot pelat, a punt per menjar."
   },
   "El rey de la casa, hirviendo en la mesa.": {
     "gl": "O rei da casa, fervendo na mesa.",
@@ -218,7 +237,8 @@
     "it": "Il re della casa, servito ancora bollente.",
     "ko": "이 집의 대표 메뉴, 테이블에서 끓는 상태로 나옵니다.",
     "ja": "当店自慢の一品、テーブルでもグツグツと。",
-    "zh": "本店招牌，上桌时仍在沸腾。"
+    "zh": "本店招牌，上桌时仍在沸腾。",
+    "ca": "El rei de la casa, bullint a taula."
   },
   "En cazuela, con patata y salsa de pimentón.": {
     "gl": "En cazola, con pataca e salsa de pementón.",
@@ -229,7 +249,8 @@
     "it": "In casseruola, con patate e salsa alla paprica.",
     "ko": "질그릇에 감자와 파프리카 소스를 곁들였습니다.",
     "ja": "素焼きの鍋で、じゃがいもとパプリカソースと共に。",
-    "zh": "砂锅烹制，配土豆和红椒酱。"
+    "zh": "砂锅烹制，配土豆和红椒酱。",
+    "ca": "En cassola, amb patata i salsa de pimentó."
   },
   "Punto rosado, mantequilla noisette.": {
     "gl": "Punto rosado, manteiga avelá.",
@@ -240,7 +261,8 @@
     "it": "Al punto rosato, con burro nocciola.",
     "ko": "미디엄 레어로 익혀 브라운 버터를 곁들였습니다.",
     "ja": "ロゼ色に焼き上げ、焦がしバター添え。",
-    "zh": "粉红色三分熟，配焦香黄油。"
+    "zh": "粉红色三分熟，配焦香黄油。",
+    "ca": "Al punt rosat, amb mantega noisette."
   },
   "Pregunta la captura de hoy en lonja.": {
     "gl": "Pregunta pola captura de hoxe na lonxa.",
@@ -251,7 +273,8 @@
     "it": "Chieda il pescato del giorno arrivato dal mercato.",
     "ko": "오늘 어시장에서 들어온 생선을 여쭤봐 주세요.",
     "ja": "本日の市場の入荷は、スタッフにお尋ねください。",
-    "zh": "请询问服务员今日鱼市新鲜捕获。"
+    "zh": "请询问服务员今日鱼市新鲜捕获。",
+    "ca": "Pregunti quina és la captura d'avui a la llotja."
   },
   "Adobada de casa, con cachelos.": {
     "gl": "Adobada na casa, con cachelos.",
@@ -262,7 +285,8 @@
     "it": "Marinata in casa, con patate lesse.",
     "ko": "자체 양념에 재운 고기와 삶은 감자를 곁들였습니다.",
     "ja": "自家製味付け、茹でじゃがいも添え。",
-    "zh": "自制腌制，配水煮土豆。"
+    "zh": "自制腌制，配水煮土豆。",
+    "ca": "Adobada a casa, amb cachelos (patates bullides amb pell)."
   },
   "Lomo adobado a la plancha, el clásico.": {
     "gl": "Lombo adobado á prancha, o clásico.",
@@ -273,7 +297,8 @@
     "it": "Lombo di maiale marinato alla piastra, il classico.",
     "ko": "양념한 등심을 그릴에 구운 클래식 메뉴입니다.",
     "ja": "味付けロースの鉄板焼き、定番の一品。",
-    "zh": "经典腌制里脊铁板煎制。"
+    "zh": "经典腌制里脊铁板煎制。",
+    "ca": "Llom adobat a la planxa, el clàssic."
   },
   "Jugoso, vuelta y vuelta.": {
     "gl": "Xugoso, volta e volta.",
@@ -284,7 +309,8 @@
     "it": "Succoso, scottato da entrambi i lati.",
     "ko": "육즙이 풍부하게, 빠르게 앞뒤로 구웠습니다.",
     "ja": "ジューシーに、さっと両面焼き。",
-    "zh": "多汁，快速两面煎制。"
+    "zh": "多汁，快速两面煎制。",
+    "ca": "Sucós, marcat ràpidament."
   },
   "Empanada fina, dorada.": {
     "gl": "Empanada fina, dourada.",
@@ -295,7 +321,8 @@
     "it": "Impanatura sottile e dorata.",
     "ko": "얇게 튀김옷을 입혀 노릇하게 튀겼습니다.",
     "ja": "薄い衣できつね色に揚げました。",
-    "zh": "薄脆金黄外皮。"
+    "zh": "薄脆金黄外皮。",
+    "ca": "Arrebossat fi i daurat."
   },
   "A la brasa, con su chimichurri suave.": {
     "gl": "Á brasa, co seu chimichurri suave.",
@@ -306,7 +333,8 @@
     "it": "Alla brace, con chimichurri delicato.",
     "ko": "숯불에 구워 순한 치미추리 소스를 곁들였습니다.",
     "ja": "炭火焼き、まろやかなチミチュリソース添え。",
-    "zh": "炭火烤制，配柔和芝麻叶酱。"
+    "zh": "炭火烤制，配柔和芝麻叶酱。",
+    "ca": "A la brasa, amb el seu chimichurri suau."
   },
   "Brasa fuerte, sal gruesa.": {
     "gl": "Brasa forte, sal groso.",
@@ -317,7 +345,8 @@
     "it": "Su brace viva, con sale grosso.",
     "ko": "강한 불에 구워 굵은소금을 뿌렸습니다.",
     "ja": "強火の炭火焼き、粗塩をふって。",
-    "zh": "旺火炭烤，粗盐调味。"
+    "zh": "旺火炭烤，粗盐调味。",
+    "ca": "Brasa forta, sal grossa."
   },
   "Asado lento, laminado.": {
     "gl": "Asado lento, en lascas.",
@@ -328,7 +357,8 @@
     "it": "Arrosto lento, tagliato sottile.",
     "ko": "오래 구워 얇게 썰어냅니다.",
     "ja": "じっくり焼き上げ、薄くスライスしました。",
-    "zh": "慢烤薄切。"
+    "zh": "慢烤薄切。",
+    "ca": "Rostit lent, tallat a làmines."
   },
   "Dorado al carbón.": {
     "gl": "Dourado ao carbón.",
@@ -339,7 +369,8 @@
     "it": "Dorato alla brace di carbone.",
     "ko": "숯불에 노릇하게 구웠습니다.",
     "ja": "炭火できつね色に。",
-    "zh": "炭火烤至金黄。"
+    "zh": "炭火烤至金黄。",
+    "ca": "Daurat al carbó."
   },
   "La chistorra criolla de siempre.": {
     "gl": "A chistorra criolla de sempre.",
@@ -350,7 +381,8 @@
     "it": "La classica salsiccia criolla.",
     "ko": "언제나 변함없는 크리오요 소시지입니다.",
     "ja": "昔ながらのクリオージョソーセージ。",
-    "zh": "经典传统香肠。"
+    "zh": "经典传统香肠。",
+    "ca": "La xistorra criolla de sempre."
   },
   "Vaca gallega madurada, a la brasa.": {
     "gl": "Vaca galega madurada, á brasa.",
@@ -361,7 +393,8 @@
     "it": "Manzo galiziano frollato, alla brace.",
     "ko": "숙성시킨 갈리시아산 소고기를 숯불에 구웠습니다.",
     "ja": "熟成ガリシア牛の炭火焼き。",
-    "zh": "加利西亚熟成牛肉炭火烤制。"
+    "zh": "加利西亚熟成牛肉炭火烤制。",
+    "ca": "Vaca gallega madurada, a la brasa."
   },
   "Abierta a la espalda, con refrito de ajos.": {
     "gl": "Aberta á espalda, con refrito de allos.",
@@ -372,7 +405,8 @@
     "it": "Aperta a libro, con soffritto d'aglio.",
     "ko": "등쪽으로 갈라 구워 마늘기름을 뿌렸습니다.",
     "ja": "背開きにして、にんにく油をかけて。",
-    "zh": "从背部剖开烤制，淋上蒜油。"
+    "zh": "从背部剖开烤制，淋上蒜油。",
+    "ca": "Oberta per l'esquena, amb un refregit d'alls."
   },
   "Lunes a viernes excepto festivos": {
     "gl": "De luns a venres agás festivos",
@@ -383,7 +417,8 @@
     "it": "Dal lunedì al venerdì, esclusi i festivi",
     "ko": "공휴일 제외 월요일부터 금요일까지",
     "ja": "月曜〜金曜（祝日を除く）",
-    "zh": "周一至周五（法定假日除外）"
+    "zh": "周一至周五（法定假日除外）",
+    "ca": "De dilluns a divendres, excepte festius"
   },
   "Todos los días": {
     "gl": "Todos os días",
@@ -394,7 +429,8 @@
     "it": "Tutti i giorni",
     "ko": "매일",
     "ja": "毎日",
-    "zh": "每天"
+    "zh": "每天",
+    "ca": "Tots els dies"
   },
   "Pan, postre, agua, copa de vino de la casa": {
     "gl": "Pan, sobremesa, auga, copa de viño da casa",
@@ -405,7 +441,8 @@
     "it": "Pane, dolce, acqua, un bicchiere di vino della casa",
     "ko": "빵, 디저트, 물, 하우스 와인 한 잔 포함",
     "ja": "パン、デザート、水、ハウスワイン1杯付き",
-    "zh": "含面包、甜点、水、一杯house红酒"
+    "zh": "含面包、甜点、水、一杯house红酒",
+    "ca": "Pa, postres, aigua, copa de vi de la casa"
   },
   "Pan, café, chupito de orujo": {
     "gl": "Pan, café, chupito de augardente",
@@ -416,7 +453,8 @@
     "it": "Pane, caffè, un bicchierino di orujo (grappa galiziana)",
     "ko": "빵, 커피, 오루호(갈리시아 전통 브랜디) 한 잔 포함",
     "ja": "パン、コーヒー、オルホ（ガリシア地方の蒸留酒）1杯付き",
-    "zh": "含面包、咖啡、一杯orujo（加利西亚烈酒）"
+    "zh": "含面包、咖啡、一杯orujo（加利西亚烈酒）",
+    "ca": "Pa, cafè, xarrup d'orujo (aiguardent gallec de raïm)"
   },
   "Bebida": {
     "gl": "Bebida",
@@ -427,6 +465,7 @@
     "it": "Bevande",
     "ko": "음료",
     "ja": "飲み物",
-    "zh": "饮品"
+    "zh": "饮品",
+    "ca": "Beguda"
   }
 }
