@@ -27,7 +27,14 @@ https://don-pepe-original-71qg5o8g0-ivan-carbonells-projects.vercel.app
    mientras tanto.
 5. Cuando tengas la carta de postres real, hay un hueco preparado
    (`Menu.postres` en `lib/types.ts`) — dime y lo conecto.
-6. **Foto de plato por Telegram**: propuesta detallada en "Segunda ronda
+6. Los 4 fallos reales que reportaste tras probar en el navegador (portada
+   ilegible, fotos de plato escondidas, bloque de reseñas discreto/sin
+   marca de Google, y la aclaración de las dos cartas) están **arreglados
+   y verificados con capturas y medición real** — ver "Tercera ronda" más
+   abajo. Nada nuevo que necesite tu revisión ahí salvo que quieras el
+   aviso visible de "carta no disponible" si falla la carga en vivo de
+   `/local` (punto 4, sin implementar, a la espera de que lo pidas).
+7. **Foto de plato por Telegram**: propuesta detallada en "Segunda ronda
    posterior", sin construir. Decide y te la implemento.
 
 ---
@@ -159,6 +166,70 @@ propuesta. Resumen (versión completa se dio en el chat):
 
 **Pendiente de tu decisión**, con esos cuatro puntos ya sobre la mesa. No se
 ha escrito ni una línea de la funcionalidad en sí.
+
+---
+
+## Tercera ronda (2026-09-02) — 4 fallos reales encontrados en el preview
+
+Reportados por ti tras probar de verdad en el navegador. Los cuatro
+arreglados, en el orden pedido, cada uno con commit propio, verificados con
+capturas y medición real (no a ojo) antes de darlos por buenos.
+
+**1. Legibilidad de la portada de `/local` — hecho.** Ver commit
+`74b92b9`. Medido con un script que renderiza la página real en Chrome,
+oculta el texto para leer el fondo puro, y calcula el contraste WCAG con
+los colores reales. Antes: el eyebrow dorado llegaba a 1.7:1 (necesita
+4.5:1). Después, en 390px y 1440px, con la foto recortada distinto en
+cada uno: 5.2–8.8:1 en el eyebrow, 15–18.5:1 en el título, 6.1–7.2:1 en
+el subtítulo — mirando tanto el promedio como el píxel más claro
+encontrado dentro de cada caja de texto. La foto no se tocó: se añadió
+una segunda capa que oscurece el centro (donde vive el texto siempre) y
+deja respirar los bordes, más una sombra de texto reforzada.
+
+**2. Fotos de los platos en `/carta` — diagnosticado y corregido.** Ver
+commit `0dec6f7`. Diagnóstico real, no supuesto: el desplegable SÍ
+funcionaba (verificado con un clic real en Playwright). El problema de
+verdad era doble: (a) la sección destacada de arroces, lo primero que se
+ve al entrar en `/carta`, nunca implementó fotos — quien probara ahí
+primero veía solo texto; (b) incluso donde funcionaba, era un
+desplegable sin ninguna pista visual, invisible de puro escondido. Fix:
+miniatura siempre visible junto a cada plato con foto (ninguna si no la
+tiene), con `next/image` — lazy real y formato moderno automático.
+Medido con red real, no supuesto: 18 miniaturas visibles pesan 17,7 KB
+en total. Tocarla abre la foto grande.
+
+**3. Bloque de reseñas — los 4 puntos, hecho, en `/carta` y `/local`.**
+Ver commit `6efa5f1`. (a) Logo de Google + "Déjanos tu reseña en
+Google", en los 18 idiomas. (b) Relleno progresivo de verdad al pasar
+el ratón o el dedo, verificado con Playwright estrella por estrella.
+(c) Verificado explícitamente que sigue habiendo un único `<a>` con el
+mismo `href` de siempre, antes y después del hover — nada condicional.
+(d) Estrellas de 44px (antes 28px), más aire, separación clara del
+contenido anterior. **Bug real encontrado de paso**: el bloque de
+`/local` seguía con el literal `[FALTA DATO...]` como enlace — nunca se
+sincronizó cuando se resolvió la URL real en `lib/resenas.ts`, porque
+`/local` es HTML estático y no puede importar ese módulo. Corregido con
+la URL real y un comentario explicando que hay que mantener las dos
+copias sincronizadas a mano si cambia algún día.
+
+**4. Las dos cartas — aclaración, sin tocar código.** `/local` NO tiene
+precios propios de verdad: trae un `TABS` estático (respaldo de diseño,
+con descripciones/alérgenos/fotos) y en cuanto carga hace `fetch` al
+mismo `/api/menu` (misma KV) que usa `/carta`, y **sobrescribe** precio,
+nombre, disponibilidad y el aviso con los datos en vivo — de eso me
+aseguré leyendo `fusionarCarta()` en `public/inicio.html`, línea por
+línea, no de memoria. Lo único que queda del diseño estático son
+descripción/alérgenos/foto, emparejados por id. Así que no es un riesgo
+de "precio duplicado que se desincroniza" en el uso normal: el precio
+que hay en la KV es el que se ve en los dos sitios, siempre. El riesgo
+real y más estrecho: si ese `fetch` falla (caída de red o de la API),
+`/local` se queda en silencio mostrando el precio ESTÁTICO de cuando se
+compiló la web, sin ningún aviso visible al cliente. Hoy coinciden con
+los precios reales (comprobado plato a plato), pero eso es porque se
+mantienen a mano al día, no una garantía. No lo he tocado porque no se
+pidió arreglar, solo informar — dime si quieres que añada un aviso
+visible ("carta no disponible ahora mismo, ver /carta") para cuando
+falle el `fetch`, en vez de fallar en silencio.
 
 ---
 
