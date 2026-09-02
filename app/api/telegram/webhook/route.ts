@@ -10,6 +10,8 @@ import {
 import { mostrarMenuPrincipal, manejarTextoAsistente, manejarCallback, tecladoConfirmar } from "@/lib/telegram-wizard";
 import { handleOwnerMessage } from "@/lib/orchestrator";
 import { getPending } from "@/lib/pending";
+import { tomarDuracionPendiente, marcarCaducidad, quitarCaducidad } from "@/lib/agotados";
+import type { CategoriaMenu } from "@/lib/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -67,7 +69,30 @@ async function procesarCallback(cq: NonNullable<Awaited<ReturnType<typeof parseU
   await answerCallbackQuery(cq.id).catch(() => {});
 
   if (data === "conf:yes" || data === "conf:no") {
+    // Se lee ANTES de confirmar/cancelar: handleOwnerMessage borra el
+    // pendiente en cuanto lo aplica, así que después ya no habría forma de
+    // saber qué acción era.
+    const pendienteAntes = await getPending(chatId);
     const { reply } = await handleOwnerMessage(data === "conf:yes" ? "sí" : "no", chatId);
+
+    // La duración elegida para "agotar" (si la hubo) se aplica de verdad
+    // solo si de verdad se ha confirmado un disable_item: si se cancela, o
+    // si lo confirmado era otra cosa, se descarta sin más.
+    const duracion = await tomarDuracionPendiente(chatId);
+    const accionAntes = pendienteAntes?.action;
+    if (accionAntes && "category" in accionAntes && "id" in accionAntes) {
+      // El "in" ya prueba en tiempo de ejecución que lleva category/id; el
+      // tipo exacto (CategoriaMenu) es el mismo que ya valida ActionSchema.
+      const { category, id } = accionAntes as unknown as { category: CategoriaMenu; id: string };
+      if (data === "conf:yes" && accionAntes.action === "disable_item" && duracion) {
+        await marcarCaducidad(duracion.category, duracion.id, duracion.hasta);
+      } else {
+        // reactivar, eliminar, cambiar precio, o un "agotar" indefinido o
+        // cancelado: no debe quedar ningún temporizador viejo colgado.
+        await quitarCaducidad(category, id);
+      }
+    }
+
     if (messageId) await editMessageText(chatId, messageId, reply, TECLADO_VACIO);
     else await sendMessage(chatId, reply);
     return;

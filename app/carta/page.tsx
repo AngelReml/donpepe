@@ -4,7 +4,8 @@ import { MenuView, MenusView } from "@/components/MenuView";
 import { SelectorIdioma } from "@/components/SelectorIdioma";
 import { BarraAcciones } from "@/components/BarraAcciones";
 import { ENLACES_LEGALES } from "@/lib/legal";
-import { getMenu, kvListAppend } from "@/lib/kv";
+import { kvListAppend } from "@/lib/kv";
+import { menuConReactivacionAutomatica } from "@/lib/agotados";
 import type { Menu, PlatoBase } from "@/lib/types";
 import { traducirDescripciones } from "@/lib/traducir";
 import {
@@ -61,7 +62,10 @@ export default async function CartaPage({
 }: {
   searchParams: SearchParams;
 }) {
-  const menu: Menu = await getMenu();
+  // Reconcilia contra el registro de "agotado con caducidad" (lib/agotados.ts)
+  // antes de servir la carta: si algo caducó, vuelve solo, sin esperar a que
+  // el dueño toque el bot.
+  const menu: Menu = await menuConReactivacionAutomatica();
   const idioma = idiomaDePeticion(searchParams);
   const t = textos(idioma);
 
