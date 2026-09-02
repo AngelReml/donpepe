@@ -1,5 +1,32 @@
 # Informe de sesión desatendida
 
+**Resumen:** las 7 tareas (0 a 6, con la Tarea 1 corregida a mitad de
+sesión) están hechas, comiteadas y subidas a `carta-home`. Ni un byte
+tocado en `lib/orchestrator.ts`, `lib/pending.ts`, `lib/actions.ts`,
+`lib/prompts.ts`, `lib/kv.ts`, `lib/whatsapp.ts` ni
+`app/api/whatsapp/webhook/route.ts` en toda la sesión -verificado con
+`git diff` justo antes de escribir esto-. Nada en `main`, nada en
+producción. Preview actualizado y funcionando:
+https://don-pepe-original-71qg5o8g0-ivan-carbonells-projects.vercel.app
+(webhook de Telegram re-registrado contra esta URL, probado sin errores).
+
+**Lo que necesito de ti, en orden de lo más a lo menos urgente:**
+1. **Rota el secreto de bypass de Vercel** antes de pasar esto a producción
+   (se compartió en el chat, ver nota junto a la de alérgenos en el README).
+2. **URL de reseñas de Google** (`lib/resenas.ts`): sin ella, el bloque de
+   reseñas y el cartelito imprimible no funcionan. Instrucciones en el
+   README, sección 3.1.
+3. **Año de fundación**: para el "Desde [FALTA DATO...]" de la carta. No lo
+   he inventado, como se pidió.
+4. Decide si merece la pena, en una sesión futura: descripciones de plato
+   para los 8 idiomas que faltan, traducción legal nativa de los 11 idiomas
+   que hoy caen a inglés, y ampliar `/local` a los 18 idiomas (hoy en 6).
+   Todo documentado con detalle en la Tarea 2 más abajo, nada roto mientras
+   tanto.
+5. Cuando tengas la carta de postres real, hay un hueco preparado
+   (`Menu.postres` en `lib/types.ts`) — dime y lo conecto.
+
+
 Rama: `carta-home`. Ningún push a `main`, ningún despliegue a producción.
 Ficheros protegidos (`lib/orchestrator.ts`, `lib/pending.ts`, `lib/actions.ts`,
 `lib/prompts.ts`, `lib/kv.ts`, `lib/whatsapp.ts`, `app/api/whatsapp/webhook/route.ts`)
