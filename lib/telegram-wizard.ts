@@ -1,24 +1,27 @@
 /**
- * El asistente de botones de Telegram: categoría -> plato -> acción -> (precio
- * si toca) -> confirmar. "El dueño toca, no teclea", salvo en los dos campos
- * que no pueden ser un botón porque no existen todavía (nombre y precio de un
- * plato nuevo, o el precio nuevo de uno existente).
+ * El asistente de botones de Telegram.
  *
- * Construye el Action a mano, con los mismos tipos que ya usa el LLM de
- * WhatsApp, y lo deja pendiente con las funciones YA EXISTENTES de
- * lib/actions.ts y lib/pending.ts -no se reescribe nada de eso, se importa
- * tal cual-. La confirmación (botones "Confirmar"/"Cancelar") la resuelve el
- * propio app/api/telegram/webhook/route.ts llamando a
- * lib/orchestrator.ts:handleOwnerMessage con "sí"/"no", exactamente la misma
- * función que usa WhatsApp.
+ * Dos familias de gesto, con reglas distintas a propósito:
  *
- * Nunca llama a applyAction ni a setMenu directamente: solo deja acciones
- * pendientes. Quien las aplica de verdad es siempre handleOwnerMessage.
+ * 1. Agotar / reactivar (interruptor de un toque, /agotado): gesto de bar
+ *    lleno, varias veces al día. NO pide confirmación -se aplica al
+ *    instante y el aviso trae un botón de deshacer-. Escribe directamente
+ *    con setMenu (lib/agotados.ts), sin pasar por handleOwnerMessage.
  *
- * "Agotar" pide antes cuánto tiempo (2h / mañana / indefinido, ver
- * lib/agotados.ts): el disable_item que se deja pendiente es el de siempre,
- * sin cambios; la duración se guarda aparte y app/api/telegram/webhook/
- * route.ts la convierte en una caducidad real solo si el dueño confirma.
+ * 2. Alta de plato, cambio de precio, borrado definitivo: gestos raros,
+ *    con más que perder si se hacen sin querer. SIGUEN exigiendo
+ *    confirmación previa, sin excepción. Construyen el Action a mano, con
+ *    los mismos tipos que ya usa el LLM de WhatsApp, y lo dejan pendiente
+ *    con las funciones YA EXISTENTES de lib/actions.ts y lib/pending.ts -no
+ *    se reescribe nada de eso, se importa tal cual-. La confirmación
+ *    (botones "Confirmar"/"Cancelar") la resuelve
+ *    app/api/telegram/webhook/route.ts llamando a
+ *    lib/orchestrator.ts:handleOwnerMessage con "sí"/"no", exactamente la
+ *    misma función que usa WhatsApp.
+ *
+ * Para estas últimas, nunca se llama a applyAction ni a setMenu
+ * directamente: solo se deja la acción pendiente. Quien la aplica de
+ * verdad es siempre handleOwnerMessage.
  */
 import { kvGet, kvSet, kvDel } from "./kv";
 import { ActionSchema, describeAction, type Action } from "./actions";
@@ -26,14 +29,32 @@ import { setPending } from "./pending";
 import { CATEGORIAS, CATEGORIA_LABELS, type CategoriaMenu, type PlatoBase } from "./types";
 import { parsePrecioEstricto } from "./precio";
 import { sendMessage, editMessageText, type TecladoInline } from "./telegram";
-import { menuConReactivacionAutomatica, fijarDuracionPendiente, DURACIONES, type ClaveDuracion } from "./agotados";
+import {
+  menuConReactivacionAutomatica,
+  alternarDisponibilidad,
+  marcarCaducidad,
+  DURACIONES,
+  type ClaveDuracion,
+} from "./agotados";
 
 const CODIGO: Record<CategoriaMenu, string> = { entrantes: "e", arroces: "a", pescados: "p", carnes: "c" };
 const DESDE_CODIGO: Record<string, CategoriaMenu> = Object.fromEntries(
   CATEGORIAS.map((c) => [CODIGO[c], c]),
 ) as Record<string, CategoriaMenu>;
 
+function formatearFechaMadrid(ms: number): string {
+  return new Intl.DateTimeFormat("es-ES", {
+    timeZone: "Europe/Madrid",
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(ms));
+}
+
 /* ─────────────────── estado del asistente, en KV ─────────────────── */
+/* (solo para alta de plato / cambio de precio: los únicos pasos que piden
+   texto libre. Agotar/reactivar no usan estado: son un solo toque.) */
 
 interface EstadoAsistente {
   paso: "alta_nombre" | "alta_precio" | "alta_nota" | "cambiar_precio";
@@ -70,8 +91,9 @@ export function tecladoConfirmar(): TecladoInline {
 function tecladoRaiz(): TecladoInline {
   return {
     inline_keyboard: [
+      [{ text: "🔀 Agotar / reactivar (rápido)", callback_data: "w:agotados" }],
       [{ text: "➕ Añadir plato nuevo", callback_data: "w:new:root" }],
-      [{ text: "🍽 Gestionar un plato existente", callback_data: "w:manage:root" }],
+      [{ text: "🍽 Gestionar precio o borrar un plato", callback_data: "w:manage:root" }],
     ],
   };
 }
@@ -101,44 +123,70 @@ function tecladoPlatos(cat: CategoriaMenu, platos: PlatoBase[]): TecladoInline {
 
 function tecladoAcciones(cat: CategoriaMenu, idx: number, plato: PlatoBase): TecladoInline {
   const cod = CODIGO[cat];
-  const filas: TecladoInline["inline_keyboard"] = [];
-  filas.push([
-    plato.disabled
-      ? { text: "✅ Reactivar (vuelve a la carta)", callback_data: `w:act:enable:${cod}:${idx}` }
-      : { text: "🚫 Agotar (elegir cuánto tiempo)", callback_data: `w:agotar:${cod}:${idx}` },
-  ]);
-  filas.push([{ text: "💰 Cambiar precio", callback_data: `w:act:price:${cod}:${idx}` }]);
-  filas.push([{ text: "🗑 Eliminar definitivamente", callback_data: `w:act:remove:${cod}:${idx}` }]);
-  filas.push([{ text: "⬅️ Volver a la lista", callback_data: `w:manage:${cod}` }]);
-  return { inline_keyboard: filas };
+  return {
+    inline_keyboard: [
+      [
+        plato.disabled
+          ? { text: "✅ Reactivar (un toque)", callback_data: `w:toggle:${cod}:${idx}` }
+          : { text: "🚫 Agotar (un toque)", callback_data: `w:toggle:${cod}:${idx}` },
+      ],
+      [{ text: "💰 Cambiar precio", callback_data: `w:act:price:${cod}:${idx}` }],
+      [{ text: "🗑 Eliminar definitivamente", callback_data: `w:act:remove:${cod}:${idx}` }],
+      [{ text: "⬅️ Volver a la lista", callback_data: `w:manage:${cod}` }],
+    ],
+  };
 }
 
 function tecladoNota(): TecladoInline {
   return { inline_keyboard: [[{ text: "Sin nota", callback_data: "w:skip_nota" }]] };
 }
 
-/** Duraciones cerradas para "agotar": ver DURACIONES en lib/agotados.ts. */
-function tecladoDuracion(cat: CategoriaMenu, idx: number): TecladoInline {
+/** Tras agotar: caducidad opcional (nunca obligatoria) + deshacer. */
+function tecladoTrasAgotar(cat: CategoriaMenu, idx: number): TecladoInline {
   const cod = CODIGO[cat];
   return {
     inline_keyboard: [
-      ...(Object.keys(DURACIONES) as ClaveDuracion[]).map((k) => [
-        { text: DURACIONES[k].etiqueta, callback_data: `w:agotarpor:${cod}:${idx}:${k}` },
-      ]),
-      [{ text: "⬅️ Volver", callback_data: `w:pick:${cod}:${idx}` }],
+      [{ text: DURACIONES.manana.etiqueta, callback_data: `w:cad:${cod}:${idx}:manana` }],
+      [{ text: DURACIONES["2h"].etiqueta, callback_data: `w:cad:${cod}:${idx}:2h` }],
+      [{ text: "↩️ Deshacer", callback_data: `w:toggle:${cod}:${idx}` }],
     ],
   };
+}
+function tecladoDeshacer(cat: CategoriaMenu, idx: number): TecladoInline {
+  const cod = CODIGO[cat];
+  return { inline_keyboard: [[{ text: "↩️ Deshacer", callback_data: `w:toggle:${cod}:${idx}` }]] };
 }
 
 /* ──────────────────────── entradas del webhook ──────────────────────── */
 
 export async function mostrarMenuPrincipal(chatId: string): Promise<void> {
   await limpiarEstado(chatId);
-  await sendMessage(
-    chatId,
-    "¿Qué quieres hacer con la carta?",
-    tecladoRaiz(),
-  );
+  await sendMessage(chatId, "¿Qué quieres hacer con la carta?", tecladoRaiz());
+}
+
+/**
+ * /agotado: TODOS los platos en una sola pantalla, sin navegar por
+ * categoría, agotados arriba del todo -es la pantalla que se usa con prisa
+ * y el bar lleno-. Cada botón alterna ese plato al tocarlo.
+ */
+export async function mostrarPantallaAgotados(chatId: string): Promise<void> {
+  await limpiarEstado(chatId);
+  const menu = await menuConReactivacionAutomatica();
+  const todos: Array<{ cat: CategoriaMenu; idx: number; plato: PlatoBase }> = [];
+  for (const cat of CATEGORIAS) {
+    menu[cat].forEach((plato, idx) => todos.push({ cat, idx, plato }));
+  }
+  if (todos.length === 0) {
+    await sendMessage(chatId, "No hay platos en la carta todavía.");
+    return;
+  }
+  // Agotados primero; Array.prototype.sort es estable (ES2019+), así que
+  // dentro de cada grupo se conserva el orden de categoría/carta.
+  todos.sort((a, b) => Number(Boolean(b.plato.disabled)) - Number(Boolean(a.plato.disabled)));
+  const filas = todos.map(({ cat, idx, plato }) => [
+    { text: `${plato.disabled ? "🚫" : "✅"} ${plato.nombre}`, callback_data: `w:toggle:${CODIGO[cat]}:${idx}` },
+  ]);
+  await sendMessage(chatId, "Toca un plato para agotarlo o devolverlo a la carta:", { inline_keyboard: filas });
 }
 
 /**
@@ -239,6 +287,10 @@ export async function manejarCallback(
   const editar = (texto: string, teclado?: TecladoInline) =>
     messageId ? editMessageText(chatId, messageId, texto, teclado) : sendMessage(chatId, texto, teclado);
 
+  if (data === "w:agotados") {
+    await mostrarPantallaAgotados(chatId);
+    return { consumido: true };
+  }
   if (data === "w:new:root") {
     await limpiarEstado(chatId);
     await editar("¿En qué categoría va el plato nuevo?", tecladoCategorias("w:new"));
@@ -264,7 +316,64 @@ export async function manejarCallback(
     return { consumido: true };
   }
 
-  const partes = data.split(":"); // ["w","new"|"manage"|"pick"|"act", ...]
+  const partes = data.split(":"); // ["w","agotados"|"new"|"manage"|"pick"|"toggle"|"cad"|"act", ...]
+
+  // Interruptor de un toque: sin confirmación, se aplica ya. Sirve tanto
+  // para "primer toque" (agota o reactiva) como para "Deshacer" (vuelve a
+  // invertir), y es el mismo botón desde /agotado y desde la ficha de un
+  // plato -un único camino, un único mental model-.
+  if (partes[1] === "toggle" && partes[2] && partes[3] !== undefined) {
+    const cat = DESDE_CODIGO[partes[2]];
+    const idx = Number(partes[3]);
+    if (!cat || !Number.isInteger(idx)) return { consumido: true };
+    const menu = await menuConReactivacionAutomatica();
+    const platoRef = menu[cat][idx];
+    if (!platoRef) {
+      await editar("La carta ha cambiado. Escribe /agotado para volver a intentarlo.");
+      return { consumido: true };
+    }
+    const resultado = await alternarDisponibilidad(chatId, cat, platoRef.id);
+    if (!resultado) {
+      await editar("Ese plato ya no existe.");
+      return { consumido: true };
+    }
+    if (resultado.ahoraDisabled) {
+      await editar(
+        `🚫 "${resultado.nombre}" agotado. No vuelve a la carta hasta que lo reactives, salvo que le pongas un plazo:`,
+        tecladoTrasAgotar(cat, idx),
+      );
+    } else {
+      await editar(`✅ "${resultado.nombre}" de vuelta en la carta.`, tecladoDeshacer(cat, idx));
+    }
+    return { consumido: true };
+  }
+
+  // Caducidad opcional, ofrecida DESPUÉS de agotar (nunca antes, nunca obligatoria).
+  if (partes[1] === "cad" && partes[2] && partes[3] !== undefined && partes[4]) {
+    const cat = DESDE_CODIGO[partes[2]];
+    const idx = Number(partes[3]);
+    const claveDuracion = partes[4] as ClaveDuracion;
+    if (!cat || !Number.isInteger(idx) || !(claveDuracion in DURACIONES)) return { consumido: true };
+    const menu = await menuConReactivacionAutomatica();
+    const plato = menu[cat][idx];
+    if (!plato) {
+      await editar("La carta ha cambiado. Escribe /agotado para volver a intentarlo.");
+      return { consumido: true };
+    }
+    if (!plato.disabled) {
+      await editar(`"${plato.nombre}" ya está activo: no hace falta ponerle plazo.`, tecladoDeshacer(cat, idx));
+      return { consumido: true };
+    }
+    const duracion = DURACIONES[claveDuracion];
+    const hasta = Date.now() + duracion.ms;
+    await marcarCaducidad(cat, plato.id, hasta);
+    await editar(
+      `🚫 "${plato.nombre}" agotado. ${duracion.frase} (${formatearFechaMadrid(hasta)}).`,
+      tecladoDeshacer(cat, idx),
+    );
+    return { consumido: true };
+  }
+
   if (partes[1] === "new" && partes[2]) {
     const cat = DESDE_CODIGO[partes[2]];
     if (!cat) return { consumido: true };
@@ -297,46 +406,8 @@ export async function manejarCallback(
     await editar(`"${plato.nombre}" — ${etiquetaPlato(plato).replace(/^🚫 /, "")}`, tecladoAcciones(cat, idx, plato));
     return { consumido: true };
   }
-  if (partes[1] === "agotar" && partes[2] && partes[3] !== undefined) {
-    const cat = DESDE_CODIGO[partes[2]];
-    const idx = Number(partes[3]);
-    if (!cat || !Number.isInteger(idx)) return { consumido: true };
-    const menu = await menuConReactivacionAutomatica();
-    const plato = menu[cat][idx];
-    if (!plato) {
-      await editar("La carta ha cambiado mientras elegías. Vuelve a intentarlo.", tecladoCategorias("w:manage"));
-      return { consumido: true };
-    }
-    await editar(`¿Por cuánto tiempo ocultamos "${plato.nombre}"?`, tecladoDuracion(cat, idx));
-    return { consumido: true };
-  }
-  if (partes[1] === "agotarpor" && partes[2] && partes[3] !== undefined && partes[4]) {
-    const cat = DESDE_CODIGO[partes[2]];
-    const idx = Number(partes[3]);
-    const claveDuracion = partes[4] as ClaveDuracion;
-    if (!cat || !Number.isInteger(idx) || !(claveDuracion in DURACIONES)) return { consumido: true };
-    const menu = await menuConReactivacionAutomatica();
-    const plato = menu[cat][idx];
-    if (!plato) {
-      await editar("La carta ha cambiado mientras elegías. Vuelve a intentarlo.", tecladoCategorias("w:manage"));
-      return { consumido: true };
-    }
-    const duracion = DURACIONES[claveDuracion];
-    // Se guarda AHORA (elegida) pero solo se aplica de verdad -marcarCaducidad-
-    // si el dueño confirma: eso lo resuelve app/api/telegram/webhook/route.ts
-    // justo después de que handleOwnerMessage aplique el disable_item.
-    await fijarDuracionPendiente(
-      chatId,
-      duracion.ms === null ? null : { category: cat, id: plato.id, hasta: Date.now() + duracion.ms },
-    );
-    const action = ActionSchema.parse({ action: "disable_item", category: cat, id: plato.id });
-    const summary = describeAction(action, menu) + (duracion.frase ? ` ${duracion.frase}` : "");
-    await setPending(chatId, { action, summary, context: "menu" });
-    await editar(`Voy a: ${summary}\n\n¿Confirmas?`, tecladoConfirmar());
-    return { consumido: true };
-  }
   if (partes[1] === "act" && partes[2] && partes[3] && partes[4] !== undefined) {
-    const tipo = partes[2]; // enable | remove | price
+    const tipo = partes[2]; // remove | price (enable/disable ahora son "toggle", ver arriba)
     const cat = DESDE_CODIGO[partes[3]];
     const idx = Number(partes[4]);
     if (!cat || !Number.isInteger(idx)) return { consumido: true };
@@ -352,13 +423,8 @@ export async function manejarCallback(
       await editar(`Precio nuevo para "${plato.nombre}" (ahora: ${actual}). Escríbelo (ej: 12,50).`);
       return { consumido: true };
     }
-    const accion: Record<string, "enable_item" | "remove_item"> = {
-      enable: "enable_item",
-      remove: "remove_item",
-    };
-    const nombreAccion = accion[tipo];
-    if (!nombreAccion) return { consumido: true };
-    const action = ActionSchema.parse({ action: nombreAccion, category: cat, id: plato.id });
+    if (tipo !== "remove") return { consumido: true };
+    const action = ActionSchema.parse({ action: "remove_item", category: cat, id: plato.id });
     const summary = describeAction(action, menu);
     await setPending(chatId, { action, summary, context: "menu" });
     await editar(`Voy a: ${summary}\n\n¿Confirmas?`, tecladoConfirmar());
