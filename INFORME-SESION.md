@@ -13,18 +13,22 @@ https://don-pepe-original-71qg5o8g0-ivan-carbonells-projects.vercel.app
 **Lo que necesito de ti, en orden de lo más a lo menos urgente:**
 1. **Rota el secreto de bypass de Vercel** antes de pasar esto a producción
    (se compartió en el chat, ver nota junto a la de alérgenos en el README).
-2. **URL de reseñas de Google** (`lib/resenas.ts`): sin ella, el bloque de
-   reseñas y el cartelito imprimible no funcionan. Instrucciones en el
-   README, sección 3.1.
+   *(En espera: pedido expresamente que no se vuelva a mencionar hasta que
+   tú digas que has terminado de probar.)*
+2. ~~URL de reseñas de Google~~ — **resuelta el 2026-09-02**, ver "Segunda
+   ronda posterior" más abajo.
 3. **Año de fundación**: para el "Desde [FALTA DATO...]" de la carta. No lo
    he inventado, como se pidió.
 4. Decide si merece la pena, en una sesión futura: descripciones de plato
-   para los 8 idiomas que faltan, traducción legal nativa de los 11 idiomas
-   que hoy caen a inglés, y ampliar `/local` a los 18 idiomas (hoy en 6).
-   Todo documentado con detalle en la Tarea 2 más abajo, nada roto mientras
-   tanto.
+   para los **7 idiomas** que aún faltan (eu, nl, pl, cs, hu, ru, ro — el
+   catalán ya está hecho, ver más abajo), traducción legal nativa de los 11
+   idiomas que hoy caen a inglés, y ampliar `/local` a los 18 idiomas (hoy
+   en 6). Todo documentado con detalle en la Tarea 2 más abajo, nada roto
+   mientras tanto.
 5. Cuando tengas la carta de postres real, hay un hueco preparado
    (`Menu.postres` en `lib/types.ts`) — dime y lo conecto.
+6. **Foto de plato por Telegram**: propuesta detallada en "Segunda ronda
+   posterior", sin construir. Decide y te la implemento.
 
 ---
 
@@ -83,6 +87,78 @@ sin tocar en toda la sesión — verificado con `git diff --stat` antes de cada 
 
 Este documento se actualiza según avanza cada tarea. Si algo queda a medias,
 está anotado explícitamente en su sección, no oculto.
+
+---
+
+## Segunda ronda posterior (2026-09-02) — catalán, URL de reseñas, propuesta de fotos
+
+**1. Catalán en las 39 descripciones — hecho.** `data/traducciones.json`
+gana la clave `ca` en las 39 frases, al mismo nivel de cobertura que
+ko/ja/zh (motivo dado por el dueño: "es el idioma que señaló personalmente
+como ofensivo por su ausencia"). Los otros 7 (eu, nl, pl, cs, hu, ru, ro)
+siguen exactamente como estaban, sin tocar. `npm run build` (que corre la
+protección de alérgenos primero) pasa limpio.
+
+**2. URL real de reseñas — hecha y verificada de verdad, no solo compilada.**
+`lib/resenas.ts` ya no tiene el literal `FALTA_DATO`:
+
+```
+GOOGLE_REVIEWS_URL = "https://search.google.com/local/writereview?placeid=ChIJ5bsZXwAbLw0RXQuMcWz4AwM"
+```
+
+Verificación realizada (no solo "compila"):
+- Un script generó el PNG con el mismo código exacto de
+  `app/api/qr/resenas/route.ts` (`QRCode.toBuffer`, mismas opciones) y lo
+  decodificó con `jsQR`: el texto decodificado coincide **carácter a
+  carácter** con la URL de arriba.
+- Petición HTTP real a esa URL decodificada: responde `302` hacia
+  `accounts.google.com/ServiceLogin?continue=...writereview?placeid=...` —
+  es decir, pide iniciar sesión y luego continúa exactamente al formulario
+  de reseña de esa ficha. No es un 404 ni una búsqueda genérica.
+- Se montó el servidor de producción real (`npm run build && npm run
+  start`) y se pidió `/api/qr/resenas` (A5 y A6) con la contraseña de
+  `QR_ADMIN_PASS` por Basic Auth: **200, `content-type: application/pdf`**,
+  PDF válido de verdad (antes daba 400 por la URL sin rellenar). Sin
+  contraseña, sigue dando 401 — la protección no se ha tocado.
+- Nota para quien retome esto: `QR_ADMIN_PASS` **no está en `.env.local`**;
+  para volver a probar el cartelito en local hay que exportarla a mano al
+  arrancar el servidor.
+
+**3. Foto de plato por Telegram — SOLO PROPUESTA, no construida.** El dueño
+pidió expresamente no implementar esto todavía y decidir después de ver la
+propuesta. Resumen (versión completa se dio en el chat):
+
+- **Dónde se guardan**: Vercel Blob (integración nativa del mismo
+  ecosistema que ya usa KV; no hace falta infraestructura nueva). Requiere
+  provisionar el almacén desde el dashboard de Vercel -paso que no puede
+  hacer el agente solo, igual que pasó con KV/Upstash-.
+- **Coste**: Blob tiene un nivel gratuito con cargo por uso a partir de
+  ahí; para el volumen de un restaurante (unas pocas fotos nuevas al mes)
+  se espera que quede dentro de lo gratuito, pero el precio exacto vigente
+  hay que confirmarlo en el propio dashboard antes de decidir, no de
+  memoria.
+- **Peso en la carta con mala cobertura**: las 38 fotos actuales de
+  `public/img` pesan de media **119 KB** (ya optimizadas por el proceso de
+  diseño antes de llegar al repo). Una foto de móvil sin optimizar puede
+  pesar varios MB. Sin un paso de compresión/redimensionado en el propio
+  flujo de Telegram (antes de subir a Blob), cada plato nuevo con foto
+  pesaría 10-40× más que los actuales para un cliente con mala señal — hay
+  que redimensionar y recomprimir en el servidor al recibir la foto, no
+  subir el original de Telegram tal cual.
+- **Viable sin tocar los 7 ficheros protegidos**: sí. `ActionSchema.add_item`
+  no tiene (ni tendría que ganar) un campo `imagen` — tocar
+  `lib/actions.ts` está prohibido. El mismo patrón ya usado para la
+  caducidad de `agotados.ts` sirve aquí: tras confirmar el alta del plato
+  (acción protegida, sin modificar), un paso posterior **fuera** del
+  sistema de acciones escribe la URL de la foto directamente vía
+  `getMenu`/`setMenu` (ya exportadas de `lib/kv.ts`, reutilizables). Todo
+  el código nuevo iría en `lib/telegram.ts` (descargar la foto vía
+  `getFile` de la API de Telegram), `lib/telegram-wizard.ts` (paso nuevo
+  del asistente) y un módulo nuevo, p. ej. `lib/fotos.ts`, para subir a
+  Blob y comprimir.
+
+**Pendiente de tu decisión**, con esos cuatro puntos ya sobre la mesa. No se
+ha escrito ni una línea de la funcionalidad en sí.
 
 ---
 
