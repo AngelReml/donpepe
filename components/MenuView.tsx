@@ -5,6 +5,7 @@ import type { Menu, CategoriaMenu } from "@/lib/types";
 import type { Textos } from "@/lib/i18n";
 import { formatPrice, formatPlatoPrecio } from "@/lib/format";
 import { FotoPlato } from "./FotoPlato";
+import { FilaDeslizable } from "./FilaDeslizable";
 
 const TABS: CategoriaMenu[] = ["entrantes", "arroces", "pescados", "carnes"];
 
@@ -35,10 +36,10 @@ export function MenuView({
         </div>
       ) : null}
 
-      <div
+      <FilaDeslizable
         role="tablist"
-        aria-label={t.etiquetaCategorias}
-        className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0"
+        label={t.etiquetaCategorias}
+        className="-mx-4 gap-2 px-4 pb-1 sm:mx-0 sm:px-0"
       >
         {TABS.map((cat) => {
           const active = cat === tab;
@@ -59,7 +60,7 @@ export function MenuView({
             </button>
           );
         })}
-      </div>
+      </FilaDeslizable>
 
       <ul
         role="tabpanel"

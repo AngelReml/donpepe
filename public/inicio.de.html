@@ -329,10 +329,26 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
 .fmHead b i{color:var(--gold);font-style:normal}
 #fmToggle{color:var(--cream-dim);font-size:10px;letter-spacing:.26em;text-transform:uppercase;padding:6px 4px;transition:color .3s}
 #fmToggle:hover{color:var(--gold)}
-.fmTabs{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--glass-line);overflow-x:auto;scrollbar-width:none}
-.fmTabs::-webkit-scrollbar{display:none}
+/* Igual que en /carta: con ratón (hover:hover) las categorías se REPARTEN
+   en filas -el panel es estrecho a propósito (ver #floatMenu), nunca "todo
+   el ancho de un monitor", así que envolver no descoloca nada y evita
+   necesitar deslizado donde es menos natural-. Solo en pantalla táctil se
+   convierte en una tira horizontal, con desliz nativo + rueda + arrastre +
+   teclado (ver JS) y flechas/desvanecido cuando queda algo oculto. */
+.fmTabsWrap{position:relative}
+.fmTabs{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;border-bottom:1px solid var(--glass-line);contain:layout}
 .fmTabs button{flex:0 0 auto;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim);padding:8px 13px;border:1px solid transparent;border-radius:999px;transition:all .3s}
 .fmTabs button.act{color:var(--gold);border-color:var(--gold-soft);background:rgba(212,175,55,.08)}
+.fmTabsArrow{display:none;position:absolute;top:12px;bottom:1px;z-index:2;width:26px;align-items:center;justify-content:center;background:none;color:var(--cream-dim);font-size:16px;line-height:1}
+.fmTabsArrow.left{left:0;background:linear-gradient(to right,var(--glass) 40%,transparent)}
+.fmTabsArrow.right{right:0;background:linear-gradient(to left,var(--glass) 40%,transparent)}
+@media(hover:none),(pointer:coarse){
+  .fmTabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;cursor:grab}
+  .fmTabs::-webkit-scrollbar{display:none}
+  .fmTabsWrap.puede-izq .fmTabsArrow.left,.fmTabsWrap.puede-der .fmTabsArrow.right{display:flex}
+}
+html.tactil .fmTabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;cursor:grab}
+html.tactil .fmTabsWrap.puede-izq .fmTabsArrow.left,html.tactil .fmTabsWrap.puede-der .fmTabsArrow.right{display:flex}
 .fmBody{overflow-y:auto;padding:8px 8px 14px}
 .fmBody .dish{border-radius:8px}
 .fmNote{padding:12px 14px 4px;font-size:10.5px;color:var(--cream-dim);letter-spacing:.1em}
@@ -778,7 +794,11 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
     <b>Die <i>Karte</i></b>
     <button id="fmToggle">Öffnen</button>
   </div>
-  <div class="fmTabs" id="fmTabs"></div>
+  <div class="fmTabsWrap" id="fmTabsWrap">
+    <button type="button" class="fmTabsArrow left" id="fmArrIzq" tabindex="-1" aria-hidden="true">‹</button>
+    <div class="fmTabs" id="fmTabs" role="tablist"></div>
+    <button type="button" class="fmTabsArrow right" id="fmArrDer" tabindex="-1" aria-hidden="true">›</button>
+  </div>
   <div class="fmBody">
     <div class="fmNote" id="fmNote"></div>
     <ul id="fmList"></ul>
@@ -1098,9 +1118,74 @@ var peek=document.getElementById("peek"),peekImg=document.getElementById("peekIm
 var curTab=TABS[0].id;
 TABS.forEach(function(tb,idx){
   var b=document.createElement("button");b.textContent=tb.label;b.dataset.tab=tb.id;
+  b.setAttribute("role","tab");
+  b.setAttribute("aria-selected",idx===0?"true":"false");
+  b.setAttribute("tabindex",idx===0?"0":"-1");
   if(idx===0)b.classList.add("act");
-  b.addEventListener("click",function(){curTab=tb.id;fmTabs.querySelectorAll("button").forEach(function(x){x.classList.toggle("act",x===b);});renderPanel();});
+  b.addEventListener("click",function(){
+    curTab=tb.id;
+    fmTabs.querySelectorAll("button").forEach(function(x){
+      var act=x===b;
+      x.classList.toggle("act",act);
+      x.setAttribute("aria-selected",act?"true":"false");
+      x.setAttribute("tabindex",act?"0":"-1");
+    });
+    renderPanel();
+  });
   fmTabs.appendChild(b);
+});
+
+/* ============ FMTABS: deslizado accesible en táctil, reparto en filas en ratón ============ */
+/* Con ratón (ver CSS) no hace falta nada de esto -las categorías caben
+   repartidas en filas-. En táctil, .fmTabs pasa a overflow-x:auto y aquí se
+   completan las formas de moverla que no vienen gratis: rueda del ratón
+   (para portátiles con pantalla táctil pero sin dedo a mano), arrastre con
+   el puntero, flechas de teclado con foco itinerante, y la pista visual
+   -flechas+desvanecido- de que queda contenido oculto. */
+var fmTabsWrap=document.getElementById("fmTabsWrap"),fmArrIzq=document.getElementById("fmArrIzq"),fmArrDer=document.getElementById("fmArrDer");
+function medirFmTabs(){
+  var puedeIzq=fmTabs.scrollLeft>4;
+  var puedeDer=fmTabs.scrollLeft+fmTabs.clientWidth<fmTabs.scrollWidth-4;
+  fmTabsWrap.classList.toggle("puede-izq",puedeIzq);
+  fmTabsWrap.classList.toggle("puede-der",puedeDer);
+  fmTabs.style.maskImage=fmTabs.style.webkitMaskImage=(puedeIzq||puedeDer)
+    ?("linear-gradient(to right,"+(puedeIzq?"transparent,black 24px":"black")+",black "+(puedeDer?"calc(100% - 24px)":"100%")+","+(puedeDer?"transparent":"black")+")")
+    :"";
+}
+medirFmTabs();
+fmTabs.addEventListener("scroll",medirFmTabs,{passive:true});
+window.addEventListener("resize",medirFmTabs);
+if(window.ResizeObserver)new ResizeObserver(medirFmTabs).observe(fmTabs);
+fmArrIzq.addEventListener("click",function(){fmTabs.scrollBy({left:-120,behavior:"smooth"});});
+fmArrDer.addEventListener("click",function(){fmTabs.scrollBy({left:120,behavior:"smooth"});});
+fmTabs.addEventListener("wheel",function(e){
+  if(fmTabs.scrollWidth<=fmTabs.clientWidth)return;
+  if(Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;
+  fmTabs.scrollLeft+=e.deltaY;e.preventDefault();
+},{passive:false});
+(function(){
+  var arrastrando=null;
+  fmTabs.addEventListener("pointerdown",function(e){
+    if(fmTabs.scrollWidth<=fmTabs.clientWidth||e.pointerType==="touch")return;
+    arrastrando={x:e.clientX,scroll:fmTabs.scrollLeft};
+    fmTabs.setPointerCapture(e.pointerId);
+  });
+  fmTabs.addEventListener("pointermove",function(e){
+    if(!arrastrando)return;
+    fmTabs.scrollLeft=arrastrando.scroll-(e.clientX-arrastrando.x);
+  });
+  ["pointerup","pointercancel"].forEach(function(ev){fmTabs.addEventListener(ev,function(){arrastrando=null;});});
+})();
+fmTabs.addEventListener("keydown",function(e){
+  if(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")return;
+  var botones=Array.prototype.slice.call(fmTabs.querySelectorAll("button"));
+  var actual=botones.indexOf(document.activeElement);
+  if(actual===-1)return;
+  var siguiente=e.key==="ArrowRight"?Math.min(actual+1,botones.length-1):Math.max(actual-1,0);
+  if(siguiente===actual)return;
+  e.preventDefault();
+  botones[siguiente].focus();
+  botones[siguiente].scrollIntoView({inline:"nearest",block:"nearest"});
 });
 function dishInner(it,claveFoto){
   return '<div class="row"><span class="n">'+it.n+'</span><span class="dots"></span><span class="p">'+it.p+'</span></div>'+
