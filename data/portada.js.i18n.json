@@ -239,5 +239,13 @@
     "de": "\" um \"+tm+\". Nur noch auf Senden tippen – wir bestätigen sofort.\"",
     "fr": "\" à \"+tm+\". Il ne reste qu'à l'envoyer, nous confirmons aussitôt.\"",
     "it": "\" alle \"+tm+\". Basta premere invia e confermiamo subito.\""
+  },
+  "TXT_SIN_PRECIOS=\"No hemos podido cargar los precios actualizados. Consulta la carta con el personal.\"": {
+    "gl": "TXT_SIN_PRECIOS=\"Non puidemos cargar os prezos actualizados. Consulta a carta co persoal.\"",
+    "en": "TXT_SIN_PRECIOS=\"We could not load the current prices. Please check with our staff.\"",
+    "pt": "TXT_SIN_PRECIOS=\"Não conseguimos carregar os preços atualizados. Consulte a carta com a equipa.\"",
+    "de": "TXT_SIN_PRECIOS=\"Wir konnten die aktuellen Preise nicht laden. Bitte fragt unser Personal.\"",
+    "fr": "TXT_SIN_PRECIOS=\"Nous n'avons pas pu charger les prix actuels. Merci de vous renseigner auprès du personnel.\"",
+    "it": "TXT_SIN_PRECIOS=\"Non siamo riusciti a caricare i prezzi aggiornati. Chiedi al personale.\""
   }
 }

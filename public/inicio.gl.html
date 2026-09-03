@@ -430,6 +430,13 @@ footer .legales a:hover{color:var(--gold);border-color:var(--gold-soft)}
 .resenasEstrellas .star.tocada,.resenasEstrellas .star.tocada~.star{color:var(--gold)}
 .resenasSub{margin:16px 0 0;font-family:var(--sans);font-size:13px;color:var(--cream-dim)}
 @media(max-width:480px){.resenasEstrellas .star{font-size:38px}}
+/* Si la carta en vivo no llega (red caída, API caída), es mejor no mostrar
+   NINGÚN precio que arriesgarse a mostrar uno estático que ya no es real -el
+   local ya tiene una reseña negativa por cobrar más de lo que ponía la
+   carta-. .sinPreciosLive la pone el JS solo cuando el fetch (con reintento
+   y tiempo límite) termina fallando de verdad; nombre, descripción, alérgenos
+   y foto -que no engañan sobre lo que se cobra- se siguen viendo. */
+.sinPreciosLive .dish .p,.sinPreciosLive .dish .dots,.sinPreciosLive .menuCard .price{display:none}
 /* Mandamientos: tiza sobre pizarra. SOLO CSS -sin foto de fondo-, para no
    depender de un recurso que no tenemos: el efecto de textura viene del
    degradado y del ligero desenfoque del texto, no de una imagen. Este
@@ -1361,21 +1368,51 @@ function pintarAviso(txt){
   }
   host.textContent=txt||"";host.style.display=txt?"":"none";
 }
-fetch("/api/menu",{cache:"no-store"}).then(function(r){
-  if(!r.ok)throw new Error("HTTP "+r.status);
-  return r.json();
-}).then(function(menu){
-  if(!menu||typeof menu!=="object")return;
-  fusionarCarta(menu);
-  renderPanel();
-  renderGrid();
-  fusionarMenus(menu);
-  pintarAviso(menu.aviso);
-  /* los bloques recién creados no los conocía GSAP: se les vuelve a poner el reveal */
-  if(window.gsap)gsap.utils.toArray("#cartaGrid [data-reveal]").forEach(function(el){
-    gsap.fromTo(el,{y:46,opacity:0},{y:0,opacity:1,duration:1,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 88%"}});
+/* Texto SIN_PRECIOS: fragmento con su propia clave para que
+   scripts/generar-portada.mjs (vía data/portada.js.i18n.json) lo traduzca a
+   los 6 idiomas estáticos igual que el resto del JS. */
+var TXT_SIN_PRECIOS="Non puidemos cargar os prezos actualizados. Consulta a carta co persoal.";
+
+function mostrarSinPrecios(){
+  document.documentElement.classList.add("sinPreciosLive");
+  pintarAviso(TXT_SIN_PRECIOS);
+}
+
+/* Tiempo límite corto por intento -para no dejar la carta colgada en un
+   móvil con mala señal- y UN reintento antes de rendirse: una petición que
+   falla puede ser un simple parpadeo de red, no hace falta rendirse a la
+   primera. Si tras el reintento sigue sin llegar, mejor ocultar los precios
+   que arriesgarse a enseñar uno estático que ya no sea real. */
+function pedirMenuConLimite(ms){
+  var ctrl=("AbortController" in window)?new AbortController():null;
+  var timer=ctrl?setTimeout(function(){ctrl.abort();},ms):null;
+  return fetch("/api/menu",{cache:"no-store",signal:ctrl?ctrl.signal:undefined}).then(function(r){
+    if(timer)clearTimeout(timer);
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    return r.json();
+  }).catch(function(err){
+    if(timer)clearTimeout(timer);
+    throw err;
   });
-}).catch(function(){/* sin API se queda la carta estática */});
+}
+function cargarCartaViva(intentosRestantes){
+  pedirMenuConLimite(4000).then(function(menu){
+    if(!menu||typeof menu!=="object")throw new Error("respuesta vacía");
+    fusionarCarta(menu);
+    renderPanel();
+    renderGrid();
+    fusionarMenus(menu);
+    pintarAviso(menu.aviso);
+    /* los bloques recién creados no los conocía GSAP: se les vuelve a poner el reveal */
+    if(window.gsap)gsap.utils.toArray("#cartaGrid [data-reveal]").forEach(function(el){
+      gsap.fromTo(el,{y:46,opacity:0},{y:0,opacity:1,duration:1,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 88%"}});
+    });
+  }).catch(function(){
+    if(intentosRestantes>0){cargarCartaViva(intentosRestantes-1);return;}
+    mostrarSinPrecios();
+  });
+}
+cargarCartaViva(1);
 })();
 </script>
 </body>
