@@ -14,7 +14,11 @@ export function SelectorIdioma({
   etiqueta: string;
 }) {
   return (
-    <nav aria-label={etiqueta} className="-mx-4 flex gap-1.5 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+    <nav
+      aria-label={etiqueta}
+      className="-mx-4 flex min-w-0 gap-1.5 overflow-x-auto px-4 sm:mx-0 sm:px-0"
+      style={{ contain: "layout" }}
+    >
       {IDIOMAS.map((idioma) => {
         const activo = idioma === actual;
         return (
