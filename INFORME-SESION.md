@@ -385,6 +385,21 @@ oscurecer la foto, que es justo la regla que no se podía romper esta
 vez. Captura final comparada con la del revert: misma fotografía, mismo
 brillo, mismas luces cálidas, mismo reflejo en el suelo mojado.
 
+**Retoque final** (commit `9c6937e`): el eyebrow a 20px con
+`letter-spacing:.5em` ocupaba tres líneas en móvil y rompía la
+composición. Bajado a `.16em` -mismo tamaño, mismo peso, lo que le daba
+el contraste no se toca-: cabe en una sola línea tanto en móvil
+(360/390px) como en escritorio (1440px). Al cambiar de forma la caja del
+texto, cambia también qué trozo de foto queda detrás: en escritorio
+barre una franja más ancha y más clara que en móvil, y el dorado que ya
+se había mostrado se quedaba en 2,62:1 ahí. Aclarado un paso más, a
+`#ebd9a1`, calibrado contra el peor de los tres anchos con margen real:
+360px 3,51:1, 390px 3,47:1, 1440px 3,05:1 -las tres por encima del
+3:1-. Sigue siendo dorado, no blanco ni beige gris -comparado en
+captura junto al dorado de marca del header-. Pendiente de que el
+usuario lo revise en el móvil; dijo que con esto lo da por bueno y
+fusiona él mismo.
+
 ---
 
 ## TAREA 0 — Plato oculto (urgente)
