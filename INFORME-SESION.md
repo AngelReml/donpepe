@@ -29,11 +29,9 @@ https://don-pepe-original-71qg5o8g0-ivan-carbonells-projects.vercel.app
    (`Menu.postres` en `lib/types.ts`) — dime y lo conecto.
 6. Los 4 fallos reales que reportaste tras probar en el navegador (portada
    ilegible, fotos de plato escondidas, bloque de reseñas discreto/sin
-   marca de Google, y la aclaración de las dos cartas) están **arreglados
-   y verificados con capturas y medición real** — ver "Tercera ronda" más
-   abajo. Nada nuevo que necesite tu revisión ahí salvo que quieras el
-   aviso visible de "carta no disponible" si falla la carga en vivo de
-   `/local` (punto 4, sin implementar, a la espera de que lo pidas).
+   marca de Google, y el fallback silencioso de precios en `/local`)
+   están **arreglados y verificados con capturas y medición real** — ver
+   "Tercera ronda" más abajo. Nada pendiente de tu parte en estos cuatro.
 7. **Foto de plato por Telegram**: propuesta detallada en "Segunda ronda
    posterior", sin construir. Decide y te la implemento.
 
@@ -212,24 +210,37 @@ sincronizó cuando se resolvió la URL real en `lib/resenas.ts`, porque
 la URL real y un comentario explicando que hay que mantener las dos
 copias sincronizadas a mano si cambia algún día.
 
-**4. Las dos cartas — aclaración, sin tocar código.** `/local` NO tiene
-precios propios de verdad: trae un `TABS` estático (respaldo de diseño,
-con descripciones/alérgenos/fotos) y en cuanto carga hace `fetch` al
-mismo `/api/menu` (misma KV) que usa `/carta`, y **sobrescribe** precio,
-nombre, disponibilidad y el aviso con los datos en vivo — de eso me
-aseguré leyendo `fusionarCarta()` en `public/inicio.html`, línea por
-línea, no de memoria. Lo único que queda del diseño estático son
-descripción/alérgenos/foto, emparejados por id. Así que no es un riesgo
-de "precio duplicado que se desincroniza" en el uso normal: el precio
-que hay en la KV es el que se ve en los dos sitios, siempre. El riesgo
-real y más estrecho: si ese `fetch` falla (caída de red o de la API),
-`/local` se queda en silencio mostrando el precio ESTÁTICO de cuando se
-compiló la web, sin ningún aviso visible al cliente. Hoy coinciden con
-los precios reales (comprobado plato a plato), pero eso es porque se
-mantienen a mano al día, no una garantía. No lo he tocado porque no se
-pidió arreglar, solo informar — dime si quieres que añada un aviso
-visible ("carta no disponible ahora mismo, ver /carta") para cuando
-falle el `fetch`, en vez de fallar en silencio.
+**4. Las dos cartas — aclaración inicial, y luego arreglado a petición
+tuya.** `/local` NO tiene precios propios de verdad: trae un `TABS`
+estático (respaldo de diseño, con descripciones/alérgenos/fotos) y en
+cuanto carga hace `fetch` al mismo `/api/menu` (misma KV) que usa
+`/carta`, y **sobrescribe** precio, nombre, disponibilidad y el aviso
+con los datos en vivo. El riesgo real que señalé — que si ese `fetch`
+fallaba, `/local` se quedaba en silencio mostrando el precio ESTÁTICO de
+cuando se compiló la web, sin avisar — lo pediste arreglar. Hecho, ver
+commit `716286b`:
+
+- Un intento con límite de 4s (`AbortController`) y **un** reintento
+  antes de rendirse — no cuelga la carta en un móvil con mala señal, pero
+  tampoco se rinde a la primera petición que puede ser un simple parpadeo
+  de red.
+- Si tras el reintento sigue sin llegar: se ocultan TODOS los precios
+  (platos sueltos, puntos guía, y los menús del día de precio fijo) y
+  aparece un aviso sobrio y traducido a los 6 idiomas estáticos: "No
+  hemos podido cargar los precios actualizados. Consulta la carta con el
+  personal." Nombre, descripción, alérgenos y foto siguen mostrándose —
+  no dicen nada sobre lo que se cobra.
+- Verificado simulando el fallo de verdad con Playwright (no a ojo, dos
+  escenarios distintos): con un fallo inmediato de red, cae al aviso en
+  ~3,7 s con **0 precios visibles en pantalla** (medido con
+  `getComputedStyle`/`getBoundingClientRect`, no solo mirando el DOM); con
+  una API que se queda COLGADA sin contestar nunca —para probar el
+  límite de tiempo de verdad, no solo el camino del error inmediato—,
+  cae al aviso en ~8,3 s, sin quedarse esperando indefinidamente. Con la
+  API funcionando normal, sin interceptar nada: el aviso no aparece y los
+  37 precios de la página se ven con normalidad — el camino feliz sigue
+  intacto. Captura real guardada con el aviso y varios platos sin precio
+  a la vez, uno junto al otro.
 
 ---
 
