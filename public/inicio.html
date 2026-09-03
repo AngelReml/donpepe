@@ -142,14 +142,30 @@ nav.top a.nl:hover{color:var(--cream)}nav.top a.nl:hover::after{width:100%}
 #stage .grain{position:absolute;inset:-40px;opacity:.07;pointer-events:none;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(4) infinite}
 @keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-14px,10px)}50%{transform:translate(10px,-12px)}75%{transform:translate(-8px,-8px)}100%{transform:translate(0,0)}}
 .cap{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 6vw;pointer-events:none;opacity:0}
-.cap .kicker{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
-.cap h1{font-size:clamp(52px,10vw,132px);font-weight:700;line-height:.95;text-shadow:0 4px 40px rgba(0,0,0,.7)}
+/* Cuarta vuelta: nada de veladura sobre la foto. El eyebrow es, con
+   diferencia, el peor -texto pequeño y dorado, poco margen de por sí-, así
+   que necesita varias palancas encadenadas, en este orden: más peso
+   tipográfico; el dorado un poco más claro (#e2c977 -sigue leyéndose como
+   dorado, no vira a amarillo ni a beige-, no #d4af37); y el tamaño subido
+   lo bastante (20px, en negrita) para entrar en el umbral de "texto
+   grande" de WCAG (3:1, no 4.5:1) -aclarar el dorado solo no bastaba ni de
+   lejos: incluso a un tono ya bastante pálido seguía por debajo de 3:1
+   contra el fondo real-. Nada de caja ni pastilla: sigue siendo un
+   detalle fino, solo que más grande y más claro. */
+.cap .kicker{font-size:20px;font-weight:700;letter-spacing:.5em;text-transform:uppercase;color:#e2c977;margin-bottom:22px}
+/* El título aprueba de sobra en promedio (4,18:1); solo falla en un punto
+   muy concreto -una vidriera iluminada de fondo-. Se añade una sombra
+   ceñida a las propias letras (radio pequeño, sin manchar alrededor) para
+   ese punto, sin tocar la foto ni el resto del tratamiento original. */
+.cap h1{font-size:clamp(52px,10vw,132px);font-weight:700;line-height:.95;text-shadow:0 4px 40px rgba(0,0,0,.7),0 1px 3px rgba(0,0,0,.9)}
 .cap h2{font-size:clamp(34px,6vw,76px);font-weight:600;line-height:1.05;text-shadow:0 4px 40px rgba(0,0,0,.7)}
-.cap p{max-width:560px;margin-top:22px;font-size:14px;line-height:1.8;color:var(--cream-dim)}
+/* Fallaba por su propia opacidad (cream-dim = blanco al 62%), antes
+   incluso de tocar el fondo: blanco puro, sin abrir la opacidad. */
+.cap p{max-width:560px;margin-top:22px;font-size:14px;line-height:1.8;color:#fff}
 .cap .rule{width:1px;height:56px;background:linear-gradient(var(--gold),transparent);margin:26px auto 0}
 #cap1{top:50%;transform:translateY(-50%)}
 #cap2{top:50%;transform:translateY(-50%)}
-#cap2 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,30px);color:var(--cream);max-width:700px}
+#cap2 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,30px);color:#fff;max-width:700px}
 #cap3{top:50%;transform:translateY(-50%);pointer-events:auto}
 #cap3 .ctaRow{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center}
 #hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--cream-dim);font-size:10px;letter-spacing:.42em;text-transform:uppercase;pointer-events:none}
