@@ -32,7 +32,10 @@ https://don-pepe-original-71qg5o8g0-ivan-carbonells-projects.vercel.app
    marca de Google, y el fallback silencioso de precios en `/local`)
    están **arreglados y verificados con capturas y medición real** — ver
    "Tercera ronda" más abajo. Nada pendiente de tu parte en estos cuatro.
-7. **Foto de plato por Telegram**: propuesta detallada en "Segunda ronda
+7. Los 2 fallos del último commit (botón de WhatsApp invisible en móvil, y
+   el oscurecimiento pasado de rosca en `/local`) también **arreglados y
+   verificados** — ver "Cuarta ronda" más abajo.
+8. **Foto de plato por Telegram**: propuesta detallada en "Segunda ronda
    posterior", sin construir. Decide y te la implemento.
 
 ---
@@ -241,6 +244,56 @@ commit `716286b`:
   37 precios de la página se ven con normalidad — el camino feliz sigue
   intacto. Captura real guardada con el aviso y varios platos sin precio
   a la vez, uno junto al otro.
+
+---
+
+## Cuarta ronda (2026-09-03) — dos fallos reales del último commit
+
+**1. Botón de WhatsApp invisible en móvil real — encontrado y arreglado.**
+Causa real (no supuesta): probar solo redimensionando la ventana del
+navegador no reproducía nada -código y capturas correctos a cualquier
+ancho-; hubo que emular Android/Chrome de verdad (`isMobile`+`hasTouch`,
+no solo el viewport) para reproducirlo. El selector de 18 idiomas (`nav`
+con `overflow-x-auto` y 18 pastillas `shrink-0`) hacía que Chrome en
+móvil calculase un "viewport de layout" de 774px sobre una pantalla real
+de 412px -confirmado quitando elemento a elemento del DOM hasta ver cuál
+lo causaba-. La barra fija de Reservar/WhatsApp heredaba ese viewport
+inflado: Reservar coincidía por casualidad con casi toda la pantalla
+real, y WhatsApp quedaba fuera de los 412px visibles del todo, sin
+ningún indicio de que hiciera falta scroll horizontal. El propio
+`overflow-x-auto` del selector SÍ recortaba bien su contenido en el
+layout final -comprobado aparte-, pero eso no evitaba que Chrome, en
+móvil, calculara el viewport a partir del contenido interno antes de
+aplicar ese recorte. Arreglado con `contain:layout` en el `nav` -aísla
+su contenido para que no cuente en ese cálculo- más `overflow-x:hidden`
+en `html,body` como red de seguridad general. Verificado con Chrome real
+emulando Android a 360px, 390px y 430px: `window.innerWidth` coincide
+con el ancho real en los tres, Reservar y WhatsApp con el mismo ancho y
+la misma altura, WhatsApp dentro de los límites reales de la pantalla.
+El selector de idioma sigue siendo desplazable igual que antes.
+
+**2. Oscurecimiento de `/local` — corregido tras pasarse de la raya.**
+La corrección de la ronda anterior sí pasaba WCAG AA pero oscurecía
+casi toda la pantalla y apagaba la foto -la queja concreta: "la piedra
+iluminada, la ventana y el plato de vieiras se ven apagados y turbios",
+título en un gris percibido en vez de blanco puro-. Rehecho con recursos
+LOCALES: el velo global casi se ha quitado (pico de opacidad de .97 a
+.32, ya no sostiene el contraste); nuevo `.cap::before`, un parche
+oscuro con blur() pegado justo al bloque de texto -se ajusta solo al
+contenido real de cada escena, sin las esquinas más claras que deja un
+óvalo-, que se disipa en poco espacio hacia fuera de esa caja sin tocar
+el resto del fotograma; título y cita en blanco puro (`#fff`); sombra de
+texto en cuatro direcciones (un contorno real). Verificado con captura
+ANTES/DESPUÉS de las tres escenas (piedra, interior, vino y vieiras -la
+"segunda pantalla" que señaló, en realidad la tercera escena del
+carrusel, no la segunda- ) y con la misma medición de contraste real que
+la vez anterior, esta vez exigida solo dentro de la caja de cada
+elemento de texto: las tres escenas pasan AA con margen, promedio y peor
+punto, en móvil. Bug real de método encontrado y corregido a mitad de la
+verificación: ocultar el propio contenedor para medir el fondo también
+apagaba su `::before` -es su propio pseudo-elemento-, así que la primera
+vuelta de medidas era del fondo SIN el parche puesto; corregido ocultando
+solo el texto, no el contenedor.
 
 ---
 
