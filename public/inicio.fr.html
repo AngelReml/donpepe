@@ -139,38 +139,27 @@ nav.top a.nl:hover{color:var(--cream)}nav.top a.nl:hover::after{width:100%}
 #stage{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--carbon)}
 #scene{position:absolute;inset:0;width:100%;height:100%}
 #stage .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.62) 100%);pointer-events:none}
-/* Segunda vuelta: la primera versión oscurecía casi toda la pantalla y
-   apagaba la foto -piedra, ventana, vieiras-, que es lo mejor que tiene la
-   portada. Ahora la legibilidad se consigue con recursos LOCALES, no con un
-   velo global:
-   1) .textscrim, muy reducido, casi de adorno -deja respirar el color y las
-      luces cálidas en todo el fotograma, ya no es quien sostiene el
-      contraste-.
-   2) .cap::before, un degradado pegado al propio cuadro de texto -crece y
-      encoge solo, con el contenido real de cada escena, porque se ancla al
-      propio .cap, que ya se ajusta a su contenido- y que se disipa en
-      poco espacio hacia los bordes.
-   3) Sombra de texto en cuatro direcciones (un "contorno" real, no solo un
-      resplandor difuso) en kicker/h1/h2/p.
-   Contraste medido igual que la vez anterior (fondo real bajo el texto,
-   oculto para medirlo, vs. el color real de CSS), pero ahora la medición
-   se exige SOLO dentro de la caja de texto -no en toda la pantalla-, tal
-   como se pidió. */
-#stage .textscrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 46% at 50% 50%,rgba(0,0,0,.32) 0%,rgba(0,0,0,.16) 45%,transparent 75%)}
+/* Tercera vuelta: la segunda pasada (un parche detrás del bloque de texto,
+   con blur) sí pasaba WCAG pero se veía como una mancha -un rectángulo
+   oscuro con un borde localizable, que cortaba la foto en dos-. Un parche
+   SIEMPRE tiene un borde en algún punto, por difuminado que esté; para que
+   no se pueda señalar dónde termina, no puede tener ninguna forma
+   reconocible.
+   Ahora un ÚNICO degradado vertical, de arriba abajo, a todo el ANCHO
+   COMPLETO del escenario -al cubrir todo el ancho no queda ningún borde
+   lateral que delate un rectángulo-, más oscuro en la franja central donde
+   vive el texto (top:50% en los tres escenarios) y disipándose muy
+   despacio hacia arriba y hacia abajo a lo largo de casi toda la pantalla:
+   sin ningún punto de corte perceptible. La sombra de texto (ver
+   kicker/h1/h2/p más abajo) hace ahora más trabajo que el fondo. */
+#stage .textscrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.25) 10%,rgba(0,0,0,.7) 22%,rgba(0,0,0,.88) 32%,rgba(0,0,0,.9) 50%,rgba(0,0,0,.88) 68%,rgba(0,0,0,.7) 78%,rgba(0,0,0,.25) 90%,transparent 100%)}
 #stage .grain{position:absolute;inset:-40px;opacity:.07;pointer-events:none;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(4) infinite}
 @keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-14px,10px)}50%{transform:translate(10px,-12px)}75%{transform:translate(-8px,-8px)}100%{transform:translate(0,0)}}
 .cap{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 6vw;pointer-events:none;opacity:0}
-/* Relleno PLANO (no un degradado radial): un óvalo con desvanecido deja las
-   ESQUINAS de esta caja -ya ajustada al texto real- mucho más claras que el
-   centro, justo donde cae el borde de kicker/párrafo. Un color plano y
-   difuminado con blur() cubre la caja entera por igual y se disuelve en la
-   foto SOLO en su propio borde exterior -sigue siendo local, no un velo de
-   pantalla completa-. */
-.cap::before{content:"";position:absolute;inset:-8% -6%;z-index:-1;pointer-events:none;background:rgba(0,0,0,.95);filter:blur(15px);border-radius:28px}
-.cap .kicker{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;text-shadow:-1px -1px 2px rgba(0,0,0,.95),1px -1px 2px rgba(0,0,0,.95),-1px 1px 2px rgba(0,0,0,.95),1px 1px 2px rgba(0,0,0,.95),0 3px 14px rgba(0,0,0,.6)}
-.cap h1{color:#fff;font-size:clamp(52px,10vw,132px);font-weight:700;line-height:.95;text-shadow:-1px -1px 3px rgba(0,0,0,.95),1px -1px 3px rgba(0,0,0,.95),-1px 1px 3px rgba(0,0,0,.95),1px 1px 3px rgba(0,0,0,.95),0 6px 26px rgba(0,0,0,.65)}
-.cap h2{color:#fff;font-size:clamp(34px,6vw,76px);font-weight:600;line-height:1.05;text-shadow:-1px -1px 3px rgba(0,0,0,.95),1px -1px 3px rgba(0,0,0,.95),-1px 1px 3px rgba(0,0,0,.95),1px 1px 3px rgba(0,0,0,.95),0 6px 26px rgba(0,0,0,.65)}
-.cap p{max-width:560px;margin-top:22px;font-size:14px;line-height:1.8;color:#fff;text-shadow:-1px -1px 2px rgba(0,0,0,.9),1px -1px 2px rgba(0,0,0,.9),-1px 1px 2px rgba(0,0,0,.9),1px 1px 2px rgba(0,0,0,.9),0 3px 10px rgba(0,0,0,.55)}
+.cap .kicker{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;text-shadow:-2px -2px 3px rgba(0,0,0,1),2px -2px 3px rgba(0,0,0,1),-2px 2px 3px rgba(0,0,0,1),2px 2px 3px rgba(0,0,0,1),0 0 3px rgba(0,0,0,1),0 2px 10px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7)}
+.cap h1{color:#fff;font-size:clamp(52px,10vw,132px);font-weight:700;line-height:.95;text-shadow:-2px -2px 4px rgba(0,0,0,1),2px -2px 4px rgba(0,0,0,1),-2px 2px 4px rgba(0,0,0,1),2px 2px 4px rgba(0,0,0,1),0 4px 20px rgba(0,0,0,.85),0 10px 36px rgba(0,0,0,.6)}
+.cap h2{color:#fff;font-size:clamp(34px,6vw,76px);font-weight:600;line-height:1.05;text-shadow:-2px -2px 4px rgba(0,0,0,1),2px -2px 4px rgba(0,0,0,1),-2px 2px 4px rgba(0,0,0,1),2px 2px 4px rgba(0,0,0,1),0 4px 20px rgba(0,0,0,.85),0 10px 36px rgba(0,0,0,.6)}
+.cap p{max-width:560px;margin-top:22px;font-size:14px;line-height:1.8;color:#fff;text-shadow:-1.5px -1.5px 3px rgba(0,0,0,1),1.5px -1.5px 3px rgba(0,0,0,1),-1.5px 1.5px 3px rgba(0,0,0,1),1.5px 1.5px 3px rgba(0,0,0,1),0 2px 8px rgba(0,0,0,.7)}
 .cap .rule{width:1px;height:56px;background:linear-gradient(var(--gold),transparent);margin:26px auto 0}
 #cap1{top:50%;transform:translateY(-50%)}
 #cap2{top:50%;transform:translateY(-50%)}
