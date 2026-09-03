@@ -35,7 +35,12 @@ https://don-pepe-original-71qg5o8g0-ivan-carbonells-projects.vercel.app
 7. Los 2 fallos del último commit (botón de WhatsApp invisible en móvil, y
    el oscurecimiento pasado de rosca en `/local`) también **arreglados y
    verificados** — ver "Cuarta ronda" más abajo.
-8. **Foto de plato por Telegram**: propuesta detallada en "Segunda ronda
+8. Los 2 bugs siguientes (pestañas de `/local` inalcanzables en
+   escritorio -accesibilidad real- y la mancha del parche de texto)
+   también **arreglados y verificados, incluida tu hipótesis del
+   `overflow-x:hidden` -comprobada y descartada con pruebas, no de
+   oídas-** — ver "Quinta ronda" más abajo.
+9. **Foto de plato por Telegram**: propuesta detallada en "Segunda ronda
    posterior", sin construir. Decide y te la implemento.
 
 ---
@@ -294,6 +299,47 @@ verificación: ocultar el propio contenedor para medir el fondo también
 apagaba su `::before` -es su propio pseudo-elemento-, así que la primera
 vuelta de medidas era del fondo SIN el parche puesto; corregido ocultando
 solo el texto, no el contenedor.
+
+---
+
+## Quinta ronda (2026-09-03) — dos bugs más, uno de accesibilidad real
+
+**1. Pestañas de categoría de `/local` inalcanzables en escritorio —
+arreglado, y la hipótesis del usuario descartada con pruebas.** El
+usuario sospechaba que `overflow-x:hidden` en `html,body` (commit
+`215a612`) había roto el desplazamiento. Comprobado y descartado: ese
+commit tocó solo `app/globals.css` y `components/SelectorIdioma.tsx`,
+ambos exclusivos de `/carta`; `/local` es HTML estático con su propia
+hoja de estilos y ni siquiera carga `app/globals.css`. Además, el
+`overflow-x:hidden` del `body` de `/local` existe desde el primerísimo
+commit del proyecto. La causa real, la misma en las TRES barras
+deslizables del sitio (auditadas todas: pestañas de `/carta`, selector
+de 18 idiomas de `/carta`, y `.fmTabs` de `/local`): `overflow-x-auto`
+con la barra de scroll ocultada y cero alternativas de entrada -ni rueda
+de ratón, ni arrastre, y confirmado con pulsaciones de Tab reales que el
+foco de teclado se movía entre botones pero nunca desplazaba el
+contenedor-. Viene del diseño original, no de nada de esta sesión.
+Arreglado con un criterio distinto según el dispositivo: con ratón, las
+categorías se reparten en varias filas (viven en contenedores de ancho
+acotado, nunca hace falta deslizar); en táctil, se mantiene el desliz
+horizontal pero ahora con dedo, rueda, arrastre y teclado con flechas
++ foco itinerante, más flechas visibles y desvanecido en el borde
+cuando de verdad queda algo oculto. Nuevo componente compartido
+`components/FilaDeslizable.tsx`. Verificado que el botón de WhatsApp
+sigue intacto a 360/390/430px tras este cambio. Ver commit `3fe4280`.
+
+**2. Oscurecimiento de `/local`, tercera vuelta — quitada la mancha.**
+La segunda vuelta pasaba WCAG pero se veía como un parche rectangular
+con un borde localizable. Cualquier parche, por difuminado que esté,
+tiene un borde en algún punto. Rehecho sin ninguna forma reconocible:
+un único degradado vertical a todo el ancho completo (al cubrir todo el
+ancho no queda ningún borde lateral), disipándose muy despacio del 10%
+al 90% de la altura de la pantalla, más apoyo en la sombra de texto y
+menos en oscurecer el fondo. Verificado con capturas antes de darlo por
+bueno: no se puede señalar un punto donde el oscurecimiento "termine"
+en ninguna de las tres escenas ni en escritorio, y sigue pasando AA con
+margen (promedio y peor punto) dentro de la caja de cada elemento de
+texto. Ver commit `09c7b11`.
 
 ---
 
