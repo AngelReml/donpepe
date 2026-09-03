@@ -139,26 +139,42 @@ nav.top a.nl:hover{color:var(--cream)}nav.top a.nl:hover::after{width:100%}
 #stage{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--carbon)}
 #scene{position:absolute;inset:0;width:100%;height:100%}
 #stage .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.62) 100%);pointer-events:none}
-/* Velo de legibilidad: al contrario que .vignette (oscurece los BORDES), este
-   oscurece el CENTRO -donde vive siempre el texto de .cap, top:50% fijo en
-   los tres escenarios- y deja respirar los bordes. Sin él, el título caía
-   sobre zonas iluminadas de la foto (piedra, ventana) y no se leía: medido
-   con contraste real de WCAG AA contra los píxeles reales de fondo, por
-   debajo de 2:1 en el peor punto. Alpha calibrada (no a ojo) contra el punto
-   más claro medido en la carátula real: pasa AA con margen tanto en móvil
-   como en escritorio, donde el recorte de la foto es distinto. */
-#stage .textscrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 92% 52% at 50% 50%,rgba(0,0,0,.97) 0%,rgba(0,0,0,.92) 40%,rgba(0,0,0,.6) 60%,rgba(0,0,0,.22) 80%,transparent 95%)}
+/* Segunda vuelta: la primera versión oscurecía casi toda la pantalla y
+   apagaba la foto -piedra, ventana, vieiras-, que es lo mejor que tiene la
+   portada. Ahora la legibilidad se consigue con recursos LOCALES, no con un
+   velo global:
+   1) .textscrim, muy reducido, casi de adorno -deja respirar el color y las
+      luces cálidas en todo el fotograma, ya no es quien sostiene el
+      contraste-.
+   2) .cap::before, un degradado pegado al propio cuadro de texto -crece y
+      encoge solo, con el contenido real de cada escena, porque se ancla al
+      propio .cap, que ya se ajusta a su contenido- y que se disipa en
+      poco espacio hacia los bordes.
+   3) Sombra de texto en cuatro direcciones (un "contorno" real, no solo un
+      resplandor difuso) en kicker/h1/h2/p.
+   Contraste medido igual que la vez anterior (fondo real bajo el texto,
+   oculto para medirlo, vs. el color real de CSS), pero ahora la medición
+   se exige SOLO dentro de la caja de texto -no en toda la pantalla-, tal
+   como se pidió. */
+#stage .textscrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 46% at 50% 50%,rgba(0,0,0,.32) 0%,rgba(0,0,0,.16) 45%,transparent 75%)}
 #stage .grain{position:absolute;inset:-40px;opacity:.07;pointer-events:none;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(4) infinite}
 @keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-14px,10px)}50%{transform:translate(10px,-12px)}75%{transform:translate(-8px,-8px)}100%{transform:translate(0,0)}}
 .cap{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 6vw;pointer-events:none;opacity:0}
-.cap .kicker{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;text-shadow:0 1px 3px rgba(0,0,0,.9),0 2px 12px rgba(0,0,0,.65)}
-.cap h1{font-size:clamp(52px,10vw,132px);font-weight:700;line-height:.95;text-shadow:0 1px 2px rgba(0,0,0,.9),0 4px 16px rgba(0,0,0,.75),0 4px 40px rgba(0,0,0,.7)}
-.cap h2{font-size:clamp(34px,6vw,76px);font-weight:600;line-height:1.05;text-shadow:0 1px 2px rgba(0,0,0,.9),0 4px 16px rgba(0,0,0,.75),0 4px 40px rgba(0,0,0,.7)}
-.cap p{max-width:560px;margin-top:22px;font-size:14px;line-height:1.8;color:rgba(248,245,238,.96);text-shadow:0 1px 3px rgba(0,0,0,.85)}
+/* Relleno PLANO (no un degradado radial): un óvalo con desvanecido deja las
+   ESQUINAS de esta caja -ya ajustada al texto real- mucho más claras que el
+   centro, justo donde cae el borde de kicker/párrafo. Un color plano y
+   difuminado con blur() cubre la caja entera por igual y se disuelve en la
+   foto SOLO en su propio borde exterior -sigue siendo local, no un velo de
+   pantalla completa-. */
+.cap::before{content:"";position:absolute;inset:-8% -6%;z-index:-1;pointer-events:none;background:rgba(0,0,0,.95);filter:blur(15px);border-radius:28px}
+.cap .kicker{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;text-shadow:-1px -1px 2px rgba(0,0,0,.95),1px -1px 2px rgba(0,0,0,.95),-1px 1px 2px rgba(0,0,0,.95),1px 1px 2px rgba(0,0,0,.95),0 3px 14px rgba(0,0,0,.6)}
+.cap h1{color:#fff;font-size:clamp(52px,10vw,132px);font-weight:700;line-height:.95;text-shadow:-1px -1px 3px rgba(0,0,0,.95),1px -1px 3px rgba(0,0,0,.95),-1px 1px 3px rgba(0,0,0,.95),1px 1px 3px rgba(0,0,0,.95),0 6px 26px rgba(0,0,0,.65)}
+.cap h2{color:#fff;font-size:clamp(34px,6vw,76px);font-weight:600;line-height:1.05;text-shadow:-1px -1px 3px rgba(0,0,0,.95),1px -1px 3px rgba(0,0,0,.95),-1px 1px 3px rgba(0,0,0,.95),1px 1px 3px rgba(0,0,0,.95),0 6px 26px rgba(0,0,0,.65)}
+.cap p{max-width:560px;margin-top:22px;font-size:14px;line-height:1.8;color:#fff;text-shadow:-1px -1px 2px rgba(0,0,0,.9),1px -1px 2px rgba(0,0,0,.9),-1px 1px 2px rgba(0,0,0,.9),1px 1px 2px rgba(0,0,0,.9),0 3px 10px rgba(0,0,0,.55)}
 .cap .rule{width:1px;height:56px;background:linear-gradient(var(--gold),transparent);margin:26px auto 0}
 #cap1{top:50%;transform:translateY(-50%)}
 #cap2{top:50%;transform:translateY(-50%)}
-#cap2 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,30px);color:var(--cream);max-width:700px}
+#cap2 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,30px);color:#fff;max-width:700px}
 #cap3{top:50%;transform:translateY(-50%);pointer-events:auto}
 #cap3 .ctaRow{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center}
 #hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--cream-dim);font-size:10px;letter-spacing:.42em;text-transform:uppercase;pointer-events:none}
