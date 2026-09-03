@@ -343,6 +343,50 @@ texto. Ver commit `09c7b11`.
 
 ---
 
+## Sexta ronda (2026-09-03) — cambio de enfoque en la portada: nada de veladura
+
+El usuario paró los ajustes ("PARA. La estética de /local ha empeorado
+en cada uno de los tres intentos.") y pidió: revertir por completo,
+medir honestamente sobre el estado original, y arreglar SOLO lo que
+falle actuando sobre el texto -nunca sobre la foto-.
+
+**Revertido** (commit `e2846ed`): `.textscrim` fuera del todo (div y
+regla CSS, en sus tres versiones), `.cap`/`.kicker`/`h1`/`h2`/`p` y
+`#cap2 .quote` de vuelta a como estaban antes del primer arreglo -
+confirmado con `diff` selector a selector contra el commit anterior al
+primer intento (`b064b10`): idéntico byte a byte-. Nada más de la
+sesión se tocó.
+
+**Diagnóstico honesto** sobre el estado revertido, cap1 (piedra/
+ventana/calle mojada): la hipótesis del usuario -que solo fallaría el
+eyebrow- acertaba a medias. En **promedio**: eyebrow 2,42:1 (falla),
+h1 4,18:1 (**aprueba**, holgado), subtítulo 2,82:1 (falla, por su
+propia opacidad del 62%, no por el fondo). En el punto más claro de
+cada caja -una vidriera iluminada-, los tres fallaban. Reportado antes
+de tocar nada, con captura.
+
+**Arreglado** (commit `45e79ad`), solo sobre el texto, cero cambios en
+la imagen:
+- Subtítulo y cita de la escena 2: `color:var(--cream-dim)` ->
+  `color:#fff`. Fallaba por su propio 62% de opacidad.
+- Eyebrow: `font-weight:700`, dorado aclarado de `#d4af37` a `#e2c977`
+  -sigue leyéndose dorado, no amarillo ni beige-, tamaño de 11px a
+  20px para entrar en el umbral de "texto grande" de WCAG (3:1, no
+  4,5:1) -aclarar el dorado por sí solo no bastaba ni de lejos-. Sin
+  caja ni pastilla.
+- Título: ya aprobaba en promedio; una sombra ceñida a las letras
+  (radio pequeño) para el punto de la vidriera, nada más.
+
+Medido de nuevo: los tres pasan ahora en **promedio** (kicker 3,14:1,
+h1 4,42:1, p 6,40:1). El punto más claro de cada caja -la vidriera-
+sigue por debajo del umbral en los tres, igual que ya se había aceptado
+para el título en la ronda anterior: arreglarlo del todo exigiría
+oscurecer la foto, que es justo la regla que no se podía romper esta
+vez. Captura final comparada con la del revert: misma fotografía, mismo
+brillo, mismas luces cálidas, mismo reflejo en el suelo mojado.
+
+---
+
 ## TAREA 0 — Plato oculto (urgente)
 
 **Hecho, antes incluso de recibir el encargo por escrito.** El plato que quedó
