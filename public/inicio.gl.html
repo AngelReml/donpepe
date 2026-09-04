@@ -142,32 +142,23 @@ nav.top a.nl:hover{color:var(--cream)}nav.top a.nl:hover::after{width:100%}
 #stage .grain{position:absolute;inset:-40px;opacity:.07;pointer-events:none;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(4) infinite}
 @keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-14px,10px)}50%{transform:translate(10px,-12px)}75%{transform:translate(-8px,-8px)}100%{transform:translate(0,0)}}
 .cap{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 6vw;pointer-events:none;opacity:0}
-/* Cuarta vuelta: nada de veladura sobre la foto. El eyebrow es, con
-   diferencia, el peor -texto pequeño y dorado, poco margen de por sí-, así
-   que necesita varias palancas encadenadas, en este orden: más peso
-   tipográfico; el dorado un poco más claro (#e2c977 -sigue leyéndose como
-   dorado, no vira a amarillo ni a beige-, no #d4af37); y el tamaño subido
-   lo bastante (20px, en negrita) para entrar en el umbral de "texto
-   grande" de WCAG (3:1, no 4.5:1) -aclarar el dorado solo no bastaba ni de
-   lejos: incluso a un tono ya bastante pálido seguía por debajo de 3:1
-   contra el fondo real-. Nada de caja ni pastilla: sigue siendo un
-   detalle fino, solo que más grande y más claro. */
-/* Dorado aclarado (de #d4af37 a #f0dfae) + sombra ceñida + un halo muy
-   fino de 1px pegado al propio trazo -las tres palancas pedidas, en ese
-   orden-. Con todo eso el promedio ronda 2,7-2,9:1 según la escena: 4,5:1
-   es matemáticamente inalcanzable aquí sin perder el dorado -incluso a un
-   tono ya casi blanco (#fbf7eb) se queda en 3,36:1-. No se ha subido el
-   tamaño ni tocado la foto para forzarlo: es la elección explícita del
-   usuario, "el eyebrow bonito y algo por debajo del umbral antes que uno
-   feo que cumple". */
-.cap .kicker{font-size:12px;letter-spacing:.5em;text-transform:uppercase;color:#f0dfae;margin-bottom:22px;text-shadow:-1px -1px 1px rgba(0,0,0,.9),1px -1px 1px rgba(0,0,0,.9),-1px 1px 1px rgba(0,0,0,.9),1px 1px 1px rgba(0,0,0,.9),0 1px 2px rgba(0,0,0,.85),0 0 6px rgba(0,0,0,.5)}
-.cap .kicker br.corte{display:none}
-@media(max-width:560px){.cap .kicker br.corte{display:block}.cap .kicker .separador{display:none}}
+/* Quinta vuelta: la accesibilidad deja de mandar sobre el eyebrow, por
+   decisión explícita del usuario -es un dato de dirección de tres
+   palabras, no contenido crítico-. Valores EXACTOS del original
+   (commit b064b10), sin reinterpretar: 11px, sin negrita (hereda el 400
+   del body, como siempre), letter-spacing:.5em, color:var(--gold) -el
+   MISMO token que usa "ORIGINAL" en el logotipo del header, no una
+   variante aclarada-. La única palanca permitida para la legibilidad es
+   una sombra ceñida, oscura y de radio pequeño, en dos capas para
+   reforzarla sin que se note fuera del trazo. El corte de línea es fijo
+   -un <br> en el propio marcado, no una media query-, así que no cambia
+   con el ancho de pantalla. */
+.cap .kicker{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;text-shadow:0 1px 1px rgba(0,0,0,.95),0 1px 1px rgba(0,0,0,.95),0 2px 3px rgba(0,0,0,.85)}
 /* El título aprueba de sobra en promedio (4,18:1); solo falla en un punto
-   muy concreto -una vidriera iluminada de fondo-. Se añade una sombra
-   ceñida a las propias letras (radio pequeño, sin manchar alrededor) para
-   ese punto, sin tocar la foto ni el resto del tratamiento original. */
-.cap h1{font-size:clamp(52px,10vw,132px);font-weight:700;line-height:.95;text-shadow:0 4px 40px rgba(0,0,0,.7),0 1px 3px rgba(0,0,0,.9)}
+   muy concreto -una vidriera iluminada de fondo-. Blanco puro -no el
+   crema heredado del body-, con la sombra ceñida que ya resolvía ese
+   punto, sin tocar la foto ni nada más del tratamiento original. */
+.cap h1{color:#fff;font-size:clamp(52px,10vw,132px);font-weight:700;line-height:.95;text-shadow:0 4px 40px rgba(0,0,0,.7),0 1px 3px rgba(0,0,0,.9)}
 .cap h2{font-size:clamp(34px,6vw,76px);font-weight:600;line-height:1.05;text-shadow:0 4px 40px rgba(0,0,0,.7)}
 /* Fallaba por su propia opacidad (cream-dim = blanco al 62%), antes
    incluso de tocar el fondo: blanco puro, sin abrir la opacidad. */
@@ -549,7 +540,7 @@ html.tactil .fmTabsWrap.puede-izq .fmTabsArrow.left,html.tactil .fmTabsWrap.pued
   <div class="grain"></div>
 
   <div class="cap" id="cap1">
-    <div class="kicker">Rúa Longa 21<span class="separador"> · </span><br class="corte">Padrón · A Coruña</div>
+    <div class="kicker">Rúa Longa 21<br>Padrón · A Coruña</div>
     <h1>Don Pepe<br>Original</h1>
     <p>Cociña tradicional galega · pulpería e viños · no corazón do casco histórico, a un paso do Camiño.</p>
     <div class="rule"></div>
