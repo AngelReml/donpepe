@@ -400,6 +400,25 @@ captura junto al dorado de marca del header-. Pendiente de que el
 usuario lo revise en el móvil; dijo que con esto lo da por bueno y
 fusiona él mismo.
 
+**Ese retoque resultó mal** (commit `f838e0b`): a 20px con
+`letter-spacing:.16em` el eyebrow competía en tamaño con el título y el
+logotipo, y se partía en dos líneas con un corte al azar feo. Vuelta al
+tamaño y carácter originales: 12px (un punto sobre el 11px original,
+como pidió), `letter-spacing:.5em` de vuelta -el interletrado amplio
+ES la estética del eyebrow-, sin `font-weight` explícito. Contraste sin
+subir el tamaño ni tocar la foto, con tres palancas: dorado aclarado a
+`#f0dfae`, sombra ceñida, halo de 1px pegado al trazo. Con las tres, el
+promedio ronda 2,7-2,9:1: **4,5:1 es matemáticamente inalcanzable aquí
+sin perder el dorado** -probado hasta un tono ya casi blanco (#fbf7eb)
+y se queda en 3,36:1-. Reportado con el número real; el usuario había
+dejado dicho de antemano que prefería "el eyebrow bonito y algo por
+debajo del umbral antes que uno feo que cumple", así que se deja así.
+Corte de línea forzado y controlado en móvil ("RÚA LONGA 21" /
+"PADRÓN · A CORUÑA", sin separador colgando), con un `<span>` que
+restaura el separador y el `<br>` que se oculta en escritorio, donde
+cabe entera en una sola línea. Verificado en 360/390/1440px con
+capturas. Pendiente de la revisión final del usuario en el móvil.
+
 ---
 
 ## TAREA 0 — Plato oculto (urgente)
