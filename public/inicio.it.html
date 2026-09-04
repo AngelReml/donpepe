@@ -152,7 +152,17 @@ nav.top a.nl:hover{color:var(--cream)}nav.top a.nl:hover::after{width:100%}
    lejos: incluso a un tono ya bastante pálido seguía por debajo de 3:1
    contra el fondo real-. Nada de caja ni pastilla: sigue siendo un
    detalle fino, solo que más grande y más claro. */
-.cap .kicker{font-size:20px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#ebd9a1;margin-bottom:22px}
+/* Dorado aclarado (de #d4af37 a #f0dfae) + sombra ceñida + un halo muy
+   fino de 1px pegado al propio trazo -las tres palancas pedidas, en ese
+   orden-. Con todo eso el promedio ronda 2,7-2,9:1 según la escena: 4,5:1
+   es matemáticamente inalcanzable aquí sin perder el dorado -incluso a un
+   tono ya casi blanco (#fbf7eb) se queda en 3,36:1-. No se ha subido el
+   tamaño ni tocado la foto para forzarlo: es la elección explícita del
+   usuario, "el eyebrow bonito y algo por debajo del umbral antes que uno
+   feo que cumple". */
+.cap .kicker{font-size:12px;letter-spacing:.5em;text-transform:uppercase;color:#f0dfae;margin-bottom:22px;text-shadow:-1px -1px 1px rgba(0,0,0,.9),1px -1px 1px rgba(0,0,0,.9),-1px 1px 1px rgba(0,0,0,.9),1px 1px 1px rgba(0,0,0,.9),0 1px 2px rgba(0,0,0,.85),0 0 6px rgba(0,0,0,.5)}
+.cap .kicker br.corte{display:none}
+@media(max-width:560px){.cap .kicker br.corte{display:block}.cap .kicker .separador{display:none}}
 /* El título aprueba de sobra en promedio (4,18:1); solo falla en un punto
    muy concreto -una vidriera iluminada de fondo-. Se añade una sombra
    ceñida a las propias letras (radio pequeño, sin manchar alrededor) para
@@ -539,7 +549,7 @@ html.tactil .fmTabsWrap.puede-izq .fmTabsArrow.left,html.tactil .fmTabsWrap.pued
   <div class="grain"></div>
 
   <div class="cap" id="cap1">
-    <div class="kicker">Rúa Longa 21 · Padrón · A Coruña</div>
+    <div class="kicker">Rúa Longa 21<span class="separador"> · </span><br class="corte">Padrón · A Coruña</div>
     <h1>Don Pepe<br>Original</h1>
     <p>Cucina tradizionale galiziana · polpo e vini · nel cuore del centro storico, a un passo dal Cammino.</p>
     <div class="rule"></div>
