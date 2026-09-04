@@ -167,7 +167,15 @@ nav.top a.nl:hover{color:var(--cream)}nav.top a.nl:hover::after{width:100%}
 #cap1{top:50%;transform:translateY(-50%)}
 #cap2{top:50%;transform:translateY(-50%)}
 #cap2 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,30px);color:#fff;max-width:700px}
-#cap3{top:50%;transform:translateY(-50%);pointer-events:auto}
+/* pointer-events:auto NO va aquí -en la regla estática- a propósito: #cap3
+   siempre ocupa esta misma caja central, tenga o no opacidad, así que si
+   fuera "auto" todo el tiempo, sus botones (Ver la carta / Reservar mesa)
+   quedaban tocables aunque opacity:0 los hiciera invisibles -exactamente
+   el bug real: un dedo deslizando bajo el título de la escena 1 caía sobre
+   el "Reservar mesa" invisible de la escena 3, que vive en la misma caja-.
+   Lo pone y lo quita el propio tick() del JS, atado a la opacidad real
+   (o3), no a un valor fijo. */
+#cap3{top:50%;transform:translateY(-50%);pointer-events:none}
 #cap3 .ctaRow{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center}
 #hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--cream-dim);font-size:10px;letter-spacing:.42em;text-transform:uppercase;pointer-events:none}
 #hint .line{width:1px;height:52px;overflow:hidden;position:relative}
@@ -1050,6 +1058,10 @@ function tick(t){
   c2.style.opacity=in2*(1-out2);c2.style.transform="translateY(calc(-50% + "+((1-in2)*50-out2*50)+"px))";
   var o3=sstep(.76,.84,P);
   c3.style.opacity=o3;c3.style.transform="translateY(calc(-50% + "+((1-o3)*40)+"px))";
+  // Solo tocable cuando de verdad se ve -si no, sus botones (Reservar
+  // mesa incluido) quedaban pulsables aun invisibles, en la misma caja
+  // central que ocupan las otras dos escenas-.
+  c3.style.pointerEvents=o3>.5?"auto":"none";
   hint.style.opacity=1-sstep(.015,.06,P);
   /* panel flotante aparece al final de la etapa 3 */
   if(P>.78)floatMenu.classList.add("on");
