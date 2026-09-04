@@ -419,6 +419,29 @@ restaura el separador y el `<br>` que se oculta en escritorio, donde
 cabe entera en una sola línea. Verificado en 360/390/1440px con
 capturas. Pendiente de la revisión final del usuario en el móvil.
 
+**Cuarto intento fallido sobre el mismo elemento** (commit `61d5316`):
+el eyebrow había quedado casi blanco (ya no se leía como dorado), el
+título había perdido el blanco puro sin que nadie lo notara -se veía
+crema/hueso-, y los tres elementos competían visualmente en vez de
+tener una jerarquía clara. El usuario cambió de criterio explícitamente:
+**la accesibilidad deja de mandar sobre el eyebrow**, es un dato de
+dirección de tres palabras, no contenido crítico. Valores EXACTOS del
+original, verificados contra el commit `b064b10` sin reinterpretar:
+`font-size:11px`, sin negrita, `letter-spacing:.5em`, `color:var(--gold)`
+-el mismo token que "ORIGINAL" en el logotipo del header, confirmado con
+`getComputedStyle`-. Única palanca permitida: sombra de texto ceñida.
+Corte de línea fijo en el marcado (`<br>` literal), igual en cualquier
+ancho, no una media query. De paso se encontró y corrigió un bug real:
+el título llevaba desde el revert (`e2846ed`) sin su `color:#fff`
+explícito -se perdió ahí y el commit del "paso 3" nunca lo volvió a
+añadir, solo tocó la sombra-, así que llevaba varias rondas heredando el
+crema del body sin que la medición lo hubiera pillado. Contraste medido
+solo para informar, sin ajustar nada: kicker 1,59:1 en 390px, 1,15:1 en
+1440px -muy por debajo de cualquier umbral, decisión asumida por el
+usuario-. Verificados los tres criterios de aceptación en captura antes
+de comitear: jerarquía inequívoca, el eyebrow se lee como dorado igual
+que el del header, foto intacta.
+
 ---
 
 ## TAREA 0 — Plato oculto (urgente)
