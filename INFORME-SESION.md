@@ -444,6 +444,40 @@ que el del header, foto intacta.
 
 ---
 
+## Séptima ronda (2026-09-04) — bug de interacción real en /local, prioritario
+
+**Botón invisible que abría "Reservar" al deslizar bajo el título —
+diagnosticado con el DOM real y arreglado** (commit `0e53920`).
+`document.elementFromPoint()` en la zona reportada devolvía `#cap3`
+(la tercera escena del carrusel), y su enlace "Reservar mesa" resolvía
+como tocable ahí aunque invisible -con opacity heredada del padre, no
+propia: cada nodo reporta su propia `opacity:1` aunque un ancestro esté
+en `opacity:0`, así que un chequeo ingenuo sobre el elemento tocado no
+lo detecta; hubo que recorrer toda la cadena de ancestros-. Causa real:
+`#cap3` tenía `pointer-events:auto` FIJO en el CSS, necesario para que
+sus botones fueran pulsables cuando esa escena se ve de verdad, pero
+las tres escenas comparten la misma caja central (`top:50%`) y solo se
+diferencian por su opacidad animada con el scroll -así que los botones
+de la escena 3 seguían recibiendo toques durante casi todo el
+recorrido, mientras se veían las escenas 1 y 2, del todo invisibles-.
+Arreglado atando `pointer-events` a la opacidad real en el propio
+`tick()` del JS (`o3>0.5 => auto`, si no `none`), en vez de un valor
+fijo. Auditado el resto del sitio: es el único caso de ese patrón.
+
+Verificado con Chrome real emulando Android, barrido de 12×20 puntos
+por pantalla completa, en 360/390/430px, en las tres escenas: **antes**,
+62 puntos de la cuadrícula (en los tres anchos, en las escenas 1 y 2)
+resolvían a "Ver la carta" o "Reservar mesa" invisibles -una fila ancha
+justo debajo del subtítulo, en todo el ancho de pantalla-; **después**,
+0 puntos en las 18 combinaciones. Mapa visual con capturas (punto rojo =
+peligro, verde = seguro) enseñado antes de comitear. El desplazamiento
+en sí nunca estuvo bloqueado, verificado con rueda del ratón como proxy
+del gesto de deslizar -el problema era solo el toque que se colaba
+como clic-. Eyebrow, título y foto sin tocar, tal como confirmó el
+usuario que ya estaban bien.
+
+---
+
 ## TAREA 0 — Plato oculto (urgente)
 
 **Hecho, antes incluso de recibir el encargo por escrito.** El plato que quedó
