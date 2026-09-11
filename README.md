@@ -1,8 +1,45 @@
 # Don Pepe Original
 
-Web pública one-page, sistema de QR para mesas, agente de WhatsApp para editar la carta
-hablando, y auto-respuesta de reseñas de Google con revisión humana previa.
-Todo en un único proyecto Next.js 14 desplegable en Vercel.
+Web pública one-page, sistema de QR para mesas, un agente al que el dueño le habla por
+WhatsApp o Telegram para cambiar precios, dar de alta o de baja platos y fijar el pescado
+del día, y auto-respuesta de reseñas de Google con revisión humana previa. Todo en un
+único proyecto Next.js 14 desplegable en Vercel.
+
+## Qué tiene esto de particular
+
+Lo que distingue esto de "un chatbot conectado a una base de datos" es la frontera exacta
+entre lo que dice el dueño y lo que de verdad cambia en la carta:
+
+**El modelo de lenguaje nunca escribe en los datos.** Cuando el dueño escribe "sube el
+pulpo a 20", el LLM no toca el menú: emite una *acción tipada*
+(`{"action":"update_price","category":"pescados","id":"pulpo",...}`) que se valida contra
+un esquema Zod, `ActionSchema` en `lib/actions.ts`. Si lo que devuelve el modelo no encaja
+exactamente en ese esquema, la acción no existe — se descarta y se le pide al dueño que
+reformule (`ActionSchema.safeParse` en `lib/orchestrator.ts`). El dueño confirma con SÍ, y
+solo entonces una función determinista y sin LLM, `applyAction` (mismo fichero que el
+esquema), aplica esa acción exacta sobre el menú.
+
+De ahí salen tres propiedades:
+
+- **El mismo mensaje produce siempre el mismo cambio.** `applyAction` es una función pura:
+  mismo menú de entrada + misma acción tipada = mismo resultado, siempre. La parte que
+  puede variar —el LLM interpretando lenguaje libre— termina en cuanto se genera la acción;
+  a partir de ahí no queda ambigüedad ni aleatoriedad.
+- **El agente vive sobre el almacén de datos, no sobre el código.** Cada acción se aplica
+  sobre lo que hay en Vercel KV (`lib/kv.ts`), nunca sobre un fichero del repositorio. Si
+  este mismo proyecto se despliega alguna vez para otro restaurante, cada instancia tiene
+  su propio KV: nada de lo que haga el agente en una puede tocar el código ni los datos de
+  otra.
+- **Nada se aplica sin que el dueño lo confirme explícitamente.** Toda acción queda en
+  espera (`lib/pending.ts`, 10 minutos de margen) hasta que responde SÍ. Si no responde,
+  caduca sola; si responde NO, se descarta sin tocar nada.
+
+Hay además una barrera que no depende de que nadie se acuerde de revisarla: **ninguna
+acción puede tocar un campo de alérgenos**, hoy ni el día que se añada uno.
+`scripts/test-proteccion-alergenos.ts` lo comprueba en dos niveles —que ningún tipo de
+acción del esquema declare ese campo, y que aplicar cada acción real contra un menú de
+prueba con alérgenos no los modifique— y forma parte de `npm run build`: si algún día deja
+de cumplirse, el despliegue se para ahí, antes de llegar a producción.
 
 ```
 don-pepe/
@@ -12,7 +49,7 @@ don-pepe/
 │  ├─ qr/page.tsx + actions.ts  # Panel admin de QRs (basic auth por cookie)
 │  ├─ api/
 │  │  ├─ menu/                  # GET JSON actual
-│  │  ├─ menu/log/              # GET historial (protegido por pass)
+│  │  ├─ menu/log/              # GET historial (basic auth o cookie, igual que /qr)
 │  │  ├─ qr/                    # GET PNG/SVG
 │  │  ├─ qr/pdf/                # GET PDF A4 con 6 QRs por hoja
 │  │  ├─ whatsapp/webhook/      # Webhook Meta Cloud o Twilio
@@ -259,14 +296,6 @@ condiciones de esta sesión). Si algún día se permite editar esos ficheros,
 vale la pena añadir ahí también una comprobación en caliente, como cinturón
 y tirantes.
 
-**Secreto de bypass de protección de Vercel — rotarlo antes de producción.**
-El valor de `x-vercel-protection-bypass` usado para probar el canal de
-Telegram contra el despliegue Preview se compartió en esta conversación, que
-no es un canal seguro para secretos. Rótalo en el dashboard de Vercel
-(Project Settings → Deployment Protection → Protection Bypass for
-Automation → generar uno nuevo) antes de dar esto por definitivo, y
-actualiza `VERCEL_AUTOMATION_BYPASS_SECRET` donde corresponda.
-
 ## 5. Auto-respuesta de reseñas de Google
 
 ### 5.1 Estado actual: simulación
@@ -370,8 +399,16 @@ npm run dev
 # http://localhost:3000/carta → carta limpia
 # http://localhost:3000/qr    → admin de QRs (pass: la de QR_ADMIN_PASS)
 # http://localhost:3000/api/menu → JSON actual
-# http://localhost:3000/api/menu/log?pass=<QR_ADMIN_PASS> → historial
+# historial (requiere auth, nunca en la URL — ver más abajo):
+curl -u "x:<QR_ADMIN_PASS>" http://localhost:3000/api/menu/log
 ```
+
+`/api/menu/log` exige la misma `QR_ADMIN_PASS` que `/qr`, pero nunca como parámetro de la
+URL: solo por cabecera `Authorization: Basic` (como el `curl -u` de arriba, o desde el
+navegador si `WWW-Authenticate` lanza el diálogo nativo) o por la cookie de sesión que deja
+`/qr` al iniciar sesión. Una contraseña en la URL queda escrita en los logs del servidor,
+en el historial del navegador y en la cabecera `Referer` de cualquier enlace que se siga
+desde ahí — por eso nunca va ahí.
 
 Sin Vercel KV configurado, el proyecto usa un fallback en memoria + el
 JSON de `data/menu.json`. Los cambios del agente se ven en `/carta` hasta
