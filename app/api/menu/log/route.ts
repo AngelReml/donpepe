@@ -8,11 +8,34 @@ export const dynamic = "force-dynamic";
 // acabe de cambiar un precio por WhatsApp.
 export const fetchCache = "force-no-store";
 
+// Mismo patrón que /api/qr, /api/qr/pdf, /api/qr/resenas y /api/qr/cartel:
+// la contraseña viaje solo por cabecera (Basic Auth, que el navegador pide
+// solo y recuerda) o por la cookie de sesión de /qr. Antes iba también como
+// ?pass= en la URL, y una URL con la contraseña dentro queda escrita en los
+// logs del servidor, en el historial del navegador y en la cabecera Referer
+// de cualquier enlace que se siga desde ahí.
+function authOk(req: NextRequest): boolean {
+  const pass = process.env.QR_ADMIN_PASS;
+  if (!pass) return false;
+  if (req.cookies.get("qr_admin")?.value === "1") return true;
+  const header = req.headers.get("authorization") ?? "";
+  if (header.startsWith("Basic ")) {
+    try {
+      const [, p] = Buffer.from(header.slice(6), "base64").toString("utf-8").split(":");
+      if (p === pass) return true;
+    } catch {
+      // ignore
+    }
+  }
+  return false;
+}
+
 export async function GET(req: NextRequest) {
-  const url = new URL(req.url);
-  const pass = url.searchParams.get("pass") ?? req.headers.get("x-admin-pass") ?? "";
-  if (!process.env.QR_ADMIN_PASS || pass !== process.env.QR_ADMIN_PASS) {
-    return new NextResponse("Forbidden", { status: 403 });
+  if (!authOk(req)) {
+    return new NextResponse("Auth required", {
+      status: 401,
+      headers: { "WWW-Authenticate": 'Basic realm="qr-admin"' },
+    });
   }
   const log = await getLog();
   return NextResponse.json({ log }, { headers: { "cache-control": "no-store" } });
