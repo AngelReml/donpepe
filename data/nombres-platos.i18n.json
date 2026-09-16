@@ -68,13 +68,15 @@
   },
   "zamburinas": {
     "en": "Zamburiñas (small Galician scallops)", "pt": "Zamburiñas (vieiras pequenas)", "fr": "Zamburiñas (petites coquilles Saint-Jacques)", "de": "Zamburiñas (kleine Jakobsmuscheln)",
-    "it": "Zamburiñas (piccole capesante)", "ca": "Zamburiñas (petxines petites)", "ko": "잠부리냐스 (작은 가리비)",
-    "ja": "サンブリーニャス（小さなホタテ）", "zh": "小扇贝（加利西亚特色）", "ru": "Замбуриньяс (мелкие галисийские гребешки)"
+    "it": "Zamburiñas (piccole capesante)", "ca": "Zamburiñas (petxines petites)", "eu": "Zamburiñak (bieira txiki galiziarrak)", "nl": "Zamburiña's (kleine Galicische sint-jakobsschelpen)",
+    "pl": "Zamburiñas (małe galicyjskie przegrzebki)", "cs": "Zamburiñas (malé galicijské hřebenatky)", "hu": "Zamburiñas (apró galíciai fésűkagylók)", "ko": "잠부리냐스 (작은 가리비)",
+    "ja": "サンブリーニャス（小さなホタテ）", "zh": "小扇贝（加利西亚特色）", "ru": "Замбуриньяс (мелкие галисийские гребешки)", "ro": "Zamburiñas (scoici mici galiciene)"
   },
   "caldo-gallego": {
     "en": "Galician broth", "pt": "Caldo galego", "fr": "Bouillon galicien", "de": "Galicische Brühe",
-    "it": "Brodo galiziano", "ca": "Caldo gallec", "ko": "갈리시아 수프",
-    "ja": "ガリシア風スープ", "zh": "加利西亚浓汤", "ru": "Галисийский суп"
+    "it": "Brodo galiziano", "ca": "Caldo gallec", "eu": "Galiziar salda", "nl": "Galicische bouillon",
+    "pl": "Rosół galicyjski", "cs": "Galicijský vývar", "hu": "Galíciai leves", "ko": "갈리시아 수프",
+    "ja": "ガリシア風スープ", "zh": "加利西亚浓汤", "ru": "Галисийский суп", "ro": "Supă galiciană"
   },
   "pulpo": {
     "en": "Galician-style octopus", "pt": "Polvo à galega", "fr": "Poulpe à la galicienne", "de": "Oktopus auf galicische Art",
@@ -108,8 +110,9 @@
   },
   "arroz-senoret": {
     "en": "\"Señoret\" rice (peeled seafood)", "pt": "Arroz do senhorito (marisco descascado)", "fr": "Riz du \"señoret\" (fruits de mer décortiqués)", "de": "\"Señoret\"-Reis (geschälte Meeresfrüchte)",
-    "it": "Riso \"señoret\" (frutti di mare sgusciati)", "ca": "Arròs del senyoret", "ko": "세뇨레트 라이스(껍질 벗긴 해산물)",
-    "ja": "セニョレット風お米（殻なしシーフード）", "zh": "去壳海鲜饭"
+    "it": "Riso \"señoret\" (frutti di mare sgusciati)", "ca": "Arròs del senyoret", "eu": "\"Señoret\" arroza (itsaski zurituak)", "nl": "\"Señoret\"-rijst (gepelde zeevruchten)",
+    "pl": "Ryż \"señoret\" (obrane owoce morza)", "cs": "Rýže \"señoret\" (loupané mořské plody)", "hu": "\"Señoret\" rizs (hámozott tenger gyümölcsei)", "ko": "세뇨레트 라이스(껍질 벗긴 해산물)",
+    "ja": "セニョレット風お米（殻なしシーフード）", "zh": "去壳海鲜饭", "ru": "Рис \"сеньорет\" (очищенные морепродукты)", "ro": "Orez \"señoret\" (fructe de mare curățate)"
   },
   "arroz-caldoso": {
     "en": "Brothy seafood rice", "pt": "Arroz caldoso de marisco", "fr": "Riz en bouillon aux fruits de mer", "de": "Suppiger Meeresfrüchte-Reis",
@@ -143,13 +146,15 @@
   },
   "zorza": {
     "en": "Zorza (Galician marinated pork)", "pt": "Zorza (porco marinado galego)", "fr": "Zorza (porc mariné galicien)", "de": "Zorza (mariniertes Schweinefleisch)",
-    "it": "Zorza (maiale marinato galiziano)", "ca": "Zorza (porc marinat gallec)", "ko": "소르사 (갈리시아식 양념 돼지고기)",
-    "ja": "ソルサ（ガリシア風味付け豚肉）", "zh": "腌猪肉（加利西亚特色）", "ru": "Сорса (маринованная свинина по-галисийски)"
+    "it": "Zorza (maiale marinato galiziano)", "ca": "Zorza (porc marinat gallec)", "eu": "Zorza (txerriki adobatu galiziarra)", "nl": "Zorza (gemarineerd varkensvlees)",
+    "pl": "Zorza (marynowana wieprzowina)", "cs": "Zorza (marinované vepřové maso)", "hu": "Zorza (pácolt sertéshús)", "ko": "소르사 (갈리시아식 양념 돼지고기)",
+    "ja": "ソルサ（ガリシア風味付け豚肉）", "zh": "腌猪肉（加利西亚特色）", "ru": "Сорса (маринованная свинина по-галисийски)", "ro": "Zorza (carne de porc marinată)"
   },
   "raxo": {
     "en": "Raxo (marinated pork loin)", "pt": "Raxo (lombo de porco marinado)", "fr": "Raxo (échine de porc marinée)", "de": "Raxo (mariniertes Schweinefilet)",
-    "it": "Raxo (lonza di maiale marinata)", "ca": "Raxo (llom de porc marinat)", "ko": "라쇼 (양념 돼지 등심)",
-    "ja": "ラショ（味付け豚ロース）", "zh": "腌猪里脊（加利西亚特色）", "ru": "Рашо (маринованная свиная корейка)"
+    "it": "Raxo (lonza di maiale marinata)", "ca": "Raxo (llom de porc marinat)", "eu": "Raxo (txerri-solomo adobatua)", "nl": "Raxo (gemarineerde varkenshaas)",
+    "pl": "Raxo (marynowana polędwica wieprzowa)", "cs": "Raxo (marinovaná vepřová panenka)", "hu": "Raxo (pácolt sertéskaraj)", "ko": "라쇼 (양념 돼지 등심)",
+    "ja": "ラショ（味付け豚ロース）", "zh": "腌猪里脊（加利西亚特色）", "ru": "Рашо (маринованная свиная корейка)", "ro": "Raxo (mușchi de porc marinat)"
   },
   "secreto": {
     "en": "Pork \"secreto\" cut", "pt": "Secreto de porco", "fr": "Secreto de porc", "de": "Secreto vom Schwein",
@@ -189,8 +194,9 @@
   },
   "criollo": {
     "en": "\"Criollo\" (grilled sausage & pork)", "pt": "Criollo (embutidos e porco grelhados)", "fr": "Criollo (saucisses et porc grillés)", "de": "Criollo (gegrillte Wurst und Schwein)",
-    "it": "Criollo (salsiccia e maiale alla griglia)", "ca": "Criollo (embotit i porc a la brasa)", "ko": "크리오요 (구운 소시지와 돼지고기)",
-    "ja": "クリオージョ（焼きソーセージと豚肉）", "zh": "烤香肠拼猪肉", "ru": "Криольо (жареная колбаса и свинина)"
+    "it": "Criollo (salsiccia e maiale alla griglia)", "ca": "Criollo (embotit i porc a la brasa)", "eu": "\"Criollo\" (txistorra eta txerriki erreak)", "nl": "Criollo (gegrilde worst en varkensvlees)",
+    "pl": "Criollo (grillowana kiełbasa i wieprzowina)", "cs": "Criollo (grilovaná klobása a vepřové maso)", "hu": "Criollo (grillezett kolbász és sertéshús)", "ko": "크리오요 (구운 소시지와 돼지고기)",
+    "ja": "クリオージョ（焼きソーセージと豚肉）", "zh": "烤香肠拼猪肉", "ru": "Криольо (жареная колбаса и свинина)", "ro": "Criollo (cârnați și carne de porc la grătar)"
   },
   "chuleton": {
     "en": "T-bone steak", "pt": "Chuletão (bife com osso)", "fr": "Côte de bœuf", "de": "Rinder-T-Bone-Steak",
