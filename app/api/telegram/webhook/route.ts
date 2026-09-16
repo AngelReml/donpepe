@@ -6,6 +6,7 @@ import {
   sendMessage,
   editMessageText,
   answerCallbackQuery,
+  setMyCommands,
 } from "@/lib/telegram";
 import {
   mostrarMenuPrincipal,
@@ -14,6 +15,13 @@ import {
   manejarCallback,
   tecladoConfirmar,
 } from "@/lib/telegram-wizard";
+import {
+  mostrarSiguienteResena,
+  mostrarEstadoResenas,
+  reiniciarResenas,
+  manejarCallbackResena,
+  manejarTextoResena,
+} from "@/lib/resenas-telegram";
 import { handleOwnerMessage } from "@/lib/orchestrator";
 import { getPending } from "@/lib/pending";
 import { kvGet, kvSet } from "@/lib/kv";
@@ -22,6 +30,28 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const NO_AUTORIZADO_TEXT = "Este bot es privado, de uso exclusivo del dueño del local.";
+
+/**
+ * El menú que sale al pulsar "/" se registra solo, la primera vez que el
+ * dueño escribe algo. Así no hace falta ni entrar en BotFather ni exponer el
+ * token en ningún sitio. La marca en KV evita repetir la llamada; si algo
+ * falla, se ignora: es un adorno, no puede tumbar un mensaje real.
+ */
+const CLAVE_COMANDOS = "telegram:comandos:v1";
+
+async function asegurarMenuComandos(): Promise<void> {
+  try {
+    if (await kvGet<boolean>(CLAVE_COMANDOS)) return;
+    await setMyCommands([
+      { command: "plato", description: "Cambiar la carta: precios y platos" },
+      { command: "agotados", description: "Marcar un plato como agotado" },
+      { command: "resenas", description: "Responder las resenas de Google" },
+    ]);
+    await kvSet(CLAVE_COMANDOS, true);
+  } catch (e) {
+    console.warn("no se pudo registrar el menu de comandos", e);
+  }
+}
 const TECLADO_VACIO = { inline_keyboard: [] as never[] };
 
 export async function GET() {
@@ -97,6 +127,11 @@ async function procesarCallback(cq: NonNullable<Awaited<ReturnType<typeof parseU
     return;
   }
 
+  // Reseñas primero: usan el prefijo "res:" y no pasan por el asistente
+  // de la carta, que solo entiende "w:".
+  const resena = await manejarCallbackResena(chatId, messageId, data);
+  if (resena.consumido) return;
+
   const { consumido } = await manejarCallback(chatId, messageId, data);
   if (!consumido) {
     // callback_data que no reconocemos: no hacemos nada silenciosamente raro.
@@ -116,6 +151,8 @@ async function procesarMensaje(msg: NonNullable<Awaited<ReturnType<typeof parseU
     return;
   }
 
+  await asegurarMenuComandos();
+
   const texto = msg.text;
   if (!texto) {
     await sendMessage(chatId, "Solo entiendo texto y los botones. Escribe /plato para empezar.");
@@ -130,6 +167,25 @@ async function procesarMensaje(msg: NonNullable<Awaited<ReturnType<typeof parseU
     await mostrarPantallaAgotados(chatId);
     return;
   }
+  // Singular y plural, con ñ o sin ella, con barra o sin ella: Antonio no
+  // tiene por qué acordarse de la forma exacta, y la ñ no se puede registrar
+  // en BotFather aunque Telegram sí la deje escribir.
+  if (/^\/?rese(n|ñ)as?(@\w+)?\s+reiniciar$/i.test(texto.trim())) {
+    await reiniciarResenas(chatId);
+    return;
+  }
+  if (/^\/?rese(n|ñ)as?(@\w+)?\s+estado$/i.test(texto.trim())) {
+    await mostrarEstadoResenas(chatId);
+    return;
+  }
+  if (/^\/?rese(n|ñ)as?(@\w+)?$/i.test(texto.trim())) {
+    await mostrarSiguienteResena(chatId);
+    return;
+  }
+
+  // ¿Ha tocado "Escribo yo" en una reseña? Entonces este texto es su
+  // respuesta, no una orden para la carta.
+  if (await manejarTextoResena(chatId, texto)) return;
 
   // ¿Está el asistente de botones esperando este texto (nombre, precio, nota)?
   const consumido = await manejarTextoAsistente(chatId, texto);

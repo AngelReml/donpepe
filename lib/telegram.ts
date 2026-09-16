@@ -133,6 +133,20 @@ export async function answerCallbackQuery(callbackQueryId: string, texto?: strin
   });
 }
 
+export interface ComandoBot {
+  command: string;
+  description: string;
+}
+
+/**
+ * Registra el menú de comandos que Telegram enseña al pulsar "/".
+ * BotFather solo admite minúsculas, números y guion bajo: nada de "ñ" ni
+ * tildes, aunque el webhook sí acepte que el dueño las escriba.
+ */
+export async function setMyCommands(comandos: ComandoBot[]): Promise<void> {
+  await llamar("setMyCommands", { commands: comandos });
+}
+
 /** Sanity check de conectividad/token: no expone el token, solo confirma que responde. */
 export async function getMe(): Promise<{ ok: boolean; username?: string }> {
   const res = await fetch(apiUrl("getMe"));

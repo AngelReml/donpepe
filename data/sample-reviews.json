@@ -27,6 +27,21 @@
       "rating": 5,
       "text": "Churrasco a reventar: espectacular, cantidad de escándalo y el orujo de remate, perfecto.",
       "time": "2026-07-27T21:05:00Z"
+    },
+    {
+      "id": "sample-5",
+      "author": "Rosa V.",
+      "rating": 1,
+      "text": "Nos cobraron mas de lo que ponia en la carta y el pescado llego frio.",
+      "time": "2026-07-28T15:00:00Z",
+      "yaRespondida": true
+    },
+    {
+      "id": "sample-6",
+      "author": "Peregrino DE",
+      "rating": 3,
+      "text": "Comida correcta pero tardaron en atendernos. El arroz muy bueno.",
+      "time": "2026-07-29T13:20:00Z"
     }
   ]
 }

@@ -10,7 +10,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "portada": "node scripts/generar-portada.mjs",
-    "test:alergenos": "tsx scripts/test-proteccion-alergenos.ts"
+    "test:alergenos": "tsx scripts/test-proteccion-alergenos.ts",
+    "test:resenas": "tsx scripts/test-resenas.ts"
   },
   "dependencies": {
     "@vercel/kv": "^1.0.1",

@@ -5,28 +5,60 @@
  * "modo simulación" usando /data/sample-reviews.json — el cron sigue
  * ejecutándose y el dueño puede practicar el flujo end-to-end.
  *
- * Cuando llegue la aprobación:
+ * Solicitud de acceso enviada el 4-sep-2026 (caso 6-5498000041620), proyecto
+ * de Google Cloud `zapweave-resenas` (número 2608613113). Cuando llegue la
+ * aprobación:
  *  1. Rellenar GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN.
  *  2. Poner GOOGLE_REVIEWS_ENABLED=true.
- *  3. La implementación real usa el endpoint
- *     https://mybusiness.googleapis.com/v4/{name=accounts/<id>/locations/<id>}/reviews
- *     (v4.9 sigue siendo la vigente para replies en 2026).
+ *  3. GOOGLE_LOCATION_ID con el formato accounts/<id>/locations/<id>.
+ *
+ * El endpoint de reseñas sigue siendo el v4 (es el único que las expone):
+ *   GET https://mybusiness.googleapis.com/v4/{location}/reviews
+ *   PUT https://mybusiness.googleapis.com/v4/{review}/reply
  */
 import fs from "node:fs";
 import path from "node:path";
 
 export interface GbpReview {
+  /** Nombre completo del recurso: accounts/x/locations/y/reviews/z. Es lo que
+   *  hay que pasarle a replyToReview: el id corto NO sirve para responder. */
   id: string;
   author?: string;
   rating: number;
   text: string;
   time: string;
+  /** true si el local ya respondió. Estas nunca entran en la cola. */
+  yaRespondida?: boolean;
 }
 
-const SIMULATED = (process.env.GOOGLE_REVIEWS_ENABLED ?? "false").toLowerCase() !== "true";
+const SIMULADO = (process.env.GOOGLE_REVIEWS_ENABLED ?? "false").toLowerCase() !== "true";
 
 export function isSimulated(): boolean {
-  return SIMULATED;
+  return SIMULADO;
+}
+
+/**
+ * Google devuelve la puntuación como palabra ("FIVE"), no como número.
+ * Number("FIVE") es NaN, y con NaN la reseña entra en la cola con 0 estrellas
+ * y el borrador se redacta como si fuera una queja. De ahí este mapa.
+ */
+const ESTRELLAS: Record<string, number> = {
+  ONE: 1,
+  TWO: 2,
+  THREE: 3,
+  FOUR: 4,
+  FIVE: 5,
+};
+
+export function parseStarRating(valor: unknown): number {
+  if (typeof valor === "number" && Number.isFinite(valor)) return valor;
+  if (typeof valor === "string") {
+    const porNombre = ESTRELLAS[valor.trim().toUpperCase()];
+    if (porNombre) return porNombre;
+    const n = Number(valor);
+    if (Number.isFinite(n) && n >= 1 && n <= 5) return n;
+  }
+  return 0;
 }
 
 async function getAccessToken(): Promise<string> {
@@ -54,37 +86,94 @@ async function getAccessToken(): Promise<string> {
   return json.access_token;
 }
 
-/** Lista reseñas nuevas. En simulación devuelve las que aún no están en "seen". */
-export async function listReviews(seen: Set<string>): Promise<GbpReview[]> {
-  if (SIMULATED) {
+function normalizar(raw: any, locationId: string): GbpReview {
+  // `name` ya viene completo en v4; si faltara, lo componemos, porque sin el
+  // nombre completo del recurso no se puede publicar la respuesta.
+  const nombre =
+    typeof raw?.name === "string" && raw.name.includes("/reviews/")
+      ? raw.name
+      : `${locationId}/reviews/${raw?.reviewId ?? ""}`;
+
+  // OJO: reviewReply.comment es NUESTRA propia respuesta, no la reseña. Usarlo
+  // como texto de la reseña hacía que el borrador se redactara sobre lo que ya
+  // habíamos contestado nosotros.
+  const texto = typeof raw?.comment === "string" ? raw.comment : "";
+
+  return {
+    id: nombre,
+    author: raw?.reviewer?.displayName ?? undefined,
+    rating: parseStarRating(raw?.starRating ?? raw?.rating),
+    text: texto,
+    time: String(raw?.updateTime ?? raw?.createTime ?? new Date().toISOString()),
+    yaRespondida: Boolean(raw?.reviewReply?.comment),
+  };
+}
+
+/**
+ * Trae TODAS las reseñas del local, paginando. Descarta las que ya tienen
+ * respuesta publicada y las que están en `vistas`.
+ *
+ * En modo real la versión anterior devolvía la lista entera sin filtrar por
+ * `vistas`: el cron cogía las 20 primeras y volvía a proponer las mismas 20
+ * cada día, indefinidamente.
+ */
+export async function listReviews(vistas: Set<string>): Promise<GbpReview[]> {
+  if (SIMULADO) {
     const file = path.join(process.cwd(), "data", "sample-reviews.json");
     const raw = JSON.parse(fs.readFileSync(file, "utf-8")) as { reviews: GbpReview[] };
-    return raw.reviews.filter((r) => !seen.has(r.id));
+    return raw.reviews.filter((r) => !vistas.has(r.id) && !r.yaRespondida);
   }
-  const accessToken = await getAccessToken();
+
   const locationId = process.env.GOOGLE_LOCATION_ID;
   if (!locationId) throw new Error("Falta GOOGLE_LOCATION_ID.");
-  const url = `https://mybusiness.googleapis.com/v4/${locationId}/reviews`;
-  const res = await fetch(url, { headers: { authorization: `Bearer ${accessToken}` } });
-  if (!res.ok) {
-    const t = await res.text();
-    throw new Error(`GBP list ${res.status}: ${t}`);
+  const accessToken = await getAccessToken();
+
+  const todas: GbpReview[] = [];
+  let pageToken: string | undefined;
+  // Tope de seguridad: 20 páginas de 50 son 1.000 reseñas. Suficiente de sobra
+  // y evita un bucle infinito si la API devolviera siempre el mismo token.
+  for (let pagina = 0; pagina < 20; pagina++) {
+    const url = new URL(`https://mybusiness.googleapis.com/v4/${locationId}/reviews`);
+    url.searchParams.set("pageSize", "50");
+    url.searchParams.set("orderBy", "updateTime desc");
+    if (pageToken) url.searchParams.set("pageToken", pageToken);
+
+    const res = await fetch(url.toString(), {
+      headers: { authorization: `Bearer ${accessToken}` },
+    });
+    if (!res.ok) {
+      const t = await res.text();
+      throw new Error(`GBP list ${res.status}: ${t.slice(0, 300)}`);
+    }
+    const json = (await res.json()) as { reviews?: any[]; nextPageToken?: string };
+    for (const r of json.reviews ?? []) todas.push(normalizar(r, locationId));
+
+    pageToken = json.nextPageToken;
+    if (!pageToken) break;
   }
-  const json = (await res.json()) as { reviews?: any[] };
-  return (json.reviews ?? []).map((r) => ({
-    id: String(r.name ?? r.reviewId),
-    author: r.reviewer?.displayName,
-    rating: Number(r.starRating ?? r.rating ?? 0),
-    text: String(r.comment ?? r.reviewReply?.comment ?? ""),
-    time: String(r.createTime ?? r.updateTime ?? new Date().toISOString()),
-  }));
+
+  return todas.filter((r) => !r.yaRespondida && !vistas.has(r.id));
+}
+
+/** Igual que listReviews pero sin filtrar: para el recuento del dashboard. */
+export async function listAllReviews(): Promise<GbpReview[]> {
+  if (SIMULADO) {
+    const file = path.join(process.cwd(), "data", "sample-reviews.json");
+    const raw = JSON.parse(fs.readFileSync(file, "utf-8")) as { reviews: GbpReview[] };
+    return raw.reviews;
+  }
+  return listReviews(new Set<string>());
 }
 
 export async function replyToReview(reviewId: string, reply: string): Promise<void> {
-  if (SIMULATED) {
-    // En simulación, sólo logueamos.
+  if (SIMULADO) {
     console.log(`[sim] reply to ${reviewId}: ${reply}`);
     return;
+  }
+  if (!reviewId.includes("/reviews/")) {
+    throw new Error(
+      `Nombre de reseña inválido: "${reviewId}". Hace falta el recurso completo accounts/x/locations/y/reviews/z.`,
+    );
   }
   const accessToken = await getAccessToken();
   const url = `https://mybusiness.googleapis.com/v4/${reviewId}/reply`;
@@ -98,6 +187,6 @@ export async function replyToReview(reviewId: string, reply: string): Promise<vo
   });
   if (!res.ok) {
     const t = await res.text();
-    throw new Error(`GBP reply ${res.status}: ${t}`);
+    throw new Error(`GBP reply ${res.status}: ${t.slice(0, 300)}`);
   }
 }
