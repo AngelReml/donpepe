@@ -14,7 +14,16 @@ import {
   manejarTextoAsistente,
   manejarCallback,
   tecladoConfirmar,
+  claveBorrarTambienMenus,
 } from "@/lib/telegram-wizard";
+import {
+  manejarCallbackMenus,
+  manejarTextoMenus,
+  limpiarEstadoMenus,
+  aplicarCambio,
+  menusQueLlevan,
+} from "@/lib/telegram-menus";
+import { menuConReactivacionAutomatica } from "@/lib/agotados";
 import {
   mostrarSiguienteResena,
   mostrarEstadoResenas,
@@ -23,8 +32,9 @@ import {
   manejarTextoResena,
 } from "@/lib/resenas-telegram";
 import { handleOwnerMessage } from "@/lib/orchestrator";
+import { isSimulated } from "@/lib/google";
 import { getPending } from "@/lib/pending";
-import { kvGet, kvSet } from "@/lib/kv";
+import { kvGet, kvSet, kvDel } from "@/lib/kv";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -37,13 +47,13 @@ const NO_AUTORIZADO_TEXT = "Este bot es privado, de uso exclusivo del dueño del
  * token en ningún sitio. La marca en KV evita repetir la llamada; si algo
  * falla, se ignora: es un adorno, no puede tumbar un mensaje real.
  */
-const CLAVE_COMANDOS = "telegram:comandos:v1";
+const CLAVE_COMANDOS = "telegram:comandos:v2";
 
 async function asegurarMenuComandos(): Promise<void> {
   try {
     if (await kvGet<boolean>(CLAVE_COMANDOS)) return;
     await setMyCommands([
-      { command: "plato", description: "Cambiar la carta: precios y platos" },
+      { command: "plato", description: "Cambiar la carta y los menus: precios y platos" },
       { command: "agotados", description: "Marcar un plato como agotado" },
       { command: "resenas", description: "Responder las resenas de Google" },
     ]);
@@ -117,7 +127,31 @@ async function procesarCallback(cq: NonNullable<Awaited<ReturnType<typeof parseU
   // un detalle de UI-, así que su error se ignora aposta.
   await answerCallbackQuery(cq.id).catch(() => {});
 
+  // Borrar un plato de la carta Y de los menús donde sale con el mismo
+  // nombre. Primero se confirma el borrado de la carta por el camino de
+  // siempre (handleOwnerMessage, sin tocarlo); solo si el plato ya no está
+  // en la carta se quita también de los menús.
+  if (data === "w:rmboth") {
+    const nombre = await kvGet<string>(claveBorrarTambienMenus(chatId));
+    await kvDel(claveBorrarTambienMenus(chatId));
+    const { reply } = await handleOwnerMessage("sí", chatId);
+    let extra = "";
+    if (nombre) {
+      const menu = await menuConReactivacionAutomatica();
+      const sigueEnCarta = [menu.entrantes, menu.arroces, menu.pescados, menu.carnes]
+        .flat()
+        .some((p) => p.nombre === nombre);
+      if (!sigueEnCarta && menusQueLlevan(menu, nombre).length > 0) {
+        extra = "\n\n" + (await aplicarCambio(chatId, { tipo: "quitar_de_todos", nombre }));
+      }
+    }
+    if (messageId) await editMessageText(chatId, messageId, reply + extra, TECLADO_VACIO);
+    else await sendMessage(chatId, reply + extra);
+    return;
+  }
+
   if (data === "conf:yes" || data === "conf:no") {
+    await kvDel(claveBorrarTambienMenus(chatId));
     // Agotar/reactivar ya no pasa por aquí -es de un toque, sin confirmar,
     // ver lib/telegram-wizard.ts-. Esto solo confirma o cancela alta de
     // plato, cambio de precio o borrado definitivo.
@@ -131,6 +165,10 @@ async function procesarCallback(cq: NonNullable<Awaited<ReturnType<typeof parseU
   // de la carta, que solo entiende "w:".
   const resena = await manejarCallbackResena(chatId, messageId, data);
   if (resena.consumido) return;
+
+  // Menús del día: prefijo "m:".
+  const menus = await manejarCallbackMenus(chatId, messageId, data, () => mostrarMenuPrincipal(chatId));
+  if (menus.consumido) return;
 
   const { consumido } = await manejarCallback(chatId, messageId, data);
   if (!consumido) {
@@ -160,6 +198,7 @@ async function procesarMensaje(msg: NonNullable<Awaited<ReturnType<typeof parseU
   }
 
   if (/^\/(start|plato)(@\w+)?$/i.test(texto.trim())) {
+    await limpiarEstadoMenus(chatId);
     await mostrarMenuPrincipal(chatId);
     return;
   }
@@ -179,6 +218,15 @@ async function procesarMensaje(msg: NonNullable<Awaited<ReturnType<typeof parseU
     return;
   }
   if (/^\/?rese(n|ñ)as?(@\w+)?$/i.test(texto.trim())) {
+    // Mientras Google no esté conectado, la cola sería de reseñas de prueba
+    // (inventadas). No se le enseñan al dueño como si fueran reales.
+    if (isSimulated() && process.env.RESENAS_DEMO !== "true") {
+      await sendMessage(
+        chatId,
+        "Las reseñas de Google se están terminando de conectar. En cuanto esté, aquí te saldrán una a una con la respuesta preparada.",
+      );
+      return;
+    }
     await mostrarSiguienteResena(chatId);
     return;
   }
@@ -186,6 +234,9 @@ async function procesarMensaje(msg: NonNullable<Awaited<ReturnType<typeof parseU
   // ¿Ha tocado "Escribo yo" en una reseña? Entonces este texto es su
   // respuesta, no una orden para la carta.
   if (await manejarTextoResena(chatId, texto)) return;
+
+  // ¿Está el asistente de menús esperando un precio o un nombre de plato?
+  if (await manejarTextoMenus(chatId, texto)) return;
 
   // ¿Está el asistente de botones esperando este texto (nombre, precio, nota)?
   const consumido = await manejarTextoAsistente(chatId, texto);

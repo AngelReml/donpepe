@@ -36,6 +36,7 @@ import {
   DURACIONES,
   type ClaveDuracion,
 } from "./agotados";
+import { menusQueLlevan, describirApariciones, prepararQuitarDeMenus } from "./telegram-menus";
 
 const CODIGO: Record<CategoriaMenu, string> = { entrantes: "e", arroces: "a", pescados: "p", carnes: "c" };
 const DESDE_CODIGO: Record<string, CategoriaMenu> = Object.fromEntries(
@@ -77,6 +78,9 @@ async function limpiarEstado(chatId: string): Promise<void> {
   await kvDel(clave(chatId));
 }
 
+/** Nombre del plato que, al confirmar con "w:rmboth", se quita también de los menús. */
+export const claveBorrarTambienMenus = (chatId: string) => `telegram:wizard:rmboth:${chatId}`;
+
 /* ─────────────────────────── teclados ─────────────────────────── */
 
 export function tecladoConfirmar(): TecladoInline {
@@ -94,6 +98,7 @@ function tecladoRaiz(): TecladoInline {
       [{ text: "🔀 Agotar / reactivar (rápido)", callback_data: "w:agotados" }],
       [{ text: "➕ Añadir plato nuevo", callback_data: "w:new:root" }],
       [{ text: "🍽 Gestionar precio o borrar un plato", callback_data: "w:manage:root" }],
+      [{ text: "📋 Menús del día (precio y platos)", callback_data: "m:root" }],
     ],
   };
 }
@@ -142,12 +147,13 @@ function tecladoNota(): TecladoInline {
 }
 
 /** Tras agotar: caducidad opcional (nunca obligatoria) + deshacer. */
-function tecladoTrasAgotar(cat: CategoriaMenu, idx: number): TecladoInline {
+function tecladoTrasAgotar(cat: CategoriaMenu, idx: number, enMenus = false): TecladoInline {
   const cod = CODIGO[cat];
   return {
     inline_keyboard: [
       [{ text: DURACIONES.manana.etiqueta, callback_data: `w:cad:${cod}:${idx}:manana` }],
       [{ text: DURACIONES["2h"].etiqueta, callback_data: `w:cad:${cod}:${idx}:2h` }],
+      ...(enMenus ? [[{ text: "➖ Quitarlo también de los menús", callback_data: `w:menuq:${cod}:${idx}` }]] : []),
       [{ text: "↩️ Deshacer", callback_data: `w:toggle:${cod}:${idx}` }],
     ],
   };
@@ -338,13 +344,42 @@ export async function manejarCallback(
       return { consumido: true };
     }
     if (resultado.ahoraDisabled) {
+      // Los menús llevan los platos como texto suelto: agotar en la carta no
+      // los toca. Se avisa y se ofrece quitarlo, nunca se quita solo.
+      const apariciones = menusQueLlevan(menu, resultado.nombre);
+      const aviso = apariciones.length
+        ? `\n\nOjo: también sale en ${describirApariciones(apariciones)}, y ahí sigue saliendo.`
+        : "";
       await editar(
-        `🚫 "${resultado.nombre}" agotado. No vuelve a la carta hasta que lo reactives, salvo que le pongas un plazo:`,
-        tecladoTrasAgotar(cat, idx),
+        `🚫 "${resultado.nombre}" agotado. No vuelve a la carta hasta que lo reactives, salvo que le pongas un plazo:${aviso}`,
+        tecladoTrasAgotar(cat, idx, apariciones.length > 0),
       );
     } else {
       await editar(`✅ "${resultado.nombre}" de vuelta en la carta.`, tecladoDeshacer(cat, idx));
     }
+    return { consumido: true };
+  }
+
+  // "Quitarlo también de los menús", ofrecido tras agotar. Pide confirmación
+  // (la resuelve lib/telegram-menus.ts con los botones "m:ok"/"m:no").
+  if (partes[1] === "menuq" && partes[2] && partes[3] !== undefined) {
+    const cat = DESDE_CODIGO[partes[2]];
+    const idx = Number(partes[3]);
+    if (!cat || !Number.isInteger(idx)) return { consumido: true };
+    const menu = await menuConReactivacionAutomatica();
+    const plato = menu[cat][idx];
+    const apariciones = plato ? menusQueLlevan(menu, plato.nombre) : [];
+    if (!plato || apariciones.length === 0) {
+      await editar("Ese plato ya no aparece en ningún menú.");
+      return { consumido: true };
+    }
+    await prepararQuitarDeMenus(chatId, plato.nombre);
+    await editar(`Voy a: quitar "${plato.nombre}" de ${describirApariciones(apariciones)}.\n\n¿Confirmas?`, {
+      inline_keyboard: [[
+        { text: "✅ Confirmar", callback_data: "m:ok" },
+        { text: "❌ Cancelar", callback_data: "m:no" },
+      ]],
+    });
     return { consumido: true };
   }
 
@@ -427,6 +462,23 @@ export async function manejarCallback(
     const action = ActionSchema.parse({ action: "remove_item", category: cat, id: plato.id });
     const summary = describeAction(action, menu);
     await setPending(chatId, { action, summary, context: "menu" });
+    // Si el plato también sale en algún menú, borrarlo de la carta NO lo
+    // quita de ahí (los menús son texto suelto). Se pregunta qué hacer.
+    const apariciones = menusQueLlevan(menu, plato.nombre);
+    if (apariciones.length > 0) {
+      await kvSet(claveBorrarTambienMenus(chatId), plato.nombre);
+      await editar(
+        `Voy a: ${summary}\n\nOjo: también sale en ${describirApariciones(apariciones)}. Si solo lo borras de la carta, en el menú sigue saliendo.`,
+        {
+          inline_keyboard: [
+            [{ text: "✅ Borrar de la carta y de los menús", callback_data: "w:rmboth" }],
+            [{ text: "✅ Borrar solo de la carta", callback_data: "conf:yes" }],
+            [{ text: "❌ Cancelar", callback_data: "conf:no" }],
+          ],
+        },
+      );
+      return { consumido: true };
+    }
     await editar(`Voy a: ${summary}\n\n¿Confirmas?`, tecladoConfirmar());
     return { consumido: true };
   }

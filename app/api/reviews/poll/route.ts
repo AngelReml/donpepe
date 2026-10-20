@@ -51,6 +51,12 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  // Sin Google conectado de verdad no se avisa a nadie: la cola de prueba
+  // son reseñas inventadas y el dueño no debe recibirlas como reales.
+  if (isSimulated() && process.env.RESENAS_DEMO !== "true") {
+    return NextResponse.json({ ok: true, simulated: true, avisado: false, motivo: "Google aún no conectado" });
+  }
+
   try {
     await refrescarCola(true);
     const pendientes = await contarPendientes();
