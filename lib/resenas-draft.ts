@@ -1,11 +1,20 @@
 /**
  * Redacción de la respuesta a una reseña de Google, con soporte para
- * "otra versión" (pedirle al modelo un enfoque distinto al ya descartado).
+ * "otra versión" (pedirle al modelo un enfoque distinto al ya descartado)
+ * y para reseñas en otros idiomas.
  *
  * Vive fuera de lib/orchestrator.ts a propósito: ese fichero es el núcleo del
- * asistente de edición de carta y esta sesión no lo toca ni una línea.
- * Reutiliza sus mismas piezas — el prompt de lib/prompts.ts y el cliente de
- * lib/llm.ts — sin modificarlas.
+ * asistente de edición de carta y no se toca. Reutiliza sus mismas piezas —
+ * el prompt de lib/prompts.ts y el cliente de lib/llm.ts — sin modificarlas.
+ * Las reglas que el prompt base no recoge (idioma, firma, quejas injustas) se
+ * añaden aquí, en el mensaje, porque lib/prompts.ts está protegido.
+ *
+ * Reglas del dueño (Iván, 20-oct-2026):
+ *  - Firma "Don Pepe".
+ *  - Se responde en el idioma de la reseña; el dueño ve siempre reseña y
+ *    respuesta también en castellano.
+ *  - Ante una queja injusta: amable, barriendo para casa, sin discutir. La
+ *    última palabra la tiene el dueño (por eso nada se publica sin su botón).
  */
 import { callLLM } from "./llm";
 import { buildReviewReplyUserMessage, REVIEW_REPLY_SYSTEM } from "./prompts";
@@ -20,13 +29,80 @@ export interface ReviewDraftInput {
 export interface ReviewDraftOptions {
   /** Textos ya propuestos y descartados: se le piden al modelo para que no repita frases. */
   evitar?: string[];
+  /** Idioma ya detectado (para no volver a detectarlo en "otra versión"). */
+  idioma?: string;
+}
+
+export const FIRMA = "Don Pepe";
+
+const NOMBRES_IDIOMA: Record<string, string> = {
+  es: "español", en: "inglés", pt: "portugués", fr: "francés", de: "alemán", it: "italiano",
+  gl: "gallego", ca: "catalán", eu: "euskera", nl: "neerlandés", pl: "polaco", cs: "checo",
+  hu: "húngaro", ko: "coreano", ja: "japonés", zh: "chino", ru: "ruso", ro: "rumano",
+};
+export function nombreIdioma(codigo: string): string {
+  return NOMBRES_IDIOMA[codigo] ?? codigo;
+}
+
+function limpiar(texto: string): string {
+  return texto.trim().replace(/^["“”«»']+|["“”«»']+$/g, "").trim();
+}
+
+/**
+ * Idioma de la reseña y, si no es castellano, su traducción. Una sola
+ * llamada. Si el modelo devuelve algo raro, se asume castellano: lo peor que
+ * pasa es que una reseña extranjera se conteste en castellano, y el dueño lo
+ * ve antes de aprobar.
+ */
+export async function detectarYTraducir(texto: string): Promise<{ idioma: string; traduccionEs?: string }> {
+  const t = texto.trim();
+  if (!t) return { idioma: "es" };
+  const salida = await callLLM(
+    `Texto de una reseña de restaurante:\n"""${t}"""\n\n` +
+      'Responde SOLO con un JSON de una línea: {"idioma":"<código ISO 639-1 de 2 letras>","es":"<traducción fiel al español, o cadena vacía si ya está en español>"}',
+    { system: "Eres un detector de idioma y traductor literal. Devuelves solo JSON válido.", maxTokens: 500 },
+  );
+  try {
+    const json = JSON.parse(salida.slice(salida.indexOf("{"), salida.lastIndexOf("}") + 1)) as {
+      idioma?: string;
+      es?: string;
+    };
+    const idioma = (json.idioma ?? "es").toLowerCase().slice(0, 2);
+    if (idioma === "es" || !/^[a-z]{2}$/.test(idioma)) return { idioma: "es" };
+    return { idioma, traduccionEs: json.es?.trim() || undefined };
+  } catch {
+    return { idioma: "es" };
+  }
+}
+
+/** Traducción fiel de un texto corto a otro idioma. */
+export async function traducir(texto: string, a: string): Promise<string> {
+  const salida = await callLLM(
+    `Traduce al ${nombreIdioma(a)} este texto, de forma fiel y natural, sin añadir nada. ` +
+      `Mantén la firma "${FIRMA}" tal cual. Devuelve solo la traducción:\n\n${texto}`,
+    { system: "Eres un traductor profesional. Devuelves solo el texto traducido.", maxTokens: 500 },
+  );
+  return limpiar(salida);
+}
+
+/** Pone la firma al final si el modelo no la ha puesto. */
+export function conFirma(texto: string): string {
+  const t = texto.trim();
+  return /don pepe\s*\.?$/i.test(t) ? t : `${t}\n\n${FIRMA}`;
 }
 
 export async function redactarRespuestaResena(
   review: ReviewDraftInput,
   opts: ReviewDraftOptions = {},
 ): Promise<string> {
+  const idioma = opts.idioma ?? "es";
   let mensaje = buildReviewReplyUserMessage(review);
+  mensaje +=
+    "\n\nReglas adicionales del dueño, que mandan sobre las anteriores:" +
+    `\n- Escribe la respuesta en ${nombreIdioma(idioma)}, el idioma de la reseña.` +
+    `\n- Termina con la firma "${FIRMA}" en una línea aparte.` +
+    "\n- Si la queja parece injusta o exagerada, responde con amabilidad y defiende la casa con calma, sin discutir, sin acusar al cliente y sin darle la razón en lo que no la tenga." +
+    "\n- No afirmes que ya se ha cambiado o arreglado algo, ni inventes hechos: como mucho, que lo vamos a revisar.";
   if (opts.evitar?.length) {
     // "Otra versión" en Telegram: al dueño no le sirve que le devuelvan la
     // misma frase con dos palabras cambiadas, así que se le pasan al modelo
@@ -40,5 +116,5 @@ export async function redactarRespuestaResena(
     system: REVIEW_REPLY_SYSTEM,
     maxTokens: 400,
   });
-  return draft.trim();
+  return conFirma(limpiar(draft));
 }

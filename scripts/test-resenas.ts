@@ -3,6 +3,9 @@
  * Verifica lo que no puede fallar en silencio: el mapeo de estrellas, el
  * filtrado de las ya respondidas, el orden de la cola y el marcado.
  */
+// Este test usa las reseñas de ejemplo: modo "demo". El modo manual tiene su
+// propio test (scripts/test-resenas-manual.ts).
+process.env.RESENAS_DEMO = "true";
 import { parseStarRating, listReviews, isSimulated } from "../lib/google";
 import { refrescarCola, siguientePendiente, marcarHecha, contarPendientes, resumen } from "../lib/resenas-cola";
 

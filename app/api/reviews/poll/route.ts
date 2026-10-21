@@ -51,11 +51,9 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  // Sin Google conectado de verdad no se avisa a nadie: la cola de prueba
-  // son reseñas inventadas y el dueño no debe recibirlas como reales.
-  if (isSimulated() && process.env.RESENAS_DEMO !== "true") {
-    return NextResponse.json({ ok: true, simulated: true, avisado: false, motivo: "Google aún no conectado" });
-  }
+  // Sin API de Google la cola son las reseñas cargadas a mano (reales); si no
+  // hay ninguna, el recuento sale 0 y no se avisa. Las de ejemplo solo con
+  // RESENAS_DEMO=true. Ver modoResenas() en lib/google.ts.
 
   try {
     await refrescarCola(true);

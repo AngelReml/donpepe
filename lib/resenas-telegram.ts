@@ -11,8 +11,9 @@
  *  - Todo lo publicado queda registrado en el log de KV con fecha y texto.
  */
 import { sendMessage, editMessageText, type TecladoInline } from "./telegram";
-import { redactarRespuestaResena } from "./resenas-draft";
-import { replyToReview, isSimulated, type GbpReview } from "./google";
+import { redactarRespuestaResena, detectarYTraducir, traducir, conFirma, nombreIdioma } from "./resenas-draft";
+import { replyToReview, modoResenas, type GbpReview } from "./google";
+import { listarManuales } from "./resenas-manuales";
 import {
   siguientePendiente,
   marcarHecha,
@@ -29,10 +30,13 @@ const MAX_TEXTO_RESENA = 600;
 const MAX_VERSIONES = 5;
 
 function teclado(): TecladoInline {
+  // En modo manual el botón no publica: deja la respuesta aprobada para
+  // pasarla después a la ficha. Que el texto del botón diga lo que hace.
+  const aprobar = modoResenas() === "manual" ? "✅ Aprobar" : "✅ Publicar";
   return {
     inline_keyboard: [
       [
-        { text: "✅ Publicar", callback_data: "res:pub" },
+        { text: aprobar, callback_data: "res:pub" },
         { text: "🔄 Otra versión", callback_data: "res:otra" },
       ],
       [
@@ -61,32 +65,53 @@ function recortar(texto: string, max: number): string {
   return t.length <= max ? t : `${t.slice(0, max - 1)}…`;
 }
 
-function pintar(review: GbpReview, borrador: string, nota?: string): string {
+function pintar(review: GbpReview, b: Pick<Borrador, "texto" | "idioma" | "resenaEs" | "textoEs">, nota?: string): string {
   const cabecera = `${estrellas(review.rating)}  ${review.rating}/5`;
   const quien = review.author ? ` · ${review.author}` : "";
   const cuando = review.time ? ` · ${fechaCorta(review.time)}` : "";
+  const extranjera = Boolean(b.idioma && b.idioma !== "es");
   const cuerpo = review.text
     ? `\n\n"${recortar(review.text, MAX_TEXTO_RESENA)}"`
     : "\n\n(sin texto, solo puntuación)";
-  const aviso = isSimulated()
-    ? "\n\n· Modo prueba: Google está revisando el permiso para publicar. Al aprobarlo, este mismo botón la publica de verdad."
-    : "";
+  const cuerpoEs =
+    extranjera && b.resenaEs ? `\n\n🇪🇸 En castellano:\n"${recortar(b.resenaEs, MAX_TEXTO_RESENA)}"` : "";
+  const titulo = extranjera
+    ? `— Respuesta propuesta (en ${nombreIdioma(b.idioma!)}) —`
+    : "— Respuesta propuesta —";
+  const respuestaEs = extranjera && b.textoEs ? `\n\n🇪🇸 Lo que dice:\n${b.textoEs}` : "";
+  const modo = modoResenas();
+  const aviso =
+    modo === "demo"
+      ? "\n\n· Modo prueba: reseñas de ejemplo, nada llega a Google."
+      : modo === "manual"
+        ? "\n\n· Al aprobarla queda guardada y la publicamos nosotros en Google."
+        : "";
   const extra = nota ? `\n\n${nota}` : "";
-  return `${cabecera}${quien}${cuando}${cuerpo}\n\n— Respuesta propuesta —\n${borrador}${extra}${aviso}`;
+  return `${cabecera}${quien}${cuando}${cuerpo}${cuerpoEs}\n\n${titulo}\n${b.texto}${respuestaEs}${extra}${aviso}`;
 }
 
 /** Genera el borrador de una reseña y lo deja guardado como borrador en curso. */
 async function prepararBorrador(
   chatId: string,
   review: GbpReview,
-  previos: string[] = [],
+  previo?: Borrador,
 ): Promise<Borrador> {
-  const draft = await redactarRespuestaResena(review, { evitar: previos });
+  // El idioma y la traducción de la reseña se calculan una vez y se reutilizan
+  // en "otra versión".
+  const deteccion = previo
+    ? { idioma: previo.idioma ?? "es", traduccionEs: previo.resenaEs }
+    : await detectarYTraducir(review.text);
+  const previos = previo?.previos ?? [];
+  const draft = await redactarRespuestaResena(review, { evitar: previos, idioma: deteccion.idioma });
+  const textoEs = deteccion.idioma !== "es" ? await traducir(draft, "es") : undefined;
   const b: Borrador = {
     review,
     texto: draft,
     versiones: previos.length + 1,
     previos: [...previos, draft],
+    idioma: deteccion.idioma,
+    resenaEs: deteccion.traduccionEs,
+    textoEs,
   };
   await setBorrador(chatId, b);
   return b;
@@ -94,19 +119,27 @@ async function prepararBorrador(
 
 /** Pantalla principal: la siguiente reseña pendiente, con su borrador. */
 export async function mostrarSiguienteResena(chatId: string): Promise<void> {
+  if (modoResenas() === "manual" && (await listarManuales()).length === 0) {
+    await sendMessage(
+      chatId,
+      "Todavía no hay reseñas cargadas. En cuanto las carguemos, te saldrán aquí una a una con la respuesta preparada.",
+    );
+    return;
+  }
   const review = await siguientePendiente();
   if (!review) {
     const r = await resumen();
+    const aprobadas = r.aprobadas ? ` · Aprobadas (pendientes de pasar a Google): ${r.aprobadas}` : "";
     await sendMessage(
       chatId,
-      `No queda ninguna reseña pendiente. 🎉\n\nRespondidas: ${r.publicadas} · Saltadas: ${r.saltadas}`,
+      `No queda ninguna reseña pendiente. 🎉\n\nPublicadas: ${r.publicadas}${aprobadas} · Saltadas: ${r.saltadas}`,
     );
     return;
   }
   await sendMessage(chatId, "Preparando la respuesta…");
   try {
     const b = await prepararBorrador(chatId, review);
-    await sendMessage(chatId, pintar(review, b.texto), teclado());
+    await sendMessage(chatId, pintar(review, b), teclado());
   } catch (e) {
     await sendMessage(
       chatId,
@@ -121,7 +154,9 @@ export async function mostrarEstadoResenas(chatId: string): Promise<void> {
     const r = await resumen();
     await sendMessage(
       chatId,
-      `Reseñas\n\nPendientes: ${r.pendientes}\nRespondidas: ${r.publicadas}\nSaltadas: ${r.saltadas}\n\nEscribe /resenas para seguir.`,
+      `Reseñas\n\nPendientes: ${r.pendientes}\nPublicadas en Google: ${r.publicadas}\n` +
+        (r.aprobadas ? `Aprobadas, pendientes de pasar a Google: ${r.aprobadas}\n` : "") +
+        `Saltadas: ${r.saltadas}\n\nEscribe /resenas para seguir.`,
     );
   } catch (e) {
     await sendMessage(chatId, `No he podido consultar las reseñas: ${(e as Error).message}`);
@@ -134,7 +169,7 @@ export async function mostrarEstadoResenas(chatId: string): Promise<void> {
  * ya respondido sería volver a proponer respuestas encima de las publicadas.
  */
 export async function reiniciarResenas(chatId: string): Promise<void> {
-  if (!isSimulated()) {
+  if (modoResenas() !== "demo") {
     await sendMessage(
       chatId,
       "Eso solo se puede hacer en modo prueba. Con las reseñas reales no se borra el historial.",
@@ -169,16 +204,21 @@ export async function manejarCallbackResena(
 
   if (data === "res:pub") {
     try {
-      await replyToReview(b.review.id, b.texto);
-      await marcarHecha(b.review.id, "publicada", b.texto);
+      const modo = modoResenas();
+      const referencia = { author: b.review.author, rating: b.review.rating, time: b.review.time, text: b.review.text };
+      let cabecera: string;
+      if (modo === "manual") {
+        // Sin API: queda aprobada, con el texto exacto, para pasarla a la ficha.
+        await marcarHecha(b.review.id, "aprobada", b.texto, { textoEs: b.textoEs, resena: referencia });
+        cabecera = "✅ Aprobada. Queda guardada y la publicamos nosotros en Google.";
+      } else {
+        await replyToReview(b.review.id, b.texto);
+        await marcarHecha(b.review.id, "publicada", b.texto, { textoEs: b.textoEs, resena: referencia });
+        cabecera = `✅ Publicada${modo === "demo" ? " (modo prueba)" : ""}`;
+      }
       await clearBorrador(chatId);
       if (messageId) {
-        await editMessageText(
-          chatId,
-          messageId,
-          `✅ Publicada${isSimulated() ? " (modo prueba)" : ""}\n\n${b.texto}`,
-          TECLADO_VACIO,
-        );
+        await editMessageText(chatId, messageId, `${cabecera}\n\n${b.texto}`, TECLADO_VACIO);
       }
       await mostrarSiguienteResena(chatId);
     } catch (e) {
@@ -199,12 +239,12 @@ export async function manejarCallbackResena(
       return { consumido: true };
     }
     try {
-      const nuevo = await prepararBorrador(chatId, b.review, b.previos);
+      const nuevo = await prepararBorrador(chatId, b.review, b);
       if (messageId) {
         await editMessageText(
           chatId,
           messageId,
-          pintar(b.review, nuevo.texto, `Versión ${nuevo.versiones}.`),
+          pintar(b.review, nuevo, `Versión ${nuevo.versiones}.`),
           teclado(),
         );
       }
@@ -216,9 +256,12 @@ export async function manejarCallbackResena(
 
   if (data === "res:edit") {
     await setBorrador(chatId, { ...b, esperandoTexto: true });
+    const extranjera = b.idioma && b.idioma !== "es";
     await sendMessage(
       chatId,
-      "Escríbeme la respuesta tal cual quieres que salga y te la dejo lista para publicar.",
+      extranjera
+        ? `Escríbeme la respuesta en castellano, como quieras que salga. Yo la paso al ${nombreIdioma(b.idioma!)} y te enseño las dos antes de aprobarla.`
+        : "Escríbeme la respuesta tal cual quieres que salga y te la dejo lista.",
     );
     return { consumido: true };
   }
@@ -251,7 +294,21 @@ export async function manejarTextoResena(chatId: string, texto: string): Promise
     return true;
   }
 
-  await setBorrador(chatId, { ...b, texto: propio, esperandoTexto: false });
-  await sendMessage(chatId, pintar(b.review, propio, "Tu versión."), teclado());
+  // Reseña en otro idioma: el dueño escribe en castellano y se publica en el
+  // idioma del cliente. Ve las dos versiones antes de aprobar.
+  let nuevo: Borrador;
+  if (b.idioma && b.idioma !== "es") {
+    try {
+      const traducida = conFirma(await traducir(propio, b.idioma));
+      nuevo = { ...b, texto: traducida, textoEs: propio, esperandoTexto: false };
+    } catch (e) {
+      await sendMessage(chatId, `No he podido traducirla: ${(e as Error).message}\n\nMándamela otra vez en un minuto.`);
+      return true;
+    }
+  } else {
+    nuevo = { ...b, texto: conFirma(propio), textoEs: undefined, esperandoTexto: false };
+  }
+  await setBorrador(chatId, nuevo);
+  await sendMessage(chatId, pintar(b.review, nuevo, "Tu versión."), teclado());
   return true;
 }

@@ -12,7 +12,8 @@
     "portada": "node scripts/generar-portada.mjs",
     "test:alergenos": "tsx scripts/test-proteccion-alergenos.ts",
     "test:resenas": "tsx scripts/test-resenas.ts",
-    "test:menus": "tsx scripts/test-menus.ts"
+    "test:menus": "tsx scripts/test-menus.ts",
+    "test:resenas-manual": "tsx scripts/test-resenas-manual.ts"
   },
   "dependencies": {
     "@vercel/kv": "^1.0.1",

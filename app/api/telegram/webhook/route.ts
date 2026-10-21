@@ -32,7 +32,6 @@ import {
   manejarTextoResena,
 } from "@/lib/resenas-telegram";
 import { handleOwnerMessage } from "@/lib/orchestrator";
-import { isSimulated } from "@/lib/google";
 import { getPending } from "@/lib/pending";
 import { kvGet, kvSet, kvDel } from "@/lib/kv";
 
@@ -218,15 +217,8 @@ async function procesarMensaje(msg: NonNullable<Awaited<ReturnType<typeof parseU
     return;
   }
   if (/^\/?rese(n|ñ)as?(@\w+)?$/i.test(texto.trim())) {
-    // Mientras Google no esté conectado, la cola sería de reseñas de prueba
-    // (inventadas). No se le enseñan al dueño como si fueran reales.
-    if (isSimulated() && process.env.RESENAS_DEMO !== "true") {
-      await sendMessage(
-        chatId,
-        "Las reseñas de Google se están terminando de conectar. En cuanto esté, aquí te saldrán una a una con la respuesta preparada.",
-      );
-      return;
-    }
+    // Sin API de Google, las reseñas son las cargadas a mano (reales). Las de
+    // ejemplo solo salen con RESENAS_DEMO=true. Ver modoResenas().
     await mostrarSiguienteResena(chatId);
     return;
   }

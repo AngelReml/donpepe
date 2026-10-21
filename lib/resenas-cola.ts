@@ -18,7 +18,19 @@ const CLAVE_BORRADOR = "resenas:borrador";
 /** Una cola de más de una hora se considera vieja y se vuelve a pedir. */
 const COLA_TTL_MS = 60 * 60 * 1000;
 
-export type EstadoResena = "publicada" | "saltada";
+/**
+ * publicada: ya está en Google. aprobada: el dueño la ha dado por buena pero
+ * aún hay que pasarla a la ficha (modo manual). saltada: no se contesta.
+ */
+export type EstadoResena = "publicada" | "aprobada" | "saltada";
+
+/** Lo justo de la reseña para encontrarla luego en la ficha y publicarla. */
+export interface ReferenciaResena {
+  author?: string;
+  rating: number;
+  time: string;
+  text: string;
+}
 
 export interface Cola {
   items: GbpReview[];
@@ -27,7 +39,10 @@ export interface Cola {
 
 export interface Hechas {
   /** id de recurso -> qué se hizo con ella */
-  registro: Record<string, { estado: EstadoResena; ts: string; texto?: string }>;
+  registro: Record<
+    string,
+    { estado: EstadoResena; ts: string; texto?: string; textoEs?: string; resena?: ReferenciaResena }
+  >;
 }
 
 export interface Borrador {
@@ -39,6 +54,12 @@ export interface Borrador {
   previos: string[];
   /** true si el dueño está escribiendo su propia versión */
   esperandoTexto?: boolean;
+  /** Idioma de la reseña (código ISO de 2 letras). "es" o vacío = castellano. */
+  idioma?: string;
+  /** Si la reseña no está en castellano: su traducción, para el dueño. */
+  resenaEs?: string;
+  /** Si la respuesta no va en castellano: su traducción, para el dueño. */
+  textoEs?: string;
 }
 
 async function getHechas(): Promise<Hechas> {
@@ -100,9 +121,10 @@ export async function marcarHecha(
   id: string,
   estado: EstadoResena,
   texto?: string,
+  extra: { textoEs?: string; resena?: ReferenciaResena } = {},
 ): Promise<void> {
   const hechas = await getHechas();
-  hechas.registro[id] = { estado, ts: new Date().toISOString(), texto };
+  hechas.registro[id] = { estado, ts: new Date().toISOString(), texto, ...extra };
   await kvSet(CLAVE_HECHAS, hechas);
   await appendLog({
     ts: new Date().toISOString(),
@@ -116,7 +138,61 @@ export async function marcarHecha(
 export interface ResumenCola {
   pendientes: number;
   publicadas: number;
+  /** aprobadas por el dueño, aún sin pasar a Google (modo manual) */
+  aprobadas: number;
   saltadas: number;
+}
+
+export interface Aprobada {
+  id: string;
+  ts: string;
+  respuesta: string;
+  respuestaEs?: string;
+  resena?: ReferenciaResena;
+}
+
+/** Las que el dueño aprobó y faltan por publicar en la ficha. */
+export async function listarAprobadas(): Promise<Aprobada[]> {
+  const hechas = await getHechas();
+  return Object.entries(hechas.registro)
+    .filter(([, v]) => v.estado === "aprobada")
+    .map(([id, v]) => ({ id, ts: v.ts, respuesta: v.texto ?? "", respuestaEs: v.textoEs, resena: v.resena }));
+}
+
+/** Tras pegarlas en la ficha: pasan de "aprobada" a "publicada", con el mismo texto. */
+export async function marcarPublicadas(ids: string[]): Promise<{ marcadas: number; ignoradas: string[] }> {
+  const hechas = await getHechas();
+  let marcadas = 0;
+  const ignoradas: string[] = [];
+  for (const id of ids) {
+    const r = hechas.registro[id];
+    if (!r || r.estado !== "aprobada") {
+      ignoradas.push(id);
+      continue;
+    }
+    hechas.registro[id] = { ...r, estado: "publicada", ts: new Date().toISOString() };
+    marcadas++;
+  }
+  await kvSet(CLAVE_HECHAS, hechas);
+  if (marcadas) {
+    await appendLog({ ts: new Date().toISOString(), kind: "review", action: "publicadas_a_mano", ids });
+  }
+  return { marcadas, ignoradas };
+}
+
+/** Borra las decisiones tomadas sobre reseñas manuales (para repetir una prueba). */
+export async function olvidarDecisionesManuales(): Promise<number> {
+  const hechas = await getHechas();
+  let n = 0;
+  for (const id of Object.keys(hechas.registro)) {
+    if (id.startsWith("manual:") && hechas.registro[id].estado !== "publicada") {
+      delete hechas.registro[id];
+      n++;
+    }
+  }
+  await kvSet(CLAVE_HECHAS, hechas);
+  await kvSet(CLAVE_COLA, null);
+  return n;
 }
 
 export async function resumen(): Promise<ResumenCola> {
@@ -125,6 +201,7 @@ export async function resumen(): Promise<ResumenCola> {
   return {
     pendientes: await contarPendientes(),
     publicadas: valores.filter((v) => v.estado === "publicada").length,
+    aprobadas: valores.filter((v) => v.estado === "aprobada").length,
     saltadas: valores.filter((v) => v.estado === "saltada").length,
   };
 }

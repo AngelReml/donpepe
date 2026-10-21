@@ -38,6 +38,21 @@ export function isSimulated(): boolean {
 }
 
 /**
+ * De dónde salen las reseñas y qué pasa al aprobar una:
+ *  - "real":   API de Google. Aprobar = publicar en Google al momento.
+ *  - "manual": cargadas a mano (lib/resenas-manuales.ts). Aprobar = queda
+ *              guardada como "aprobada" para publicarla luego en la ficha.
+ *  - "demo":   reseñas de ejemplo (data/sample-reviews.json), para enseñar
+ *              el flujo. Se activa con RESENAS_DEMO=true.
+ * Se lee en cada llamada (no al importar) para que los tests puedan elegir.
+ */
+export type ModoResenas = "real" | "manual" | "demo";
+export function modoResenas(): ModoResenas {
+  if (!SIMULADO) return "real";
+  return process.env.RESENAS_DEMO === "true" ? "demo" : "manual";
+}
+
+/**
  * Google devuelve la puntuación como palabra ("FIVE"), no como número.
  * Number("FIVE") es NaN, y con NaN la reseña entra en la cola con 0 estrellas
  * y el borrador se redacta como si fuera una queja. De ahí este mapa.
@@ -118,6 +133,10 @@ function normalizar(raw: any, locationId: string): GbpReview {
  * cada día, indefinidamente.
  */
 export async function listReviews(vistas: Set<string>): Promise<GbpReview[]> {
+  if (modoResenas() === "manual") {
+    const { listarManuales } = await import("./resenas-manuales");
+    return (await listarManuales()).filter((r) => !vistas.has(r.id) && !r.yaRespondida);
+  }
   if (SIMULADO) {
     const file = path.join(process.cwd(), "data", "sample-reviews.json");
     const raw = JSON.parse(fs.readFileSync(file, "utf-8")) as { reviews: GbpReview[] };
@@ -157,6 +176,10 @@ export async function listReviews(vistas: Set<string>): Promise<GbpReview[]> {
 
 /** Igual que listReviews pero sin filtrar: para el recuento del dashboard. */
 export async function listAllReviews(): Promise<GbpReview[]> {
+  if (modoResenas() === "manual") {
+    const { listarManuales } = await import("./resenas-manuales");
+    return listarManuales();
+  }
   if (SIMULADO) {
     const file = path.join(process.cwd(), "data", "sample-reviews.json");
     const raw = JSON.parse(fs.readFileSync(file, "utf-8")) as { reviews: GbpReview[] };
