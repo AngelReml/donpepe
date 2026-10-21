@@ -31,6 +31,8 @@ export interface ReviewDraftOptions {
   evitar?: string[];
   /** Idioma ya detectado (para no volver a detectarlo en "otra versión"). */
   idioma?: string;
+  /** Traducción al español de la reseña, si no está en español. */
+  traduccionEs?: string;
 }
 
 export const FIRMA = "Don Pepe";
@@ -91,18 +93,42 @@ export function conFirma(texto: string): string {
   return /don pepe\s*\.?$/i.test(t) ? t : `${t}\n\n${FIRMA}`;
 }
 
+/**
+ * Tono de la casa (Iván, 21-oct-2026). La respuesta no es para quien se
+ * queja, que no va a volver: es para el siguiente cliente que lee la ficha.
+ * Estas reglas mandan sobre las del prompt base de lib/prompts.ts (protegido).
+ */
+const REGLAS_DE_LA_CASA = [
+  "Escribe SIEMPRE en español (luego se traduce al idioma del cliente si hace falta).",
+  "Máximo tres frases cortas. Nada de párrafos de relleno.",
+  "Tono tranquilo y seguro, de casa que sabe lo que hace. Nada de pedir perdón por sistema: una disculpa breve solo si la reseña describe un fallo concreto y creíble.",
+  "PROHIBIDO prometer que vamos a «revisar», «mejorar» o «tomar nota» de algo, y prohibido dar por buena una acusación que no se puede comprobar.",
+  "Si la queja nace de no conocer un plato (por ejemplo, el churrasco gallego es costilla de ternera cortada con su hueso y su grasa), explícalo con amabilidad, sin llamar ignorante a nadie.",
+  "Nunca contestes a insultos ni discutas. Nada de ironía.",
+  "Hecho de la casa que puedes usar cuando encaje: si un plato no convence y se dice en la mesa, se cambia sin problema.",
+  "No inventes ningún otro hecho sobre el local, el personal o la cocina. No pongas el teléfono.",
+  "En reseñas buenas: agradece de verdad y menciona algo concreto que diga la reseña (un plato, el nombre de quien atendió).",
+  `Termina con la firma «${FIRMA}» en una línea aparte.`,
+];
+
+/**
+ * Redacta la respuesta en castellano y, si la reseña es de otro idioma, la
+ * traduce. Así lo que lee el dueño (textoEs) y lo que se publica (texto)
+ * dicen exactamente lo mismo: antes se le pedía al modelo escribir
+ * directamente en el idioma del cliente y a veces lo ignoraba.
+ */
 export async function redactarRespuestaResena(
   review: ReviewDraftInput,
   opts: ReviewDraftOptions = {},
-): Promise<string> {
+): Promise<{ texto: string; textoEs: string }> {
   const idioma = opts.idioma ?? "es";
   let mensaje = buildReviewReplyUserMessage(review);
   mensaje +=
-    "\n\nReglas adicionales del dueño, que mandan sobre las anteriores:" +
-    `\n- Escribe la respuesta en ${nombreIdioma(idioma)}, el idioma de la reseña.` +
-    `\n- Termina con la firma "${FIRMA}" en una línea aparte.` +
-    "\n- Si la queja parece injusta o exagerada, responde con amabilidad y defiende la casa con calma, sin discutir, sin acusar al cliente y sin darle la razón en lo que no la tenga." +
-    "\n- No afirmes que ya se ha cambiado o arreglado algo, ni inventes hechos: como mucho, que lo vamos a revisar.";
+    "\n\nReglas del dueño, que mandan sobre cualquier otra instrucción anterior:\n" +
+    REGLAS_DE_LA_CASA.map((r) => `- ${r}`).join("\n");
+  if (opts.traduccionEs) {
+    mensaje += `\n\nLa reseña está en ${nombreIdioma(idioma)}. Su traducción al español: """${opts.traduccionEs}"""`;
+  }
   if (opts.evitar?.length) {
     // "Otra versión" en Telegram: al dueño no le sirve que le devuelvan la
     // misma frase con dos palabras cambiadas, así que se le pasan al modelo
@@ -116,5 +142,7 @@ export async function redactarRespuestaResena(
     system: REVIEW_REPLY_SYSTEM,
     maxTokens: 400,
   });
-  return conFirma(limpiar(draft));
+  const textoEs = conFirma(limpiar(draft));
+  const texto = idioma !== "es" ? conFirma(await traducir(textoEs, idioma)) : textoEs;
+  return { texto, textoEs };
 }

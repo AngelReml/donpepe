@@ -23,8 +23,15 @@ import {
   clearBorrador,
   refrescarCola,
   reiniciarCola,
+  esDueno,
+  vistasEnPrueba,
+  apuntarVistaEnPrueba,
+  reiniciarPrueba,
   type Borrador,
 } from "./resenas-cola";
+
+const AVISO_PRUEBA =
+  "🧪 Modo prueba: solo Antonio decide. Tus botones no guardan nada y a él le seguirá saliendo.";
 
 const MAX_TEXTO_RESENA = 600;
 const MAX_VERSIONES = 5;
@@ -65,10 +72,17 @@ function recortar(texto: string, max: number): string {
   return t.length <= max ? t : `${t.slice(0, max - 1)}…`;
 }
 
-function pintar(review: GbpReview, b: Pick<Borrador, "texto" | "idioma" | "resenaEs" | "textoEs">, nota?: string): string {
+function pintar(
+  review: GbpReview,
+  b: Pick<Borrador, "texto" | "idioma" | "resenaEs" | "textoEs">,
+  nota?: string,
+  prueba = false,
+): string {
   const cabecera = `${estrellas(review.rating)}  ${review.rating}/5`;
   const quien = review.author ? ` · ${review.author}` : "";
-  const cuando = review.time ? ` · ${fechaCorta(review.time)}` : "";
+  // En modo manual la fecha guardada es la de carga, no la de la reseña:
+  // enseñarla confundiría. Solo se muestra con reseñas de Google o de ejemplo.
+  const cuando = review.time && modoResenas() !== "manual" ? ` · ${fechaCorta(review.time)}` : "";
   const extranjera = Boolean(b.idioma && b.idioma !== "es");
   const cuerpo = review.text
     ? `\n\n"${recortar(review.text, MAX_TEXTO_RESENA)}"`
@@ -87,7 +101,8 @@ function pintar(review: GbpReview, b: Pick<Borrador, "texto" | "idioma" | "resen
         ? "\n\n· Al aprobarla queda guardada y la publicamos nosotros en Google."
         : "";
   const extra = nota ? `\n\n${nota}` : "";
-  return `${cabecera}${quien}${cuando}${cuerpo}${cuerpoEs}\n\n${titulo}\n${b.texto}${respuestaEs}${extra}${aviso}`;
+  const avisoFinal = prueba ? `\n\n${AVISO_PRUEBA}` : aviso;
+  return `${cabecera}${quien}${cuando}${cuerpo}${cuerpoEs}\n\n${titulo}\n${b.texto}${respuestaEs}${extra}${avisoFinal}`;
 }
 
 /** Genera el borrador de una reseña y lo deja guardado como borrador en curso. */
@@ -101,17 +116,22 @@ async function prepararBorrador(
   const deteccion = previo
     ? { idioma: previo.idioma ?? "es", traduccionEs: previo.resenaEs }
     : await detectarYTraducir(review.text);
+  // previos guarda las versiones en castellano: es lo que redacta el modelo.
   const previos = previo?.previos ?? [];
-  const draft = await redactarRespuestaResena(review, { evitar: previos, idioma: deteccion.idioma });
-  const textoEs = deteccion.idioma !== "es" ? await traducir(draft, "es") : undefined;
+  const { texto, textoEs } = await redactarRespuestaResena(review, {
+    evitar: previos,
+    idioma: deteccion.idioma,
+    traduccionEs: deteccion.traduccionEs,
+  });
+  const extranjera = deteccion.idioma !== "es";
   const b: Borrador = {
     review,
-    texto: draft,
+    texto,
     versiones: previos.length + 1,
-    previos: [...previos, draft],
+    previos: [...previos, textoEs],
     idioma: deteccion.idioma,
     resenaEs: deteccion.traduccionEs,
-    textoEs,
+    textoEs: extranjera ? textoEs : undefined,
   };
   await setBorrador(chatId, b);
   return b;
@@ -126,8 +146,16 @@ export async function mostrarSiguienteResena(chatId: string): Promise<void> {
     );
     return;
   }
-  const review = await siguientePendiente();
+  const prueba = !esDueno(chatId);
+  const review = await siguientePendiente(prueba ? await vistasEnPrueba(chatId) : undefined);
   if (!review) {
+    if (prueba) {
+      await sendMessage(
+        chatId,
+        "Has visto todas las reseñas pendientes. 🧪 No se ha guardado nada.\n\nEscribe «/resenas reiniciar» para volver a empezar la prueba desde la primera.",
+      );
+      return;
+    }
     const r = await resumen();
     const aprobadas = r.aprobadas ? ` · Aprobadas (pendientes de pasar a Google): ${r.aprobadas}` : "";
     await sendMessage(
@@ -139,7 +167,7 @@ export async function mostrarSiguienteResena(chatId: string): Promise<void> {
   await sendMessage(chatId, "Preparando la respuesta…");
   try {
     const b = await prepararBorrador(chatId, review);
-    await sendMessage(chatId, pintar(review, b), teclado());
+    await sendMessage(chatId, pintar(review, b, undefined, prueba), teclado());
   } catch (e) {
     await sendMessage(
       chatId,
@@ -169,6 +197,12 @@ export async function mostrarEstadoResenas(chatId: string): Promise<void> {
  * ya respondido sería volver a proponer respuestas encima de las publicadas.
  */
 export async function reiniciarResenas(chatId: string): Promise<void> {
+  if (!esDueno(chatId)) {
+    await reiniciarPrueba(chatId);
+    await clearBorrador(chatId);
+    await sendMessage(chatId, "🧪 Prueba reiniciada. Escribe /resenas para empezar otra vez desde la primera.");
+    return;
+  }
   if (modoResenas() !== "demo") {
     await sendMessage(
       chatId,
@@ -199,6 +233,25 @@ export async function manejarCallbackResena(
         TECLADO_VACIO,
       );
     }
+    return { consumido: true };
+  }
+
+  const prueba = !esDueno(chatId);
+
+  if (prueba && (data === "res:pub" || data === "res:skip")) {
+    // Solo se apunta que este chat ya la ha visto; la cola real no cambia.
+    await apuntarVistaEnPrueba(chatId, b.review.id);
+    await clearBorrador(chatId);
+    const que = data === "res:pub" ? "Aprobada" : "Saltada";
+    if (messageId) {
+      await editMessageText(
+        chatId,
+        messageId,
+        `🧪 ${que} en prueba. No se ha guardado nada.\n\n${b.texto}`,
+        TECLADO_VACIO,
+      );
+    }
+    await mostrarSiguienteResena(chatId);
     return { consumido: true };
   }
 
@@ -244,7 +297,7 @@ export async function manejarCallbackResena(
         await editMessageText(
           chatId,
           messageId,
-          pintar(b.review, nuevo, `Versión ${nuevo.versiones}.`),
+          pintar(b.review, nuevo, `Versión ${nuevo.versiones}.`, prueba),
           teclado(),
         );
       }
@@ -309,6 +362,6 @@ export async function manejarTextoResena(chatId: string, texto: string): Promise
     nuevo = { ...b, texto: conFirma(propio), textoEs: undefined, esperandoTexto: false };
   }
   await setBorrador(chatId, nuevo);
-  await sendMessage(chatId, pintar(b.review, nuevo, "Tu versión."), teclado());
+  await sendMessage(chatId, pintar(b.review, nuevo, "Tu versión.", !esDueno(chatId)), teclado());
   return true;
 }

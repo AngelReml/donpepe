@@ -13,8 +13,33 @@ import {
   marcarPublicadas,
   olvidarDecisionesManuales,
   resumen,
+  esDueno,
+  apuntarVistaEnPrueba,
+  vistasEnPrueba,
+  reiniciarPrueba,
 } from "../lib/resenas-cola";
-import { conFirma } from "../lib/resenas-draft";
+import { conFirma, redactarRespuestaResena, detectarYTraducir } from "../lib/resenas-draft";
+
+// LLM simulado: así se prueba el circuito de idiomas sin red.
+process.env.OPENROUTER_API_KEY = "test";
+const llamadas: string[] = [];
+globalThis.fetch = (async (_url: unknown, init?: { body?: string }) => {
+  const body = JSON.parse(String(init?.body ?? "{}"));
+  const sys: string = body.messages?.[0]?.content ?? "";
+  const user: string = body.messages?.[body.messages.length - 1]?.content ?? "";
+  let content = "";
+  if (sys.includes("detector de idioma")) {
+    content = user.includes("Pior comida") ? '{"idioma":"pt","es":"La peor comida de Galicia"}' : '{"idioma":"es","es":""}';
+    llamadas.push("detectar");
+  } else if (sys.includes("traductor")) {
+    content = `[PT] ${user.split("\n\n").slice(1).join("\n\n")}`;
+    llamadas.push("traducir");
+  } else {
+    content = "Sentimos que no te gustase. El churrasco gallego lleva hueso.";
+    llamadas.push(user.includes("Escribe SIEMPRE en español") ? "redactar-es" : "redactar-otro");
+  }
+  return new Response(JSON.stringify({ choices: [{ message: { content } }] }), { status: 200 });
+}) as typeof fetch;
 
 let fallos = 0;
 function comprobar(nombre: string, ok: boolean, detalle = "") {
@@ -64,6 +89,31 @@ async function main() {
   await marcarHecha(otra!.id, "saltada");
   const olvidadas = await olvidarDecisionesManuales();
   comprobar("olvidar no toca las publicadas", olvidadas === 1 && (await resumen()).publicadas === 1);
+
+  console.log("\nIdiomas (LLM simulado)");
+  const det = await detectarYTraducir("Pior comida da Galicia!");
+  comprobar("detecta portugués", det.idioma === "pt" && det.traduccionEs === "La peor comida de Galicia");
+  const r = await redactarRespuestaResena(
+    { id: "x", author: "F", rating: 1, text: "Pior comida da Galicia!" },
+    { idioma: "pt", traduccionEs: det.traduccionEs },
+  );
+  comprobar("redacta en español con las reglas de la casa", llamadas.includes("redactar-es"));
+  comprobar("lo que ve el dueño está en español", r.textoEs.startsWith("Sentimos") && r.textoEs.endsWith("Don Pepe"));
+  comprobar("lo que se publica es la traducción", r.texto.startsWith("[PT]") && r.texto.includes("Sentimos"));
+  const es = await redactarRespuestaResena({ id: "y", rating: 5, text: "Muy rico" }, { idioma: "es" });
+  comprobar("en español no traduce", es.texto === es.textoEs);
+
+  console.log("\nModo prueba (solo el dueño decide)");
+  process.env.TELEGRAM_ALLOWED_CHAT_IDS = "8667886664,12345";
+  comprobar("el primero es el dueño", esDueno("8667886664") && !esDueno("12345"));
+  await refrescarCola(true);
+  const p1 = await siguientePendiente(await vistasEnPrueba("12345"));
+  await apuntarVistaEnPrueba("12345", p1!.id);
+  const p2 = await siguientePendiente(await vistasEnPrueba("12345"));
+  comprobar("en prueba avanza a la siguiente", p2 !== null && p2.id !== p1!.id);
+  comprobar("la cola del dueño no cambia", (await siguientePendiente())?.id === p1!.id);
+  await reiniciarPrueba("12345");
+  comprobar("reiniciar la prueba vuelve a la primera", (await siguientePendiente(await vistasEnPrueba("12345")))?.id === p1!.id);
 
   comprobar("firma añadida si falta", conFirma("Gracias por venir.").endsWith("\n\nDon Pepe"));
   comprobar("firma no duplicada", conFirma("Gracias.\n\nDon Pepe") === "Gracias.\n\nDon Pepe");

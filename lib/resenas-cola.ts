@@ -108,9 +108,44 @@ async function colaViva(): Promise<GbpReview[]> {
   return cola.items.filter((r) => !vistos.has(r.id));
 }
 
-export async function siguientePendiente(): Promise<GbpReview | null> {
+export async function siguientePendiente(excluir?: Set<string>): Promise<GbpReview | null> {
   const items = await colaViva();
-  return items[0] ?? null;
+  return items.find((r) => !excluir?.has(r.id)) ?? null;
+}
+
+// ─── Modo prueba ─────────────────────────────────────────────────────────
+//
+// Solo el dueño decide. El dueño es el PRIMER chat de TELEGRAM_ALLOWED_CHAT_IDS
+// (el mismo al que avisa el cron). Cualquier otro chat autorizado ve las
+// mismas reseñas y usa los mismos botones, pero lo que toca NO se guarda:
+// solo se apunta, para ese chat, que ya la ha visto, y así puede seguir con
+// la siguiente. A la cola real del dueño no le pasa nada.
+
+function idsAutorizados(): string[] {
+  return (process.env.TELEGRAM_ALLOWED_CHAT_IDS ?? "")
+    .split(",")
+    .map((s) => s.replace(/\D/g, ""))
+    .filter(Boolean);
+}
+
+export function esDueno(chatId: string): boolean {
+  return idsAutorizados()[0] === String(chatId).replace(/\D/g, "");
+}
+
+const clavePrueba = (chatId: string) => `resenas:prueba:${chatId}`;
+
+export async function vistasEnPrueba(chatId: string): Promise<Set<string>> {
+  return new Set((await kvGet<string[]>(clavePrueba(chatId))) ?? []);
+}
+
+export async function apuntarVistaEnPrueba(chatId: string, id: string): Promise<void> {
+  const v = await vistasEnPrueba(chatId);
+  v.add(id);
+  await kvSet(clavePrueba(chatId), [...v]);
+}
+
+export async function reiniciarPrueba(chatId: string): Promise<void> {
+  await kvSet(clavePrueba(chatId), []);
 }
 
 export async function contarPendientes(): Promise<number> {
